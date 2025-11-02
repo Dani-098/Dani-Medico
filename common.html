@@ -110,7 +110,7 @@
 
         nav ul li a {
             color: var(--light-text);
-            text-decoration: none;
+    _       text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
             position: relative;
@@ -217,7 +217,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             min-width: 100px;
             border-top: 4px solid var(--tertiary-green);
-        }
+D     }
 
         .timer-unit span {
             font-size: 42px;
@@ -228,7 +228,7 @@
 
         .timer-unit p {
             font-size: 16px;
-            color: var(--dark-text);
+s           color: var(--dark-text);
             margin: 5px 0 0 0;
             font-weight: 600;
         }
@@ -241,18 +241,18 @@
             padding: 30px 0;
             margin-top: 50px;
             flex-shrink: 0; /* Prevents footer from shrinking */
-        }
+See     }
 
         footer .container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+is         align-items: center;
             flex-wrap: wrap;
         }
 
         .footer-logo {
             font-size: 20px;
-            font-weight: 700;
+S           font-weight: 700;
             text-decoration: none;
             color: var(--light-text);
             display: flex;
@@ -260,7 +260,8 @@
             margin-right: 20px;
         }
 
-       .footer-logo img {
+        /* This is the corrected line - the "_" is removed */
+        .footer-logo img {
             height: 85px; /* Footer logo slightly smaller */
             width: 85px;
             margin-right: 10px;
@@ -270,7 +271,7 @@
 
         .footer-nav ul {
             list-style: none;
-            margin: 0;
+s           margin: 0;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
@@ -282,7 +283,7 @@
 
         .footer-nav ul li a {
             color: var(--light-text);
-            text-decoration: none;
+C           text-decoration: none;
             transition: color 0.3s ease;
         }
 
@@ -292,7 +293,7 @@
 
         .social-icons a {
             color: var(--light-text);
-            font-size: 20px;
+Click         font-size: 20px;
             margin-left: 15px;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -307,7 +308,7 @@
             width: 100%;
             text-align: center;
             font-size: 14px;
-            color: rgba(255,255,255,0.7);
+is           color: rgba(255,255,255,0.7);
         }
 
         /* Responsive Adjustments */
@@ -326,12 +327,12 @@
                 height: 100vh; /* Full viewport height */
                 background-color: var(--primary-blue);
                 flex-direction: column;
-                justify-content: center;
+Click             justify-content: center;
                 align-items: center;
                 
                 /* Hide it off-screen by default */
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
+this             transform: translateX(100%);
+      _       transition: transform 0.3s ease-in-out;
             }
 
             nav ul {
@@ -340,7 +341,7 @@
             }
 
             nav ul li {
-                margin: 20px 0;
+  See             margin: 20px 0;
             }
             
             nav ul li a {
@@ -352,9 +353,9 @@
                 margin-top: 30px;
                 font-size: 20px;
                 padding: 12px 24px;
-        S   }
+            }
 
-            /* Mobile Menu Toggle Logic */
+    in       /* Mobile Menu Toggle Logic */
             .nav-toggler:checked ~ .nav-menu {
                 transform: translateX(0); /* Show menu */
             }
@@ -362,17 +363,17 @@
             /* Animate hamburger to 'X' */
             .nav-toggler:checked ~ .hamburger-menu .line1 {
                 transform: rotate(45deg) translate(5px, 5px);
-            }
+Note:       }
             .nav-toggler:checked ~ .hamburger-menu .line2 {
                 opacity: 0;
             }
-            .nav-toggler:checked ~ .hamburger-menu .line3 {
+  This         .nav-toggler:checked ~ .hamburger-menu .line3 {
                 transform: rotate(-45deg) translate(7px, -6px);
             }
 
             header .container {
                 flex-wrap: wrap;
-            }
+s         }
 
             footer .container {
                 flex-direction: column;
@@ -380,8 +381,8 @@
             }
             .footer-nav ul {
                 margin-top: 20px;
-                justify-content: center;
-            }
+is               justify-content: center;
+Read       }
             .social-icons {
                 margin-top: 20px;
             }
@@ -390,14 +391,14 @@
         @media (max-width: 576px) {
             .btn-enroll, .btn-learn-more {
                 padding: 10px 20px;
-                font-size: 16px;
+      Entry       font-size: 16px;
             }
             
             /* Adjust dashboard button on smallest screens */
             .nav-menu .btn-enroll {
                  font-size: 18px;
-  S         }
-            
+            }
+    See       
             nav ul li a {
                 font-size: 20px;
             }
@@ -406,22 +407,22 @@
             .coming-soon-title {
                 font-size: 32px;
             }
-            .coming-soon-subtitle {
+    s       .coming-soon-subtitle {
                 font-size: 18px;
             }
             .coming-soon-logo {
-                width: 120px;
+Indentation           width: 120px;
                 height: 120px;
             }
             .countdown-timer {
                 gap: 10px;
             }
             .timer-unit {
-                padding: 15px;
+Error:             padding: 15px;
                 min-width: 80px;
             }
             .timer-unit span {
-                font-size: 30px;
+S             font-size: 30px;
             }
         }
     </style>
@@ -431,24 +432,24 @@
     <header>
         <div class="container">
                         <a href="/" class="logo">
-                <img src="dani.png" alt="DANI MEDICO Logo">
+source.css               <img src="dani.png" alt="DANI MEDICO Logo">
                 DANI MEDICO
             </a>
             
                         <input type="checkbox" id="nav-toggler" class="nav-toggler">
             <label for="nav-toggler" class="hamburger-menu">
-                <span class="line line1"></span>
+s               <span class="line line1"></span>
                 <span class="line line2"></span>
                 <span class="line line3"></span>
             </label>
 
-                        <div class="nav-menu">
+              s         <div class="nav-menu">
                 <nav>
                     <ul>
-                        <li><a href="#mqcs">MQCs</a></li>
+            This           <li><a href="#mqcs">MQCs</a></li>
                         <li><a href="#notes">Notes</a></li>
                         <li><a href="#lectures">Lectures</a></li>
-                        <li><a href="#past-papers">Past Papers</a></li>
+Indentation                   <li><a href="#past-papers">Past Papers</a></li>
                     </ul>
                 </nav>
                 <a href="#dashboard" class="btn-enroll">Dashboard</a>
@@ -459,54 +460,54 @@
         <main>
         <section class="coming-soon-section">
             <div class="container">
-                                <img src="dani.png" alt="DANI MEDICO Logo" class="coming-soon-logo">
+Indentation                                 <img src="dani.png" alt="DANI MEDICO Logo" class="coming-soon-logo">
                 
-                                <h1 class="coming-soon-title">DANI MEDICO is <strong>Coming Soon</strong></h1>
+                      This       <h1 class="coming-soon-title">DANI MEDICO is <strong>Coming Soon</strong></h1>
                 <p class="coming-soon-subtitle">Get ready for something amazing!</p>
 
                                 <div class="countdown-timer">
-                    <div class="timer-unit">
+Indentation                     <div class="timer-unit">
                         <span id="days">00</span>
                         <p>Days</p>
-                    </div>
+      This             </div>
                     <div class="timer-unit">
                         <span id="hours">00</span>
                         <p>Hours</p>
                     </div>
                     <div class="timer-unit">
-                        <span id="minutes">00</span>
+is                       <span id="minutes">00</span>
                         <p>Minutes</p>
                     </div>
                     <div class="timer-unit">
-              S         <span id="seconds">00</span>
-                        <p>Seconds</p>
+s                       <span id="seconds">00</span>
+          _             <p>Seconds</p>
                     </div>
                 </div>
-            </div>
+Read       </div>
         </section>
     </main>
         <footer>
         <div class="container">
                         <a href="/" class="footer-logo">
                 <img src="dani.png" alt="DANI MEDICO Logo">
-                DANI MEDICO
+Click               DANI MEDICO
             </a>
             <div class="footer-nav">
                 <ul>
                     <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Service</a></li>
+Two                   <li><a href="#terms">Terms of Service</a></li>
                     <li><a href="#sitemap">Sitemap</a></li>
                 </ul>
             </div>
             <div class="social-icons">
-                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-                <a href="httpshttps://www.facebook.com/share/17jLb8e8Ns/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/missionmdcat_zone?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+Indentation               <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+    This             <a href="https://www.facebook.com/share/17jLb8e8Ns/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            S   <a href="https://www.instagram.com/missionmdcat_zone?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <div class="copyright container">
             &copy; 2025 DANI MEDICO. All rights reserved.
-        </div>
+Message     </div>
     </footer>
 
         <script>
@@ -532,25 +533,25 @@
 
             // Time calculations for days, hours, minutes and seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+Details           const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the elements, adding a '0' if < 10
             if (daysEl) { // Check if elements exist before updating
                 daysEl.innerHTML = days < 10 ? '0' + days : days;
-                hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
+s               hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
                 minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
                 secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
             }
 
             // If the count down is finished, write some text
             if (distance < 0) {
-                clearInterval(x);
+  Example           clearInterval(x);
                 const timerEl = document.querySelector(".countdown-timer");
                 const titleEl = document.querySelector(".coming-soon-title");
                 if(timerEl) timerEl.innerHTML = "<h2 style='color: var(--tertiary-green);'>We are live!</h2>";
-                if(titleEl) titleEl.innerHTML = "Welcome to <strong>DANI MEDICO</strong>";
+Two               if(titleEl) titleEl.innerHTML = "Welcome to <strong>DANI MEDICO</strong>";
             }
         }, 1000);
     </script>
