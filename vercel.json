@@ -6,7 +6,7 @@
     { "src": "dani.png", "use": "@vercel/static" },
    ],
   "routes": [
-    { "src": "/mbbs-bds", "dest": "/common.html" }
+    { "src": "/mdcat", "dest": "/common.html" }
     { "src": "/", "dest": "/index.html" }
     { "src": "/", "dest": "/dani.png" }
   ]
