@@ -2,8 +2,12 @@
   "version": 2,
   "builds": [
     { "src": "common.html", "use": "@vercel/static" },
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "dani.png", "use": "@vercel/static" },
    ],
   "routes": [
-    { "src": "/mbbs-bds", "dest": "/common.html" }   
+    { "src": "/mbbs-bds", "dest": "/common.html" }
+    { "src": "/", "dest": "/index.html" }
+    { "src": "/", "dest": "/dani.png" }
   ]
 }
