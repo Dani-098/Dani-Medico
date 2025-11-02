@@ -1,11 +1,9 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" },
     { "src": "common.html", "use": "@vercel/static" },
    ],
   "routes": [
-    { "src": "/home-pg", "dest": "/index.html" },
     { "src": "/mbbs-bds", "dest": "/common.html" }   
   ]
 }
