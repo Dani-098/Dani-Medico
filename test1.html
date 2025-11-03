@@ -1860,7 +1860,7 @@ const quizData = [
                 submissionStatus.textContent = 'Submitting your results...';
                 submissionStatus.className = '';
                 
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwuh8ev3JmaiiCmbtZIAQBtPjx0bdCRLe_JHVBFRiho-mHWhXj-s-8zW20_2yLMUSx7/exec', {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'cors', // Required for cross-origin requests
                     headers: {
