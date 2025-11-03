@@ -1848,14 +1848,6 @@ const quizData = [
                 score: `${score}/${totalQuestions}`
             };
 
-            // Check if placeholder URL is still being used
-            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzBSKHVOKd5nrlyH2jlgFKH04hHohjXIlbKbwcEc8dRTVm2j2lhJqktAs0HcvHy0v_i/exec') {
-                console.error('Google Script URL is not set. Cannot submit results.');
-                submissionStatus.textContent = 'Error: Submission URL not configured.';
-                submissionStatus.className = 'status-error';
-                return;
-            }
-
             try {
                 submissionStatus.textContent = 'Submitting your results...';
                 submissionStatus.className = '';
