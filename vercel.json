@@ -2,5 +2,6 @@
   "version": 2,
   "rewrites": [
     { "source": "/common", "destination": "/common.html" }
+    { "source": "/lumhs-mock-test1", "destination": "/lumhs-test1.html" }
   ]
 }
