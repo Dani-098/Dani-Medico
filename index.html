@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Updated Title -->
-    <title>DANI MEDICO </title>
+    <title>DANI MEDICO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Updated icon to match logo -->
     <link rel="icon" href="/dani.png" type="image/png">
+    
     <style>
+        /* Updated Color Variables using the requested Hex codes */
         :root {
-            --primary-blue: #2B1C50;
-            --secondary-offwhite: #FFFFFF;
-            --tertiary-green: #1F51FF;
+            --primary-blue: #2B1C50; /* Deep Violet/Dark Purple */
+            --secondary-offwhite: #FFFFFF; /* Luminous White */
+            --tertiary-accent: #1F51FF; /* Neon Blue/Electric Blue */
+            --tertiary-glow: #867D9B; /* Lavender Glow (used for subtle elements) */
             --dark-text: #333;
             --light-text: #fff;
             --light-grey-bg: #e0e0e0;
         }
 
-        /* Fixes overflow bugs by including padding in width/height calculations */
+        /* Base Reset */
         *,
         *::before,
         *::after {
@@ -34,7 +35,6 @@
             background-color: var(--secondary-offwhite);
             color: var(--dark-text);
             line-height: 1.6;
-            /* Prevents horizontal scrolling */
             overflow-x: hidden;
         }
 
@@ -72,11 +72,11 @@
         }
 
         .logo img {
-            height: 85px; /* Logo height 30px */
-            width: 85px;  /* Logo width 30px */
+            height: 85px; 
+            width: 85px; 
             margin-right: 10px;
-            border-radius: 50%; /* Makes it round if it's square */
-            object-fit: cover; /* Ensures logo fits well */
+            border-radius: 50%; 
+            object-fit: cover;
         }
 
         .nav-menu {
@@ -105,7 +105,7 @@
 
         nav ul li a:hover,
         nav ul li a.active {
-            color: var(--tertiary-green);
+            color: var(--tertiary-accent); /* Use Neon Blue for hover/active */
         }
         
         nav ul li a.active::after,
@@ -116,33 +116,35 @@
             bottom: -5px;
             width: 100%;
             height: 2px;
-            background-color: var(--tertiary-green);
+            background-color: var(--tertiary-accent); /* Use Neon Blue for underline */
         }
 
+        /* Call-to-Action Button Style */
         .btn-enroll {
-            background-color: var(--tertiary-green);
+            background-color: var(--tertiary-accent); /* Neon Blue */
             color: var(--light-text);
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
             margin-left: 30px;
         }
 
         .btn-enroll:hover {
-            background-color: #867D9B;
+            background-color: var(--tertiary-glow); /* Lavender Glow for subtle hover */
+            color: var(--primary-blue);
         }
 
-        /* Mobile Menu Styles */
+        /* Mobile Menu Toggler */
         .nav-toggler {
-            display: none; /* Hide the checkbox */
+            display: none; 
         }
 
         .hamburger-menu {
-            display: none; /* Hidden on desktop */
+            display: none; 
             cursor: pointer;
-            z-index: 1001; /* Above nav-menu */
+            z-index: 1001;
         }
 
         .hamburger-menu .line {
@@ -153,22 +155,22 @@
             margin: 5px 0;
             transition: all 0.3s ease-in-out;
         }
-        /* END Mobile Menu Styles */
 
-
-        /* Hero Section */
+        /* Hero Section - Using Neon Blue as dominant background */
         .hero {
-            background-color: var(--primary-blue);
+            /* Changed from primary-blue to tertiary-accent for the dramatic header look */
+            background-color: var(--tertiary-accent); 
             padding: 80px 0;
             text-align: center;
             position: relative;
-            overflow-x: hidden; 
+            overflow: hidden; 
             color: var(--light-text);
-            background-image: linear-gradient(to bottom right, #1F51FF, #1F51FF);
+            /* Gradient for depth, using the primary color */
+            background-image: linear-gradient(to bottom right, var(--tertiary-accent), var(--primary-blue));
         }
         
         .hero-content {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.2); /* Darker overlay for better text contrast */
             border-radius: 10px;
             padding: 40px;
             max-width: 900px;
@@ -194,33 +196,47 @@
         .hero p {
             font-size: 18px;
             margin-bottom: 30px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.9); /* Brighter subtitle */
         }
 
+        /* Primary Button in Hero Section */
         .btn-primary {
-            background-color: var(--primary-blue);
+            background-color: var(--primary-blue); /* Dark Purple background */
             color: var(--light-text);
             padding: 15px 30px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
             font-size: 18px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
             border: 2px solid var(--light-text);
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: var(--tertiary-accent); /* Neon Blue on hover */
+            border-color: var(--tertiary-accent); 
         }
-
+        
+        /* SVG Illustration Styling */
         .hero-illustration {
             flex-shrink: 0;
             width: 300px;
             height: auto;
             max-width: 100%;
         }
-        
-        /* Main Program Sections */
+        /* Custom SVG Colors to match theme */
+        .hero-illustration svg path:nth-child(1),
+        .hero-illustration svg path:nth-child(2),
+        .hero-illustration svg path:nth-child(7) { /* Elements with original green/blue */
+            stroke: var(--secondary-offwhite); 
+            fill: none; /* Ensure fill is transparent unless needed */
+        }
+        .hero-illustration svg path:nth-child(5) {
+            stroke: var(--tertiary-accent); /* Neon Blue accent */
+        }
+
+
+        /* Program Cards */
         .program-sections {
             padding: 60px 0;
             text-align: center;
@@ -230,7 +246,7 @@
         .program-sections h2 {
             font-size: 36px;
             margin-bottom: 50px;
-            color: var(--dark-text);
+            color: var(--primary-blue); /* Dark Purple heading */
             font-weight: 700;
         }
 
@@ -250,13 +266,13 @@
             max-width: 500px;
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid var(--primary-blue);
+            border-top: 5px solid var(--tertiary-accent); /* Neon Blue top border */
             min-width: 300px;
         }
 
         .program-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .program-card h3 {
@@ -282,7 +298,7 @@
 
         .program-card ul li::before {
             content: '•';
-            color: var(--tertiary-green);
+            color: var(--tertiary-accent); /* Neon Blue bullet points */
             font-size: 24px;
             margin-right: 10px;
             line-height: 1;
@@ -292,7 +308,7 @@
             display: block;
             width: fit-content;
             margin: 0 auto;
-            background-color: var(--tertiary-green);
+            background-color: var(--primary-blue); /* Dark Purple button */
             color: var(--light-text);
             padding: 12px 25px;
             border-radius: 5px;
@@ -302,7 +318,7 @@
         }
 
         .program-card .btn-learn-more:hover {
-            background-color: #24b860;
+            background-color: var(--tertiary-accent); /* Neon Blue on hover */
         }
 
         /* Journey to Success */
@@ -322,7 +338,7 @@
             width: 60%;
             max-width: 600px;
             height: 10px;
-            background-color: #ccc;
+            background-color: var(--tertiary-glow); /* Lavender Glow base */
             border-radius: 5px;
             margin: 0 auto;
             overflow: hidden;
@@ -331,7 +347,7 @@
         .progress-bar-fill {
             width: 70%;
             height: 100%;
-            background: linear-gradient(to right, var(--primary-blue), var(--tertiary-green));
+            background: linear-gradient(to right, var(--primary-blue), var(--tertiary-accent));
             border-radius: 5px;
         }
 
@@ -361,7 +377,7 @@
         }
 
         .footer-logo img {
-            height: 85px; /* Footer logo slightly smaller */
+            height: 85px; 
             width: 85px;
             margin-right: 10px;
             border-radius: 50%;
@@ -387,7 +403,7 @@
         }
 
         .footer-nav ul li a:hover {
-            color: var(--tertiary-green);
+            color: var(--tertiary-accent);
         }
 
         .social-icons a {
@@ -399,7 +415,7 @@
         }
 
         .social-icons a:hover {
-            color: var(--tertiary-green);
+            color: var(--tertiary-accent);
         }
 
         .copyright {
@@ -422,28 +438,25 @@
                 margin-bottom: 30px;
             }
             .program-card {
-                width: 80%; /* Stack cards vertically */
+                width: 80%; 
                 min-width: unset;
             }
 
-            /* Show mobile menu */
+            /* Mobile Menu Styles (Activation) */
             .hamburger-menu {
-                display: block; /* Show hamburger icon */
+                display: block; 
             }
             
             .nav-menu {
-                /* This becomes the mobile menu overlay */
                 position: fixed;
                 top: 0; 
                 left: 0;
                 width: 100%;
-                height: 100vh; /* Full viewport height */
+                height: 100vh; 
                 background-color: var(--primary-blue);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                
-                /* Hide it off-screen by default */
                 transform: translateX(100%);
                 transition: transform 0.3s ease-in-out;
             }
@@ -458,7 +471,7 @@
             }
             
             nav ul li a {
-                font-size: 24px; /* Make links bigger */
+                font-size: 24px; 
             }
 
             .btn-enroll {
@@ -485,7 +498,7 @@
             }
 
             header .container {
-                flex-wrap: wrap;
+                flex-wrap: nowrap; /* Keep logo and menu on one line */
             }
 
             footer .container {
@@ -523,7 +536,6 @@
                 font-size: 16px;
             }
             
-            /* Adjust dashboard button on smallest screens */
             .nav-menu .btn-enroll {
                  font-size: 18px;
             }
@@ -538,12 +550,10 @@
 
     <header>
         <div class="container">
-            <!-- Logo updated -->
             <a href="/" class="logo">
-    <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
-</a>
+                <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
+            </a>
             
-            <!-- Mobile Menu Toggler Checkbox -->
             <input type="checkbox" id="nav-toggler" class="nav-toggler">
             <label for="nav-toggler" class="hamburger-menu">
                 <span class="line line1"></span>
@@ -551,7 +561,6 @@
                 <span class="line line3"></span>
             </label>
 
-            <!-- Wrapper for Nav and Button -->
             <div class="nav-menu">
                 <nav>
                     <ul>
@@ -576,15 +585,15 @@
                         <a href="common.html" class="btn-primary">Explore Programs</a>
                     </div>
                     <div class="hero-illustration">
-                        <!-- This is the inline SVG illustration -->
                         <svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M180 30 L220 30 L200 10 L160 10 L180 30 Z" stroke="#2ecc71" stroke-width="2"/>
-                            <path d="M200 10 V50 C200 60, 190 70, 180 70 H160 C150 70, 140 60, 140 50 V10" stroke="#2ecc71" stroke-width="2"/>
-                            <path d="M120 100 C100 110, 100 150, 120 160 H200 C220 150, 220 110, 200 100 Z" stroke="white" stroke-width="2" opacity="0.8"/>
-                            <path d="M120 100 L120 160 M200 100 L200 160 M160 100 L160 160" stroke="white" stroke-width="1" opacity="0.6"/>
-                            <path d="M50 100 C40 80, 70 60, 90 70 L100 80 C110 90, 110 110, 100 120 L90 130 C70 140, 40 120, 50 100 Z" stroke="#007bff" stroke-width="2"/>
-                            <path d="M90 70 C100 60, 120 60, 130 70" stroke="#007bff" stroke-width="2"/>
-                            <path d="M70 120 L70 140 M60 130 L80 130" stroke="#2ecc71" stroke-width="2"/>
+                            <rect x="150" y="50" width="20" height="80" fill="white" rx="5"/>
+                            <rect x="120" y="80" width="80" height="20" fill="white" rx="5"/>
+
+                            <circle cx="160" cy="160" r="30" stroke="var(--tertiary-accent)" stroke-width="5" fill="none"/>
+                            <path d="M160 160 L200 120" stroke="var(--tertiary-accent)" stroke-width="3"/>
+                            <path d="M120 120 C100 130, 100 170, 120 180 H200 C220 170, 220 130, 200 120 Z" stroke="var(--tertiary-glow)" stroke-width="2" opacity="0.8"/>
+                            <path d="M120 120 L120 180 M200 120 L200 180 M160 120 L160 180" stroke="var(--tertiary-glow)" stroke-width="1" opacity="0.6"/>
+                            
                         </svg>
                     </div>
                 </div>
@@ -625,16 +634,16 @@
                 <div class="progress-bar">
                     <div class="progress-bar-fill"></div>
                 </div>
+                <p style="margin-top: 10px; color: var(--tertiary-accent);">70% of our students achieve top university placements!</p>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <!-- Footer logo updated -->
             <a href="/" class="footer-logo">
-    <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
-</a>
+                <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
+            </a>
             <div class="footer-nav">
                 <ul>
                     <li><a href="#privacy">Privacy Policy</a></li>
