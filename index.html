@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DANI MEDICO - Medical Entrance Preparation</title>
+    <title>DANI MEDICO - The Future of Medical Entrance Preparation</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -11,18 +11,18 @@
     
     <style>
         /* ------------------------------------ */
-        /* 1. COLOR PALETTE & BASE STYLES */
+        /* 1. NEW MINIMALIST COLOR PALETTE */
         /* ------------------------------------ */
         :root {
-            --primary-blue: #2563EB;        /* Buttons, links */
-            --secondary-dark-blue: #1E40AF; /* Headers, navbar background */
-            --background-light: #F8FAFC;    /* Main background */
-            --text-dark: #0F172A;           /* Text (Dark) */
-            --accent-light-blue: #38BDF8;   /* Highlights, hover */
+            --primary-action: #2563EB;        /* Buttons, strong links (formerly primary-blue) */
+            --dark-header-bg: #1E40AF;        /* Footer, background accent (formerly secondary-dark-blue) */
+            --background-light: #FFFFFF;      /* Main background - pure white for minimalist look */
+            --section-light-bg: #F8FAFC;      /* Section separation (formerly background-light) */
+            --text-dark: #0F172A;             /* Primary text color */
+            --accent-highlight: #38BDF8;      /* Highlights, hover */
             
             --light-text: #fff;
-            --hero-gradient: linear-gradient(135deg, var(--secondary-dark-blue) 0%, #172554 100%);
-            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.05); 
         }
 
         /* Base Reset */
@@ -49,13 +49,13 @@
         a { text-decoration: none; }
 
         /* ------------------------------------ */
-        /* 2. HEADER (SINGLE ROW) */
+        /* 2. HEADER (CLEAN & LIGHT) */
         /* ------------------------------------ */
         header {
-            background-color: var(--secondary-dark-blue);
-            color: var(--light-text);
-            padding: 10px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background-color: var(--background-light); /* Light background */
+            border-bottom: 1px solid var(--section-light-bg);
+            padding: 15px 0;
+            box-shadow: var(--shadow-subtle);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -68,21 +68,21 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             display: flex;
             align-items: center;
-            color: var(--light-text);
+            color: var(--text-dark); /* Dark text logo */
             flex-shrink: 0;
         }
 
         .logo img {
-            height: 45px; 
-            width: 45px; 
+            height: 48px; 
+            width: 48px; 
             margin-right: 10px;
             border-radius: 50%; 
             object-fit: cover;
-            border: 2px solid var(--accent-light-blue);
+            border: 2px solid var(--primary-action);
         }
 
         .nav-menu {
@@ -92,53 +92,50 @@
 
         /* Desktop Nav Links */
         nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-        nav ul li { margin-left: 25px; }
+        nav ul li { margin-left: 35px; } /* Increased spacing */
 
         nav ul li a {
-            color: var(--light-text); 
+            color: var(--text-dark); 
             font-weight: 600;
             transition: color 0.3s ease;
+            position: relative;
         }
         nav ul li a:hover,
         nav ul li a.active {
-            color: var(--accent-light-blue); 
+            color: var(--primary-action); 
         }
         
-        /* Dashboard Button */
+        /* Dashboard Button (Primary Action Color) */
         .btn-dashboard {
-            background-color: var(--primary-blue); 
+            background-color: var(--primary-action); 
             color: var(--light-text);
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 10px 25px;
+            border-radius: 50px; /* Pill shape */
             font-weight: 700;
             transition: background-color 0.3s ease, transform 0.2s;
-            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.6);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 30px; 
+            margin-left: 40px; 
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
         }
 
         .btn-dashboard:hover {
-            background-color: var(--accent-light-blue);
-            transform: translateY(-1px);
+            background-color: var(--accent-highlight);
+            transform: translateY(-2px);
         }
 
         /* Mobile Toggler */
         .nav-toggler { display: none; }
         .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
         .hamburger-menu .line {
-            display: block; width: 25px; height: 3px; background-color: var(--light-text);
-            margin: 5px 0; transition: all 0.3s ease-in-out;
+            display: block; width: 28px; height: 3px; background-color: var(--text-dark); /* Dark lines on light background */
+            margin: 6px 0; transition: all 0.3s ease-in-out;
         }
-        
+
         /* ------------------------------------ */
-        /* 3. HERO SECTION */
+        /* 3. HERO SECTION (FOCUSED CONTENT) */
         /* ------------------------------------ */
         .hero {
-            background: var(--hero-gradient);
-            color: var(--light-text);
-            padding: 80px 0;
+            background-color: var(--section-light-bg);
+            padding: 100px 0;
             text-align: center;
         }
         
@@ -146,80 +143,131 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            gap: 60px;
         }
 
         .hero-text {
             flex: 1;
-            max-width: 65%;
+            max-width: 60%;
             text-align: left;
         }
         
         .hero h1 {
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 800;
-            margin-bottom: 15px;
-            color: var(--light-text);
-            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .hero h1 span {
+            color: var(--primary-action);
         }
 
         .hero p {
             font-size: 20px;
             margin-bottom: 40px;
-            color: rgba(255,255,255,0.85);
+            color: #64748B;
         }
 
         .image-placeholder {
             flex-shrink: 0;
-            width: 35%; 
+            width: 40%; 
             min-width: 300px;
-            height: 250px;
-            background-color: rgba(255, 255, 255, 0.1);
+            height: 300px;
+            background-color: var(--background-light);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 4px dashed var(--accent-light-blue);
+            border: 4px solid var(--primary-action);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
         }
         
         .image-placeholder i {
-            font-size: 70px;
-            color: var(--accent-light-blue);
+            font-size: 90px;
+            color: var(--primary-action);
         }
 
         .btn-primary {
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            padding: 15px 35px;
+            background-color: var(--primary-action);
+            color: var(--light-text);
+            padding: 18px 40px;
             border-radius: 50px; 
             font-weight: 700;
             font-size: 18px;
-            box-shadow: var(--shadow-subtle);
+            box-shadow: 0 8px 15px rgba(37, 99, 235, 0.5);
             transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-light-blue);
-            color: var(--light-text);
-            transform: translateY(-2px);
+            background-color: var(--dark-header-bg);
+            box-shadow: 0 10px 20px rgba(30, 64, 175, 0.6);
         }
 
         /* ------------------------------------ */
-        /* 4. KEY EXAM BUTTONS (MAIN CONTENT) */
+        /* 4. ABOUT SECTION (CREDIBILITY) */
+        /* ------------------------------------ */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--background-light);
+        }
+        
+        .about-section h2 {
+            font-size: 36px;
+            color: var(--text-dark);
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .about-card {
+            padding: 30px;
+            background-color: var(--section-light-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--accent-highlight);
+        }
+        
+        .about-card i {
+            font-size: 40px;
+            color: var(--primary-action);
+            margin-bottom: 15px;
+        }
+        
+        .about-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ------------------------------------ */
+        /* 5. EXAM BUTTONS (FOCUS CONTENT) */
         /* ------------------------------------ */
         .exam-buttons-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light);
+            background-color: var(--section-light-bg);
+            border-top: 1px solid #E2E8F0;
         }
         
         .exam-buttons-section h2 {
             font-size: 36px;
             margin-bottom: 50px;
-            color: var(--secondary-dark-blue);
+            color: var(--primary-action);
             font-weight: 800;
         }
 
@@ -232,12 +280,11 @@
         }
 
         .btn-exam {
-            background: var(--light-text);
+            background: var(--background-light);
             color: var(--text-dark);
-            padding: 25px 15px;
+            padding: 30px 15px;
             border-radius: 15px;
             font-weight: 700;
-            font-size: 18px;
             box-shadow: var(--shadow-subtle);
             transition: all 0.3s ease;
             display: flex;
@@ -245,13 +292,13 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            border: 2px solid transparent;
-            min-height: 150px;
+            border: 1px solid var(--section-light-bg);
+            min-height: 160px;
         }
 
         .btn-exam i {
-            font-size: 32px;
-            color: var(--primary-blue);
+            font-size: 35px;
+            color: var(--accent-highlight);
         }
 
         .btn-exam span {
@@ -261,61 +308,33 @@
         }
 
         .btn-exam:hover {
-            background-color: var(--primary-blue);
+            background-color: var(--primary-action);
             color: var(--light-text);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
-            border-color: var(--accent-light-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
         
         .btn-exam:hover i,
         .btn-exam:hover span {
             color: var(--light-text);
         }
-        
-        /* ------------------------------------ */
-        /* 5. JOURNEY & PROGRESS BAR */
-        /* ------------------------------------ */
-        .journey-section {
-            padding: 40px 0 60px;
-            text-align: center;
-            background-color: var(--background-light);
-        }
-        
-        .progress-bar {
-            width: 70%; max-width: 700px; height: 15px;
-            background-color: #E0E7FF;
-            border-radius: 8px; margin: 0 auto 10px; overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .progress-bar-fill {
-            width: 70%; height: 100%;
-            background: linear-gradient(to right, var(--primary-blue), var(--accent-light-blue));
-            border-radius: 8px;
-            /* Simple CSS animation (for visual completeness) */
-            animation: fillProgress 2s ease-out forwards;
-        }
-        @keyframes fillProgress {
-            from { width: 0; }
-            to { width: 70%; }
-        }
 
         /* ------------------------------------ */
         /* 6. PRE-FOOTER CONTACT SECTION */
         /* ------------------------------------ */
         .pre-footer-contact {
-            background-color: var(--secondary-dark-blue); 
-            color: var(--light-text);
-            padding: 40px 0;
+            background-color: var(--background-light); 
+            color: var(--text-dark);
+            padding: 60px 0;
             text-align: center;
-            border-top: 5px solid var(--primary-blue);
+            border-top: 1px solid var(--section-light-bg);
         }
 
         .pre-footer-contact h4 {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             margin-bottom: 25px;
-            color: var(--accent-light-blue);
+            color: var(--text-dark);
         }
         
         .contact-info-footer {
@@ -327,79 +346,64 @@
         }
 
         .contact-info-footer a {
-            color: var(--light-text);
+            color: var(--text-dark);
             font-weight: 600;
             font-size: 18px;
             transition: color 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
+            border-bottom: 2px solid var(--accent-highlight);
+            padding-bottom: 5px;
         }
 
         .contact-info-footer a i {
-            color: var(--primary-blue); 
+            color: var(--primary-action); 
             font-size: 20px;
             transition: color 0.3s;
         }
 
         .contact-info-footer a:hover {
-            color: var(--accent-light-blue);
+            color: var(--primary-action);
         }
         .contact-info-footer a:hover i {
-            color: var(--accent-light-blue);
+            color: var(--accent-highlight);
         }
 
         /* ------------------------------------ */
         /* 7. FOOTER */
         /* ------------------------------------ */
         footer {
-            background-color: #172554; 
+            background-color: var(--dark-header-bg); 
             color: var(--light-text);
-            padding: 30px 0 20px;
+            padding: 40px 0 20px;
         }
         
         .footer-logo-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             margin: 0 auto 30px;
-            width: fit-content;
         }
-
-        .footer-logo-center a {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--light-text);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .footer-logo-center img {
             height: 60px; 
             width: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-light-blue);
+            border: 3px solid var(--accent-highlight);
         }
         
         .footer-nav {
-             border-bottom: 1px solid rgba(255,255,255,0.1);
+             border-bottom: 1px solid rgba(255,255,255,0.15);
              padding-bottom: 20px;
              margin-bottom: 20px;
         }
 
         .footer-nav ul {
-            display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
         }
-        .footer-nav ul li a { color: var(--light-text); transition: color 0.3s; }
-        .footer-nav ul li a:hover { color: var(--accent-light-blue); }
+        .footer-nav ul li a { color: var(--light-text); }
+        .footer-nav ul li a:hover { color: var(--accent-highlight); }
 
         .social-icons {
             display: flex;
@@ -415,13 +419,14 @@
         }
 
         .social-icons a:hover {
-            color: var(--accent-light-blue);
+            color: var(--accent-highlight);
             transform: scale(1.2);
         }
 
         .copyright {
             margin-top: 30px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
         }
 
         /* ------------------------------------ */
@@ -432,35 +437,36 @@
             .hamburger-menu { display: block; }
             .nav-menu {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-                background-color: var(--secondary-dark-blue); flex-direction: column;
-                justify-content: center; align-items: center;
+                background-color: var(--dark-header-bg);
+                flex-direction: column; justify-content: center; align-items: center;
                 transform: translateX(100%); transition: transform 0.3s ease-in-out;
             }
             .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
-            .nav-menu nav, .btn-dashboard { margin-left: 0; }
             nav ul { flex-direction: column; text-align: center; }
             nav ul li { margin: 25px 0; }
-            nav ul li a { font-size: 24px; }
+            nav ul li a { font-size: 24px; color: var(--light-text); }
             .btn-dashboard { margin-top: 30px; font-size: 20px; padding: 12px 24px; }
             
             /* Hero Mobile */
             .hero-banner-content { flex-direction: column; text-align: center; }
             .hero-text { max-width: 100%; text-align: center; order: 2; }
-            .hero h1 { font-size: 38px; }
-            .image-placeholder { width: 100%; height: 200px; margin-bottom: 30px; order: 1; }
+            .hero h1 { font-size: 42px; }
+            .image-placeholder { width: 100%; height: 250px; margin-bottom: 30px; order: 1; }
+            
+            /* About Section */
+            .about-grid { grid-template-columns: 1fr; }
             
             /* Exam Grid Mobile */
-            .exam-buttons-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-            .btn-exam { padding: 20px 10px; }
+            .exam-buttons-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
             /* Pre-Footer */
-            .pre-footer-contact h4 { font-size: 22px; }
+            .pre-footer-contact h4 { font-size: 24px; }
             .contact-info-footer { gap: 20px; }
-            .contact-info-footer a { font-size: 16px; }
         }
 
         @media (max-width: 576px) {
-            .hero h1 { font-size: 30px; }
+            .hero h1 { font-size: 32px; }
+            .exam-buttons-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -482,10 +488,10 @@
             <div class="nav-menu">
                 <nav>
                     <ul>
-                        <li><a href="#tests-section">Tests</a></li>
-                        <li><a href="#notes-section">Notes</a></li>
-                        <li><a href="#lectures-section">Lectures</a></li>
-                        <li><a href="#past-papers-section">Past Papers</a></li>
+                        <li><a href="#about-us">About</a></li>
+                        <li><a href="#key-exams">Programs</a></li>
+                        <li><a href="#tests-section">Resources</a></li>
+                        <li><a href="#contact-us">Contact</a></li>
                     </ul>
                 </nav>
                 
@@ -501,22 +507,45 @@
             <div class="container">
                 <div class="hero-banner-content">
                     <div class="hero-text">
-                        <h1>**DANI MEDICO**: Your Future in Medicine Starts Now</h1>
-                        <p>Master the crucial entrance exams—MDCAT, NUMS, AKU, and Nursing—with our updated curricula, tailored resources, and expert mentorship.</p>
+                        <h1>Your **Path** to Medical Success Starts Here.</h1>
+                        <p>DANI MEDICO provides expert, tailored preparation for Pakistan's most competitive medical entrance exams: MDCAT, NUMS, AKU, and BSN Nursing.</p>
                         <a href="#key-exams" class="btn-primary">
-                            <i class="fas fa-arrow-alt-circle-right"></i> Start Your Journey
+                            <i class="fas fa-flask"></i> Explore Exam Prep
                         </a>
                     </div>
-                    <div class="image-placeholder" aria-label="Medical Preparation Banner">
+                    <div class="image-placeholder" aria-label="Digital learning platform for medical students">
                          <i class="fas fa-laptop-medical"></i>
                     </div>
                 </div>
             </div>
         </section>
         
+        <section class="about-section" id="about-us">
+            <div class="container">
+                <h2>Why Choose DANI MEDICO?</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Expert Faculty</h3>
+                        <p>Learn from top medical professionals and educators with proven track records in exam strategy.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Vast Resources</h3>
+                        <p>Access thousands of practice questions, detailed notes, past papers, and video lectures.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Proven Results</h3>
+                        <p>Our students consistently achieve top scores and secure placements in prestigious universities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="exam-buttons-section" id="key-exams">
             <div class="container">
-                <h2>Select Your Exam: Comprehensive Programs</h2>
+                <h2>Our Comprehensive Exam Preparation Programs</h2>
                 <div class="exam-buttons-grid">
                     <a href="#mdcat-info" class="btn-exam">
                         <i class="fas fa-graduation-cap"></i> MDCAT
@@ -544,20 +573,20 @@
 
         <section class="journey-section">
             <div class="container">
-                <h4 style="color: var(--secondary-dark-blue); font-weight: 700;">Data-Driven Success: Proven Results</h4>
+                <h4 style="color: var(--text-dark); font-weight: 700; font-size: 28px; margin-bottom: 30px;">Your Progress is Our Priority</h4>
                 <div class="progress-bar">
                     <div class="progress-bar-fill" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
                 </div>
                 <p style="margin-top: 10px; color: var(--text-dark); font-weight: 600;">
-                    <i class="fas fa-award" style="color: var(--primary-blue);"></i> **70% of our students achieve top university placements!**
+                    <i class="fas fa-award" style="color: var(--primary-action);"></i> **70% of our students achieve top university placements!**
                 </p>
             </div>
         </section>
     </main>
     
-    <section class="pre-footer-contact">
+    <section class="pre-footer-contact" id="contact-us">
         <div class="container">
-            <h4>Ready to Take the Next Step? Contact Our Team!</h4>
+            <h4>Ready to Enroll? Let's Talk.</h4>
             <div class="contact-info-footer">
                 <a href="mailto:info@danimedico.pw">
                     <i class="fas fa-envelope"></i> info@danimedico.pw
@@ -582,11 +611,11 @@
             
             <div class="footer-nav">
                 <ul>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#about-us">About Us</a></li>
                     <li><a href="#privacy">Privacy Policy</a></li>
                     <li><a href="#terms">Terms of Service</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#sitemap">Sitemap</a></li>
+                    <li><a href="#contact-us">Contact</a></li>
                 </ul>
             </div>
             
@@ -604,4 +633,4 @@
     </footer>
 
 </body>
-</html>
+    </html>
