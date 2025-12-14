@@ -3,564 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DANI MEDICO - The Future of Medical Entrance Preparation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link rel="icon" href="/dani.png" type="image/png">
-    
+    <title>Availability Notice</title>
     <style>
-        /* ------------------------------------ */
-        /* 1. FINAL COLOR PALETTE */
-        /* ------------------------------------ */
-        :root {
-            --primary-action: #2563EB;        /* Buttons, strong links (Bright Blue) */
-            --dark-header-bg: #1E40AF;        /* Footer, Navigation BG (Dark Navy) */
-            --background-light: #FFFFFF;      /* Main background - Pure White */
-            --section-light-bg: #F8FAFC;      /* Section separation (Light Grey/Blue) */
-            --text-dark: #0F172A;             /* Primary text color */
-            --accent-highlight: #38BDF8;      /* Highlights, hover (Aqua/Sky Blue) */
-            
-            --light-text: #fff;
-            --shadow-elevation: 0 10px 30px rgba(0, 0, 0, 0.1); 
-        }
-
-        /* Base Reset */
-        *, *::before, *::after { box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-light);
-            color: var(--text-dark);
+        /* CSS Styling for the Apology Box */
+        .apology-container {
+            max-width: 600px;
+            margin: 50px auto; /* Centers the box on the page */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-left: 5px solid #ff9900; /* Changed accent color to orange/gold */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: #f9f9f9;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-        
-        a { text-decoration: none; }
-        h1, h2, h3, h4 { margin-top: 0; }
-
-        /* ------------------------------------ */
-        /* 2. HEADER (CLEAN & LIGHT) */
-        /* ------------------------------------ */
-        header {
-            background-color: var(--background-light); 
-            border-bottom: 1px solid var(--section-light-bg);
-            padding: 15px 0;
-            box-shadow: var(--shadow-elevation);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .apology-heading {
+            color: #cc6600; /* Darker orange heading */
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 10px;
+            margin-top: 0;
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .apology-message {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.05em;
         }
 
-        .logo {
-            font-size: 28px; /* Slightly larger logo text */
-            font-weight: 900; /* Extra bold */
-            color: var(--text-dark); 
+        .apology-message strong {
+            font-weight: 700; /* Stronger emphasis */
+            color: #444;
         }
 
-        .logo img {
-            height: 50px; /* Consistent size */
-            width: 50px; 
-            margin-right: 10px;
-            border-radius: 50%; 
-            border: 3px solid var(--primary-action); /* Thicker border on logo */
-        }
-
-        .nav-menu {
-             display: flex; 
-             align-items: center;
-        }
-
-        /* Desktop Nav Links */
-        nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-        nav ul li { margin-left: 35px; } 
-
-        nav ul li a {
-            color: var(--text-dark); 
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: var(--primary-action); 
-        }
-        
-        /* Dashboard Button (Primary Action Color) */
-        .btn-dashboard {
-            background-color: var(--primary-action); 
-            color: var(--light-text);
-            padding: 12px 28px; /* Slightly larger button */
-            border-radius: 50px; 
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.2s;
-            margin-left: 40px; 
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.5);
-        }
-
-        .btn-dashboard:hover {
-            background-color: var(--accent-highlight);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.7);
-        }
-
-        /* Mobile Toggler */
-        .nav-toggler { display: none; }
-        .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
-        .hamburger-menu .line {
-            display: block; width: 28px; height: 3px; background-color: var(--text-dark); 
-            margin: 6px 0; transition: all 0.3s ease-in-out;
-        }
-
-        /* ------------------------------------ */
-        /* 3. HERO SECTION (IMPACTFUL) */
-        /* ------------------------------------ */
-        .hero {
-            background-color: var(--section-light-bg);
-            padding: 100px 0 0; /* Padding adjusted to accommodate feature bar */
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-banner-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 60px;
-            padding-bottom: 80px; /* Space for the feature bar to overlap */
-        }
-
-        .hero-text {
-            flex: 1;
-            max-width: 60%;
-            text-align: left;
-        }
-        
-        .hero h1 {
-            font-size: 60px; /* Maximum impact heading */
-            font-weight: 900;
-            margin-bottom: 25px;
-            line-height: 1.1;
-        }
-        
-        .hero h1 span {
-            color: var(--primary-action);
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 50px;
-            color: #64748B;
-        }
-
-        .image-placeholder {
-            width: 40%; 
-            min-width: 350px;
-            height: 350px;
-            background-color: var(--dark-header-bg); /* Dark background for illustration contrast */
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 5px solid var(--accent-highlight);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .image-placeholder i {
-            font-size: 100px;
-            color: var(--accent-highlight);
-        }
-
-        .btn-primary {
-             /* Styles inherited from previous section for consistency */
-            padding: 18px 40px;
-            font-size: 18px;
-        }
-        
-        /* Integrated Feature Bar (Replaces "Why Choose" cards) */
-        .hero-features-bar {
-            position: absolute;
-            bottom: -50px; /* Overlap the next section */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1000px;
-            background-color: var(--background-light);
-            border-radius: 12px;
-            box-shadow: var(--shadow-elevation);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border: 1px solid var(--section-light-bg);
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .feature-item i {
-            font-size: 24px;
-            color: var(--primary-action);
-        }
-
-
-        /* ------------------------------------ */
-        /* 4. KEY EXAM BUTTONS (MAIN CONTENT) */
-        /* ------------------------------------ */
-        .exam-buttons-section {
-            padding: 120px 0 80px; /* Increased top padding to account for feature bar overlap */
-            text-align: center;
-            background-color: var(--background-light);
-        }
-        
-        .exam-buttons-section h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: var(--text-dark);
-            font-weight: 800;
-        }
-
-        .exam-buttons-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px; /* Reduced gap for a tighter grid */
-        }
-
-        .btn-exam {
-            background: var(--section-light-bg); /* Use light grey background for cards */
-            color: var(--text-dark);
-            padding: 20px 15px; /* Reduced vertical padding */
-            border-radius: 10px;
-            font-weight: 700;
-            box-shadow: var(--shadow-elevation);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px; 
-            border: 1px solid transparent;
-            min-height: 140px;
-        }
-
-        .btn-exam i {
-            font-size: 30px; /* Slightly smaller icon */
-            color: var(--primary-action);
-        }
-
-        .btn-exam span {
-            font-size: 14px;
-            font-weight: 400;
-            color: #64748B;
-        }
-
-        .btn-exam:hover {
-            background-color: var(--primary-action);
-            color: var(--light-text);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
-            border-color: var(--accent-highlight);
-        }
-        
-        .btn-exam:hover i,
-        .btn-exam:hover span {
-            color: var(--light-text);
-        }
-
-        /* ------------------------------------ */
-        /* 5. JOURNEY TO SUCCESS */
-        /* ------------------------------------ */
-        .journey-section {
-            padding: 60px 0;
-            text-align: center;
-            background-color: var(--section-light-bg);
-            border-top: 1px solid #E2E8F0;
-        }
-        
-        /* Progress bar styles kept the same */
-
-        /* ------------------------------------ */
-        /* 6. PRE-FOOTER CONTACT SECTION */
-        /* ------------------------------------ */
-        .pre-footer-contact {
-            background-color: var(--dark-header-bg); /* Use the dark navy background */
-            color: var(--light-text);
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .pre-footer-contact h4 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: var(--accent-highlight);
-        }
-        
-        .contact-info-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info-footer a {
-            color: var(--light-text);
-            font-weight: 600;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .contact-info-footer a i {
-            color: var(--primary-action); 
-            font-size: 20px;
-        }
-
-        .contact-info-footer a:hover {
-            color: var(--accent-highlight);
-        }
-        .contact-info-footer a:hover i {
-            color: var(--accent-highlight);
-        }
-
-        /* ------------------------------------ */
-        /* 7. FOOTER */
-        /* ------------------------------------ */
-        footer {
-            background-color: #172554; 
-            color: var(--light-text);
-            padding: 40px 0 20px;
-        }
-        
-        /* Footer styles kept the same (centered logo, centered social icons) */
-
-        /* ------------------------------------ */
-        /* 8. RESPONSIVE ADJUSTMENTS */
-        /* ------------------------------------ */
-        @media (max-width: 1100px) {
-             .hero-features-bar { 
-                width: 95%;
-                padding: 20px;
-             }
-        }
-
-        @media (max-width: 992px) {
-            /* Header */
-            .hamburger-menu { display: block; }
-            .nav-menu {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-                background-color: var(--dark-header-bg);
-                flex-direction: column; justify-content: center; align-items: center;
-                transform: translateX(100%); transition: transform 0.3s ease-in-out;
-            }
-            .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
-            nav ul li a { color: var(--light-text); }
-            
-            /* Hero Mobile */
-            .hero-banner-content { flex-direction: column; text-align: center; }
-            .hero-text { max-width: 100%; text-align: center; order: 2; }
-            .hero h1 { font-size: 44px; }
-            .image-placeholder { width: 100%; height: 250px; margin-bottom: 30px; order: 1; min-width: unset; }
-            
-            /* Feature Bar collapse */
-            .hero-features-bar {
-                position: relative; /* Remove overlap */
-                bottom: auto;
-                transform: none;
-                width: 90%;
-                margin: 0 auto;
-                flex-direction: column;
-                gap: 15px;
-                box-shadow: none;
-                padding: 20px 0;
-            }
-            .exam-buttons-section { padding-top: 80px; } /* Reset top padding */
-
-            /* Exam Grid Mobile */
-            .exam-buttons-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 { font-size: 32px; }
-            .exam-buttons-grid { grid-template-columns: 1fr; }
-            .logo { font-size: 22px; }
-            .logo img { height: 40px; width: 40px; }
+        .apology-closing {
+            color: #555;
+            font-style: italic;
+            text-align: right;
+            padding-top: 10px;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
-            </a>
-            
-            <input type="checkbox" id="nav-toggler" class="nav-toggler">
-            <label for="nav-toggler" class="hamburger-menu">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </label>
-
-            <div class="nav-menu">
-                <nav>
-                    <ul>
-                        <li><a href="#key-exams">Programs</a></li>
-                        <li><a href="#tests-section">Tests</a></li>
-                        <li><a href="#notes-section">Notes</a></li>
-                        <li><a href="#lectures-section">Lectures</a></li>
-                    </ul>
-                </nav>
-                
-                <a href="#dashboard" class="btn-dashboard">
-                    <i class="fas fa-chalkboard-teacher"></i> Dashboard
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-banner-content">
-                    <div class="hero-text">
-                        <h1>Your **Guaranteed** Path to <span>Medical Success</span>.</h1>
-                        <p>We provide expert, hyper-focused preparation for Pakistan's most competitive medical entrance exams: MDCAT, NUMS, AKU, and BSN Nursing.</p>
-                        <a href="#key-exams" class="btn-primary">
-                            <i class="fas fa-arrow-alt-circle-right"></i> View All Programs
-                        </a>
-                    </div>
-                    <div class="image-placeholder" aria-label="Digital learning platform for medical students">
-                         <i class="fas fa-laptop-medical"></i>
-                    </div>
-                </div>
-                
-                <div class="hero-features-bar">
-                    <div class="feature-item">
-                        <i class="fas fa-user-tie"></i> Expert Faculty
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-database"></i> 1000+ Practice MCQs
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-chart-line"></i> 70% Success Rate
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-        
-        <section class="exam-buttons-section" id="key-exams">
-            <div class="container">
-                <h2>Choose Your Program</h2>
-                <div class="exam-buttons-grid">
-                    <a href="#mdcat-info" class="btn-exam">
-                        <i class="fas fa-graduation-cap"></i> MDCAT
-                        <span>Medical & Dental Colleges</span>
-                    </a>
-                    <a href="#nums-info" class="btn-exam">
-                        <i class="fas fa-university"></i> NUMS
-                        <span>National University of Medical Sciences</span>
-                    </a>
-                    <a href="#aku-info" class="btn-exam">
-                        <i class="fas fa-heartbeat"></i> AKU
-                        <span>Aga Khan University</span>
-                    </a>
-                    <a href="#nursing-info" class="btn-exam">
-                        <i class="fas fa-user-nurse"></i> NURSING (BSN)
-                        <span>LUMHS, DUHS, JSMU</span>
-                    </a>
-                    <a href="#afns-info" class="btn-exam">
-                        <i class="fas fa-ribbon"></i> AFNS
-                        <span>Armed Forces Nursing Service</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="journey-section">
-            <div class="container">
-                <h4 style="color: var(--text-dark); font-weight: 800; font-size: 32px; margin-bottom: 30px;">Track Your Progress: Resources & Tests</h4>
-                
-                <div class="progress-bar">
-                    <div class="progress-bar-fill" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                </div>
-                <p style="margin-top: 10px; color: var(--text-dark); font-weight: 600;">
-                    <i class="fas fa-award" style="color: var(--primary-action);"></i> Preparation is 70% Complete! Access your next mock test.
-                </p>
-            </div>
-        </section>
-    </main>
-    
-    <section class="pre-footer-contact" id="contact-us">
-        <div class="container">
-            <h4>Ready to Enroll? Speak to an Advisor Today.</h4>
-            <div class="contact-info-footer">
-                <a href="mailto:info@danimedico.pw">
-                    <i class="fas fa-envelope"></i> info@danimedico.pw
-                </a>
-                <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat with Us on WhatsApp
-                </a>
-                <a href="tel:ADD_YOUR_PHONE_NUMBER">
-                    <i class="fas fa-phone"></i> Call for Enrollment
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-logo-center">
-                <a href="/">
-                    <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
-                </a>
-            </div>
-            
-            <div class="footer-nav">
-                <ul>
-                    <li><a href="#key-exams">Programs</a></li>
-                    <li><a href="#contact-us">Contact</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Service</a></li>
-                </ul>
-            </div>
-            
-            <div class="social-icons">
-                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/share/17jLb8e8Ns/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/missionmdcat_zone?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#twitter-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2025 DANI MEDICO. All rights reserved.
-            </div>
-        </div>
-    </footer>
+    <div class="apology-container">
+        <h3 class="apology-heading">⚠️ Important Note on Current Availability</h3>
+        <p class="apology-message">
+            Thank you for reaching out. I am currently unable to take on any new work or projects.
+            I am dedicating my full attention to meeting deadlines for **existing paid client work** while simultaneously managing my **academic commitments and study pressure**.
+            </p>
+        <p class="apology-message">
+            My sincere apologies for any delay or inconvenience this may cause.
+        </p>
+        <p class="apology-closing">
+            I appreciate your patience and understanding, and I look forward to connecting with you in the future!
+        </p>
+    </div>
 
 </body>
 </html>
