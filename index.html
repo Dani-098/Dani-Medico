@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DANI MEDICO - Unlock Your Medical Potential</title>
+    <title>DANI MEDICO - Future of Medical Preparation</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -11,37 +11,33 @@
     
     <style>
         /* ------------------------------------ */
-        /* 1. COLOR VARIABLES & BASE STYLES */
+        /* 1. NEW PROFESSIONAL COLOR PALETTE & BASE STYLES */
         /* ------------------------------------ */
         :root {
-            /* Primary: Deep Violet/Dark Purple */
-            --primary-blue: #2B1C50; 
-            /* Secondary: Luminous White */
-            --secondary-offwhite: #FFFFFF; 
-            /* Tertiary/Accent: Neon Blue/Electric Blue */
-            --tertiary-accent: #1F51FF; 
-            /* Lavender Glow (for subtle elements/shadows) */
-            --tertiary-glow: #867D9B; 
+            /* Primary: Deep Royal Purple/Violet (Professional & Trustworthy) */
+            --primary-dark: #20134E; 
+            /* Secondary: Clean White */
+            --secondary-light: #FFFFFF; 
+            /* Tertiary/Accent: Electric Teal/Aqua (Modern, Energetic focus) */
+            --tertiary-accent: #00ADB5; 
+            /* Soft Grey/Shadow Base */
+            --soft-grey: #EEEEEE; 
             
             --dark-text: #333;
             --light-text: #fff;
-            --light-grey-bg: #f4f4f9; /* Lighter background for sections */
-            --shadow-primary: 0 8px 15px rgba(43, 28, 80, 0.1); /* Primary color shadow */
-            --shadow-accent: 0 5px 15px rgba(31, 81, 255, 0.3); /* Accent color shadow */
+            --hero-gradient: linear-gradient(135deg, var(--primary-dark) 0%, #3a2283 100%);
+            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            --shadow-accent: 0 6px 20px rgba(0, 173, 181, 0.4); 
         }
 
         /* Base Reset */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--secondary-offwhite);
+            background-color: var(--secondary-light);
             color: var(--dark-text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -54,19 +50,17 @@
             width: 100%;
         }
         
-        a {
-            text-decoration: none;
-        }
+        a { text-decoration: none; }
 
         /* ------------------------------------ */
         /* 2. HEADER & NAVIGATION */
         /* ------------------------------------ */
         header {
-            background-color: var(--primary-blue);
+            background-color: var(--primary-dark);
             color: var(--light-text);
-            padding: 15px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: sticky; /* Makes the header stick to the top */
+            padding: 10px 0; /* Slightly smaller header */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
@@ -78,7 +72,7 @@
         }
 
         .logo {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -87,82 +81,41 @@
         }
 
         .logo img {
-            height: 50px; /* Reduced size for header logo */
-            width: 50px; 
+            height: 45px; /* Consistent size: 45px */
+            width: 45px; 
             margin-right: 10px;
             border-radius: 50%; 
             object-fit: cover;
             border: 2px solid var(--tertiary-accent);
         }
 
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
+        /* Desktop Nav Links */
         nav ul li a {
-            color: var(--light-text);
+            color: var(--soft-grey);
             font-weight: 600;
-            transition: color 0.3s ease;
-            position: relative;
         }
-
         nav ul li a:hover,
         nav ul li a.active {
             color: var(--tertiary-accent); 
         }
         
-        /* Underline effect */
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background-color: var(--tertiary-accent);
-            transition: width 0.3s ease-in-out;
-        }
-
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
-            width: 100%; 
-        }
-
-        /* Call-to-Action Button Style (Dashboard) */
+        /* Dashboard Button Refinement */
         .btn-dashboard {
-            background-color: var(--tertiary-accent); /* Neon Blue */
-            color: var(--light-text);
-            padding: 10px 20px;
-            border-radius: 50px; /* Pill shape */
+            background-color: var(--tertiary-accent); 
+            color: var(--primary-dark); /* Dark text on bright button */
+            padding: 8px 18px;
+            border-radius: 25px;
             font-weight: 700;
             transition: background-color 0.3s ease, transform 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(31, 81, 255, 0.4);
+            box-shadow: 0 3px 8px rgba(0, 173, 181, 0.6);
         }
 
         .btn-dashboard:hover {
-            background-color: var(--primary-blue); 
-            border: 2px solid var(--tertiary-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(31, 81, 255, 0.6);
+            background-color: var(--secondary-light);
+            transform: translateY(-1px);
         }
-        
-        /* Mobile Menu Toggler */
+
+        /* Mobile Toggler styles remain the same for responsiveness */
         .nav-toggler { display: none; }
         .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
         .hamburger-menu .line {
@@ -171,448 +124,322 @@
         }
 
         /* ------------------------------------ */
-        /* 3. HERO SECTION */
+        /* 3. HERO & BANNER SECTION */
         /* ------------------------------------ */
         .hero {
-            /* Neon Blue base with a subtle gradient to Dark Violet */
-            background: linear-gradient(135deg, var(--tertiary-accent) 0%, var(--primary-blue) 100%);
-            padding: 100px 0;
-            text-align: center;
+            /* Full-width banner section */
+            background: var(--hero-gradient);
             color: var(--light-text);
-            position: relative;
-            overflow: hidden;
+            padding: 60px 0;
+            text-align: center;
         }
-
-        .hero-content {
-            background-color: rgba(0, 0, 0, 0.15); /* Subtle dark overlay */
-            backdrop-filter: blur(2px);
-            border-radius: 15px;
-            padding: 50px;
-            max-width: 1000px;
-            margin: 0 auto;
+        
+        .hero-banner-content {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            text-align: left;
-            box-shadow: var(--shadow-accent);
-            border: 1px solid rgba(255,255,255,0.3);
+            align-items: center;
+            padding: 20px 0;
         }
 
         .hero-text {
             flex: 1;
-            padding-right: 40px;
+            max-width: 60%;
+            text-align: left;
         }
-
+        
         .hero h1 {
-            font-size: 52px;
-            margin-bottom: 15px;
+            font-size: 48px;
             font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            color: var(--secondary-light);
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: rgba(255,255,255,0.95); 
-            font-weight: 300;
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.85);
         }
 
-        /* Primary Button in Hero Section */
+        /* Image/Illustration Placeholder Styling */
+        .image-placeholder {
+            flex-shrink: 0;
+            width: 35%; 
+            max-width: 400px;
+            height: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px dashed var(--tertiary-accent);
+        }
+        
+        .image-placeholder i {
+            font-size: 60px;
+            color: var(--tertiary-accent);
+        }
+
+        /* Primary Button (White/Dark text) */
         .btn-primary {
-            background-color: var(--secondary-offwhite); /* White background */
-            color: var(--primary-blue); /* Dark Purple text */
-            padding: 15px 35px;
+            background-color: var(--secondary-light);
+            color: var(--primary-dark);
+            padding: 12px 30px;
             border-radius: 50px; 
             font-weight: 700;
-            font-size: 18px;
-            transition: background-color 0.3s ease, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 16px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s;
         }
 
         .btn-primary:hover {
-            background-color: var(--tertiary-glow); 
-            color: var(--primary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-        }
-        
-        /* Custom Illustration Styling (Keep it simple and on brand) */
-        .hero-illustration {
-            flex-shrink: 0;
-            width: 300px;
-            height: auto;
-            max-width: 100%;
-        }
-        .hero-illustration svg {
-            /* Basic heart pulse illustration to represent medicine/vitality */
-            fill: none;
-            stroke: var(--light-text);
-            stroke-width: 5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .hero-illustration svg .accent-line {
-             stroke: var(--tertiary-accent);
+            background-color: var(--tertiary-accent);
+            color: var(--light-text);
+            transform: translateY(-2px);
         }
 
 
         /* ------------------------------------ */
-        /* 4. EXAM BUTTONS SECTION */
+        /* 4. KEY EXAM BUTTONS (Centralized Focus) */
         /* ------------------------------------ */
         .exam-buttons-section {
-            padding: 50px 0;
+            padding: 60px 0;
             text-align: center;
-            background-color: var(--light-grey-bg);
+            background-color: var(--soft-grey);
         }
         
         .exam-buttons-section h2 {
             font-size: 32px;
             margin-bottom: 40px;
-            color: var(--primary-blue);
-            font-weight: 700;
+            color: var(--primary-dark);
+            font-weight: 800;
         }
 
         .exam-buttons-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
         }
 
         .btn-exam {
-            background-color: var(--primary-blue);
-            color: var(--light-text);
-            padding: 15px 30px;
-            border-radius: 10px;
+            background: var(--secondary-light);
+            color: var(--primary-dark);
+            padding: 20px 10px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 18px;
-            min-width: 180px;
-            text-align: center;
-            transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 17px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 10px;
             border: 2px solid transparent;
         }
 
-        .btn-exam:hover {
-            background-color: var(--tertiary-accent);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-accent);
-            border: 2px solid var(--light-text);
-        }
-        
-        .btn-exam .fa-solid, .btn-exam .fa-briefcase-medical {
-            font-size: 20px;
-        }
-
-
-        /* ------------------------------------ */
-        /* 5. PROGRAM CARDS */
-        /* ------------------------------------ */
-        .program-sections {
-            padding: 60px 0;
-            text-align: center;
-            background-color: var(--secondary-offwhite);
-        }
-
-        .program-sections h2 {
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: var(--primary-blue);
-            font-weight: 800;
-        }
-
-        .program-cards {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .program-card {
-            background: linear-gradient(145deg, var(--secondary-offwhite), var(--light-grey-bg));
-            border-radius: 15px;
-            box-shadow: var(--shadow-primary);
-            padding: 40px;
-            width: 45%;
-            max-width: 500px;
-            text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 8px solid var(--tertiary-accent); 
-            min-width: 300px;
-        }
-
-        .program-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15), var(--shadow-accent);
-        }
-
-        .program-card h3 {
-            font-size: 28px;
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid var(--tertiary-glow);
-            padding-bottom: 10px;
-        }
-
-        .program-card ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-        }
-
-        .program-card ul li {
-            font-size: 17px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            color: var(--dark-text);
-            font-weight: 400;
-        }
-
-        .program-card ul li i {
+        .btn-exam i {
+            font-size: 30px;
             color: var(--tertiary-accent);
-            font-size: 18px;
-            margin-right: 10px;
-            margin-top: 3px;
-            flex-shrink: 0;
+        }
+
+        .btn-exam:hover {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-accent);
+            border-color: var(--tertiary-accent);
         }
         
-        .program-card .btn-learn-more {
-            display: block;
-            width: fit-content;
-            margin: 0 auto;
-            background-color: var(--primary-blue); 
-            color: var(--light-text);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s;
-            text-transform: uppercase;
+        .btn-exam:hover i {
+            color: var(--secondary-light);
         }
 
-        .program-card .btn-learn-more:hover {
-            background-color: var(--tertiary-accent); 
-            transform: scale(1.05);
-        }
 
         /* ------------------------------------ */
-        /* 6. JOURNEY & CONTACT SECTION */
+        /* 5. JOURNEY & CONTACT SECTION (Simplified) */
         /* ------------------------------------ */
         .journey-section {
-            padding: 60px 0;
+            padding: 40px 0 60px;
             text-align: center;
-            background-color: var(--light-grey-bg);
         }
 
         .journey-section h4 {
-            font-size: 32px;
-            color: var(--primary-blue);
+            font-size: 28px;
+            color: var(--primary-dark);
             margin-bottom: 30px;
             font-weight: 700;
-        }
-
-        .progress-bar {
-            width: 70%;
-            max-width: 700px;
-            height: 15px;
-            background-color: var(--tertiary-glow); 
-            border-radius: 8px;
-            margin: 0 auto 10px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .progress-bar-fill {
-            width: 70%;
-            height: 100%;
-            /* Gradient for smooth transition */
-            background: linear-gradient(to right, var(--primary-blue), var(--tertiary-accent));
-            border-radius: 8px;
-            animation: fillProgress 2s ease-out forwards;
-        }
-        
-        @keyframes fillProgress {
-            from { width: 0; }
-            to { width: 70%; }
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
             margin-top: 40px;
             flex-wrap: wrap;
         }
 
         .contact-info a {
-            color: var(--primary-blue);
+            color: var(--primary-dark);
             font-weight: 600;
             font-size: 18px;
             transition: color 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--tertiary-accent);
         }
 
         .contact-info a:hover {
+            color: var(--secondary-light);
+            background-color: var(--primary-dark);
+        }
+        
+        .contact-info a i {
             color: var(--tertiary-accent);
+        }
+        .contact-info a:hover i {
+            color: var(--secondary-light);
         }
         
         /* ------------------------------------ */
-        /* 7. FOOTER */
+        /* 6. FOOTER (Centering Social Icons) */
         /* ------------------------------------ */
         footer {
-            background-color: var(--primary-blue);
+            background-color: var(--primary-dark);
             color: var(--light-text);
             padding: 40px 0 20px;
         }
 
         footer .container {
             display: flex;
-            flex-direction: column; /* Stack elements for better control */
+            flex-direction: column; 
             text-align: center;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 20px;
-            flex-wrap: wrap;
         }
         
         .footer-logo-center {
-             /* New block for the centered logo */
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 20px 0;
-            width: 100%;
+            margin: 0 auto 30px; /* Centered with bottom margin */
+            width: fit-content;
         }
 
         .footer-logo-center a {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--light-text);
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 10px;
         }
 
         .footer-logo-center img {
-            height: 70px; /* Larger size for footer logo */
-            width: 70px;
+            height: 60px; /* Consistent size: 60px for footer */
+            width: 60px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--tertiary-accent);
         }
         
+        .footer-nav {
+             border-bottom: 1px solid rgba(255,255,255,0.1);
+             padding-bottom: 20px;
+             margin-bottom: 20px;
+        }
+
         .footer-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .footer-nav ul li a {
-            color: var(--light-text);
-            transition: color 0.3s ease;
-        }
-
-        .footer-nav ul li a:hover {
-            color: var(--tertiary-accent);
-        }
-
+        /* Social Icons Centering (Key Change) */
         .social-icons {
             display: flex;
-            gap: 20px;
+            justify-content: center; /* Centering the row content */
+            gap: 30px;
             margin-top: 10px;
         }
 
         .social-icons a {
-            color: var(--light-text);
-            font-size: 26px;
+            color: var(--secondary-light);
+            font-size: 28px;
             transition: color 0.3s ease, transform 0.2s;
         }
 
         .social-icons a:hover {
             color: var(--tertiary-accent);
-            transform: scale(1.15);
+            transform: scale(1.2);
         }
 
         .copyright {
-            width: 100%;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            margin-top: 20px;
+            margin-top: 30px;
+            color: rgba(255,255,255,0.6);
         }
 
         /* ------------------------------------ */
-        /* 8. RESPONSIVE ADJUSTMENTS */
+        /* 7. RESPONSIVE ADJUSTMENTS */
         /* ------------------------------------ */
         @media (max-width: 992px) {
-            .hero h1 { font-size: 42px; }
-            .hero p { font-size: 18px; }
-            .hero-content { flex-direction: column; text-align: center; padding: 40px; }
-            .hero-text { padding-right: 0; margin-bottom: 30px; }
-            .hero-illustration { width: 250px; }
-            
-            .program-card { width: 80%; min-width: unset; }
-            
-            /* Mobile Menu Styles (Activation) */
+            /* Header Mobile */
             .hamburger-menu { display: block; }
-            
             .nav-menu {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-                background-color: var(--primary-blue); flex-direction: column;
+                background-color: var(--primary-dark); flex-direction: column;
                 justify-content: center; align-items: center;
                 transform: translateX(100%); transition: transform 0.3s ease-in-out;
             }
-
+            .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
             nav ul { flex-direction: column; text-align: center; }
             nav ul li { margin: 20px 0; }
             nav ul li a { font-size: 24px; }
-            .btn-dashboard { margin-top: 30px; font-size: 20px; padding: 12px 24px; }
+            .btn-dashboard { margin-top: 30px; font-size: 20px; }
 
-            /* Mobile Menu Toggle Logic */
-            .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
-            .nav-toggler:checked ~ .hamburger-menu .line1 { transform: rotate(45deg) translate(5px, 5px); }
-            .nav-toggler:checked ~ .hamburger-menu .line2 { opacity: 0; }
-            .nav-toggler:checked ~ .hamburger-menu .line3 { transform: rotate(-45deg) translate(7px, -6px); }
-
-            header .container { flex-wrap: nowrap; }
-            .footer-top { flex-direction: column; gap: 15px; }
+            /* Hero Mobile */
+            .hero-banner-content {
+                flex-direction: column;
+            }
+            .hero-text {
+                max-width: 100%;
+                text-align: center;
+                order: 2; /* Move text below image on mobile */
+            }
+            .hero h1 { font-size: 38px; }
+            .hero p { font-size: 16px; }
+            .image-placeholder {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 30px;
+                order: 1; /* Move image to the top on mobile */
+            }
+            
+            /* Exam Grid Mobile */
+            .exam-buttons-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .btn-exam {
+                padding: 15px 10px;
+                font-size: 16px;
+            }
+            
+            /* Contact Mobile */
+            .contact-info { gap: 20px; }
+            .journey-section h4 { font-size: 22px; }
         }
 
         @media (max-width: 576px) {
-            .hero h1 { font-size: 34px; }
-            .hero p { font-size: 16px; }
-            .hero-content { padding: 30px 20px; }
-            .btn-primary { font-size: 16px; padding: 12px 25px; }
-            .program-card { width: 95%; padding: 25px; }
-            .journey-section h4 { font-size: 24px; }
-            .progress-bar { width: 90%; }
+            .logo { font-size: 20px; }
+            .logo img { height: 40px; width: 40px; }
+            .hero h1 { font-size: 30px; }
         }
     </style>
 </head>
@@ -641,7 +468,7 @@
                     </ul>
                 </nav>
                 <a href="#dashboard" class="btn-dashboard">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                    <i class="fas fa-chalkboard-teacher"></i> Dashboard
                 </a>
             </div>
         </div>
@@ -650,80 +477,68 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-banner-content">
                     <div class="hero-text">
-                        <h1>Unlock Your **Medical Potential**</h1>
-                        <p>Comprehensive, expert-led preparation for MBBS, BDS, & BSN entrance and professional exams.</p>
-                        <a href="#programs" class="btn-primary">
-                            <i class="fas fa-flask"></i> Explore Our Programs
+                        <h1>**DANI MEDICO**: Your Future in Medicine Starts Now</h1>
+                        <p>Master the crucial entrance exams—MDCAT, NUMS, AKU, and Nursing—with our updated curricula, tailored resources, and expert mentorship.</p>
+                        <a href="#key-exams" class="btn-primary">
+                            <i class="fas fa-arrow-alt-circle-right"></i> Start Your Journey
                         </a>
                     </div>
-                    <div class="hero-illustration">
-                         <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 100 H80 L100 80 L120 120 L140 60 L160 140 L180 80 L200 100 H250" stroke="var(--light-text)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="50" cy="100" r="5" fill="var(--tertiary-accent)"/>
-                            <circle cx="250" cy="100" r="5" fill="var(--tertiary-accent)"/>
-                            <path class="accent-line" d="M120 120 L140 60" stroke-width="6"/>
-                        </svg>
+                    <div class="image-placeholder" aria-label="Medical Preparation Banner">
+                         <i class="fas fa-laptop-medical"></i>
                     </div>
+                    
                 </div>
             </div>
         </section>
         
         <section class="exam-buttons-section" id="key-exams">
             <div class="container">
-                <h2>Choose Your Path to Success</h2>
+                <h2>Select Your Exam: Comprehensive Programs</h2>
                 <div class="exam-buttons-grid">
-                    <a href="#mdcat-info" class="btn-exam"><i class="fas fa-user-graduate"></i> MDCAT</a>
-                    <a href="#nums-info" class="btn-exam"><i class="fas fa-hospital-user"></i> NUMS</a>
-                    <a href="#aku-info" class="btn-exam"><i class="fas fa-stethoscope"></i> AKU</a>
-                    <a href="#nursing-info" class="btn-exam"><i class="fas fa-briefcase-medical"></i> NURSING (BSN)</a>
-                    <a href="#afns-info" class="btn-exam"><i class="fas fa-venus-mars"></i> AFNS</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="program-sections" id="programs">
-            <div class="container">
-                <h2>Our Specialized Preparatory Programs</h2>
-                <div class="program-cards">
-                    <div class="program-card" id="mbbs-bds-programs">
-                        <h3>MBBS/BDS **PROGRAMS**</h3>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> **Targeted** Medical Entrance Prep (MDCAT/NUMS/AKU).</li>
-                            <li><i class="fas fa-check-circle"></i> In-depth **Biology, Chemistry, Physics** review.</li>
-                            <li><i class="fas fa-check-circle"></i> Daily Quizzes and **Mega Mock Tests**.</li>
-                            <li><i class="fas fa-check-circle"></i> Undergraduate Curriculum (First Year to Final Year).</li>
-                        </ul>
-                        <a href="#mbbs-bds-details" class="btn-learn-more">Learn More</a>
-                    </div>
-                    <div class="program-card" id="bsn-programs">
-                        <h3>**BSN** (NURSING) PROGRAMS</h3>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Dedicated Prep for **LUMHS - Jamshoro** Entry.</li>
-                            <li><i class="fas fa-check-circle"></i> Specialized **DUHS - Karachi** Admission Support.</li>
-                            <li><i class="fas fa-check-circle"></i> Focused Prep for **JSMU - Karachi** and PUMHS.</li>
-                            <li><i class="fas fa-check-circle"></i> Covers all **AFNS** subject requirements.</li>
-                        </ul>
-                        <a href="#bsn-details" class="btn-learn-more">Get Started</a>
-                    </div>
+                    <a href="#mdcat-info" class="btn-exam">
+                        <i class="fas fa-graduation-cap"></i> MDCAT
+                        <span>(Medical & Dental Colleges)</span>
+                    </a>
+                    <a href="#nums-info" class="btn-exam">
+                        <i class="fas fa-university"></i> NUMS
+                        <span>(National University of Medical Sciences)</span>
+                    </a>
+                    <a href="#aku-info" class="btn-exam">
+                        <i class="fas fa-heartbeat"></i> AKU
+                        <span>(Aga Khan University)</span>
+                    </a>
+                    <a href="#nursing-info" class="btn-exam">
+                        <i class="fas fa-user-nurse"></i> NURSING (BSN)
+                        <span>(LUMHS, DUHS, JSMU)</span>
+                    </a>
+                    <a href="#afns-info" class="btn-exam">
+                        <i class="fas fa-ribbon"></i> AFNS
+                        <span>(Armed Forces Nursing Service)</span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <section class="journey-section">
             <div class="container">
-                <h4>Your Path to a Successful Medical Career Starts Here:</h4>
+                <h4>Data-Driven Success: Proven Results</h4>
                 <div class="progress-bar">
                     <div class="progress-bar-fill" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
                 </div>
-                <p style="margin-top: 10px; color: var(--primary-blue); font-weight: 600;">
-                    <i class="fas fa-trophy" style="color: var(--tertiary-accent);"></i> **70% of our students achieve top university placements!**
+                <p style="margin-top: 10px; color: var(--primary-dark); font-weight: 600;">
+                    <i class="fas fa-award" style="color: var(--tertiary-accent);"></i> **70% of our students achieve top university placements!**
                 </p>
                 
+                <h4 style="margin-top: 50px; font-size: 24px; color: var(--tertiary-accent);">Ready to Enroll or Have Questions?</h4>
                 <div class="contact-info" id="contact">
-                    <a href="mailto:info@danimedico.pw"><i class="fas fa-envelope"></i> info@danimedico.pw</a>
-                    <a href="tel:ADD_YOUR_PHONE_NUMBER"><i class="fas fa-phone"></i> Contact Us Now</a>
+                    <a href="mailto:info@danimedico.pw">
+                        <i class="fas fa-envelope"></i> info@danimedico.pw
+                    </a>
+                    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" style="border: 1px solid var(--primary-dark);">
+                        <i class="fab fa-whatsapp" style="color: green;"></i> Chat on WhatsApp
+                    </a>
                 </div>
             </div>
         </section>
@@ -732,7 +547,7 @@
     <footer>
         <div class="container">
             <div class="footer-logo-center">
-                 <a href="/">
+                <a href="/">
                     <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
                 </a>
             </div>
@@ -755,7 +570,7 @@
             </div>
             
             <div class="copyright">
-                &copy; 2025 DANI MEDICO. All rights reserved. Developed by [Your Name/Team].
+                &copy; 2025 DANI MEDICO. All rights reserved.
             </div>
         </div>
     </footer>
