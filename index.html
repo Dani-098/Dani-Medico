@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DANI MEDICO - Future of Medical Preparation</title>
+    <title>DANI MEDICO - Medical Entrance Preparation</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -14,21 +14,15 @@
         /* 1. COLOR PALETTE & BASE STYLES */
         /* ------------------------------------ */
         :root {
-            /* Primary: Buttons, links */
-            --primary-blue: #2563EB; 
-            /* Secondary: Headers, navbar background */
-            --secondary-dark-blue: #1E40AF; 
-            /* Background */
-            --background-light: #F8FAFC; 
-            /* Text (Dark) */
-            --text-dark: #0F172A; 
-            /* Accent: Highlights, hover */
-            --accent-light-blue: #38BDF8; 
+            --primary-blue: #2563EB;        /* Buttons, links */
+            --secondary-dark-blue: #1E40AF; /* Headers, navbar background */
+            --background-light: #F8FAFC;    /* Main background */
+            --text-dark: #0F172A;           /* Text (Dark) */
+            --accent-light-blue: #38BDF8;   /* Highlights, hover */
             
             --light-text: #fff;
             --hero-gradient: linear-gradient(135deg, var(--secondary-dark-blue) 0%, #172554 100%);
             --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1); 
-            --shadow-accent: 0 6px 20px rgba(56, 189, 248, 0.4); 
         }
 
         /* Base Reset */
@@ -42,6 +36,7 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -54,26 +49,19 @@
         a { text-decoration: none; }
 
         /* ------------------------------------ */
-        /* 2. HEADER & NAVIGATION (SIMPLIFIED TOP) */
+        /* 2. HEADER (SINGLE ROW) */
         /* ------------------------------------ */
         header {
             background-color: var(--secondary-dark-blue);
             color: var(--light-text);
-            padding: 0; /* Padding handled by internal divs */
+            padding: 10px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        /* REMOVING header-top (Utility Bar) content */
-        /* The header will now be a single row on desktop */
-        
-        .header-main {
-            padding: 10px 0;
-        }
-        
-        .header-main .container {
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,7 +92,7 @@
 
         /* Desktop Nav Links */
         nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-        nav ul li { margin-left: 20px; }
+        nav ul li { margin-left: 25px; }
 
         nav ul li a {
             color: var(--light-text); 
@@ -120,7 +108,7 @@
         .btn-dashboard {
             background-color: var(--primary-blue); 
             color: var(--light-text);
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 25px;
             font-weight: 700;
             transition: background-color 0.3s ease, transform 0.2s;
@@ -136,46 +124,197 @@
             transform: translateY(-1px);
         }
 
-        /* Mobile Toggler styles */
+        /* Mobile Toggler */
         .nav-toggler { display: none; }
         .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
         .hamburger-menu .line {
             display: block; width: 25px; height: 3px; background-color: var(--light-text);
             margin: 5px 0; transition: all 0.3s ease-in-out;
         }
-
+        
         /* ------------------------------------ */
         /* 3. HERO SECTION */
         /* ------------------------------------ */
         .hero {
             background: var(--hero-gradient);
             color: var(--light-text);
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
         }
         
-        /* Hero and Main content styles remain the same */
+        .hero-banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 65%;
+            text-align: left;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--light-text);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .image-placeholder {
+            flex-shrink: 0;
+            width: 35%; 
+            min-width: 300px;
+            height: 250px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px dashed var(--accent-light-blue);
+        }
+        
+        .image-placeholder i {
+            font-size: 70px;
+            color: var(--accent-light-blue);
+        }
+
+        .btn-primary {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            padding: 15px 35px;
+            border-radius: 50px; 
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-light-blue);
+            color: var(--light-text);
+            transform: translateY(-2px);
+        }
 
         /* ------------------------------------ */
-        /* 4. KEY EXAM BUTTONS */
+        /* 4. KEY EXAM BUTTONS (MAIN CONTENT) */
         /* ------------------------------------ */
-        /* Styles remain the same */
+        .exam-buttons-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--background-light);
+        }
+        
+        .exam-buttons-section h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--secondary-dark-blue);
+            font-weight: 800;
+        }
+
+        .exam-buttons-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .btn-exam {
+            background: var(--light-text);
+            color: var(--text-dark);
+            padding: 25px 15px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 2px solid transparent;
+            min-height: 150px;
+        }
+
+        .btn-exam i {
+            font-size: 32px;
+            color: var(--primary-blue);
+        }
+
+        .btn-exam span {
+            font-size: 14px;
+            font-weight: 400;
+            color: #64748B;
+        }
+
+        .btn-exam:hover {
+            background-color: var(--primary-blue);
+            color: var(--light-text);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+            border-color: var(--accent-light-blue);
+        }
+        
+        .btn-exam:hover i,
+        .btn-exam:hover span {
+            color: var(--light-text);
+        }
+        
+        /* ------------------------------------ */
+        /* 5. JOURNEY & PROGRESS BAR */
+        /* ------------------------------------ */
+        .journey-section {
+            padding: 40px 0 60px;
+            text-align: center;
+            background-color: var(--background-light);
+        }
+        
+        .progress-bar {
+            width: 70%; max-width: 700px; height: 15px;
+            background-color: #E0E7FF;
+            border-radius: 8px; margin: 0 auto 10px; overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .progress-bar-fill {
+            width: 70%; height: 100%;
+            background: linear-gradient(to right, var(--primary-blue), var(--accent-light-blue));
+            border-radius: 8px;
+            /* Simple CSS animation (for visual completeness) */
+            animation: fillProgress 2s ease-out forwards;
+        }
+        @keyframes fillProgress {
+            from { width: 0; }
+            to { width: 70%; }
+        }
 
         /* ------------------------------------ */
-        /* 5. PRE-FOOTER CONTACT SECTION (New Position) */
+        /* 6. PRE-FOOTER CONTACT SECTION */
         /* ------------------------------------ */
         .pre-footer-contact {
-            background-color: var(--secondary-dark-blue); /* Dark background */
+            background-color: var(--secondary-dark-blue); 
             color: var(--light-text);
-            padding: 30px 0;
+            padding: 40px 0;
             text-align: center;
             border-top: 5px solid var(--primary-blue);
         }
 
         .pre-footer-contact h4 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--accent-light-blue);
         }
         
@@ -198,7 +337,7 @@
         }
 
         .contact-info-footer a i {
-            color: var(--primary-blue); /* Primary color icon */
+            color: var(--primary-blue); 
             font-size: 20px;
             transition: color 0.3s;
         }
@@ -211,48 +350,111 @@
         }
 
         /* ------------------------------------ */
-        /* 6. FOOTER */
+        /* 7. FOOTER */
         /* ------------------------------------ */
         footer {
-            background-color: #172554; /* Slightly darker shade for separation from contact block */
+            background-color: #172554; 
             color: var(--light-text);
             padding: 30px 0 20px;
         }
-        /* Footer logo and navigation styles remain the same */
         
+        .footer-logo-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto 30px;
+            width: fit-content;
+        }
+
+        .footer-logo-center a {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo-center img {
+            height: 60px; 
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-light-blue);
+        }
+        
+        .footer-nav {
+             border-bottom: 1px solid rgba(255,255,255,0.1);
+             padding-bottom: 20px;
+             margin-bottom: 20px;
+        }
+
+        .footer-nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-nav ul li a { color: var(--light-text); transition: color 0.3s; }
+        .footer-nav ul li a:hover { color: var(--accent-light-blue); }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: var(--light-text);
+            font-size: 28px;
+            transition: color 0.3s ease, transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-light-blue);
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            color: rgba(255,255,255,0.6);
+        }
+
         /* ------------------------------------ */
-        /* 7. RESPONSIVE ADJUSTMENTS */
+        /* 8. RESPONSIVE ADJUSTMENTS */
         /* ------------------------------------ */
         @media (max-width: 992px) {
-            /* Header collapses into single row, but without contact links */
-            .header-main .container { padding: 10px 20px; }
+            /* Header */
             .hamburger-menu { display: block; }
-
             .nav-menu {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
                 background-color: var(--secondary-dark-blue); flex-direction: column;
                 justify-content: center; align-items: center;
                 transform: translateX(100%); transition: transform 0.3s ease-in-out;
-                padding-top: 0; /* Align content centrally */
             }
             .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
-            
+            .nav-menu nav, .btn-dashboard { margin-left: 0; }
             nav ul { flex-direction: column; text-align: center; }
             nav ul li { margin: 25px 0; }
             nav ul li a { font-size: 24px; }
-            
-            /* Hide mobile-menu-footer in the nav-menu, as contact is now above footer */
-            .mobile-menu-footer { display: none; } 
-
             .btn-dashboard { margin-top: 30px; font-size: 20px; padding: 12px 24px; }
             
             /* Hero Mobile */
-            .hero-banner-content { flex-direction: column; }
+            .hero-banner-content { flex-direction: column; text-align: center; }
             .hero-text { max-width: 100%; text-align: center; order: 2; }
             .hero h1 { font-size: 38px; }
             .image-placeholder { width: 100%; height: 200px; margin-bottom: 30px; order: 1; }
             
-            /* Pre-footer contact adjustment */
+            /* Exam Grid Mobile */
+            .exam-buttons-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+            .btn-exam { padding: 20px 10px; }
+
+            /* Pre-Footer */
+            .pre-footer-contact h4 { font-size: 22px; }
             .contact-info-footer { gap: 20px; }
             .contact-info-footer a { font-size: 16px; }
         }
@@ -265,34 +467,31 @@
 <body>
 
     <header>
-        <div class="header-main">
-            <div class="container">
-                <a href="/" class="logo">
-                    <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
-                </a>
-                
-                <input type="checkbox" id="nav-toggler" class="nav-toggler">
-                <label for="nav-toggler" class="hamburger-menu">
-                    <span class="line line1"></span>
-                    <span class="line line2"></span>
-                    <span class="line line3"></span>
-                </label>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/dani.png" alt="DANI MEDICO Logo"> DANI MEDICO
+            </a>
+            
+            <input type="checkbox" id="nav-toggler" class="nav-toggler">
+            <label for="nav-toggler" class="hamburger-menu">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </label>
 
-                <div class="nav-menu">
-                    <nav>
-                        <ul>
-                            <li><a href="#tests-section">Tests</a></li>
-                            <li><a href="#notes-section">Notes</a></li>
-                            <li><a href="#lectures-section">Lectures</a></li>
-                            <li><a href="#past-papers-section">Past Papers</a></li>
-                        </ul>
-                    </nav>
-                    
-                    <a href="#dashboard" class="btn-dashboard">
-                        <i class="fas fa-chalkboard-teacher"></i> Dashboard
-                    </a>
-                    
-                    </div>
+            <div class="nav-menu">
+                <nav>
+                    <ul>
+                        <li><a href="#tests-section">Tests</a></li>
+                        <li><a href="#notes-section">Notes</a></li>
+                        <li><a href="#lectures-section">Lectures</a></li>
+                        <li><a href="#past-papers-section">Past Papers</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="#dashboard" class="btn-dashboard">
+                    <i class="fas fa-chalkboard-teacher"></i> Dashboard
+                </a>
             </div>
         </div>
     </header>
@@ -321,23 +520,23 @@
                 <div class="exam-buttons-grid">
                     <a href="#mdcat-info" class="btn-exam">
                         <i class="fas fa-graduation-cap"></i> MDCAT
-                        <span>(Medical & Dental Colleges)</span>
+                        <span>Medical & Dental Colleges</span>
                     </a>
                     <a href="#nums-info" class="btn-exam">
                         <i class="fas fa-university"></i> NUMS
-                        <span>(National University of Medical Sciences)</span>
+                        <span>National University of Medical Sciences</span>
                     </a>
                     <a href="#aku-info" class="btn-exam">
                         <i class="fas fa-heartbeat"></i> AKU
-                        <span>(Aga Khan University)</span>
+                        <span>Aga Khan University</span>
                     </a>
                     <a href="#nursing-info" class="btn-exam">
                         <i class="fas fa-user-nurse"></i> NURSING (BSN)
-                        <span>(LUMHS, DUHS, JSMU)</span>
+                        <span>LUMHS, DUHS, JSMU</span>
                     </a>
                     <a href="#afns-info" class="btn-exam">
                         <i class="fas fa-ribbon"></i> AFNS
-                        <span>(Armed Forces Nursing Service)</span>
+                        <span>Armed Forces Nursing Service</span>
                     </a>
                 </div>
             </div>
@@ -345,7 +544,7 @@
 
         <section class="journey-section">
             <div class="container">
-                <h4>Data-Driven Success: Proven Results</h4>
+                <h4 style="color: var(--secondary-dark-blue); font-weight: 700;">Data-Driven Success: Proven Results</h4>
                 <div class="progress-bar">
                     <div class="progress-bar-fill" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
                 </div>
