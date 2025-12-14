@@ -11,23 +11,24 @@
     
     <style>
         /* ------------------------------------ */
-        /* 1. NEW PROFESSIONAL COLOR PALETTE & BASE STYLES */
+        /* 1. NEW COLOR PALETTE & BASE STYLES */
         /* ------------------------------------ */
         :root {
-            /* Primary: Deep Royal Purple/Violet (Professional & Trustworthy) */
-            --primary-dark: #20134E; 
-            /* Secondary: Clean White */
-            --secondary-light: #FFFFFF; 
-            /* Tertiary/Accent: Electric Teal/Aqua (Modern, Energetic focus) */
-            --tertiary-accent: #00ADB5; 
-            /* Soft Grey/Shadow Base */
-            --soft-grey: #EEEEEE; 
+            /* Primary: Buttons, links */
+            --primary-blue: #2563EB; 
+            /* Secondary: Headers, navbar background */
+            --secondary-dark-blue: #1E40AF; 
+            /* Background */
+            --background-light: #F8FAFC; 
+            /* Text (Dark) */
+            --text-dark: #0F172A; 
+            /* Accent: Highlights, hover */
+            --accent-light-blue: #38BDF8; 
             
-            --dark-text: #333;
             --light-text: #fff;
-            --hero-gradient: linear-gradient(135deg, var(--primary-dark) 0%, #3a2283 100%);
+            --hero-gradient: linear-gradient(135deg, var(--secondary-dark-blue) 0%, #172554 100%);
             --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1); 
-            --shadow-accent: 0 6px 20px rgba(0, 173, 181, 0.4); 
+            --shadow-accent: 0 6px 20px rgba(56, 189, 248, 0.4); /* Accent shadow */
         }
 
         /* Base Reset */
@@ -37,8 +38,8 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--secondary-light);
-            color: var(--dark-text);
+            background-color: var(--background-light);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -56,9 +57,9 @@
         /* 2. HEADER & NAVIGATION */
         /* ------------------------------------ */
         header {
-            background-color: var(--primary-dark);
+            background-color: var(--secondary-dark-blue);
             color: var(--light-text);
-            padding: 10px 0; /* Slightly smaller header */
+            padding: 10px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
@@ -81,41 +82,84 @@
         }
 
         .logo img {
-            height: 45px; /* Consistent size: 45px */
+            height: 45px; 
             width: 45px; 
             margin-right: 10px;
             border-radius: 50%; 
             object-fit: cover;
-            border: 2px solid var(--tertiary-accent);
+            border: 2px solid var(--accent-light-blue);
+        }
+        
+        /* Combined Menu and Dashboard */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         /* Desktop Nav Links */
+        nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+        nav ul li { margin-left: 20px; }
+
         nav ul li a {
-            color: var(--soft-grey);
+            color: var(--background-light); /* Light text on dark background */
             font-weight: 600;
+            transition: color 0.3s ease;
         }
         nav ul li a:hover,
         nav ul li a.active {
-            color: var(--tertiary-accent); 
+            color: var(--accent-light-blue); 
         }
         
-        /* Dashboard Button Refinement */
+        /* Contact/Dashboard Button Refinement (Primary Blue Style) */
         .btn-dashboard {
-            background-color: var(--tertiary-accent); 
-            color: var(--primary-dark); /* Dark text on bright button */
+            background-color: var(--primary-blue); 
+            color: var(--light-text);
             padding: 8px 18px;
             border-radius: 25px;
             font-weight: 700;
             transition: background-color 0.3s ease, transform 0.2s;
-            box-shadow: 0 3px 8px rgba(0, 173, 181, 0.6);
+            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-dashboard:hover {
-            background-color: var(--secondary-light);
+            background-color: var(--accent-light-blue);
             transform: translateY(-1px);
         }
 
-        /* Mobile Toggler styles remain the same for responsiveness */
+        /* New Top Contact Info Styling */
+        .top-contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 30px;
+            flex-shrink: 0;
+        }
+
+        .top-contact-info a {
+            color: var(--background-light);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .top-contact-info a i {
+            color: var(--accent-light-blue);
+            font-size: 16px;
+        }
+        
+        .top-contact-info a:hover {
+            color: var(--accent-light-blue);
+        }
+
+
+        /* Mobile Toggler styles */
         .nav-toggler { display: none; }
         .hamburger-menu { display: none; cursor: pointer; z-index: 1001; }
         .hamburger-menu .line {
@@ -124,10 +168,9 @@
         }
 
         /* ------------------------------------ */
-        /* 3. HERO & BANNER SECTION */
+        /* 3. HERO SECTION */
         /* ------------------------------------ */
         .hero {
-            /* Full-width banner section */
             background: var(--hero-gradient);
             color: var(--light-text);
             padding: 60px 0;
@@ -151,7 +194,7 @@
             font-size: 48px;
             font-weight: 800;
             margin-bottom: 10px;
-            color: var(--secondary-light);
+            color: var(--light-text);
         }
 
         .hero p {
@@ -171,18 +214,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px dashed var(--tertiary-accent);
+            border: 3px dashed var(--accent-light-blue);
         }
         
         .image-placeholder i {
             font-size: 60px;
-            color: var(--tertiary-accent);
+            color: var(--accent-light-blue);
         }
 
         /* Primary Button (White/Dark text) */
         .btn-primary {
-            background-color: var(--secondary-light);
-            color: var(--primary-dark);
+            background-color: var(--background-light);
+            color: var(--text-dark);
             padding: 12px 30px;
             border-radius: 50px; 
             font-weight: 700;
@@ -192,7 +235,7 @@
         }
 
         .btn-primary:hover {
-            background-color: var(--tertiary-accent);
+            background-color: var(--accent-light-blue);
             color: var(--light-text);
             transform: translateY(-2px);
         }
@@ -204,13 +247,13 @@
         .exam-buttons-section {
             padding: 60px 0;
             text-align: center;
-            background-color: var(--soft-grey);
+            background-color: var(--background-light);
         }
         
         .exam-buttons-section h2 {
             font-size: 32px;
             margin-bottom: 40px;
-            color: var(--primary-dark);
+            color: var(--secondary-dark-blue);
             font-weight: 800;
         }
 
@@ -223,8 +266,8 @@
         }
 
         .btn-exam {
-            background: var(--secondary-light);
-            color: var(--primary-dark);
+            background: var(--light-text);
+            color: var(--text-dark);
             padding: 20px 10px;
             border-radius: 12px;
             font-weight: 700;
@@ -241,19 +284,19 @@
 
         .btn-exam i {
             font-size: 30px;
-            color: var(--tertiary-accent);
+            color: var(--primary-blue);
         }
 
         .btn-exam:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--primary-blue);
             color: var(--light-text);
             transform: translateY(-5px) scale(1.02);
             box-shadow: var(--shadow-accent);
-            border-color: var(--tertiary-accent);
+            border-color: var(--accent-light-blue);
         }
         
         .btn-exam:hover i {
-            color: var(--secondary-light);
+            color: var(--light-text);
         }
 
 
@@ -267,7 +310,7 @@
 
         .journey-section h4 {
             font-size: 28px;
-            color: var(--primary-dark);
+            color: var(--secondary-dark-blue);
             margin-bottom: 30px;
             font-weight: 700;
         }
@@ -280,37 +323,30 @@
             margin-top: 40px;
             flex-wrap: wrap;
         }
-
-        .contact-info a {
-            color: var(--primary-dark);
-            font-weight: 600;
-            font-size: 18px;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
+        
+        /* Progress bar styles kept the same */
+        .progress-bar {
+            width: 70%; max-width: 700px; height: 15px;
+            background-color: #E0E7FF; /* Light blue variation */
+            border-radius: 8px; margin: 0 auto 10px; overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .progress-bar-fill {
+            width: 70%; height: 100%;
+            background: linear-gradient(to right, var(--primary-blue), var(--accent-light-blue));
             border-radius: 8px;
-            border: 1px solid var(--tertiary-accent);
+            animation: fillProgress 2s ease-out forwards;
+        }
+        @keyframes fillProgress {
+            from { width: 0; }
+            to { width: 70%; }
         }
 
-        .contact-info a:hover {
-            color: var(--secondary-light);
-            background-color: var(--primary-dark);
-        }
-        
-        .contact-info a i {
-            color: var(--tertiary-accent);
-        }
-        .contact-info a:hover i {
-            color: var(--secondary-light);
-        }
-        
         /* ------------------------------------ */
-        /* 6. FOOTER (Centering Social Icons) */
+        /* 6. FOOTER */
         /* ------------------------------------ */
         footer {
-            background-color: var(--primary-dark);
+            background-color: var(--secondary-dark-blue);
             color: var(--light-text);
             padding: 40px 0 20px;
         }
@@ -325,7 +361,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 auto 30px; /* Centered with bottom margin */
+            margin: 0 auto 30px;
             width: fit-content;
         }
 
@@ -339,11 +375,11 @@
         }
 
         .footer-logo-center img {
-            height: 60px; /* Consistent size: 60px for footer */
+            height: 60px; 
             width: 60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--tertiary-accent);
+            border: 3px solid var(--accent-light-blue);
         }
         
         .footer-nav {
@@ -361,23 +397,25 @@
             padding: 0;
             margin: 0;
         }
+        .footer-nav ul li a { color: var(--background-light); transition: color 0.3s; }
+        .footer-nav ul li a:hover { color: var(--accent-light-blue); }
 
-        /* Social Icons Centering (Key Change) */
+        /* Social Icons Centering */
         .social-icons {
             display: flex;
-            justify-content: center; /* Centering the row content */
+            justify-content: center;
             gap: 30px;
             margin-top: 10px;
         }
 
         .social-icons a {
-            color: var(--secondary-light);
+            color: var(--background-light);
             font-size: 28px;
             transition: color 0.3s ease, transform 0.2s;
         }
 
         .social-icons a:hover {
-            color: var(--tertiary-accent);
+            color: var(--accent-light-blue);
             transform: scale(1.2);
         }
 
@@ -389,56 +427,61 @@
         /* ------------------------------------ */
         /* 7. RESPONSIVE ADJUSTMENTS */
         /* ------------------------------------ */
+        @media (max-width: 1100px) {
+            /* Reduce space to fit all elements before mobile collapse */
+            .nav-actions { gap: 10px; }
+            nav ul li { margin-left: 15px; }
+            .top-contact-info { margin-left: 15px; gap: 10px; }
+            .top-contact-info a { font-size: 13px; }
+        }
+
         @media (max-width: 992px) {
-            /* Header Mobile */
+            /* Mobile Menu Styles */
             .hamburger-menu { display: block; }
+            .nav-actions { display: none; } /* Hide desktop nav and contact */
+
             .nav-menu {
                 position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-                background-color: var(--primary-dark); flex-direction: column;
+                background-color: var(--secondary-dark-blue); flex-direction: column;
                 justify-content: center; align-items: center;
                 transform: translateX(100%); transition: transform 0.3s ease-in-out;
+                padding-top: 100px; /* Space for logo/hambuger */
             }
             .nav-toggler:checked ~ .nav-menu { transform: translateX(0); }
             nav ul { flex-direction: column; text-align: center; }
-            nav ul li { margin: 20px 0; }
+            nav ul li { margin: 25px 0; }
             nav ul li a { font-size: 24px; }
-            .btn-dashboard { margin-top: 30px; font-size: 20px; }
-
-            /* Hero Mobile */
-            .hero-banner-content {
+            
+            /* Put contact/dashboard at the bottom of the mobile menu */
+            .mobile-menu-footer {
+                display: flex;
                 flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                margin-top: 40px;
             }
-            .hero-text {
-                max-width: 100%;
-                text-align: center;
-                order: 2; /* Move text below image on mobile */
+            
+            .mobile-menu-footer .top-contact-info {
+                flex-direction: column;
+                margin-left: 0;
+                gap: 15px;
             }
+            .mobile-menu-footer .top-contact-info a {
+                font-size: 16px;
+                color: var(--light-text);
+            }
+            
+            .btn-dashboard { font-size: 20px; padding: 12px 24px; }
+            
+            /* Hero Mobile */
+            .hero-banner-content { flex-direction: column; }
+            .hero-text { max-width: 100%; text-align: center; order: 2; }
             .hero h1 { font-size: 38px; }
             .hero p { font-size: 16px; }
-            .image-placeholder {
-                width: 100%;
-                height: 200px;
-                margin-bottom: 30px;
-                order: 1; /* Move image to the top on mobile */
-            }
-            
-            /* Exam Grid Mobile */
-            .exam-buttons-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-            .btn-exam {
-                padding: 15px 10px;
-                font-size: 16px;
-            }
-            
-            /* Contact Mobile */
-            .contact-info { gap: 20px; }
-            .journey-section h4 { font-size: 22px; }
+            .image-placeholder { width: 100%; height: 200px; margin-bottom: 30px; order: 1; }
         }
 
         @media (max-width: 576px) {
-            .logo { font-size: 20px; }
-            .logo img { height: 40px; width: 40px; }
             .hero h1 { font-size: 30px; }
         }
     </style>
@@ -459,17 +502,44 @@
             </label>
 
             <div class="nav-menu">
-                <nav>
-                    <ul>
-                        <li><a href="#tests-section">Tests</a></li>
-                        <li><a href="#notes-section">Notes</a></li>
-                        <li><a href="#lectures-section">Lectures</a></li>
-                        <li><a href="#past-papers-section">Past Papers</a></li>
-                    </ul>
-                </nav>
-                <a href="#dashboard" class="btn-dashboard">
-                    <i class="fas fa-chalkboard-teacher"></i> Dashboard
-                </a>
+                <div class="nav-actions">
+                    <nav>
+                        <ul>
+                            <li><a href="#tests-section">Tests</a></li>
+                            <li><a href="#notes-section">Notes</a></li>
+                            <li><a href="#lectures-section">Lectures</a></li>
+                            <li><a href="#past-papers-section">Past Papers</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="top-contact-info">
+                        <a href="mailto:info@danimedico.pw">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                        <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                    
+                    <a href="#dashboard" class="btn-dashboard">
+                        <i class="fas fa-chalkboard-teacher"></i> Dashboard
+                    </a>
+                </div>
+                
+                <div class="mobile-menu-footer">
+                    <div class="top-contact-info">
+                        <a href="mailto:info@danimedico.pw">
+                            <i class="fas fa-envelope"></i> info@danimedico.pw
+                        </a>
+                        <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                     <a href="#dashboard" class="btn-dashboard">
+                        <i class="fas fa-chalkboard-teacher"></i> Dashboard
+                    </a>
+                </div>
+                
             </div>
         </div>
     </header>
@@ -488,7 +558,6 @@
                     <div class="image-placeholder" aria-label="Medical Preparation Banner">
                          <i class="fas fa-laptop-medical"></i>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -527,19 +596,9 @@
                 <div class="progress-bar">
                     <div class="progress-bar-fill" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
                 </div>
-                <p style="margin-top: 10px; color: var(--primary-dark); font-weight: 600;">
-                    <i class="fas fa-award" style="color: var(--tertiary-accent);"></i> **70% of our students achieve top university placements!**
+                <p style="margin-top: 10px; color: var(--text-dark); font-weight: 600;">
+                    <i class="fas fa-award" style="color: var(--primary-blue);"></i> **70% of our students achieve top university placements!**
                 </p>
-                
-                <h4 style="margin-top: 50px; font-size: 24px; color: var(--tertiary-accent);">Ready to Enroll or Have Questions?</h4>
-                <div class="contact-info" id="contact">
-                    <a href="mailto:info@danimedico.pw">
-                        <i class="fas fa-envelope"></i> info@danimedico.pw
-                    </a>
-                    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" style="border: 1px solid var(--primary-dark);">
-                        <i class="fab fa-whatsapp" style="color: green;"></i> Chat on WhatsApp
-                    </a>
-                </div>
             </div>
         </section>
     </main>
