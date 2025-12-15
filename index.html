@@ -34,7 +34,7 @@
         /* Navbar */
         #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
-        .logo-img { height: 30px; width: auto; filter: invert(100%); }
+        .logo-img { height: 50px; width: auto; }
         .nav-links a { color: var(--color-light); margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; transition: all var(--transition-speed); border-bottom: 2px solid transparent; }
         .nav-links a:hover, .nav-links a.active { border-bottom: 2px solid var(--color-secondary-green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.5rem; cursor: pointer; }
@@ -68,9 +68,9 @@
         .text-center { text-align: center; margin-top: 1.5rem; }
 
         /* Footer */
-        footer { background-color: var(--color-dark); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
-        .footer-logo .logo-img { height: 40px; filter: invert(100%); }
+        .footer-logo .logo-img { height: 70px; }
         .footer-links { display: flex; gap: 1.5rem; }
         .footer-links a { color: var(--color-light); font-weight: 500; transition: color var(--transition-speed); }
         .footer-links a:hover { color: var(--color-secondary-green); }
@@ -150,26 +150,14 @@
             </div>
         </section>
 
-        <section class="quick-links-section">
-            <h2>Quick Access</h2>
-            <div class="quick-links-grid card-grid">
-                <a href="dashboard.html" class="card quick-link-card"><i class="fas fa-tachometer-alt fa-2x"></i> <span>Dashboard</span></a>
-                <a href="lectures.html" class="card quick-link-card"><i class="fas fa-video fa-2x"></i> <span>Lectures</span></a>
-                <a href="notes.html" class="card quick-link-card"><i class="fas fa-book-open fa-2x"></i> <span>Notes</span></a>
-                <a href="tests.html" class="card quick-link-card"><i class="fas fa-pencil-alt fa-2x"></i> <span>Tests</span></a>
-                <a href="past-papers.html" class="card quick-link-card"><i class="fas fa-file-alt fa-2x"></i> <span>Papers</span></a>
-                <a href="announcements.html" class="card quick-link-card"><i class="fas fa-bullhorn fa-2x"></i> <span>Announcements</span></a>
-            </div>
-        </section>
-
     </main>
 
     <footer>
         <div class="footer-top container">
             <div class="footer-links">
                 <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact (Email)</a>
-                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> Contact (WhatsApp)</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
             <div class="footer-logo">
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
