@@ -8,14 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="dashboard-page">
     <header>
         <nav id="navbar" class="sticky">
-            <div class="logo">Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                </div>
+                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
+                <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
+            </div>
             <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -33,28 +41,12 @@
         </section>
 
         <section class="quick-stats-section">
-            <h3>Quick Stats</h3>
+            <h3>Quick Stats for Selected Content</h3>
             <div class="card-grid stats-grid">
-                <div class="card stat-card">
-                    <i class="fas fa-video fa-3x"></i>
-                    <h4>Total Lectures</h4>
-                    <p id="stat-lectures">0</p>
-                </div>
-                <div class="card stat-card">
-                    <i class="fas fa-book-open fa-3x"></i>
-                    <h4>Total Notes</h4>
-                    <p id="stat-notes">0</p>
-                </div>
-                <div class="card stat-card">
-                    <i class="fas fa-pencil-alt fa-3x"></i>
-                    <h4>Practice Tests</h4>
-                    <p id="stat-tests">0</p>
-                </div>
-                <div class="card stat-card">
-                    <i class="fas fa-file-alt fa-3x"></i>
-                    <h4>Past Papers</h4>
-                    <p id="stat-papers">0</p>
-                </div>
+                <div class="card stat-card"><i class="fas fa-video fa-3x"></i><h4>Total Lectures</h4><p id="stat-lectures">0</p></div>
+                <div class="card stat-card"><i class="fas fa-book-open fa-3x"></i><h4>Total Notes</h4><p id="stat-notes">0</p></div>
+                <div class="card stat-card"><i class="fas fa-pencil-alt fa-3x"></i><h4>Practice Tests</h4><p id="stat-tests">0</p></div>
+                <div class="card stat-card"><i class="fas fa-file-alt fa-3x"></i><h4>Past Papers</h4><p id="stat-papers">0</p></div>
             </div>
         </section>
 
@@ -62,9 +54,6 @@
             <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
             <div id="dashboard-announcements" class="announcement-list card-grid">
                 </div>
-            <div class="text-center">
-                <a href="announcements.html" class="button secondary-button">View All Announcements</a>
-            </div>
         </section>
 
         <section class="recently-added-section">
@@ -79,9 +68,9 @@
         </section>
 
     </main>
-
+    
     <footer>
-        <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+        <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
     </footer>
 
     <script src="js/main.js"></script>
