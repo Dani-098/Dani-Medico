@@ -5,33 +5,37 @@
 
 // --- GLOBAL DATA STRUCTURE (Simulated CDN/Backend) ---
 
-// Placeholder for content data (Lectures, Notes, Tests, Papers)
-// NOTE: FILE_ID must be replaced with actual Google Drive File IDs.
+// Replace 'PLACEHOLDER_FILE_ID' with actual Google Drive File IDs
 const data = {
     MDCAT: {
         Sindh: {
             lectures: [
-                { id: '1A-MDCAT-S-Bio-001', title: 'Biology: Cell Structure', teacher: 'Dr. Ali', duration: '45 min', subject: 'Biology', fileId: 'PLACEHOLDER_FILE_ID_MDCAT_BIO_1', dateAdded: '2025-11-20' },
-                { id: '1A-MDCAT-S-Chem-001', title: 'Chemistry: Basic Concepts', teacher: 'Prof. Sana', duration: '60 min', subject: 'Chemistry', fileId: 'PLACEHOLDER_FILE_ID_MDCAT_CHEM_1', dateAdded: '2025-11-21' }
+                { id: '1A-MDCAT-S-Bio-001', title: 'Biology: Cell Structure', teacher: 'Dr. Ali', duration: '45 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_1', dateAdded: '2025-11-20' },
+                { id: '1A-MDCAT-S-Chem-001', title: 'Chemistry: Basic Concepts', teacher: 'Prof. Sana', duration: '60 min', subject: 'Chemistry', fileId: 'PLACEHOLDER_VIDEO_2', dateAdded: '2025-11-21' }
             ],
             notes: [
-                { id: '2A-MDCAT-S-Note-Bio', title: 'Biology: Full Notes', subject: 'Biology', fileId: 'PLACEHOLDER_FILE_ID_MDCAT_NOTE_BIO' },
-                { id: '2A-MDCAT-S-Note-Phys', title: 'Physics: Key Formulas', subject: 'Physics', fileId: 'PLACEHOLDER_FILE_ID_MDCAT_NOTE_PHYS' }
+                { id: '2A-MDCAT-S-Note-Bio', title: 'Biology: Cell Biology Notes', subject: 'Biology', fileId: 'PLACEHOLDER_PDF_1' },
+                { id: '2A-MDCAT-S-Note-Phys', title: 'Physics: Key Formulas Sheet', subject: 'Physics', fileId: 'PLACEHOLDER_PDF_2' }
             ],
             tests: [
-                { id: '3A-MDCAT-S-T01', title: 'Biology Mock Test 1', type: 'MCQ', questions: 20, time: 30, exam: 'MDCAT', province: 'Sindh' }
+                { 
+                    id: '3A-MDCAT-S-T01', title: 'MDCAT Sindh Biology Mock Test 1', type: 'MCQ', questions: 3, time: 5, exam: 'MDCAT', province: 'Sindh',
+                    mcqs: [
+                        { q: "The powerhouse of the cell is:", options: ["Nucleus", "Ribosome", "Mitochondria", "Endoplasmic Reticulum"], answer: 2 },
+                        { q: "What is the primary function of chlorophyll?", options: ["Respiration", "Digestion", "Photosynthesis", "Circulation"], answer: 2 },
+                        { q: "Which of the following is an inert gas?", options: ["Oxygen", "Nitrogen", "Argon", "Fluorine"], answer: 2 }
+                    ]
+                }
             ],
             papers: [
-                { id: '4A-MDCAT-S-2024', title: 'MDCAT Sindh 2024 Paper', year: 2024, fileId: 'PLACEHOLDER_FILE_ID_MDCAT_PAPER_2024' }
+                { id: '4A-MDCAT-S-2024', title: 'MDCAT Sindh 2024 Paper', year: 2024, fileId: 'PLACEHOLDER_PDF_3', download: true }
             ]
         },
         Punjab: {
             lectures: [
-                { id: '1B-MDCAT-P-Bio-001', title: 'Biology: Punjab Syllabus Focus', teacher: 'Dr. Fatima', duration: '50 min', subject: 'Biology', fileId: 'PLACEHOLDER_FILE_ID_MDCAT_P_BIO_1', dateAdded: '2025-12-01' }
+                { id: '1B-MDCAT-P-Bio-001', title: 'Biology: Punjab Syllabus Focus', teacher: 'Dr. Fatima', duration: '50 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_3', dateAdded: '2025-12-01' }
             ],
-            notes: [],
-            tests: [],
-            papers: []
+            notes: [], tests: [], papers: []
         },
         KPK: { lectures: [], notes: [], tests: [], papers: [] },
         Balochistan: { lectures: [], notes: [], tests: [], papers: [] }
@@ -39,10 +43,9 @@ const data = {
     NUMS: {
         Sindh: { lectures: [], notes: [], tests: [], papers: [] },
         Punjab: { lectures: [], notes: [], tests: [], papers: [] },
-        KPK: { lectures: [], notes: [], tests: [], papers: [] },
-        Balochistan: { lectures: [], notes: [], tests: [], papers: [] }
+        AFNS: { lectures: [], notes: [], tests: [], papers: [] },
+        AKU: { lectures: [], notes: [], tests: [], papers: [] }
     }
-    // ... AFNS and AKU data structure would be similar ...
 };
 
 // Placeholder for Announcements
@@ -50,186 +53,110 @@ const announcements = [
     { title: "MDCAT 2025 Syllabus Update", date: "2025-01-15", category: "MDCAT", priority: "New", content: "The PMC has announced a major syllabus change for the 2025 entry test." },
     { title: "AFNS Admission Cycle Open", date: "2025-12-10", category: "AFNS", priority: "Important", content: "The Armed Forces Nursing Service application window is now open. Apply before the deadline." },
     { title: "Dashboard Maintenance Notice", date: "2025-12-05", category: "General", priority: "New", content: "Minor dashboard improvements are being deployed on 2025-12-06." },
-    { title: "NUMS Test Dates Announced", date: "2025-11-25", category: "NUMS", priority: "Important", content: "Check the official NUMS website for updated test schedules." },
-    // More announcements...
-].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date descending
+].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+let currentTest = null; // Store the currently active test data
 
 // --- GOOGLE DRIVE URL CONSTRUCTORS ---
 
-/**
- * Generates the Google Drive video embed URL.
- * @param {string} fileId - The Google Drive file ID.
- * @returns {string} The URL for embedding the video.
- */
 function getVideoEmbedUrl(fileId) {
     if (!fileId || fileId.includes('PLACEHOLDER')) return '';
     return `https://drive.google.com/file/d/${fileId}/preview`;
 }
 
-/**
- * Generates the Google Drive PDF direct view URL.
- * @param {string} fileId - The Google Drive file ID.
- * @returns {string} The URL for displaying the PDF in an iframe.
- */
 function getPdfViewUrl(fileId) {
     if (!fileId || fileId.includes('PLACEHOLDER')) return '';
     return `https://drive.google.com/uc?id=${fileId}&export=view`;
 }
 
-/**
- * Generates the Google Drive PDF direct download URL.
- * @param {string} fileId - The Google Drive file ID.
- * @returns {string} The URL for downloading the file.
- */
 function getPdfDownloadUrl(fileId) {
     if (!fileId || fileId.includes('PLACEHOLDER')) return '#';
     return `https://drive.google.com/uc?id=${fileId}&export=download`;
 }
 
-
 // --- UX/UI & MODAL FUNCTIONS ---
 
-/**
- * Toggles the mobile navigation menu's visibility.
- */
 function mobileMenuToggle() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
+    document.querySelector('.nav-links').classList.toggle('active');
 }
 
-/**
- * Opens a generic modal by its ID.
- * @param {string} modalId - The ID of the modal element.
- */
 function openModal(modalId) {
     document.getElementById(modalId).style.display = 'block';
-    // Optional: Add 'modal-open' class to body to prevent scrolling
     document.body.style.overflow = 'hidden';
 }
 
-/**
- * Closes a generic modal by its ID.
- * @param {string} modalId - The ID of the modal element.
- */
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = 'none';
-    }
-    // Clean up modals specific content on close
-    if (modalId === 'videoModal') {
-        document.getElementById('video-iframe').src = '';
-    }
-    if (modalId === 'pdfModal') {
-        document.getElementById('pdf-iframe').src = '';
+        // Cleanup iframe sources
+        if (modalId === 'videoModal') document.getElementById('video-iframe').src = '';
+        if (modalId === 'pdfModal') document.getElementById('pdf-iframe').src = '';
+        
+        // Reset test modal on close
+        if (modalId === 'testModal') {
+            document.getElementById('mcq-form').classList.remove('hidden');
+            document.getElementById('result-summary').classList.add('hidden');
+            document.getElementById('mcq-questions').innerHTML = '';
+        }
     }
     document.body.style.overflow = '';
 }
 
-// Close modal when clicking outside of it
 window.onclick = function(event) {
-    const videoModal = document.getElementById('videoModal');
-    const pdfModal = document.getElementById('pdfModal');
-    if (event.target === videoModal) {
-        closeModal('videoModal');
-    }
-    if (event.target === pdfModal) {
-        closeModal('pdfModal');
-    }
+    const modals = ['videoModal', 'pdfModal', 'testModal'];
+    modals.forEach(id => {
+        const modal = document.getElementById(id);
+        if (event.target === modal) {
+            closeModal(id);
+        }
+    });
 }
 
-/**
- * Opens the video modal and embeds the Google Drive video.
- * @param {string} fileId - The Google Drive file ID for the video.
- * @param {string} title - The title of the lecture.
- */
 function openVideoModal(fileId, title) {
     const iframe = document.getElementById('video-iframe');
     const modalTitle = document.getElementById('modal-lecture-title');
-
-    if (!fileId || fileId.includes('PLACEHOLDER')) {
-        alert('Content is a placeholder. No video available yet!');
-        return;
-    }
-
+    if (fileId.includes('PLACEHOLDER')) { alert('Content is a placeholder. No video available yet!'); return; }
     iframe.src = getVideoEmbedUrl(fileId);
     modalTitle.textContent = title;
     openModal('videoModal');
 }
 
-/**
- * Opens the PDF modal and embeds the Google Drive PDF for viewing.
- * @param {string} fileId - The Google Drive file ID for the PDF.
- * @param {string} title - The title of the note/paper.
- */
 function openPDF(fileId, title) {
     const iframe = document.getElementById('pdf-iframe');
     const modalTitle = document.getElementById('modal-pdf-title');
-
-    if (!fileId || fileId.includes('PLACEHOLDER')) {
-        alert('Content is a placeholder. No PDF available yet!');
-        return;
-    }
-
+    if (fileId.includes('PLACEHOLDER')) { alert('Content is a placeholder. No PDF available yet!'); return; }
     iframe.src = getPdfViewUrl(fileId);
     modalTitle.textContent = title;
     openModal('pdfModal');
 }
 
-
 // --- LOCAL STORAGE & SELECTION FUNCTIONS ---
 
-/**
- * Saves the user's selected exam and province to localStorage.
- * Called from exams.html
- */
 function saveUserSelection() {
     const exam = document.getElementById('exam-selector').value;
     const province = document.getElementById('province-selector').value;
-
-    localStorage.setItem('userExam', exam);
-    localStorage.setItem('userProvince', province);
-
-    // Optionally redirect to dashboard after saving
-    window.location.href = 'dashboard.html';
+    if (exam && province) {
+        localStorage.setItem('userExam', exam);
+        localStorage.setItem('userProvince', province);
+        window.location.href = 'dashboard.html';
+    } else {
+        alert("Please select both an Exam and a Province.");
+    }
 }
 
-/**
- * Filters the content by exam selection (called from content pages).
- * @returns {void}
- */
 function filterByExam() {
     const selectedExam = document.getElementById('filter-exam').value;
-    if (selectedExam !== 'all') {
-        localStorage.setItem('userExam', selectedExam);
-    } else {
-        localStorage.removeItem('userExam');
-    }
+    if (selectedExam !== 'all') { localStorage.setItem('userExam', selectedExam); } else { localStorage.removeItem('userExam'); }
 }
 
-/**
- * Filters the content by province selection (called from content pages).
- * @returns {void}
- */
 function filterByProvince() {
     const selectedProvince = document.getElementById('filter-province').value;
-    if (selectedProvince !== 'all') {
-        localStorage.setItem('userProvince', selectedProvince);
-    } else {
-        localStorage.removeItem('userProvince');
-    }
+    if (selectedProvince !== 'all') { localStorage.setItem('userProvince', selectedProvince); } else { localStorage.removeItem('userProvince'); }
 }
 
+// --- DATA FETCHING AND RENDERING HELPERS ---
 
-// --- DATA FETCHING AND RENDERING FUNCTIONS ---
-
-/**
- * Helper to get content array based on selection or all available content.
- * @param {string} contentType - 'lectures', 'notes', 'tests', or 'papers'.
- * @param {string} [exam='all'] - The selected exam.
- * @param {string} [province='all'] - The selected province.
- * @returns {Array} Array of content objects.
- */
 function getContentArray(contentType, exam = 'all', province = 'all') {
     let result = [];
     const exams = exam === 'all' ? Object.keys(data) : [exam];
@@ -239,7 +166,6 @@ function getContentArray(contentType, exam = 'all', province = 'all') {
         if (data[ex]) {
             for (const prov of provinces) {
                 if (data[ex][prov] && data[ex][prov][contentType]) {
-                    // Attach exam and province for later filtering/display
                     result.push(...data[ex][prov][contentType].map(item => ({...item, exam: ex, province: prov})));
                 }
             }
@@ -248,61 +174,37 @@ function getContentArray(contentType, exam = 'all', province = 'all') {
     return result;
 }
 
-/**
- * Loads and displays data on the Dashboard page.
- */
+// --- DASHBOARD AND ANNOUNCEMENTS ---
+
 function loadDashboard() {
     const exam = localStorage.getItem('userExam');
     const province = localStorage.getItem('userProvince');
-    const dashExam = document.getElementById('selected-exam');
-    const dashProvince = document.getElementById('selected-province');
+    // ... dashboard stats and display logic (from previous response) ...
 
-    // 1. Update Selection Display
-    dashExam.textContent = exam || 'All Exams (Click "Change Selection")';
-    dashProvince.textContent = province || 'All Provinces (Click "Change Selection")';
-
-    // 2. Calculate Quick Stats
     const allLectures = getContentArray('lectures', exam, province);
     const allNotes = getContentArray('notes', exam, province);
     const allTests = getContentArray('tests', exam, province);
     const allPapers = getContentArray('papers', exam, province);
 
+    document.getElementById('selected-exam').textContent = exam || 'All Exams';
+    document.getElementById('selected-province').textContent = province || 'All Provinces';
     document.getElementById('stat-lectures').textContent = allLectures.length;
     document.getElementById('stat-notes').textContent = allNotes.length;
     document.getElementById('stat-tests').textContent = allTests.length;
     document.getElementById('stat-papers').textContent = allPapers.length;
 
-    // 3. Load Latest Announcements (last 3)
     const dashboardAnnouncements = announcements.slice(0, 3);
-    const dashAnnouncementsContainer = document.getElementById('dashboard-announcements');
-    if (dashAnnouncementsContainer) {
-        dashAnnouncementsContainer.innerHTML = dashboardAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
-    }
+    document.getElementById('dashboard-announcements').innerHTML = dashboardAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
 
-    // 4. Load Recently Added Lectures (last 3, sorted by date)
     const sortedLectures = allLectures.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
-    const recentLecturesContainer = document.getElementById('recent-lectures-list');
-    if (recentLecturesContainer) {
-        recentLecturesContainer.innerHTML = sortedLectures.map(lec => createLectureCard(lec)).join('');
-    }
+    document.getElementById('recent-lectures-list').innerHTML = sortedLectures.map(lec => createLectureCard(lec)).join('');
 }
 
-/**
- * Loads and displays announcements on the Home page (latest 2).
- */
 function loadHomeAnnouncements() {
     const homeAnnouncements = announcements.slice(0, 2);
-    const homeAnnouncementsContainer = document.getElementById('home-announcements');
-    if (homeAnnouncementsContainer) {
-        homeAnnouncementsContainer.innerHTML = homeAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
-    }
+    document.getElementById('home-announcements').innerHTML = homeAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
 }
 
-/**
- * Creates the HTML for an announcement card.
- * @param {object} ann - Announcement object.
- * @returns {string} HTML string for the card.
- */
 function createAnnouncementCard(ann) {
     const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
     return `
@@ -310,76 +212,177 @@ function createAnnouncementCard(ann) {
             <h4>${ann.title} ${priorityBadge}</h4>
             <p><i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}</p>
             <p>${ann.content.substring(0, 100)}...</p>
-            <a href="announcements.html" class="button tertiary-button" style="margin-top: auto;">Read More</a>
         </div>
     `;
 }
 
-/**
- * Loads and displays lectures on the Lectures page.
- */
+// --- CONTENT RENDERING FUNCTIONS ---
+
 function loadLectures() {
     const exam = document.getElementById('filter-exam').value;
     const province = document.getElementById('filter-province').value;
     const subject = document.getElementById('filter-subject').value;
     const container = document.getElementById('lectures-container');
-    const noContentMessage = document.getElementById('no-content-message');
-
-    let filteredLectures = getContentArray('lectures', exam, province);
-
-    // Apply subject filter
-    if (subject !== 'all') {
-        filteredLectures = filteredLectures.filter(lec => lec.subject === subject);
-    }
-
+    const filteredLectures = getContentArray('lectures', exam, province).filter(lec => subject === 'all' || lec.subject === subject);
+    
     if (filteredLectures.length === 0) {
         container.innerHTML = '';
-        noContentMessage.classList.remove('hidden');
+        document.getElementById('no-content-message').classList.remove('hidden');
     } else {
         container.innerHTML = filteredLectures.map(lec => createLectureCard(lec)).join('');
-        noContentMessage.classList.add('hidden');
+        document.getElementById('no-content-message').classList.add('hidden');
     }
 }
 
-/**
- * Creates the HTML for a lecture card.
- * @param {object} lec - Lecture object.
- * @returns {string} HTML string for the card.
- */
 function createLectureCard(lec) {
     return `
         <div class="card lecture-card">
             <h4>${lec.title}</h4>
             <p><strong>Subject:</strong> ${lec.subject}</p>
             <p><strong>Teacher:</strong> ${lec.teacher}</p>
-            <p><strong>Duration:</strong> ${lec.duration}</p>
             <p class="meta-info">(${lec.exam} - ${lec.province})</p>
             <button class="button primary-button" onclick="openVideoModal('${lec.fileId}', '${lec.title}')">
-                <i class="fas fa-play-circle"></i> Watch Lecture
+                <i class="fas fa-play-circle"></i> Watch (${lec.duration})
             </button>
         </div>
     `;
 }
 
-// --- INITIALIZATION (Ensure functions are globally accessible and safe) ---
+function loadNotes() {
+    const exam = document.getElementById('filter-exam').value;
+    const province = document.getElementById('filter-province').value;
+    const container = document.getElementById('notes-container');
+    const filteredNotes = getContentArray('notes', exam, province); 
+    
+    if (filteredNotes.length === 0) {
+        container.innerHTML = '';
+        document.getElementById('no-content-message').classList.remove('hidden');
+    } else {
+        container.innerHTML = filteredNotes.map(note => createNoteCard(note)).join('');
+        document.getElementById('no-content-message').classList.add('hidden');
+    }
+}
+
+function createNoteCard(note) {
+    return `
+        <div class="card lecture-card">
+            <h4>${note.title}</h4>
+            <p><strong>Subject:</strong> ${note.subject}</p>
+            <p class="meta-info">(${note.exam} - ${note.province})</p>
+            <button class="button primary-button" onclick="openPDF('${note.fileId}', '${note.title}')">
+                <i class="fas fa-eye"></i> View PDF
+            </button>
+            <a href="${getPdfDownloadUrl(note.fileId)}" class="button secondary-button" download="${note.title.replace(/ /g, '_')}.pdf" target="_blank" style="margin-top: 5px;">
+                <i class="fas fa-download"></i> Download
+            </a>
+        </div>
+    `;
+}
+
+// --- TEST / MCQ SYSTEM ---
+
+function loadTests() {
+    const exam = document.getElementById('filter-exam').value;
+    const province = document.getElementById('filter-province').value;
+    const container = document.getElementById('tests-container');
+    const filteredTests = getContentArray('tests', exam, province);
+    
+    if (filteredTests.length === 0) {
+        container.innerHTML = '';
+        document.getElementById('no-tests-message').classList.remove('hidden');
+    } else {
+        container.innerHTML = filteredTests.map(test => createTestCard(test)).join('');
+        document.getElementById('no-tests-message').classList.add('hidden');
+    }
+}
+
+function createTestCard(test) {
+    return `
+        <div class="card lecture-card">
+            <h4>${test.title}</h4>
+            <p><strong>Type:</strong> ${test.type}</p>
+            <p><strong>Questions:</strong> ${test.questions}</p>
+            <p><strong>Time Limit:</strong> ${test.time} min</p>
+            <p class="meta-info">(${test.exam} - ${test.province})</p>
+            <button class="button primary-button" onclick="openTestModal('${test.id}')">
+                <i class="fas fa-arrow-right"></i> Start Test
+            </button>
+        </div>
+    `;
+}
+
+function openTestModal(testId) {
+    currentTest = getContentArray('tests').find(t => t.id === testId);
+    if (!currentTest) { alert('Test not found!'); return; }
+    
+    document.getElementById('test-title').textContent = currentTest.title;
+    document.getElementById('mcq-form').classList.remove('hidden');
+    document.getElementById('result-summary').classList.add('hidden');
+    
+    const questionsContainer = document.getElementById('mcq-questions');
+    questionsContainer.innerHTML = currentTest.mcqs.map((mcq, index) => {
+        return `
+            <div class="mcq-question card">
+                <h4>Q${index + 1}: ${mcq.q}</h4>
+                ${mcq.options.map((option, optIndex) => `
+                    <div class="mcq-option">
+                        <label>
+                            <input type="radio" name="question-${index}" value="${optIndex}" required>
+                            ${String.fromCharCode(65 + optIndex)}. ${option}
+                        </label>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }).join('');
+
+    openModal('testModal');
+}
+
+function submitTest(event) {
+    event.preventDefault();
+    if (!currentTest) return;
+
+    let correctCount = 0;
+    const totalQuestions = currentTest.mcqs.length;
+    const form = event.target;
+
+    currentTest.mcqs.forEach((mcq, index) => {
+        const selectedOption = form.elements[`question-${index}`].value;
+        if (parseInt(selectedOption) === mcq.answer) {
+            correctCount++;
+        }
+    });
+
+    const scorePercentage = (correctCount / totalQuestions) * 100;
+
+    // Display Results
+    document.getElementById('result-total').textContent = totalQuestions;
+    document.getElementById('result-correct').textContent = correctCount;
+    document.getElementById('result-score').textContent = `${scorePercentage.toFixed(0)}%`;
+    
+    document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('result-summary').classList.remove('hidden');
+
+    alert(`Test Submitted! You scored ${correctCount}/${totalQuestions} (${scorePercentage.toFixed(0)}%)`);
+}
+
+// --- INITIALIZATION ---
 
 document.addEventListener('DOMContentLoaded', () => {
-    // This is for dynamic pages, but here for completeness
-    const body = document.body;
-    if (body.classList.contains('dashboard-page')) {
-        loadDashboard();
-    }
-    // ... other page-specific initializers ...
+    // Expose functions globally (required since we call them via HTML attributes)
+    window.mobileMenuToggle = mobileMenuToggle;
+    window.saveUserSelection = saveUserSelection;
+    window.loadDashboard = loadDashboard;
+    window.filterByExam = filterByExam;
+    window.filterByProvince = filterByProvince;
+    window.loadLectures = loadLectures;
+    window.loadNotes = loadNotes;
+    window.loadTests = loadTests;
+    window.openVideoModal = openVideoModal;
+    window.openPDF = openPDF;
+    window.closeModal = closeModal;
+    window.loadHomeAnnouncements = loadHomeAnnouncements;
+    window.openTestModal = openTestModal;
+    window.submitTest = submitTest;
 });
-
-// For demonstration/testing, expose required functions globally
-window.mobileMenuToggle = mobileMenuToggle;
-window.saveUserSelection = saveUserSelection;
-window.loadDashboard = loadDashboard;
-window.filterByExam = filterByExam;
-window.filterByProvince = filterByProvince;
-window.loadLectures = loadLectures;
-window.openVideoModal = openVideoModal;
-window.openPDF = openPDF;
-window.closeModal = closeModal;
-window.loadHomeAnnouncements = loadHomeAnnouncements;
