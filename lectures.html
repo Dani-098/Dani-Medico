@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectures - Dani Medico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="sticky">
+            <div class="logo">Dani Medico</div>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="lectures.html" class="active"><i class="fas fa-video"></i> Lectures</a>
+                </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2><i class="fas fa-video"></i> Video Lectures</h2>
+
+        <section class="filters-section card">
+            <div class="filter-group">
+                <label for="filter-exam">Exam:</label>
+                <select id="filter-exam" onchange="filterByExam(); loadLectures();">
+                    <option value="all">All Exams</option>
+                    <option value="MDCAT">MDCAT</option>
+                    <option value="NUMS">NUMS</option>
+                    <option value="AFNS">AFNS</option>
+                    <option value="AKU">AKU</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filter-province">Province:</label>
+                <select id="filter-province" onchange="filterByProvince(); loadLectures();">
+                    <option value="all">All Provinces</option>
+                    <option value="Sindh">Sindh</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="KPK">KPK</option>
+                    <option value="Balochistan">Balochistan</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filter-subject">Subject:</label>
+                <select id="filter-subject" onchange="loadLectures()">
+                    <option value="all">All Subjects</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Physics">Physics</option>
+                    <option value="English">English</option>
+                    <option value="Logic">Logical Reasoning</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="lectures-list-section">
+            <div id="lectures-container" class="card-grid lecture-grid">
+                </div>
+            <p id="no-content-message" class="hidden text-center">No lectures found for the selected criteria.</p>
+        </section>
+
+    </main>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close-btn" onclick="closeModal('videoModal')">&times;</span>
+            <h3 id="modal-lecture-title">Watch Lecture</h3>
+            <div class="video-container">
+                <iframe id="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p class="security-note"><i class="fas fa-lock"></i> Content is securely streamed for your convenience.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pre-load filters from localStorage on page load
+            document.getElementById('filter-exam').value = localStorage.getItem('userExam') || 'all';
+            document.getElementById('filter-province').value = localStorage.getItem('userProvince') || 'all';
+            loadLectures();
+        });
+    </script>
+</body>
+</html>
