@@ -70,7 +70,6 @@ h1, h2, h3 { color: var(--color-dark); margin-bottom: 1rem; }
 .logo-img {
     height: 55px; 
     width: auto;
-    filter: invert(100%); /* White logo on blue background */
 }
 
 .nav-links a {
