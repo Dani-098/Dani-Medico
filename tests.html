@@ -4,17 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tests & Quizzes - Dani Medico</title>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Embedded CSS for tests.html */
+        :root {
+            --color-primary-blue: #007BFF;
+            --color-secondary-green: #28A745;
+            --color-light: #F8F9FA;
+            --color-dark: #343A40;
+            --color-text: #495057;
+            --color-card-bg: #FFFFFF;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-danger: #DC3545;
+            --font-family-primary: 'Poppins', sans-serif;
+            --border-radius-base: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family-primary); line-height: 1.6; color: var(--color-text); background-color: var(--color-light); min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
+        h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; flex-grow: 1; }
+        section { padding: 2rem 0; }
+
+        /* Navbar */
+        #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
+        .logo-img { height: 30px; width: auto; filter: invert(100%); }
+        .nav-links a { color: var(--color-light); margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
+        .nav-links a.active { border-bottom: 2px solid var(--color-secondary-green); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.5rem; cursor: pointer; }
+
+        /* Buttons & CTA */
+        .button { display: inline-block; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-base); font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; }
+        .primary-button { background-color: var(--color-secondary-green); color: var(--color-light); }
+        .primary-button:hover { background-color: #1E7E34; }
+        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
+
+        /* Content & Cards */
+        .card { background-color: var(--color-card-bg); padding: 1.5rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; }
+        .card-grid { display: grid; gap: 20px; margin-top: 1rem; }
+        .lecture-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
+        .lecture-card h4 { color: var(--color-primary-blue); margin-top: 0; margin-bottom: 0.5rem; }
+        .lecture-card p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .filters-section { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 2rem; }
+        .filter-group label { font-weight: 600; margin-right: 0.5rem; }
+        .filter-group select { padding: 0.5rem 1rem; border: 1px solid #CED4DA; border-radius: var(--border-radius-base); background-color: var(--color-light); cursor: pointer; }
+        .hidden { display: none !important; }
+        .text-center { text-align: center; margin-top: 1.5rem; }
+        
+        /* Test Question Styling */
+        .mcq-question { padding: 1rem; border-bottom: 1px solid #EEE; margin-bottom: 1rem; }
+        .mcq-question h4 { color: var(--color-primary-blue); }
+        .mcq-option label { display: block; cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: background-color 0.2s; }
+        .mcq-option label:hover { background-color: #f0f0f0; }
+        .success-message { color: var(--color-secondary-green); background-color: #D4EDDA; border: 1px solid #C3E6CB; padding: 1rem; border-radius: var(--border-radius-base); text-align: center; font-weight: 600; }
+
+
+        /* Modals */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--color-card-bg); margin: 5% auto; padding: 20px; border-radius: var(--border-radius-base); width: 90%; max-width: 800px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .close-btn { color: var(--color-dark); float: right; font-size: 30px; font-weight: bold; cursor: pointer; }
+
+        /* Footer */
+        footer { background-color: var(--color-dark); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
+        .footer-logo .logo-img { height: 40px; filter: invert(100%); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
+        .footer-bottom { text-align: center; padding: 1rem 0; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 60px; left: 0; background-color: var(--color-primary-blue); }
+            .mobile-menu-btn { display: block; }
+            .filters-section { flex-direction: column; align-items: stretch; }
+            .modal-content { margin: 10% auto; max-width: 95%; }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav id="navbar" class="sticky">
-            <div class="logo"><img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links">
-                </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="tests.html" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
+                <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
@@ -25,12 +116,22 @@
             <div class="filter-group">
                 <label for="filter-exam">Exam:</label>
                 <select id="filter-exam" onchange="filterByExam(); loadTests();">
-                    </select>
+                    <option value="all">All Exams</option>
+                    <option value="MDCAT">MDCAT</option>
+                    <option value="NUMS">NUMS</option>
+                    <option value="AFNS">AFNS</option>
+                    <option value="AKU">AKU</option>
+                </select>
             </div>
             <div class="filter-group">
                 <label for="filter-province">Province:</label>
                 <select id="filter-province" onchange="filterByProvince(); loadTests();">
-                    </select>
+                    <option value="all">All Provinces</option>
+                    <option value="Sindh">Sindh</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="KPK">KPK</option>
+                    <option value="Balochistan">Balochistan</option>
+                </select>
             </div>
         </section>
         
@@ -42,11 +143,13 @@
         </section>
 
         <div id="testModal" class="modal">
-            <div class="modal-content large-modal">
+            <div class="modal-content">
                 <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
                 <h3 id="test-title">Start Practice Test</h3>
-                <form id="mcq-form">
-                    <div id="mcq-questions"></div>
+                
+                <form id="mcq-form" onsubmit="submitTest(event)">
+                    <div id="mcq-questions">
+                        </div>
                     <button type="submit" class="button primary-button" style="margin-top: 1.5rem;">
                         <i class="fas fa-check"></i> Submit Test
                     </button>
@@ -57,20 +160,218 @@
                     <p>Total Questions: <span id="result-total"></span></p>
                     <p>Correct Answers: <span id="result-correct"></span></p>
                     <p>Your Score: <strong id="result-score"></strong></p>
-                    <button class="button secondary-button" onclick="loadTests()">Take Another Test</button>
+                    <button class="button secondary-button" onclick="closeModal('testModal'); loadTests();">Take Another Test</button>
                 </div>
             </div>
         </div>
     </main>
 
-    <script src="js/main.js"></script>
+    <footer>
+        <div class="footer-top container">
+            <div class="footer-links">
+                <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact (Email)</a>
+                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> Contact (WhatsApp)</a>
+            </div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
+        // Embedded JavaScript (Data, Modals, and Test Logic)
+
+        // --- GLOBAL DATA STRUCTURE (Simulated CDN) ---
+        const data = {
+            MDCAT: {
+                Sindh: {
+                    lectures: [], notes: [], 
+                    tests: [
+                        { 
+                            id: '3A-MDCAT-S-T01', title: 'MDCAT Sindh Biology Mock Test 1', type: 'MCQ', questions: 3, time: 5, exam: 'MDCAT', province: 'Sindh',
+                            mcqs: [
+                                { q: "The powerhouse of the cell is:", options: ["Nucleus", "Ribosome", "Mitochondria", "Endoplasmic Reticulum"], answer: 2 },
+                                { q: "What is the primary function of chlorophyll?", options: ["Respiration", "Digestion", "Photosynthesis", "Circulation"], answer: 2 },
+                                { q: "Which of the following is an inert gas?", options: ["Oxygen", "Nitrogen", "Argon", "Fluorine"], answer: 2 }
+                            ]
+                        }
+                    ],
+                    papers: []
+                },
+                Punjab: { lectures: [], notes: [], tests: [], papers: [] },
+                KPK: { lectures: [], notes: [], tests: [], papers: [] },
+                Balochistan: { lectures: [], notes: [], tests: [], papers: [] }
+            },
+            NUMS: { Sindh: { lectures: [], notes: [], tests: [], papers: [] } }
+        };
+        let currentTest = null; 
+
+        // --- CORE UI/MODAL FUNCTIONS ---
+        function mobileMenuToggle() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                if (modalId === 'testModal') {
+                    document.getElementById('mcq-form').classList.remove('hidden');
+                    document.getElementById('result-summary').classList.add('hidden');
+                    document.getElementById('mcq-questions').innerHTML = '';
+                    currentTest = null; 
+                }
+            }
+            document.body.style.overflow = '';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('testModal');
+            if (event.target === modal) {
+                closeModal('testModal');
+            }
+        }
+        
+        // --- LOCAL STORAGE & FILTERING ---
+        function filterByExam() {
+            const selectedExam = document.getElementById('filter-exam').value;
+            if (selectedExam !== 'all') { localStorage.setItem('userExam', selectedExam); } else { localStorage.removeItem('userExam'); }
+        }
+
+        function filterByProvince() {
+            const selectedProvince = document.getElementById('filter-province').value;
+            if (selectedProvince !== 'all') { localStorage.setItem('userProvince', selectedProvince); } else { localStorage.removeItem('userProvince'); }
+        }
+        
+        function getContentArray(contentType, exam = 'all', province = 'all') {
+            let result = [];
+            const exams = exam === 'all' ? Object.keys(data) : [exam];
+            const provinces = province === 'all' ? ['Sindh', 'Punjab', 'KPK', 'Balochistan'] : [province];
+
+            for (const ex of exams) {
+                if (data[ex]) {
+                    for (const prov of provinces) {
+                        if (data[ex][prov] && data[ex][prov][contentType]) {
+                            result.push(...data[ex][prov][contentType].map(item => ({...item, exam: ex, province: prov})));
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        // --- TEST RENDERING & LOGIC ---
+        function createTestCard(test) {
+            return `
+                <div class="card lecture-card">
+                    <h4>${test.title}</h4>
+                    <p><strong>Questions:</strong> ${test.questions} | <strong>Time:</strong> ${test.time} min</p>
+                    <p class="meta-info">(${test.exam} - ${test.province})</p>
+                    <button class="button primary-button" onclick="openTestModal('${test.id}')">
+                        <i class="fas fa-arrow-right"></i> Start Test
+                    </button>
+                </div>
+            `;
+        }
+
+        function loadTests() {
+            const exam = document.getElementById('filter-exam').value;
+            const province = document.getElementById('filter-province').value;
+            const container = document.getElementById('tests-container');
+            const filteredTests = getContentArray('tests', exam, province);
+            
+            if (filteredTests.length === 0) {
+                container.innerHTML = '';
+                document.getElementById('no-tests-message').classList.remove('hidden');
+            } else {
+                container.innerHTML = filteredTests.map(test => createTestCard(test)).join('');
+                document.getElementById('no-tests-message').classList.add('hidden');
+            }
+        }
+
+        function openTestModal(testId) {
+            currentTest = getContentArray('tests').find(t => t.id === testId);
+            if (!currentTest) { alert('Test not found!'); return; }
+            
+            document.getElementById('test-title').textContent = currentTest.title;
+            document.getElementById('mcq-form').classList.remove('hidden');
+            document.getElementById('result-summary').classList.add('hidden');
+            
+            const questionsContainer = document.getElementById('mcq-questions');
+            questionsContainer.innerHTML = currentTest.mcqs.map((mcq, index) => {
+                return `
+                    <div class="mcq-question card">
+                        <h4>Q${index + 1}: ${mcq.q}</h4>
+                        ${mcq.options.map((option, optIndex) => `
+                            <div class="mcq-option">
+                                <label>
+                                    <input type="radio" name="question-${index}" value="${optIndex}" required>
+                                    ${String.fromCharCode(65 + optIndex)}. ${option}
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }).join('');
+
+            openModal('testModal');
+        }
+
+        function submitTest(event) {
+            event.preventDefault();
+            if (!currentTest) return;
+
+            let correctCount = 0;
+            const totalQuestions = currentTest.mcqs.length;
+            const form = event.target;
+
+            currentTest.mcqs.forEach((mcq, index) => {
+                const selectedOption = form.elements[`question-${index}`] ? form.elements[`question-${index}`].value : null;
+                if (parseInt(selectedOption) === mcq.answer) {
+                    correctCount++;
+                }
+            });
+
+            const scorePercentage = (correctCount / totalQuestions) * 100;
+
+            document.getElementById('result-total').textContent = totalQuestions;
+            document.getElementById('result-correct').textContent = correctCount;
+            document.getElementById('result-score').textContent = `${scorePercentage.toFixed(0)}%`;
+            
+            document.getElementById('mcq-form').classList.add('hidden');
+            document.getElementById('result-summary').classList.remove('hidden');
+
+            alert(`Test Submitted! You scored ${correctCount}/${totalQuestions} (${scorePercentage.toFixed(0)}%)`);
+        }
+
+        // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial filter values from localStorage
             document.getElementById('filter-exam').value = localStorage.getItem('userExam') || 'all';
             document.getElementById('filter-province').value = localStorage.getItem('userProvince') || 'all';
-            loadTests(); // Must be implemented in main.js
-            document.getElementById('mcq-form').addEventListener('submit', submitTest); // Must be implemented in main.js
+            loadTests();
+            
+            // Expose for HTML events
+            window.mobileMenuToggle = mobileMenuToggle;
+            window.filterByExam = filterByExam;
+            window.filterByProvince = filterByProvince;
+            window.loadTests = loadTests;
+            window.openTestModal = openTestModal;
+            window.submitTest = submitTest;
+            window.closeModal = closeModal;
         });
     </script>
 </body>
