@@ -11,15 +11,10 @@
 <body>
     <header>
         <nav id="navbar" class="sticky">
-            <div class="logo">Dani Medico</div>
+            <div class="logo"><img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">Dani Medico</div>
             <div class="nav-links">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="lectures.html" class="active"><i class="fas fa-video"></i> Lectures</a>
                 </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
         </nav>
     </header>
 
@@ -79,14 +74,10 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Dani Medico. All rights reserved.</p>
-    </footer>
-
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Pre-load filters from localStorage on page load
+            // Set initial filter values from localStorage
             document.getElementById('filter-exam').value = localStorage.getItem('userExam') || 'all';
             document.getElementById('filter-province').value = localStorage.getItem('userProvince') || 'all';
             loadLectures();
