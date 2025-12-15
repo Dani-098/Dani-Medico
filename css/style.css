@@ -427,7 +427,7 @@ section {
 
 /* REVISION: Footer Structure and Styling */
 footer {
-    background-color: var(--color-dark);
+    background-color: var(--color-primary-blue);
     color: var(--color-light);
     padding: 1.5rem 1rem 0; /* Adjusted padding to accommodate top section */
     margin-top: 2rem;
@@ -443,8 +443,7 @@ footer {
 }
 
 .footer-logo .logo-img {
-    height: 40px; /* Slightly larger logo in footer */
-    filter: invert(100%); /* Assuming a white logo is needed */
+    height: 50px; /* Slightly larger logo in footer */
 }
 
 .footer-links {
