@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dani Medico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="sticky">
+            <div class="logo">Dani Medico</div>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="dashboard-header">
+            <h2><i class="fas fa-tachometer-alt"></i> Your Study Dashboard</h2>
+            <div class="selection-display card">
+                <p>Selected Exam: <strong id="selected-exam">N/A</strong></p>
+                <p>Selected Province: <strong id="selected-province">N/A</strong></p>
+                <a href="exams.html" class="button tertiary-button">Change Selection</a>
+            </div>
+        </section>
+
+        <section class="quick-stats-section">
+            <h3>Quick Stats</h3>
+            <div class="card-grid stats-grid">
+                <div class="card stat-card">
+                    <i class="fas fa-video fa-3x"></i>
+                    <h4>Total Lectures</h4>
+                    <p id="stat-lectures">0</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fas fa-book-open fa-3x"></i>
+                    <h4>Total Notes</h4>
+                    <p id="stat-notes">0</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fas fa-pencil-alt fa-3x"></i>
+                    <h4>Practice Tests</h4>
+                    <p id="stat-tests">0</p>
+                </div>
+                <div class="card stat-card">
+                    <i class="fas fa-file-alt fa-3x"></i>
+                    <h4>Past Papers</h4>
+                    <p id="stat-papers">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-announcements-section">
+            <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+            <div id="dashboard-announcements" class="announcement-list card-grid">
+                </div>
+            <div class="text-center">
+                <a href="announcements.html" class="button secondary-button">View All Announcements</a>
+            </div>
+        </section>
+
+        <section class="recently-added-section">
+            <h3><i class="fas fa-history"></i> Recently Added Lectures</h3>
+            <div id="recent-lectures-list" class="card-grid lecture-grid">
+                </div>
+            <div class="text-center">
+                <a href="lectures.html" class="button primary-button">Go to Lectures</a>
+                <a href="notes.html" class="button primary-button">Go to Notes</a>
+                <a href="tests.html" class="button primary-button">Go to Tests</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
+</body>
+</html>
