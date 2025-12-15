@@ -11,7 +11,10 @@
 <body>
     <header>
         <nav id="navbar" class="sticky">
-            <div class="logo">Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links">
                 <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
@@ -20,9 +23,7 @@
                 <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
                 <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
                 <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
-                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-            </div>
+                </div>
             <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -107,7 +108,27 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Dani Medico. All rights reserved. | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+        <div class="footer-top container">
+            <div class="footer-links">
+                <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact (Email)</a>
+                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> Contact (WhatsApp)</a>
+            </div>
+            
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
+
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
