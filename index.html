@@ -3,64 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Availability Notice</title>
-    <style>
-        /* CSS Styling for the Apology Box */
-        .apology-container {
-            max-width: 600px;
-            margin: 50px auto; /* Centers the box on the page */
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-left: 5px solid #ff9900; /* Changed accent color to orange/gold */
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-        }
-
-        .apology-heading {
-            color: #cc6600; /* Darker orange heading */
-            border-bottom: 2px solid #ff9900;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .apology-message {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.05em;
-        }
-
-        .apology-message strong {
-            font-weight: 700; /* Stronger emphasis */
-            color: #444;
-        }
-
-        .apology-closing {
-            color: #555;
-            font-style: italic;
-            text-align: right;
-            padding-top: 10px;
-            font-size: 0.9em;
-        }
-    </style>
+    <title>Dani Medico – Free Medical Entrance Preparation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <header>
+        <nav id="navbar" class="sticky">
+            <div class="logo">Dani Medico</div>
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
+                <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-    <div class="apology-container">
-        <h3 class="apology-heading">⚠️ Important Note on Current Availability</h3>
-        <p class="apology-message">
-            Sorry For Delay. I am currently unable to manage your website lonely Because  
-            I am dedicating my full attention to meeting deadlines for **existing paid client work** while simultaneously managing my **academic commitments**.
-            </p>
-        <p class="apology-message">
-            My sincere apologies for any delay or inconvenience this may cause.
-        </p>
-        <p class="apology-closing">
-            I appreciate your patience and understanding, and I look forward to connecting with you in the future!
-        </p>
-    </div>
+    <main class="container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Dani Medico – Free Medical Preparation</h1>
+                <p>Your one-stop, free resource for MDCAT, NUMS, AFNS, and AKU entrance exam success.</p>
+                <a href="exams.html" class="cta-button">Start Your Preparation Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+        </section>
 
+        <section class="exam-buttons-section">
+            <h2>Select Your Target Exam</h2>
+            <div class="card-grid exam-grid">
+                <a href="exams.html?exam=MDCAT" class="card exam-card">
+                    <h3>MDCAT</h3>
+                    <p>Medical & Dental College Admission Test</p>
+                </a>
+                <a href="exams.html?exam=NUMS" class="card exam-card">
+                    <h3>NUMS</h3>
+                    <p>National University of Medical Sciences</p>
+                </a>
+                <a href="exams.html?exam=AFNS" class="card exam-card">
+                    <h3>AFNS</h3>
+                    <p>Armed Forces Nursing Service</p>
+                </a>
+                <a href="exams.html?exam=AKU" class="card exam-card">
+                    <h3>AKU</h3>
+                    <p>Aga Khan University</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="province-cards-section">
+            <h2>Content Separated by Province</h2>
+            <div class="card-grid province-grid">
+                <a href="exams.html?province=Sindh" class="card province-card">
+                    <h3>Sindh</h3>
+                    <p>Specific content for Sindh-based institutions.</p>
+                </a>
+                <a href="exams.html?province=Punjab" class="card province-card">
+                    <h3>Punjab</h3>
+                    <p>Specific content for Punjab-based institutions.</p>
+                </a>
+                <a href="exams.html?province=KPK" class="card province-card">
+                    <h3>KPK</h3>
+                    <p>Specific content for Khyber Pakhtunkhwa.</p>
+                </a>
+                <a href="exams.html?province=Balochistan" class="card province-card">
+                    <h3>Balochistan</h3>
+                    <p>Specific content for Balochistan.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="announcements-preview-section">
+            <h2><i class="fas fa-bullhorn"></i> Latest News</h2>
+            <div id="home-announcements" class="announcement-list card-grid">
+                </div>
+            <div class="text-center">
+                <a href="announcements.html" class="button secondary-button">View All Announcements</a>
+            </div>
+        </section>
+
+        <section class="quick-links-section">
+            <h2>Quick Access</h2>
+            <div class="quick-links-grid card-grid">
+                <a href="dashboard.html" class="card quick-link-card"><i class="fas fa-tachometer-alt fa-2x"></i> <span>Dashboard</span></a>
+                <a href="lectures.html" class="card quick-link-card"><i class="fas fa-video fa-2x"></i> <span>Lectures</span></a>
+                <a href="notes.html" class="card quick-link-card"><i class="fas fa-book-open fa-2x"></i> <span>Notes</span></a>
+                <a href="tests.html" class="card quick-link-card"><i class="fas fa-pencil-alt fa-2x"></i> <span>Tests</span></a>
+                <a href="past-papers.html" class="card quick-link-card"><i class="fas fa-file-alt fa-2x"></i> <span>Papers</span></a>
+                <a href="announcements.html" class="card quick-link-card"><i class="fas fa-bullhorn fa-2x"></i> <span>Announcements</span></a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Dani Medico. All rights reserved. | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHomeAnnouncements();
+        });
+    </script>
 </body>
 </html>
