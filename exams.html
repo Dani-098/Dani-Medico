@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Exam & Province - Dani Medico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="navbar" class="sticky">
+            <div class="logo"><img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">Dani Medico</div>
+            <div class="nav-links">
+                </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="selection-page card">
+            <h2><i class="fas fa-graduation-cap"></i> Select Your Preparation Focus</h2>
+            <p>Please select your target exam and province to customize your dashboard and content filters.</p>
+            
+            <form id="selection-form" onsubmit="event.preventDefault(); saveUserSelection()">
+                <div class="filter-group">
+                    <label for="exam-selector">Target Exam:</label>
+                    <select id="exam-selector" required>
+                        <option value="">-- Select Exam --</option>
+                        <option value="MDCAT">MDCAT</option>
+                        <option value="NUMS">NUMS</option>
+                        <option value="AFNS">AFNS</option>
+                        <option value="AKU">AKU</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="province-selector">Province Focus:</label>
+                    <select id="province-selector" required>
+                        <option value="">-- Select Province --</option>
+                        <option value="Sindh">Sindh</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="KPK">KPK</option>
+                        <option value="Balochistan">Balochistan</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="button primary-button" style="margin-top: 1.5rem;">
+                    Save Selection & Go to Dashboard
+                </button>
+            </form>
+        </section>
+    </main>
+    
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pre-fill selectors if data exists in localStorage
+            document.getElementById('exam-selector').value = localStorage.getItem('userExam') || '';
+            document.getElementById('province-selector').value = localStorage.getItem('userProvince') || '';
+
+            // Handle URL parameters for quick selection from index.html
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('exam')) {
+                document.getElementById('exam-selector').value = params.get('exam');
+            }
+            if (params.has('province')) {
+                document.getElementById('province-selector').value = params.get('province');
+            }
+        });
+    </script>
+</body>
+</html>
