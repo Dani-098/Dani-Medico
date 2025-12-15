@@ -93,7 +93,6 @@ section {
 .logo-img {
     height: 50px; /* Adjust size */
     width: auto;
-    filter: invert(100%); /* White logo on blue background */
 }
 
 .nav-links a {
