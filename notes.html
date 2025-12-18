@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. CORE VARIABLES --- */
+        /* --- 1. CORE VARIABLES (Kept original) --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-secondary-green: #28A745;
@@ -21,12 +21,12 @@
             --transition-speed: 0.3s;
         }
 
-        /* --- 2. ANTI-OVERFLOW SYSTEM (FIXES RIGHT SIDE SPACE) --- */
+        /* --- 2. ANTI-OVERFLOW SYSTEM (Stops Right Side Space) --- */
         html, body { 
             width: 100%; 
             margin: 0; 
             padding: 0; 
-            overflow-x: hidden; /* Hard lock against horizontal scrolling */
+            overflow-x: hidden; 
             position: relative; 
             box-sizing: border-box; 
             font-family: 'Poppins', sans-serif;
@@ -53,7 +53,7 @@
         h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
         a { text-decoration: none; transition: color var(--transition-speed); }
 
-        /* --- 4. NAVBAR STYLING --- */
+        /* --- 4. NAVBAR (Design Kept - Fixed Mobile Menu) --- */
         #navbar { 
             width: 100%;
             background: var(--color-primary-blue); 
@@ -89,10 +89,10 @@
         }
         .filter-group { flex: 1; min-width: 140px; }
         .filter-group label { font-weight: 600; display: block; margin-bottom: 5px; font-size: 0.85rem; }
-        .filter-group select { width: 100%; padding: 0.6rem; border: 1px solid #CED4DA; border-radius: 5px; background-color: var(--color-light); cursor: pointer; font-family: inherit; }
+        .filter-group select { width: 100%; padding: 0.6rem; border: 1px solid #CED4DA; border-radius: 5px; background-color: var(--color-light); cursor: pointer; }
 
         /* --- 6. DYNAMIC CARD GRID (4 Laptop / 2 Mobile) --- */
-        .card-grid { display: grid; gap: 15px; margin-top: 1rem; width: 100%; }
+        .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
 
         @media (min-width: 1024px) {
             .card-grid { grid-template-columns: repeat(4, 1fr); }
@@ -101,7 +101,7 @@
             .card-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .card { background-color: var(--color-card-bg); padding: 1.2rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; }
+        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; }
         
         .lecture-card { 
             border-left: 5px solid var(--color-secondary-green); 
@@ -109,34 +109,22 @@
             flex-direction: column; 
             justify-content: space-between; 
         }
-        .lecture-card h4 { color: var(--color-primary-blue); font-size: 1rem; margin: 0 0 8px 0; line-height: 1.3; }
-        .lecture-card p { font-size: 0.8rem; margin-bottom: 5px; }
+        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; margin: 0 0 5px 0; line-height: 1.3; }
+        .lecture-card p { font-size: 0.75rem; margin-bottom: 3px; }
 
         /* --- 7. BUTTONS --- */
-        .button { 
-            width: 100%; 
-            padding: 10px; 
-            border-radius: 5px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            text-align: center; 
-            font-size: 0.8rem; 
-            border: 2px solid transparent; 
-            display: block; 
-            margin-top: 8px;
-        }
+        .button { width: 100%; padding: 8px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; font-size: 0.75rem; border: 2px solid transparent; display: block; margin-top: 5px; }
         .primary-button { background-color: var(--color-secondary-green); color: white; }
-        .primary-button:hover { background-color: #1E7E34; }
         .secondary-button { background-color: white; color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. MODAL SYSTEM --- */
+        /* --- 8. MODAL --- */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
         .modal-content { background-color: white; margin: 2% auto; padding: 20px; border-radius: 12px; width: 95%; max-width: 1000px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .close-btn { color: var(--color-dark); float: right; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; }
+        .close-btn { color: var(--color-dark); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
         .video-container { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; margin-top: 10px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* --- 9. FOOTER STYLING --- */
+        /* --- 9. FOOTER (Design Kept) --- */
         footer { background-color: var(--color-primary-blue); color: white; padding: 2rem 1rem 1rem; margin-top: auto; width: 100%; }
         .footer-top { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1.5rem; }
         .footer-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -145,14 +133,23 @@
         .social-icons a { color: white; }
         .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; opacity: 0.8; }
 
-        /* --- 10. MOBILE TWEAKS --- */
+        /* --- 10. MOBILE TWEAKS (Fixed Hamburger Dropdown) --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Standard behavior for simplicity */
             .mobile-menu-btn { display: block; }
+            .nav-links { 
+                display: none; /* Hidden by default */
+                flex-direction: column; 
+                width: 100%; 
+                position: absolute; 
+                top: 60px; 
+                left: 0; 
+                background-color: var(--color-primary-blue); 
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; } /* Shown when active class added */
             .filters-section { flex-direction: column; align-items: stretch; }
-            .modal-content { margin: 5% auto; height: 80vh; }
-            .lecture-card { padding: 12px; }
-            .lecture-card h4 { font-size: 0.9rem; }
+            .modal-content { margin: 5% auto; }
         }
         .hidden { display: none !important; }
     </style>
@@ -165,7 +162,7 @@
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
                 Dani Medico
             </div>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
@@ -256,15 +253,12 @@
     </footer>
 
     <script>
-        // --- DATA SECTION ---
         const libraryData = [
             { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', fileId: '1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR' },
-            { title: 'Intelligence: Verbal Quiz', subject: 'verbal intelligence', exam: 'AFNS', province: 'all', fileId: 'PLACEHOLDER' },
-            { title: 'BSN Nursing Guide', subject: 'Biology', exam: 'BSN', province: 'Punjab', fileId: 'PLACEHOLDER' }
-            // Add your 100+ items here
+            { title: 'Logical Patterns Guide', subject: 'Logical reasoning', exam: 'AKU', province: 'all', fileId: 'PLACEHOLDER' },
+            { title: 'Nursing Fundamentals', subject: 'Biology', exam: 'BSN', province: 'Punjab', fileId: 'PLACEHOLDER' }
         ];
 
-        // --- RENDER LOGIC ---
         function loadNotes() {
             const container = document.getElementById('notes-container');
             const exam = document.getElementById('filter-exam').value;
@@ -302,11 +296,9 @@
             }
         }
 
-        // --- UI UTILITIES ---
         function openPDF(fileId, title) {
             const iframe = document.getElementById('pdf-iframe');
             document.getElementById('modal-pdf-title').innerText = title;
-            // Uses /preview to enable in-browser viewing for large files
             iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
             document.getElementById('pdfModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -318,16 +310,16 @@
             document.body.style.overflow = 'auto';
         }
 
+        /* FIXED MOBILE MENU TOGGLE */
         function mobileMenuToggle() {
-            const links = document.querySelector('.nav-links');
-            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         window.onclick = function(event) {
             if (event.target.className === 'modal') closeModal('pdfModal');
         }
 
-        // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
             const savedExam = localStorage.getItem('userExam');
             const savedProv = localStorage.getItem('userProvince');
