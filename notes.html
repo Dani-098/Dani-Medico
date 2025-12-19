@@ -84,13 +84,48 @@
             .filters-section { flex-direction: column; }
         }
 
-        /* MODAL & 3x HEIGHT IFRAME LOGIC */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 20px auto; padding: 15px; border-radius: 8px; width: 95%; max-width: 1000px; position: relative; }
-        .close-btn { color: var(--color-dark); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        #pdf-iframe { width: 100%; border: none; display: block; margin-top: 10px; }
+        /* MODAL & FULL-SCREEN IFRAME LOGIC */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(5px); 
+    overflow-y: auto; 
+}
 
-        .hidden { display: none !important; }
+.modal-content { 
+    background-color: white; 
+    margin: 10px auto; /* Small margin to keep it looking clean */
+    padding: 10px; 
+    border-radius: 8px; 
+    width: 98%; /* Occupy almost all horizontal screen space */
+    max-width: 1200px; /* Wider for PC/Laptop */
+    position: relative; 
+    min-height: 95vh; /* Ensure the white area covers the vertical screen */
+}
+
+.close-btn { 
+    color: var(--color-dark); 
+    float: right; 
+    font-size: 32px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    line-height: 1;
+    padding: 5px;
+}
+
+#pdf-iframe { 
+    width: 100%; 
+    border: 2px solid #eee; 
+    display: block; 
+    margin-top: 10px;
+    border-radius: 4px;
+}
     </style>
 </head>
 <body>
@@ -220,18 +255,26 @@
         }
 
         function openPDF(fileId, title) {
-            const modal = document.getElementById('pdfModal');
-            const iframe = document.getElementById('pdf-iframe');
-            document.getElementById('modal-pdf-title').innerText = title;
-            
-            // DYNAMIC HEIGHT CALCULATION: Set height to 3x current width
-            const currentWidth = modal.querySelector('.modal-content').offsetWidth;
-            iframe.style.height = (currentWidth * 3) + "px";
-            
-            iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+    const modal = document.getElementById('pdfModal');
+    const iframe = document.getElementById('pdf-iframe');
+    const modalTitle = document.getElementById('modal-pdf-title');
+    
+    modalTitle.innerText = title;
+    
+    // 1. Show the modal first so we can calculate the real width
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // 2. DYNAMIC CALCULATION: Set height to 3x current width
+    // This works on PC (wide iframe) and Mobile (narrow iframe)
+    const currentWidth = iframe.offsetWidth;
+    const calculatedHeight = currentWidth * 3;
+    
+    iframe.style.height = calculatedHeight + "px";
+    
+    // 3. Set the source using /preview to avoid forced downloads
+    iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+}
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
