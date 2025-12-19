@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. CORE VARIABLES (Matching Home) --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-secondary-green: #28A745;
@@ -17,134 +16,56 @@
             --color-text: #495057;
             --color-card-bg: #FFFFFF;
             --color-shadow: rgba(0, 0, 0, 0.1);
-            --color-danger: #DC3545;
-            --font-family-primary: 'Poppins', sans-serif;
             --border-radius-base: 8px;
             --transition-speed: 0.3s;
         }
 
-        /* --- 2. ANTI-OVERFLOW & GLOBAL RESET --- */
+        /* ANTI-OVERFLOW & GLOBAL RESET */
         html, body { 
-            width: 100%; 
-            margin: 0; 
-            padding: 0; 
-            overflow-x: hidden; 
-            position: relative; 
-            box-sizing: border-box; 
-            font-family: var(--font-family-primary);
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-light);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            width: 100%; margin: 0; padding: 0; overflow-x: hidden; position: relative; 
+            box-sizing: border-box; font-family: 'Poppins', sans-serif; line-height: 1.6;
+            color: var(--color-text); background-color: var(--color-light); min-height: 100vh;
+            display: flex; flex-direction: column;
         }
-
         *, *:before, *:after { box-sizing: inherit; }
-        * { margin: 0; padding: 0; }
 
-        .container { 
-            width: 100%;
-            max-width: 1400px; /* Wider container for 5-card layout */
-            margin: 0 auto; 
-            padding: 10px 15px; 
-            flex-grow: 1; 
-        }
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 10px 15px; flex-grow: 1; }
         section { padding: 1.5rem 0; }
         a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
         h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
 
-        /* --- 3. NAVBAR (Home Page Design) --- */
-        #navbar { 
-            background: var(--color-primary-blue); 
-            color: var(--color-light); 
-            padding: 1rem 2rem; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 4px var(--color-shadow); 
-            z-index: 1000; 
-            position: sticky; 
-            top: 0; 
-        }
+        /* NAVBAR (Exactly like Home) */
+        #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
-        .logo-img { height: 50px; width: auto; filter: brightness(0) invert(1); }
+        .logo-img { height: 50px; width: auto; }
         .nav-links { display: flex; }
         .nav-links a { color: var(--color-light); margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
         .nav-links a.active { border-bottom: 2px solid var(--color-secondary-green); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. GRID SYSTEM (5 PC / 2 Mobile) --- */
-        .card-grid { 
-            display: grid; 
-            gap: 12px; 
-            margin-top: 1rem; 
-            width: 100%;
-        }
+        /* GRID SYSTEM (5 PC / 2 Mobile) */
+        .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
+        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
+        @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        /* PC/Laptop: 5 Cards */
-        @media (min-width: 1024px) {
-            .card-grid { grid-template-columns: repeat(5, 1fr); }
-        }
-        /* Mobile: 2 Cards */
-        @media (max-width: 1023px) {
-            .card-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* --- 5. CARD DESIGN (Home Design Modified for Tight Fit) --- */
-        .card { 
-            background-color: var(--color-card-bg); 
-            padding: 1rem; 
-            border-radius: var(--border-radius-base); 
-            box-shadow: 0 2px 8px var(--color-shadow); 
-            height: 100%; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        /* CARD DESIGN */
+        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
         .lecture-card { border-left: 5px solid var(--color-secondary-green); }
-        .lecture-card h4 { 
-            color: var(--color-primary-blue); 
-            font-size: 0.95rem; 
-            height: 2.8rem; 
-            overflow: hidden; 
-            margin-bottom: 5px;
-            line-height: 1.4;
-        }
+        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
         .lecture-card p { font-size: 0.75rem; margin-bottom: 5px; }
 
-        /* --- 6. FILTERS --- */
-        .filters-section { 
-            background: white;
-            padding: 1rem;
-            border-radius: var(--border-radius-base);
-            box-shadow: 0 2px 8px var(--color-shadow);
-            display: flex; 
-            gap: 10px; 
-            flex-wrap: wrap; 
-            margin-bottom: 1.5rem; 
-        }
+        /* FILTERS */
+        .filters-section { background: white; padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .filter-group { flex: 1; min-width: 130px; }
         .filter-group label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.8rem; }
         .filter-group select { width: 100%; padding: 0.5rem; border: 1px solid #CED4DA; border-radius: 5px; font-size: 0.85rem; cursor: pointer; }
 
-        /* --- 7. BUTTONS --- */
-        .button { 
-            display: block; 
-            padding: 8px 5px; 
-            border-radius: 5px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            text-align: center; 
-            border: 2px solid transparent; 
-            font-size: 0.75rem; 
-            width: 100%;
-            margin-top: 5px;
-        }
+        /* BUTTONS */
+        .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; }
         .primary-button { background-color: var(--color-secondary-green); color: var(--color-light); }
         .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. FOOTER --- */
+        /* FOOTER (Exactly like Home) */
         footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; width: 100%; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
         .footer-logo .logo-img { height: 70px; }
@@ -153,20 +74,9 @@
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
 
-        /* --- 9. MOBILE MENU & ADJUSTMENTS --- */
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                width: 100%; 
-                position: absolute; 
-                top: 70px; 
-                left: 0; 
-                background-color: var(--color-primary-blue); 
-                padding: 1rem 0; 
-                box-shadow: 0 4px 8px var(--color-shadow); 
-            }
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; box-shadow: 0 4px 8px var(--color-shadow); }
             .nav-links.active { display: flex; }
             .nav-links a { margin: 0.5rem 1rem; text-align: center; width: 90%; border-bottom: none; }
             .footer-top { flex-direction: column; text-align: center; }
@@ -174,12 +84,11 @@
             .filters-section { flex-direction: column; }
         }
 
-        /* Modal Settings */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
-        .modal-content { background-color: white; margin: 5% auto; padding: 15px; border-radius: 8px; width: 95%; max-width: 1000px; position: relative; height: 85vh; }
+        /* MODAL & 3x HEIGHT IFRAME LOGIC */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); overflow-y: auto; }
+        .modal-content { background-color: white; margin: 20px auto; padding: 15px; border-radius: 8px; width: 95%; max-width: 1000px; position: relative; }
         .close-btn { color: var(--color-dark); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .video-container { width: 100%; height: calc(100% - 40px); margin-top: 10px; }
-        .video-container iframe { width: 100%; height: 100%; border: none; }
+        #pdf-iframe { width: 100%; border: none; display: block; margin-top: 10px; }
 
         .hidden { display: none !important; }
     </style>
@@ -198,6 +107,8 @@
                 <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
                 <a href="notes.html" class="active"><i class="fas fa-book-open"></i> Notes</a>
                 <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
+                <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
             </div>
             <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
                 <i class="fas fa-bars"></i>
@@ -207,7 +118,6 @@
 
     <main class="container">
         <h2><i class="fas fa-book-open"></i> Lecture Notes & Study Guides</h2>
-
         <section class="filters-section card">
             <div class="filter-group">
                 <label>Exam:</label>
@@ -246,7 +156,6 @@
                 </select>
             </div>
         </section>
-
         <div id="notes-container" class="card-grid"></div>
         <p id="no-content-message" class="hidden text-center">No results found.</p>
     </main>
@@ -255,9 +164,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('pdfModal')">&times;</span>
             <h3 id="modal-pdf-title" style="font-size: 1rem;">View Document</h3>
-            <div class="video-container">
-                <iframe id="pdf-iframe" src=""></iframe>
-            </div>
+            <iframe id="pdf-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -277,20 +184,12 @@
                 <a href="https://www.instagram.com/dani_medicoo" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Dani Medico. All rights reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
     </footer>
 
     <script>
-        // TEMPLATE: I created 6 items for you to see the 5-column layout.
         const libraryData = [
-            { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', fileId: '1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR' },
-            { title: 'Nursing Fundamentals Guide', subject: 'Biology', exam: 'BSN', province: 'Punjab', fileId: 'PLACEHOLDER' },
-            { title: 'Verbal Intelligence Quiz', subject: 'verbal intelligence', exam: 'AFNS', province: 'all', fileId: 'PLACEHOLDER' },
-            { title: 'Physics: Newton Laws', subject: 'Physics', exam: 'NUMS', province: 'Islamabad', fileId: 'PLACEHOLDER' },
-            { title: 'Chemistry Formula Sheet', subject: 'Chemistry', exam: 'MDCAT', province: 'Punjab', fileId: 'PLACEHOLDER' },
-            { title: 'Logic Patterns Study', subject: 'Logical reasoning', exam: 'AKU', province: 'all', fileId: 'PLACEHOLDER' }
+            { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', fileId: '1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR' }
         ];
 
         function loadNotes() {
@@ -298,12 +197,7 @@
             const exam = document.getElementById('filter-exam').value;
             const province = document.getElementById('filter-province').value;
             const subject = document.getElementById('filter-subject').value;
-
-            const filtered = libraryData.filter(item => {
-                return (exam === 'all' || item.exam === exam) &&
-                       (province === 'all' || item.province === province || item.province === 'all') &&
-                       (subject === 'all' || item.subject === subject);
-            });
+            const filtered = libraryData.filter(item => (exam === 'all' || item.exam === exam) && (province === 'all' || item.province === province || item.province === 'all') && (subject === 'all' || item.subject === subject));
 
             if (filtered.length === 0) {
                 container.innerHTML = '';
@@ -315,15 +209,10 @@
                         <div>
                             <h4>${note.title}</h4>
                             <p style="font-size:0.7rem; color:var(--color-primary-blue); font-weight:600;">${note.subject}</p>
-                            <p style="font-size:0.65rem; color:#888;">${note.exam} | ${note.province}</p>
                         </div>
-                        <div style="margin-top:10px;">
-                            <button class="button primary-button" onclick="openPDF('${note.fileId}', '${note.title}')">
-                                <i class="fas fa-eye"></i> View PDF
-                            </button>
-                            <a href="https://drive.google.com/uc?id=${note.fileId}&export=download" class="button secondary-button">
-                                <i class="fas fa-download"></i> Download
-                            </a>
+                        <div>
+                            <button class="button primary-button" onclick="openPDF('${note.fileId}', '${note.title}')"><i class="fas fa-eye"></i> View</button>
+                            <a href="https://drive.google.com/uc?id=${note.fileId}&export=download" class="button secondary-button"><i class="fas fa-download"></i> Save</a>
                         </div>
                     </div>
                 `).join('');
@@ -331,11 +220,16 @@
         }
 
         function openPDF(fileId, title) {
+            const modal = document.getElementById('pdfModal');
             const iframe = document.getElementById('pdf-iframe');
             document.getElementById('modal-pdf-title').innerText = title;
-            // Using /preview to allow viewing large files without forced download
+            
+            // DYNAMIC HEIGHT CALCULATION: Set height to 3x current width
+            const currentWidth = modal.querySelector('.modal-content').offsetWidth;
+            iframe.style.height = (currentWidth * 3) + "px";
+            
             iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
-            document.getElementById('pdfModal').style.display = 'block';
+            modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
@@ -345,21 +239,9 @@
             document.body.style.overflow = 'auto';
         }
 
-        function mobileMenuToggle() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') closeModal('pdfModal');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedExam = localStorage.getItem('userExam');
-            const savedProv = localStorage.getItem('userProvince');
-            if(savedExam) document.getElementById('filter-exam').value = savedExam;
-            if(savedProv) document.getElementById('filter-province').value = savedProv;
-            loadNotes();
-        });
+        function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
+        window.onclick = (e) => { if(e.target.className === 'modal') closeModal('pdfModal'); }
+        document.addEventListener('DOMContentLoaded', loadNotes);
     </script>
 </body>
 </html>
