@@ -83,32 +83,63 @@
     position: relative; 
     box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
 }
+/* PDF Modal Overlay */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(5px); 
+}
 
-/* Mobile Specific: Force 100% width and height */
+/* Modal Content Box */
+.modal-content { 
+    background-color: #fff; 
+    margin: 2% auto; 
+    padding: 20px; 
+    border-radius: 8px; 
+    width: 95%; 
+    max-width: 1100px; 
+    position: relative; /* This is vital for the close-btn position */
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
+}
+
+/* The Close Button - Matches Notes.html design */
+.close-btn { 
+    position: absolute; 
+    top: 10px; 
+    right: 20px; 
+    color: var(--color-dark); 
+    font-size: 32px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    z-index: 10;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--color-danger);
+}
+
+/* Mobile Adjustments for Full Screen */
 @media (max-width: 768px) {
     .modal-content {
-        margin: 0; /* Remove top margin on mobile */
-        width: 100%; /* Full width */
-        height: 100%; /* Fill screen height */
-        border-radius: 0; /* Square edges for full-screen look */
-        padding: 10px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 15px;
         overflow-y: auto;
     }
-}
-
-/* Container for the PDF */
-.video-container { 
-    position: relative; 
-    width: 100%; 
-    height: auto; /* Changed to allow dynamic height */
-    overflow: visible; 
-    margin-top: 1rem; 
-}
-
-#pdf-iframe { 
-    width: 100%; 
-    border: none; 
-    display: block;
+    .close-btn {
+        top: 5px;
+        right: 15px;
+    }
 }
         /* Footer */
         footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; } 
@@ -269,27 +300,35 @@
        function openPDF(id, title) {
     const modal = document.getElementById('pdfModal');
     const iframe = document.getElementById('pdf-iframe');
-    const modalTitle = document.getElementById('modal-title');
+    document.getElementById('modal-title').innerText = title;
     
-    modalTitle.innerText = title;
-    
-    // 1. Show modal first so we can measure width
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // Stop background scrolling
 
-    // 2. Dynamic Height Calculation: Height = Width * 3
-    // This provides a long scrollable area for viewers
+    // Dynamic Height Calculation: 3x the width
     setTimeout(() => {
         const currentWidth = iframe.offsetWidth;
-        const calculatedHeight = currentWidth * 3;
-        iframe.style.height = calculatedHeight + "px";
-    }, 50); // Small delay to ensure modal is rendered
+        iframe.style.height = (currentWidth * 3) + "px";
+    }, 50);
 
-    // 3. Google Drive Preview Link
-    // We use the /preview link which is more reliable for embedding than the viewer wrapper
+    // Use /preview for clean viewer facilitation
     iframe.src = `https://drive.google.com/file/d/${id}/preview`;
 }
 
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+    document.getElementById('pdf-iframe').src = ''; // Clear iframe to stop loading
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
+
+// Close modal if user clicks on the dark background
+window.onclick = function(event) {
+    const modal = document.getElementById('pdfModal');
+    if (event.target == modal) {
+        closeModal('pdfModal');
+    }
+}
         function closeModal() {
             document.getElementById('pdfModal').style.display = 'none';
             document.getElementById('pdf-iframe').src = '';
