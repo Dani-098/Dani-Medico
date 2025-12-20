@@ -67,14 +67,11 @@
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* Footer */
-        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
-        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
-        .footer-logo .logo-img { height: 80px; }
-        .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a { color: white; font-size: 0.9rem; }
-        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
-        .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
-
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; } 
+       .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; } 
+        .footer-logo .logo-img { height: 80px; } .footer-links { display: flex; gap: 1.5rem; } .footer-links a { color: var(--color-light); font-weight: 500; transition: color var(--transition-speed); } 
+        .footer-links a:hover { color: var(--color-secondary-green); } .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; transition: color var(--transition-speed); } 
+        .social-icons a:hover { color: var(--color-secondary-green); } .footer-bottom { text-align: center; padding: 1rem 0; }
         /* Mobile */
         @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) {
@@ -177,6 +174,7 @@
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsaapp"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
