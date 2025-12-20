@@ -26,7 +26,7 @@
         
         /* Navbar */
         #navbar { background: var(--color-primary-blue); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
         .logo-img { height: 35px; width: auto; }
 
         .nav-links { display: flex; align-items: center; }
@@ -36,11 +36,11 @@
 
         .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; flex-grow: 1; width: 100%; }
 
-        /* Filters Section */
+        /* Filters */
         .filters-section { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px var(--color-shadow); }
         .filter-group { flex: 1; min-width: 160px; display: flex; flex-direction: column; }
-        .filter-group label { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--color-dark); }
-        .filter-group select { padding: 0.6rem; border: 1px solid #CED4DA; border-radius: 6px; outline: none; background-color: #fff; }
+        .filter-group label { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .filter-group select { padding: 0.6rem; border: 1px solid #CED4DA; border-radius: 6px; }
 
         /* Card Grid: 5 PC / 2 Mobile */
         .card-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
@@ -50,85 +50,74 @@
             border-top: 4px solid var(--color-primary-blue); display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s;
         }
         .paper-card:hover { transform: translateY(-5px); }
-        .paper-card h4 { font-size: 0.9rem; line-height: 1.4; margin-bottom: 10px; color: var(--color-dark); min-height: 40px; }
-        
+        .paper-card h4 { font-size: 0.9rem; margin-bottom: 10px; color: var(--color-dark); min-height: 40px; }
         .meta-info { font-size: 0.75rem; color: #666; margin-bottom: 15px; }
-        .meta-info i { color: var(--color-primary-blue); margin-right: 5px; width: 14px; }
+        .meta-info i { color: var(--color-primary-blue); margin-right: 5px; }
 
         .btn-stack { display: flex; flex-direction: column; gap: 8px; }
-        .btn { padding: 0.6rem; border-radius: 5px; border: none; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s; }
+        .btn { padding: 0.6rem; border-radius: 5px; border: none; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-align: center; text-decoration: none; }
         .btn-view { background: var(--color-primary-blue); color: #fff; }
-        .btn-view:hover { background: #0056b3; }
         .btn-download { background: var(--color-secondary-green); color: #fff; }
-        .btn-download:hover { background: #1e7e34; }
 
-        /* PDF Viewer Modal (Notes Style) */
+        /* PDF Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
-        .modal-content { background-color: var(--color-card-bg); margin: 5% auto; padding: 20px; border-radius: var(--border-radius-base); width: 90%; max-width: 1100px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .modal-content { background-color: #fff; margin: 2% auto; padding: 20px; border-radius: 8px; width: 90%; max-width: 1100px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .close-btn { color: var(--color-dark); float: right; font-size: 30px; font-weight: bold; cursor: pointer; }
         .video-container { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; margin-top: 1rem; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .security-note { font-size: 0.8rem; color: var(--color-text); text-align: center; margin-top: 1rem; border-top: 1px dashed #DDD; padding: 0.5rem; }
 
-        /* Footer (Exact Notes.html Match) */
-        footer { background-color: var(--color-dark); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
-        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
-        .footer-logo .logo-img { height: 40px; filter: invert(100%); }
+        /* Footer - Primary Blue Theme */
+        footer { background-color: var(--color-primary-blue); color: #fff; padding: 2rem 1rem 0; margin-top: 2rem; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); gap: 1rem; }
+        .footer-logo .logo-img { height: 45px; width: auto; filter: brightness(0) invert(1); }
         .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a { color: var(--color-light); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--color-primary-blue); }
-        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; transition: transform 0.3s; display: inline-block; }
-        .social-icons a:hover { transform: scale(1.1); color: var(--color-primary-blue); }
-        .footer-bottom { text-align: center; padding: 1rem 0; }
+        .footer-links a { color: #fff; font-size: 0.9rem; text-decoration: none; font-weight: 500; transition: opacity var(--transition-speed); }
+        .footer-links a:hover { opacity: 0.8; }
+        .social-icons { display: flex; gap: 1rem; }
+        .social-icons a { color: #fff; font-size: 1.5rem; transition: transform var(--transition-speed); }
+        .social-icons a:hover { transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding: 1.5rem 0; font-size: 0.85rem; opacity: 0.9; }
 
-        /* Mobile Layout */
-        @media (max-width: 1100px) {
-            .card-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
+        /* Mobile */
+        @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
             .nav-links { 
                 display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; 
-                background: var(--color-primary-blue); padding: 1.5rem 0; text-align: center; 
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                background: var(--color-primary-blue); padding: 1rem 0; text-align: center; 
             }
             .nav-links.active { display: flex; }
-            .nav-links a { margin: 0; padding: 1rem; width: 100%; font-size: 1.1rem; }
-            .nav-links a.active { border-bottom: none; background: rgba(255,255,255,0.1); border-left: 4px solid var(--color-secondary-green); }
-
+            .nav-links a { margin: 0; padding: 1rem; width: 100%; display: block; font-size: 1rem; }
             .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .filters-section { flex-direction: column; }
             
+            /* Center Mobile Footer */
             .footer-top { flex-direction: column; text-align: center; gap: 1.5rem; }
-            .footer-links { flex-direction: column; gap: 0.8rem; align-items: center; }
-            .social-icons { margin-top: 0.5rem; }
-            .social-icons a { margin: 0 0.5rem; }
+            .footer-links { flex-direction: column; gap: 0.8rem; }
+            .social-icons { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav id="navbar">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-                Dani Medico
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
-                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
-                <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
-                <a href="past-papers.html" class="active"><i class="fas fa-file-alt"></i> Papers</a>
-                <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
-            </div>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
+    <nav id="navbar">
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            Dani Medico
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+            <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+            <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+            <a href="past-papers.html" class="active"><i class="fas fa-file-alt"></i> Papers</a>
+            <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 
     <main class="container">
         <h2 style="margin-bottom: 1.5rem;"><i class="fas fa-file-pdf"></i> Official Past Papers</h2>
@@ -141,7 +130,6 @@
                     <option value="MDCAT">MDCAT</option>
                     <option value="NUMS">NUMS</option>
                     <option value="AKU">AKU</option>
-                    <option value="AFNS">AFNS</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -169,23 +157,17 @@
             </div>
         </section>
 
-        <div id="papers-grid" class="card-grid">
-            </div>
-
-        <div id="no-content" style="display:none; text-align:center; padding: 4rem; color: #999;">
-            <i class="fas fa-search fa-3x" style="margin-bottom: 1rem;"></i>
-            <p>No past papers match your selection.</p>
-        </div>
+        <div id="papers-grid" class="card-grid"></div>
+        <div id="no-content" style="display:none; text-align:center; padding: 3rem; color: #999;">No papers found.</div>
     </main>
 
     <div id="pdfModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title">View Document</h3>
+            <h3 id="modal-title" style="margin-bottom:10px;">View Document</h3>
             <div class="video-container">
                 <iframe id="pdf-iframe" src=""></iframe>
             </div>
-            <p class="security-note"><i class="fas fa-lock"></i> Document streamed securely. Use the download button on the card to save.</p>
         </div>
     </div>
 
@@ -194,14 +176,14 @@
             <div class="footer-links">
                 <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
                 <a href="contact.html"><i class="fas fa-envelope"></i> Contact (Email)</a>
-                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> Contact (WhatsApp)</a>
+                <a href="https://wa.me/923000000000" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
             <div class="footer-logo">
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
             </div>
             <div class="social-icons">
                 <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/923000000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
@@ -213,14 +195,10 @@
     <script>
         const papersData = [
             { title: "MDCAT Sindh 2024", exam: "MDCAT", province: "Sindh", year: "2024", fileId: "1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR" },
-            { title: "MDCAT Punjab 2024", exam: "MDCAT", province: "Punjab", year: "2024", fileId: "1VRqxRUjFi4QiVAR9NjZ1pIH18wkZ8R3V" },
-            { title: "NUMS 2023 Paper", exam: "NUMS", province: "Punjab", year: "2023", fileId: "1oT-_02qYGE61N_mMVZOiWwvHzmeroLdz" },
-            { title: "MDCAT Islamabad 2024", exam: "MDCAT", province: "Islamabad", year: "2024", fileId: "1vjPg8V64ripllbSvws9OUH4mE85pbon6" }
+            { title: "MDCAT Punjab 2024", exam: "MDCAT", province: "Punjab", year: "2024", fileId: "1VRqxRUjFi4QiVAR9NjZ1pIH18wkZ8R3V" }
         ];
 
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
         function applyFilters() {
             const exam = document.getElementById('exam-select').value;
@@ -231,37 +209,30 @@
 
         function render(fExam, fProv, fYear) {
             const grid = document.getElementById('papers-grid');
-            const noContent = document.getElementById('no-content');
-            
             const filtered = papersData.filter(p => 
                 (fExam === 'all' || p.exam === fExam) && 
                 (fProv === 'all' || p.province === fProv) && 
                 (fYear === 'all' || p.year === fYear)
             );
-
+            
             if(filtered.length === 0) {
                 grid.innerHTML = "";
-                noContent.style.display = "block";
-                return;
-            }
-
-            noContent.style.display = "none";
-            grid.innerHTML = filtered.map(p => `
-                <div class="paper-card">
-                    <div>
-                        <h4>${p.title}</h4>
-                        <div class="meta-info">
-                            <i class="fas fa-university"></i> ${p.exam}<br>
-                            <i class="fas fa-map-marker-alt"></i> ${p.province}<br>
-                            <i class="fas fa-calendar-alt"></i> ${p.year}
+                document.getElementById('no-content').style.display = "block";
+            } else {
+                document.getElementById('no-content').style.display = "none";
+                grid.innerHTML = filtered.map(p => `
+                    <div class="paper-card">
+                        <div>
+                            <h4>${p.title}</h4>
+                            <div class="meta-info"><i class="fas fa-university"></i> ${p.exam} | <i class="fas fa-calendar-alt"></i> ${p.year}</div>
+                        </div>
+                        <div class="btn-stack">
+                            <button class="btn btn-view" onclick="openPDF('${p.fileId}', '${p.title}')">View</button>
+                            <a href="https://drive.google.com/uc?id=${p.fileId}&export=download" class="btn btn-download">Download</a>
                         </div>
                     </div>
-                    <div class="btn-stack">
-                        <button class="btn btn-view" onclick="openPDF('${p.fileId}', '${p.title}')">View Paper</button>
-                        <a href="https://drive.google.com/uc?id=${p.fileId}&export=download" class="btn btn-download">Download</a>
-                    </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
         function openPDF(id, title) {
@@ -275,10 +246,6 @@
             document.getElementById('pdfModal').style.display = 'none';
             document.getElementById('pdf-iframe').src = '';
             document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = (e) => {
-            if (e.target == document.getElementById('pdfModal')) closeModal();
         }
 
         window.onload = () => render('all', 'all', 'all');
