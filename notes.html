@@ -59,24 +59,21 @@
         .btn-view { background: var(--color-primary-blue); color: #fff; }
         .btn-download { background: var(--color-secondary-green); color: #fff; }
 
-        /* PDF Modal */
+        /* PDF Modal - Same as Notes.html */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
         .modal-content { background-color: #fff; margin: 2% auto; padding: 20px; border-radius: 8px; width: 90%; max-width: 1100px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .close-btn { color: var(--color-dark); float: right; font-size: 30px; font-weight: bold; cursor: pointer; }
         .video-container { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; margin-top: 1rem; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Footer - Primary Blue Theme */
-        footer { background-color: var(--color-primary-blue); color: #fff; padding: 2rem 1rem 0; margin-top: 2rem; }
-        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2); gap: 1rem; }
-        .footer-logo .logo-img { height: 45px; width: auto; filter: brightness(0) invert(1); }
+        /* Footer */
+        footer { background-color: var(--color-dark); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
+        .footer-logo .logo-img { height: 40px; filter: invert(100%); }
         .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a { color: #fff; font-size: 0.9rem; text-decoration: none; font-weight: 500; transition: opacity var(--transition-speed); }
-        .footer-links a:hover { opacity: 0.8; }
-        .social-icons { display: flex; gap: 1rem; }
-        .social-icons a { color: #fff; font-size: 1.5rem; transition: transform var(--transition-speed); }
-        .social-icons a:hover { transform: translateY(-3px); }
-        .footer-bottom { text-align: center; padding: 1.5rem 0; font-size: 0.85rem; opacity: 0.9; }
+        .footer-links a { color: white; font-size: 0.9rem; }
+        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
+        .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
 
         /* Mobile */
         @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -90,11 +87,8 @@
             .nav-links a { margin: 0; padding: 1rem; width: 100%; display: block; font-size: 1rem; }
             .card-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .filters-section { flex-direction: column; }
-            
-            /* Center Mobile Footer */
-            .footer-top { flex-direction: column; text-align: center; gap: 1.5rem; }
-            .footer-links { flex-direction: column; gap: 0.8rem; }
-            .social-icons { justify-content: center; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -175,16 +169,15 @@
         <div class="footer-top container">
             <div class="footer-links">
                 <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact (Email)</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
                 <a href="https://wa.me/923000000000" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
             <div class="footer-logo">
-                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                <img src="assets/images/logo.png" alt="Logo" class="logo-img">
             </div>
             <div class="social-icons">
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/923000000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -214,25 +207,18 @@
                 (fProv === 'all' || p.province === fProv) && 
                 (fYear === 'all' || p.year === fYear)
             );
-            
-            if(filtered.length === 0) {
-                grid.innerHTML = "";
-                document.getElementById('no-content').style.display = "block";
-            } else {
-                document.getElementById('no-content').style.display = "none";
-                grid.innerHTML = filtered.map(p => `
-                    <div class="paper-card">
-                        <div>
-                            <h4>${p.title}</h4>
-                            <div class="meta-info"><i class="fas fa-university"></i> ${p.exam} | <i class="fas fa-calendar-alt"></i> ${p.year}</div>
-                        </div>
-                        <div class="btn-stack">
-                            <button class="btn btn-view" onclick="openPDF('${p.fileId}', '${p.title}')">View</button>
-                            <a href="https://drive.google.com/uc?id=${p.fileId}&export=download" class="btn btn-download">Download</a>
-                        </div>
+            grid.innerHTML = filtered.map(p => `
+                <div class="paper-card">
+                    <div>
+                        <h4>${p.title}</h4>
+                        <div class="meta-info"><i class="fas fa-university"></i> ${p.exam} | <i class="fas fa-calendar-alt"></i> ${p.year}</div>
                     </div>
-                `).join('');
-            }
+                    <div class="btn-stack">
+                        <button class="btn btn-view" onclick="openPDF('${p.fileId}', '${p.title}')">View</button>
+                        <a href="https://drive.google.com/uc?id=${p.fileId}&export=download" class="btn btn-download">Download</a>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function openPDF(id, title) {
