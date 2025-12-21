@@ -36,7 +36,7 @@
         a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
         h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
 
-        /* --- 3. NAVBAR (Matching Home/Notes) --- */
+        /* --- 3. NAVBAR (Design synced with Home) --- */
         #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
         .logo-img { height: 60px; width: auto; }
@@ -64,27 +64,34 @@
         /* --- 7. BUTTONS --- */
         .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; }
         .primary-button { background-color: var(--color-secondary-green); color: white; }
-        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. FOOTER --- */
-        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; width: 100%; }
+        /* --- 8. FULL SCREEN MODAL (Functional MCQ Frame) --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); overflow-y: auto; }
+        .modal-content { 
+            background-color: white; 
+            margin: 10px auto; 
+            padding: 20px; 
+            border-radius: 8px; 
+            width: 98%; 
+            max-width: 1200px; 
+            position: relative; 
+            min-height: 95vh;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
+        
+        .mcq-question { padding: 1.5rem; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 1.5rem; background: #fdfdfd; }
+        .mcq-option { margin: 10px 0; }
+        .mcq-option label { display: block; padding: 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-size: 0.95rem; transition: 0.2s; }
+        .mcq-option label:hover { background: #f7f7f7; border-color: var(--color-primary-blue); }
+
+        /* --- 9. FOOTER --- */
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 2rem 1rem 1rem; margin-top: auto; width: 100%; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
         .footer-logo .logo-img { height: 70px; }
-        .footer-links { display: flex; gap: 1rem; }
-        .footer-links a { color: var(--color-light); font-weight: 500; font-size: 0.85rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
-
-        /* --- 9. MODAL & MCQ STYLING --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 10px auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 900px; position: relative; min-height: 95vh; }
-        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 32px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
-        
-        .mcq-question { padding: 1.2rem; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 1rem; background: #fdfdfd; }
-        .mcq-option { margin: 10px 0; }
-        .mcq-option label { display: block; padding: 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
-        .mcq-option label:hover { background: #f7f7f7; border-color: var(--color-primary-blue); }
-        .mcq-option input { margin-right: 10px; transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
@@ -94,6 +101,7 @@
             .footer-top { flex-direction: column; text-align: center; }
             .footer-links { flex-direction: column; gap: 0.5rem; }
             .filters-section { flex-direction: column; }
+            .modal-content { width: 100%; margin: 0; border-radius: 0; }
         }
         .hidden { display: none !important; }
     </style>
@@ -131,8 +139,8 @@
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
                     <option value="NUMS">NUMS</option>
-                    <option value="AKU">AKU</option>
                     <option value="BSN">BSN</option>
+                    <option value="AKU">AKU</option>
                     <option value="AFNS">AFNS</option>
                 </select>
             </div>
@@ -154,24 +162,6 @@
                 <label>Chapter:</label>
                 <select id="filter-chapter" onchange="loadTests()">
                     <option value="all">All Chapters</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 2</option>
-                    <option value="all">Chapter 3</option>
-                    <option value="all">Chapter 4</option>
-                    <option value="all">Chapter 5</option>
-                    <option value="all">Chapter 6</option>
-                    <option value="all">Chapter 7</option>
-                    <option value="all">Chapter 8</option>
-                    <option value="all">Chapter 9</option>
-                    <option value="all">Chapter 10</option>
-                    <option value="all">Chapter 11</option>
-                    <option value="all">Chapter 12</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 1</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -194,7 +184,7 @@
     <div id="testModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-            <h3 id="test-modal-title">Quiz</h3>
+            <h3 id="test-modal-title">Interactive Quiz</h3>
             <hr style="margin: 15px 0; opacity: 0.1;">
             
             <form id="mcq-form" onsubmit="submitTest(event)">
@@ -207,9 +197,9 @@
             <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
                 <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
                 <h2 style="margin-top: 1rem;">Test Completed!</h2>
-                <p style="font-size: 1.2rem; margin: 10px 0;">Your Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
-                <p>Correct: <span id="result-correct"></span> / <span id="result-total"></span></p>
-                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 220px; margin: 25px auto;">Close Result</button>
+                <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+                <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
+                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
             </div>
         </div>
     </div>
@@ -236,10 +226,9 @@
     </footer>
 
     <script>
-        // --- 1. DATA ---
         const testsData = [
             { 
-                id: 'T1', title: 'Cell Biology Fundamental Quiz', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', 
+                id: 'T1', title: 'Biology: Cell Structure Basic', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', 
                 mcqs: [
                     { q: "Which organelle is known as the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Lysosome"], answer: 1 },
                     { q: "Cell wall is primarily made of what in plants?", options: ["Chitin", "Peptidoglycan", "Cellulose", "Glycogen"], answer: 2 }
@@ -247,7 +236,7 @@
             }
         ];
 
-        // --- 2. POPULATE CHAPTERS (1-20) ---
+        // Generate Chapters 1-20
         const chapterSelect = document.getElementById('filter-chapter');
         for (let i = 1; i <= 20; i++) {
             let opt = document.createElement('option');
@@ -258,7 +247,6 @@
 
         let activeTestMCQs = [];
 
-        // --- 3. FILTER & RENDER ---
         function loadTests() {
             const container = document.getElementById('tests-container');
             const examVal = document.getElementById('filter-exam').value;
@@ -282,4 +270,79 @@
                     <div class="card test-card">
                         <div>
                             <h4>${test.title}</h4>
-                            <p style="font-size:0.75rem; color:var(--
+                            <p style="font-size:0.75rem; color:var(--color-primary-blue); font-weight:600;">Chapter ${test.chapter} | ${test.subject}</p>
+                            <p style="font-size:0.7rem; color:#888;">${test.mcqs.length} MCQs | ${test.exam}</p>
+                        </div>
+                        <button class="button primary-button" onclick="openTestModal('${test.id}')">
+                            <i class="fas fa-play"></i> Start Test
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function openTestModal(id) {
+            const test = testsData.find(t => t.id === id);
+            if(!test) return;
+            activeTestMCQs = test.mcqs;
+
+            document.getElementById('test-modal-title').innerText = test.title;
+            const qContainer = document.getElementById('mcq-questions');
+            qContainer.innerHTML = test.mcqs.map((m, i) => `
+                <div class="mcq-question">
+                    <p style="font-weight: 600; margin-bottom: 10px; font-size: 1rem;">Q${i+1}: ${m.q}</p>
+                    ${m.options.map((opt, oi) => `
+                        <div class="mcq-option">
+                            <label>
+                                <input type="radio" name="q${i}" value="${oi}" required>
+                                <span>${opt}</span>
+                            </label>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+
+            document.getElementById('mcq-form').classList.remove('hidden');
+            document.getElementById('result-summary').classList.add('hidden');
+            document.getElementById('testModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function submitTest(e) {
+            e.preventDefault();
+            let correctCount = 0;
+            activeTestMCQs.forEach((m, i) => {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`).value;
+                if(parseInt(selected) === m.answer) correctCount++;
+            });
+
+            document.getElementById('result-total').innerText = activeTestMCQs.length;
+            document.getElementById('result-correct').innerText = correctCount;
+            document.getElementById('result-percentage').innerText = ((correctCount/activeTestMCQs.length)*100).toFixed(0) + "%";
+
+            document.getElementById('mcq-form').classList.add('hidden');
+            document.getElementById('result-summary').classList.remove('hidden');
+            document.getElementById('testModal').scrollTop = 0;
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function mobileMenuToggle() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        window.onclick = (e) => { if(e.target.className === 'modal') closeModal('testModal'); };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedExam = localStorage.getItem('userExam');
+            const savedProv = localStorage.getItem('userProvince');
+            if(savedExam) document.getElementById('filter-exam').value = savedExam;
+            if(savedProv) document.getElementById('filter-province').value = savedProv;
+            loadTests();
+        });
+    </script>
+</body>
+</html>
