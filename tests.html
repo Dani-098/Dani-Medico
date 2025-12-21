@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Video Lectures - Dani Medico</title>
+    <title>Practice Tests - Dani Medico</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. CORE VARIABLES (Synced with Tests/Notes) --- */
+        /* --- 1. CORE VARIABLES --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-secondary-green: #28A745;
@@ -21,7 +21,7 @@
             --transition-speed: 0.3s;
         }
 
-        /* --- 2. GLOBAL RESET --- */
+        /* --- 2. ANTI-OVERFLOW & GLOBAL RESET --- */
         html, body { 
             width: 100%; margin: 0; padding: 0; overflow-x: hidden; position: relative; 
             box-sizing: border-box; font-family: 'Poppins', sans-serif; line-height: 1.6;
@@ -29,64 +29,71 @@
             display: flex; flex-direction: column;
         }
         *, *:before, *:after { box-sizing: inherit; }
+        * { margin: 0; padding: 0; }
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 10px 15px; flex-grow: 1; }
-        h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
+        section { padding: 1.5rem 0; }
         a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
+        h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
 
-        /* --- 3. NAVBAR --- */
-        #navbar { background: var(--color-primary-blue); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        /* --- 3. NAVBAR (Matching Home/Notes) --- */
+        #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
         .logo-img { height: 50px; width: auto; }
         .nav-links { display: flex; }
-        .nav-links a { color: #fff; margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
+        .nav-links a { color: var(--color-light); margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
         .nav-links a.active { border-bottom: 2px solid var(--color-secondary-green); }
-        .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. FILTERS --- */
+        /* --- 4. GRID SYSTEM (5 PC / 2 Mobile) --- */
+        .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
+        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
+        @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* --- 5. TEST CARD DESIGN --- */
+        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .test-card { border-left: 5px solid var(--color-secondary-green); }
+        .test-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
+
+        /* --- 6. FILTERS --- */
         .filters-section { background: white; padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .filter-group { flex: 1; min-width: 130px; }
         .filter-group label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.8rem; }
         .filter-group select { width: 100%; padding: 0.5rem; border: 1px solid #CED4DA; border-radius: 5px; font-size: 0.85rem; cursor: pointer; font-family: inherit; }
 
-        /* --- 5. GRID SYSTEM (5 PC / 2 Mobile) --- */
-        .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
-        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
-        @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-
-        /* --- 6. CARD DESIGN --- */
-        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; border-left: 5px solid var(--color-primary-blue); }
-        .card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
-        .card p { font-size: 0.75rem; margin-bottom: 5px; }
-
         /* --- 7. BUTTONS --- */
         .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; }
         .primary-button { background-color: var(--color-secondary-green); color: white; }
+        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. VIDEO MODAL (Widescreen Focus) --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 2vh auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 1100px; position: relative; }
-        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
-        
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 Ratio */ height: 0; margin-top: 15px; background: #000; border-radius: 4px; overflow: hidden; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* --- 9. FOOTER (Synced with Tests) --- */
-        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 2rem 1rem 1rem; margin-top: auto; width: 100%; }
+        /* --- 8. FOOTER --- */
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; width: 100%; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
         .footer-logo .logo-img { height: 70px; }
-        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links { display: flex; gap: 1rem; }
         .footer-links a { color: var(--color-light); font-weight: 500; font-size: 0.85rem; }
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
+
+        /* --- 9. MODAL & MCQ STYLING --- */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); overflow-y: auto; }
+        .modal-content { background-color: white; margin: 10px auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 900px; position: relative; min-height: 95vh; }
+        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 32px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
+        
+        .mcq-question { padding: 1.2rem; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 1rem; background: #fdfdfd; }
+        .mcq-option { margin: 10px 0; }
+        .mcq-option label { display: block; padding: 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .mcq-option label:hover { background: #f7f7f7; border-color: var(--color-primary-blue); }
+        .mcq-option input { margin-right: 10px; transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; box-shadow: 0 4px 8px var(--color-shadow); }
             .nav-links.active { display: flex; }
             .nav-links a { margin: 0.5rem 1rem; text-align: center; width: 90%; border-bottom: none; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.5rem; }
             .filters-section { flex-direction: column; }
-            .modal-content { width: 100%; margin: 0; height: 100%; border-radius: 0; }
         }
         .hidden { display: none !important; }
     </style>
@@ -95,71 +102,96 @@
 
     <header>
         <nav id="navbar">
-            <div class="logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"> Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="lectures.html" class="active"><i class="fas fa-video"></i> Lectures</a>
+                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
                 <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
-                <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="tests.html" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
                 <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
                 <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
             </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
     <main class="container">
-        <h2><i class="fas fa-video"></i> Video Lectures</h2>
+        <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
 
         <section class="filters-section card">
             <div class="filter-group">
                 <label>Exam:</label>
-                <select id="filter-exam" onchange="loadLectures()">
+                <select id="filter-exam" onchange="loadTests()">
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
                     <option value="NUMS">NUMS</option>
                     <option value="AKU">AKU</option>
                     <option value="BSN">BSN</option>
+                    <option value="AFNS">AFNS</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Subject:</label>
-                <select id="filter-subject" onchange="loadLectures()">
+                <select id="filter-subject" onchange="loadTests()">
                     <option value="all">All Subjects</option>
                     <option value="Biology">Biology</option>
                     <option value="Chemistry">Chemistry</option>
                     <option value="Physics">Physics</option>
                     <option value="English">English</option>
+                    <option value="Logical reasoning">Logical Reasoning</option>
+                    <option value="General Maths">General Maths</option>
+                    <option value="verbal intelligence">Verbal Intelligence</option>
+                    <option value="non verbal intelligence">Non-Verbal Intelligence</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Chapter:</label>
-                <select id="filter-chapter" onchange="loadLectures()">
+                <select id="filter-chapter" onchange="loadTests()">
                     <option value="all">All Chapters</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Province:</label>
-                <select id="filter-province" onchange="loadLectures()">
+                <select id="filter-province" onchange="loadTests()">
                     <option value="all">All Provinces</option>
                     <option value="Sindh">Sindh</option>
                     <option value="Punjab">Punjab</option>
                     <option value="KPK">KPK</option>
+                    <option value="Balochistan">Balochistan</option>
+                    <option value="Islamabad">Islamabad</option>
                 </select>
             </div>
         </section>
 
-        <div id="lectures-container" class="card-grid"></div>
-        <p id="no-content" class="hidden text-center" style="width: 100%; margin-top: 2rem;">No lectures found for this selection.</p>
+        <div id="tests-container" class="card-grid"></div>
+        <p id="no-content-message" class="hidden text-center">No tests found for this selection.</p>
     </main>
 
-    <div id="videoModal" class="modal">
+    <div id="testModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title">Lecture Title</h3>
-            <div class="video-container">
-                <iframe id="video-iframe" src="" allowfullscreen></iframe>
+            <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
+            <h3 id="test-modal-title">Quiz</h3>
+            <hr style="margin: 15px 0; opacity: 0.1;">
+            
+            <form id="mcq-form" onsubmit="submitTest(event)">
+                <div id="mcq-questions"></div>
+                <button type="submit" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                    <i class="fas fa-paper-plane"></i> Submit Test
+                </button>
+            </form>
+            
+            <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+                <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
+                <h2 style="margin-top: 1rem;">Test Completed!</h2>
+                <p style="font-size: 1.2rem; margin: 10px 0;">Your Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+                <p>Correct: <span id="result-correct"></span> / <span id="result-total"></span></p>
+                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 220px; margin: 25px auto;">Close Result</button>
             </div>
         </div>
     </div>
@@ -171,80 +203,65 @@
                 <a href="contact.html"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"></div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
             <div class="social-icons">
                 <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://www.instagram.com/dani_medicoo" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        const lectureData = [
-            { id: 'L1', title: 'Cell Biology Part 1: Basics', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', videoId: 'VIDEO_ID' }
+        // --- 1. DATA ---
+        const testsData = [
+            { 
+                id: 'T1', title: 'Cell Biology Fundamental Quiz', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', 
+                mcqs: [
+                    { q: "Which organelle is known as the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Lysosome"], answer: 1 },
+                    { q: "Cell wall is primarily made of what in plants?", options: ["Chitin", "Peptidoglycan", "Cellulose", "Glycogen"], answer: 2 }
+                ]
+            }
         ];
 
-        // Populate Chapters 1-20 Dropdown
-        const chapSelect = document.getElementById('filter-chapter');
-        for(let i=1; i<=20; i++) {
+        // --- 2. POPULATE CHAPTERS (1-20) ---
+        const chapterSelect = document.getElementById('filter-chapter');
+        for (let i = 1; i <= 20; i++) {
             let opt = document.createElement('option');
-            opt.value = i.toString(); 
-            opt.textContent = 'Chapter ' + i;
-            chapSelect.appendChild(opt);
+            opt.value = i.toString();
+            opt.textContent = "Chapter " + i;
+            chapterSelect.appendChild(opt);
         }
 
-        function loadLectures() {
-            const container = document.getElementById('lectures-container');
-            const sub = document.getElementById('filter-subject').value;
-            const chap = document.getElementById('filter-chapter').value;
-            const exam = document.getElementById('filter-exam').value;
-            const prov = document.getElementById('filter-province').value;
+        let activeTestMCQs = [];
 
-            const filtered = lectureData.filter(l => 
-                (sub === 'all' || l.subject === sub) &&
-                (chap === 'all' || l.chapter === chap) &&
-                (exam === 'all' || l.exam === exam) &&
-                (prov === 'all' || l.province === prov)
-            );
+        // --- 3. FILTER & RENDER ---
+        function loadTests() {
+            const container = document.getElementById('tests-container');
+            const examVal = document.getElementById('filter-exam').value;
+            const subVal = document.getElementById('filter-subject').value;
+            const chapVal = document.getElementById('filter-chapter').value;
+            const provVal = document.getElementById('filter-province').value;
 
-            if(filtered.length === 0) {
+            const filtered = testsData.filter(t => {
+                return (examVal === 'all' || t.exam === examVal) &&
+                       (subVal === 'all' || t.subject === subVal) &&
+                       (chapVal === 'all' || t.chapter === chapVal) &&
+                       (provVal === 'all' || t.province === provVal || t.province === 'all');
+            });
+
+            if (filtered.length === 0) {
                 container.innerHTML = '';
-                document.getElementById('no-content').classList.remove('hidden');
+                document.getElementById('no-content-message').classList.remove('hidden');
             } else {
-                document.getElementById('no-content').classList.add('hidden');
-                container.innerHTML = filtered.map(l => `
-                    <div class="card">
+                document.getElementById('no-content-message').classList.add('hidden');
+                container.innerHTML = filtered.map(test => `
+                    <div class="card test-card">
                         <div>
-                            <h4>${l.title}</h4>
-                            <p style="font-size:0.75rem; color:var(--color-primary-blue); font-weight:600;">Chapter ${l.chapter} | ${l.subject}</p>
-                        </div>
-                        <button class="button primary-button" onclick="openVideo('${l.videoId}', '${l.title}')">
-                            <i class="fas fa-play"></i> Watch Lecture
-                        </button>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function openVideo(id, title) {
-            document.getElementById('modal-title').innerText = title;
-            // Support for YouTube. Change URL if using Google Drive/other source.
-            document.getElementById('video-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-            document.getElementById('videoModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('videoModal').style.display = 'none';
-            document.getElementById('video-iframe').src = '';
-            document.body.style.overflow = 'auto';
-        }
-
-        function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
-        window.onclick = (e) => { if(e.target.className === 'modal') closeModal(); };
-        document.addEventListener('DOMContentLoaded', loadLectures);
-    </script>
-</body>
-</html>
+                            <h4>${test.title}</h4>
+                            <p style="font-size:0.75rem; color:var(--
