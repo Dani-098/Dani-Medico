@@ -196,6 +196,13 @@
                     <i class="fas fa-paper-plane"></i> Submit Test
                 </button>
             </form>
+            <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+                <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
+                <h2 style="margin-top: 1rem;">Test Completed!</h2>
+                <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+                <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
+                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
+          </div>
         </div>
     </div>
         
@@ -326,14 +333,7 @@
             document.body.style.overflow = 'auto';
         }
 
-      <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
-                <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
-                <h2 style="margin-top: 1rem;">Test Completed!</h2>
-                <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
-                <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
-                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
-            </div>
-        
+     
         function mobileMenuToggle() {
             document.getElementById('navLinks').classList.toggle('active');
         }
