@@ -107,120 +107,6 @@
         }
         .hidden { display: none !important; }
 
-        /* --- ATTEMPTS & DOWNLOAD SECTION DESIGN --- */
-
-/* 1. Result Button Grouping */
-.result-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.result-actions .button {
-    max-width: 220px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    transition: all var(--transition-speed);
-}
-
-/* 2. Download Button Special Styling (Medical Red/Blue) */
-.btn-pdf {
-    background-color: #E74C3C !important; /* PDF Red */
-    color: white !important;
-}
-
-.btn-pdf:hover {
-    background-color: #C0392B !important;
-    transform: translateY(-2px);
-}
-
-/* 3. Attempts History Container */
-#attempts-list {
-    margin-top: 30px;
-    text-align: left;
-    background: #fcfcfc;
-    border: 1px solid #eef1f5;
-    border-radius: 8px;
-    padding: 15px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-#attempts-list h4 {
-    font-size: 0.9rem;
-    color: var(--color-primary-blue);
-    border-bottom: 2px solid var(--color-light);
-    padding-bottom: 8px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* 4. Individual History Items (List) */
-#history-items {
-    list-style: none;
-    padding: 0;
-}
-
-.history-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background 0.2s;
-}
-
-.history-card:last-child {
-    border-bottom: none;
-}
-
-.history-card:hover {
-    background-color: #f8f9fa;
-}
-
-.history-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.history-date {
-    font-size: 0.7rem;
-    color: #999;
-}
-
-.history-score {
-    font-weight: 700;
-    color: var(--color-secondary-green);
-    font-size: 1rem;
-}
-
-/* 5. Watermark PDF Preview (For visual UI only, not actual PDF) */
-.watermark-note {
-    font-size: 0.7rem;
-    color: #888;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-/* --- MOBILE OPTIMIZATION --- */
-@media (max-width: 768px) {
-    .result-actions .button {
-        max-width: 100%; /* Stack buttons on phone */
-        width: 100%;
-    }
-    
-    .modal-content {
-        padding: 15px;
-    }
-}
     </style>
 </head>
 <body>
@@ -310,34 +196,10 @@
                     <i class="fas fa-paper-plane"></i> Submit Test
                 </button>
             </form>
-            
-            <div id="result-summary" class="hidden">
-    <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
-    <h2>Test Completed!</h2>
-    <p>Your Score: <strong id="result-percentage">0%</strong></p>
-
-    <div class="result-actions">
-        <button class="button btn-pdf" onclick="downloadWatermarkedPDF()">
-            <i class="fas fa-file-pdf"></i> Download Paper
-        </button>
-        <button class="button secondary-button" onclick="toggleAttempts()">
-            <i class="fas fa-history"></i> My Attempts
-        </button>
-    </div>
-    
-    <p class="watermark-note"><i class="fas fa-shield-alt"></i> Official Dani Medico Watermarked PDF</p>
-
-    <div id="attempts-list" class="hidden">
-        <h4><i class="fas fa-list-ul"></i> Your Recent Progress</h4>
-        <div id="history-items">
-            </div>
-    </div>
-    
-    <button class="button primary-button" onclick="closeModal('testModal')" style="margin-top:20px;">Close</button>
-</div>
         </div>
     </div>
-
+        
+    
     <footer>
         <div class="footer-top container">
             <div class="footer-links">
@@ -464,75 +326,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        /* --- NEW ATTEMPT & PDF LOGIC --- */
-
-// 1. Save results to local browser storage
-function saveAttempt(testTitle, score) {
-    let history = JSON.parse(localStorage.getItem('testHistory')) || [];
-    const newAttempt = {
-        title: testTitle,
-        score: score,
-        date: new Date().toLocaleDateString()
-    };
-    history.unshift(newAttempt); 
-    localStorage.setItem('testHistory', JSON.stringify(history.slice(0, 10))); 
-}
-
-// 2. Display the progress list
-function toggleAttempts() {
-    const list = document.getElementById('attempts-list');
-    const itemsContainer = document.getElementById('history-items');
-    list.classList.toggle('hidden');
-
-    let history = JSON.parse(localStorage.getItem('testHistory')) || [];
-    itemsContainer.innerHTML = history.length ? history.map(h => `
-        <div class="history-card">
-            <div class="history-info">
-                <span style="font-weight:600;">${h.title}</span>
-                <span class="history-date">${h.date}</span>
+      <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+                <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
+                <h2 style="margin-top: 1rem;">Test Completed!</h2>
+                <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+                <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
+                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
             </div>
-            <div class="history-score">${h.score}</div>
-        </div>
-    `).join('') : "<p style='padding:10px; font-size:0.8rem;'>No history yet.</p>";
-}
-
-// 3. Generate the Watermarked PDF
-function downloadWatermarkedPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-
-    // Add Light Watermark
-    doc.setTextColor(230, 230, 230);
-    doc.setFontSize(60);
-    doc.text("DANI MEDICO", pageWidth / 2, pageHeight / 2, { align: "center", angle: 45 });
-
-    // Header Content
-    doc.setTextColor(0, 123, 255); // Primary Blue
-    doc.setFontSize(20);
-    doc.text("DANI MEDICO PRACTICE PAPER", 14, 20);
-    
-    doc.setTextColor(100, 100, 100);
-    doc.setFontSize(10);
-    doc.text(`Subject: ${currentTestMCQs_data.subject} | Chapter: ${currentTestMCQs_data.chapter}`, 14, 28);
-
-    // MCQ Table
-    const tableData = currentTestMCQs_data.mcqs.map((m, i) => [
-        `Q${i+1}: ${m.q}`,
-        m.options.map((opt, oi) => `${String.fromCharCode(65 + oi)}) ${opt}`).join("\n")
-    ]);
-
-    doc.autoTable({
-        startY: 35,
-        head: [['Question', 'Options']],
-        body: tableData,
-        headStyles: { fillColor: [0, 123, 255] },
-        theme: 'grid'
-    });
-
-    doc.save(`${currentTestMCQs_data.title}_DaniMedico.pdf`);
-}
+        
         function mobileMenuToggle() {
             document.getElementById('navLinks').classList.toggle('active');
         }
