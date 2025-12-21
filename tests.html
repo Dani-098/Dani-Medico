@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Notes - Dani Medico</title>
+    <title>Practice Tests - Dani Medico</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. CORE VARIABLES (Original Design) --- */
+        /* --- 1. CORE VARIABLES (Identical to Home/Notes) --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-secondary-green: #28A745;
@@ -21,7 +21,7 @@
             --transition-speed: 0.3s;
         }
 
-        /* --- 2. ANTI-OVERFLOW & GLOBAL RESET --- */
+        /* --- 2. GLOBAL RESET & ANTI-OVERFLOW --- */
         html, body { 
             width: 100%; margin: 0; padding: 0; overflow-x: hidden; position: relative; 
             box-sizing: border-box; font-family: 'Poppins', sans-serif; line-height: 1.6;
@@ -32,11 +32,10 @@
         * { margin: 0; padding: 0; }
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 10px 15px; flex-grow: 1; }
-        section { padding: 1.5rem 0; }
-        a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
         h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
 
-        /* --- 3. NAVBAR (Home Page Design) --- */
+        /* --- 3. NAVBAR (Matching Home/Notes) --- */
         #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
         .logo-img { height: 50px; width: auto; filter: brightness(0) invert(1); }
@@ -50,11 +49,10 @@
         @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
         @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        /* --- 5. CARD DESIGN --- */
-        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
-        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
-        .lecture-card p { font-size: 0.75rem; margin-bottom: 5px; }
+        /* --- 5. TEST CARD DESIGN --- */
+        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); transition: transform 0.3s; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .test-card { border-left: 5px solid var(--color-secondary-green); }
+        .test-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
 
         /* --- 6. FILTERS --- */
         .filters-section { background: white; padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -63,35 +61,37 @@
         .filter-group select { width: 100%; padding: 0.5rem; border: 1px solid #CED4DA; border-radius: 5px; font-size: 0.85rem; cursor: pointer; }
 
         /* --- 7. BUTTONS --- */
-        .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; }
+        .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; text-decoration: none; }
         .primary-button { background-color: var(--color-secondary-green); color: white; }
         .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. FOOTER --- */
+        /* --- 8. FOOTER (Matching Home/Notes) --- */
         footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; width: 100%; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
         .footer-logo .logo-img { height: 70px; }
-        .footer-links { display: flex; gap: 1rem; }
-        .footer-links a { color: var(--color-light); font-weight: 500; font-size: 0.85rem; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: var(--color-light); font-weight: 500; }
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
 
-        /* --- 9. MODAL & 3x HEIGHT IFRAME --- */
+        /* --- 9. MODAL & MCQ STYLING --- */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 10px auto; padding: 15px; border-radius: 8px; width: 98%; max-width: 1200px; position: relative; min-height: 95vh; }
+        .modal-content { background-color: white; margin: 10px auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 900px; position: relative; min-height: 95vh; }
         .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 32px; font-weight: bold; cursor: pointer; z-index: 10; }
-        .video-container { position: relative; width: 100%; margin-top: 15px; background: #f0f0f0; border-radius: 4px; overflow: hidden; }
-
-        @media (min-width: 1024px) { .video-container { aspect-ratio: 1 / 1.4; } } /* Laptop Ratio */
-        @media (max-width: 1023px) { .video-container { aspect-ratio: 1 / 3; } } /* Mobile 3x Height */
-
-        #pdf-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
+        .mcq-question { padding: 1.2rem; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 1rem; background: #fdfdfd; }
+        .mcq-option { margin: 10px 0; }
+        .mcq-option label { display: block; padding: 12px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .mcq-option label:hover { background: #f7f7f7; border-color: var(--color-primary-blue); }
+        .mcq-option input { margin-right: 10px; transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; }
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; box-shadow: 0 4px 8px var(--color-shadow); }
             .nav-links.active { display: flex; }
             .nav-links a { margin: 0.5rem 1rem; text-align: center; width: 90%; border-bottom: none; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.5rem; }
             .filters-section { flex-direction: column; }
         }
         .hidden { display: none !important; }
@@ -101,27 +101,32 @@
 
     <header>
         <nav id="navbar">
-            <div class="logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"> Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
-                <a href="notes.html" class="active"><i class="fas fa-book-open"></i> Notes</a>
-                <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="tests.html" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
                 <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
                 <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
             </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
     <main class="container">
-        <h2><i class="fas fa-book-open"></i> Lecture Notes</h2>
+        <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
 
         <section class="filters-section card">
             <div class="filter-group">
                 <label>Exam:</label>
-                <select id="filter-exam" onchange="loadNotes()">
+                <select id="filter-exam" onchange="loadTests()">
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
                     <option value="NUMS">NUMS</option>
@@ -132,7 +137,7 @@
             </div>
             <div class="filter-group">
                 <label>Subject:</label>
-                <select id="filter-subject" onchange="loadNotes()">
+                <select id="filter-subject" onchange="loadTests()">
                     <option value="all">All Subjects</option>
                     <option value="Biology">Biology</option>
                     <option value="Chemistry">Chemistry</option>
@@ -140,17 +145,19 @@
                     <option value="English">English</option>
                     <option value="Logical reasoning">Logical Reasoning</option>
                     <option value="General Maths">General Maths</option>
+                    <option value="verbal intelligence">Verbal Intelligence</option>
+                    <option value="non verbal intelligence">Non-Verbal Intelligence</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Chapter:</label>
-                <select id="filter-chapter" onchange="loadNotes()">
+                <select id="filter-chapter" onchange="loadTests()">
                     <option value="all">All Chapters</option>
-                    </select>
+                </select>
             </div>
             <div class="filter-group">
                 <label>Province:</label>
-                <select id="filter-province" onchange="loadNotes()">
+                <select id="filter-province" onchange="loadTests()">
                     <option value="all">All Provinces</option>
                     <option value="Sindh">Sindh</option>
                     <option value="Punjab">Punjab</option>
@@ -161,16 +168,29 @@
             </div>
         </section>
 
-        <div id="notes-container" class="card-grid"></div>
-        <p id="no-content-message" class="hidden text-center">No notes found for this selection.</p>
+        <div id="tests-container" class="card-grid"></div>
+        <p id="no-content-message" class="hidden text-center">No tests found for this selection.</p>
     </main>
 
-    <div id="pdfModal" class="modal">
+    <div id="testModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('pdfModal')">&times;</span>
-            <h3 id="modal-pdf-title">View Document</h3>
-            <div class="video-container">
-                <iframe id="pdf-iframe" src=""></iframe>
+            <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
+            <h3 id="test-modal-title">Quiz</h3>
+            <hr style="margin: 15px 0; opacity: 0.2;">
+            
+            <form id="mcq-form" onsubmit="submitTest(event)">
+                <div id="mcq-questions"></div>
+                <button type="submit" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                    <i class="fas fa-paper-plane"></i> Submit Test
+                </button>
+            </form>
+            
+            <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+                <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
+                <h2 style="margin-top: 1rem;">Test Completed!</h2>
+                <p style="font-size: 1.2rem; margin: 10px 0;">Your Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+                <p>Correct: <span id="result-correct"></span> / <span id="result-total"></span></p>
+                <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 200px; margin: 20px auto;">Close Result</button>
             </div>
         </div>
     </div>
@@ -182,45 +202,55 @@
                 <a href="contact.html"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"></div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/dani_medicoo" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dani Medico. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // Data Structure with chapter property
-        const libraryData = [
-            { title: 'Bio: Cell Structure', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', chapter: '1', fileId: '1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR' },
-            { title: 'Bio: Biological Molecules', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', chapter: '2', fileId: 'PLACEHOLDER' },
-            // Add your items here...
+        // Data Structure for Tests
+        const testsData = [
+            { 
+                id: 'T1', title: 'Cell Biology Basic Mock', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', 
+                mcqs: [
+                    { q: "Which organelle is known as the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Lysosome"], answer: 1 },
+                    { q: "Cell wall is primarily made of what in plants?", options: ["Chitin", "Peptidoglycan", "Cellulose", "Glycogen"], answer: 2 }
+                ]
+            }
         ];
 
-        // Generate Chapters 1 to 20 in the dropdown
+        // Generate Chapters 1-20
         const chapterSelect = document.getElementById('filter-chapter');
         for (let i = 1; i <= 20; i++) {
-            let option = document.createElement('option');
-            option.value = i.toString();
-            option.textContent = "Chapter " + i;
-            chapterSelect.appendChild(option);
+            let opt = document.createElement('option');
+            opt.value = i.toString();
+            opt.textContent = "Chapter " + i;
+            chapterSelect.appendChild(opt);
         }
 
-        function loadNotes() {
-            const container = document.getElementById('notes-container');
-            const exam = document.getElementById('filter-exam').value;
-            const subject = document.getElementById('filter-subject').value;
-            const chapter = document.getElementById('filter-chapter').value;
-            const province = document.getElementById('filter-province').value;
+        let currentActiveMCQs = [];
 
-            const filtered = libraryData.filter(item => {
-                return (exam === 'all' || item.exam === exam) &&
-                       (subject === 'all' || item.subject === subject) &&
-                       (chapter === 'all' || item.chapter === chapter) &&
-                       (province === 'all' || item.province === province || item.province === 'all');
+        function loadTests() {
+            const container = document.getElementById('tests-container');
+            const examVal = document.getElementById('filter-exam').value;
+            const subVal = document.getElementById('filter-subject').value;
+            const chapVal = document.getElementById('filter-chapter').value;
+            const provVal = document.getElementById('filter-province').value;
+
+            const filtered = testsData.filter(t => {
+                return (examVal === 'all' || t.exam === examVal) &&
+                       (subVal === 'all' || t.subject === subVal) &&
+                       (chapVal === 'all' || t.chapter === chapVal) &&
+                       (provVal === 'all' || t.province === provVal || t.province === 'all');
             });
 
             if (filtered.length === 0) {
@@ -228,38 +258,83 @@
                 document.getElementById('no-content-message').classList.remove('hidden');
             } else {
                 document.getElementById('no-content-message').classList.add('hidden');
-                container.innerHTML = filtered.map(note => `
-                    <div class="card lecture-card">
+                container.innerHTML = filtered.map(test => `
+                    <div class="card test-card">
                         <div>
-                            <h4>${note.title}</h4>
-                            <p style="font-size:0.75rem; color:var(--color-primary-blue); font-weight:600;">Chapter ${note.chapter} | ${note.subject}</p>
+                            <h4>${test.title}</h4>
+                            <p style="font-size:0.75rem; color:var(--color-primary-blue); font-weight:600;">Chapter ${test.chapter} | ${test.subject}</p>
+                            <p style="font-size:0.7rem; color:#888;">${test.mcqs.length} MCQs | ${test.exam}</p>
                         </div>
-                        <button class="button primary-button" onclick="openPDF('${note.fileId}', '${note.title}')">View PDF</button>
-                        <a href="https://drive.google.com/uc?id=${note.fileId}&export=download" class="button secondary-button">Download</a>
+                        <button class="button primary-button" onclick="openTestModal('${test.id}')">
+                            <i class="fas fa-play"></i> Start Test
+                        </button>
                     </div>
                 `).join('');
             }
         }
 
-        function openPDF(fileId, title) {
-            const iframe = document.getElementById('pdf-iframe');
-            document.getElementById('modal-pdf-title').innerText = title;
-            iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
-            document.getElementById('pdfModal').style.display = 'block';
+        function openTestModal(id) {
+            const test = testsData.find(t => t.id === id);
+            if(!test) return;
+            currentActiveMCQs = test.mcqs;
+
+            document.getElementById('test-modal-title').innerText = test.title;
+            const qContainer = document.getElementById('mcq-questions');
+            qContainer.innerHTML = test.mcqs.map((m, i) => `
+                <div class="mcq-question">
+                    <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
+                    ${m.options.map((opt, oi) => `
+                        <div class="mcq-option">
+                            <label>
+                                <input type="radio" name="q${i}" value="${oi}" required>
+                                <span>${opt}</span>
+                            </label>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+
+            document.getElementById('mcq-form').classList.remove('hidden');
+            document.getElementById('result-summary').classList.add('hidden');
+            document.getElementById('testModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
+        }
+
+        function submitTest(e) {
+            e.preventDefault();
+            let correctCount = 0;
+            currentActiveMCQs.forEach((m, i) => {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`).value;
+                if(parseInt(selected) === m.answer) correctCount++;
+            });
+
+            document.getElementById('result-total').innerText = currentActiveMCQs.length;
+            document.getElementById('result-correct').innerText = correctCount;
+            document.getElementById('result-percentage').innerText = ((correctCount/currentActiveMCQs.length)*100).toFixed(0) + "%";
+
+            document.getElementById('mcq-form').classList.add('hidden');
+            document.getElementById('result-summary').classList.remove('hidden');
+            document.getElementById('testModal').scrollTop = 0;
         }
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
-            document.getElementById('pdf-iframe').src = '';
             document.body.style.overflow = 'auto';
         }
 
-        function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
-        
-        window.onclick = (e) => { if(e.target.className === 'modal') closeModal('pdfModal'); }
+        function mobileMenuToggle() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
 
-        document.addEventListener('DOMContentLoaded', loadNotes);
+        window.onclick = (e) => { if(e.target.className === 'modal') closeModal('testModal'); };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedExam = localStorage.getItem('userExam');
+            const savedProv = localStorage.getItem('userProvince');
+            if(savedExam) document.getElementById('filter-exam').value = savedExam;
+            if(savedProv) document.getElementById('filter-province').value = savedProv;
+            loadTests();
+        });
     </script>
 </body>
 </html>
