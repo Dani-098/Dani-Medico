@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MNRPJ4X6');</script>
-<!-- End Google Tag Manager -->
-    
-    <style>
+<style>
         /* --- 1. CORE VARIABLES --- */
         :root {
             --color-primary-blue: #007BFF;
@@ -77,7 +74,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         /* --- 8. FULL SCREEN MODAL --- */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 10px auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 1200px; position: relative; min-height: 95vh; box-shadow: 0 5px 25px rgba(0,0,0,0.5); }
+        .modal-content { 
+            background-color: white; 
+            margin: 10px auto; 
+            padding: 20px; 
+            border-radius: 8px; 
+            width: 98%; 
+            max-width: 1200px; 
+            position: relative; 
+            min-height: 95vh;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
         .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
         
         .mcq-question { padding: 1.5rem; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 1.5rem; background: #fdfdfd; }
@@ -97,6 +104,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
 
+        #timer-display {
+            font-weight: bold;
+            color: #dc3545;
+            background: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 2px solid #dc3545;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; box-shadow: 0 4px 8px var(--color-shadow); }
@@ -109,11 +127,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MNRPJ4X6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <header>
+<header>
         <nav id="navbar">
             <div class="logo">
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
@@ -189,6 +205,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
             <h3 id="test-modal-title">Interactive Quiz</h3>
+            
+            <div id="timer-container" class="text-center">
+                <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+            </div>
+
             <hr style="margin: 15px 0; opacity: 0.1;">
             
             <form id="mcq-form" onsubmit="submitTest(event)">
@@ -198,13 +219,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </button>
             </form>
 
+            <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
+                <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
+                    <i class="fas fa-arrow-left"></i> Back to Results
+                </button>
+            </div>
+
             <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
                 <i class="fas fa-award" style="font-size: 4rem; color: var(--color-secondary-green);"></i>
                 <h2 style="margin-top: 1rem;">Test Completed!</h2>
                 <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
                 <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
                 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
                     <button class="button secondary-button" onclick="checkTest()">
                         <i class="fas fa-search"></i> Check Test
                     </button>
@@ -234,86 +261,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
     </footer>
 
+    <script src="dow-test1.js"></script>
+
     <script>
-        const testsData = [
-    { 
-        id: 'T1', 
-        title: 'DOW: BSN MOCK TEST (Nursing Past Paper 2022)', 
-        subject: 'All Subjects', 
-        chapter: 'All Chapters', 
-        exam: 'BSN', 
-        province: 'Sindh', 
-        mcqs: [
-            // VERBAL SECTION
-            { q: "Choose the word most similar in meaning to VEIL:", options: ["conceal", "disclose", "uncover", "beauty"], answer: 0 },
-            { q: "Choose the word most similar in meaning to RECREATION:", options: ["business", "labor", "profession", "hobby"], answer: 3 },
-            { q: "CURATOR: ART::", options: ["archivist: documents", "referee: laws", "physician: research", "raconteur: stories"], answer: 0 },
-            { q: "STRAY: GROUP::", options: ["improvise: suggestion", "slur: pronunciation", "delete: change", "digress: subject"], answer: 3 },
-            { q: "FIRM: IRONCLAD::", options: ["bruised: broken", "polished: shining", "smart: brilliant", "hard: stiff"], answer: 2 },
-            { q: "The director of purchasing can _________ the best price.", options: ["negotiable", "negotiate", "negotiator", "negotiation"], answer: 1 },
-            { q: "Your speech was not relevant _________ the topic.", options: ["by", "with", "to", "about"], answer: 2 },
-            { q: "It is _________ inflation that distorts prices and sends economies tumbling.", options: ["a galloping inflation rate", "because a galloping inflation rate", "by a galloping inflation rate", "an inflation rate is galloping"], answer: 0 },
-            { q: "The world is _________ a serious energy problem.", options: ["heading", "braving", "facing", "confronting"], answer: 2 },
-            { q: "_________ of human resources is interviewing applicants.", options: ["Director", "The directors", "The director", "Directors"], answer: 2 },
-
-            // PHYSICS SECTION
-            { q: "The earth's magnetic field:", options: ["Varies in both magnitude and direction", "Is centered exactly on the centre of the earth", "Varies in magnitude but not in direction", "Varies in direction but not magnitude"], answer: 0 },
-            { q: "Electromagnetic waves travel in vacuum with speeds that are:", options: ["equal to speed of light", "near to speed of light", "greater than speed of light", "lesser than speed of light"], answer: 0 },
-            { q: "The gravity at the center of earth is:", options: ["10", "1", "Infinity", "Zero"], answer: 3 },
-            { q: "Newton's second law gives information of:", options: ["Force", "Acceleration", "Mass", "Both B and C"], answer: 0 },
-            { q: "The shortest distance between two points is:", options: ["Distance", "Displacement", "Speed", "velocity"], answer: 1 },
-            { q: "The slope of the distance time graph gives:", options: ["Acceleration", "Speed", "Intensity of light", "Power"], answer: 1 },
-            { q: "Rate of doing work is called:", options: ["Energy", "Power", "Momentum", "Impulse"], answer: 1 },
-            { q: "When a wave enters from rare to denser medium then which quantity will remain the same?", options: ["Wavelength", "Velocity", "Both a and b", "frequency"], answer: 3 },
-            { q: "First law of motion is also called:", options: ["Law of inertia", "Law of mass", "Law of body", "Law of surface"], answer: 0 },
-            { q: "Static friction is independent of:", options: ["Area of contact", "Nature of surface", "Both A and B", "Applied force"], answer: 0 },
-            { q: "The study of motion of body is called:", options: ["Mechanics", "Heat", "Light", "Sound"], answer: 0 },
-            { q: "The value of pressure decreases as:", options: ["Height decreases", "Height increases", "Independent of height", "Depth decreases"], answer: 1 },
-            { q: "Which of the following is scalar quantity?", options: ["Speed", "Displacement", "Velocity", "Force"], answer: 0 },
-            { q: "The electric potential is zero:", options: ["Midway between two equal charges of same sign", "Midway between any two charges of opposite sign", "Inside a conductor", "At any point to equal distances from equal charges of opposite sign"], answer: 3 },
-            { q: "The unit of co-efficient of friction is:", options: ["joule", "No unit", "Newton", "Coulomb"], answer: 1 },
-            { q: "Name experiment(s) that demonstrates light behaving like a wave:", options: ["Photoelectric Effect", "Young's Double Slit Interference", "Doppler's Effect", "Both A and B"], answer: 1 },
-            { q: "If an object is placed 30 cm from a convex lens whose focal length is 15 cm, the image size compared to object will be:", options: ["more than twice as large", "1.5 times as large", "smaller", "the same"], answer: 3 },
-            { q: "At points where the displacements of two waves cancel each other's effect, the effect is known as:", options: ["Constructive interference", "Destructive interference", "Stationary interference", "Simple interference"], answer: 1 },
-
-            // CHEMISTRY SECTION
-            { q: "The attractive force that holds two hydrogen containing molecules together in a liquid mixture is called:", options: ["Hydrogen bonding", "Dipole forces", "Amine binding", "Chemical bond"], answer: 0 },
-            { q: "Heat evolved or absorbed during the chemical reaction does NOT depend on the:", options: ["Amount of substance", "Temperature", "Physical state", "Presence of Catalyst"], answer: 3 },
-            { q: "The term active mass means _________ in terms of moles/dm3.", options: ["Moles", "Concentration", "Volume", "Mass"], answer: 1 },
-            { q: "Rate of chemical reactions is directly proportional to active concentrations of reactants according to:", options: ["Le-Chatlier's Principle", "The Distribution Law", "Law of Constant Proportions", "Law of Mass Action"], answer: 3 },
-            { q: "The lowest whole number ratio of elements present in a compound is:", options: ["Formula mass", "Molecular mass", "Formula unit", "Empirical formula"], answer: 3 },
-            { q: "One gram molecular mass is possessed by:", options: ["One mole of calcium chloride", "One mole of sodium chloride", "One mole of carbon atom", "One mole of water"], answer: 3 },
-            { q: "Maximum number of electrons accommodated by M-shell is:", options: ["4", "5", "10", "18"], answer: 3 },
-            { q: "Presence of free mobile electrons is a characteristic feature of:", options: ["Ionic bonding", "Metallic bonding", "Covalent bonding", "Dative bonding"], answer: 1 },
-            { q: "Mass per unit volume of a substance is determined in terms of:", options: ["Vapor pressure", "Surface tension", "Weight", "Density"], answer: 3 },
-            { q: "Solubility of the majority of substances is predominantly affected by:", options: ["Pressure", "Vapor pressure", "Temperature", "Surface tension"], answer: 2 },
-            { q: "Active mass of a pure substance is always:", options: ["Equal to one", "Less than one", "Greater than one", "Negative"], answer: 0 },
-
-            // BIOLOGY SECTION
-            { q: "Ringworm disease in man is caused by:", options: ["Trichosporon", "Aspergillus", "Sporobolomycus", "Microsporum"], answer: 3 },
-            { q: "A facultative parasite is:", options: ["An obligate saprophyte", "Parasitic but can live as saprophyte", "Normally a saprophyte", "Normally a saprophyte but can live as parasite under favorable conditions"], answer: 3 },
-            { q: "Phyllode is a modified:", options: ["Leaf", "Petiole", "Stem", "Branch"], answer: 1 },
-            { q: "The phenomenon of 'sulphur shower' is found in:", options: ["Mosses", "Cycas", "Dryopteris", "Pinus"], answer: 3 },
-            { q: "The cauliflower used as a vegetable is:", options: ["A bunch of fertile flowers", "Undifferentiated compaction of leaves", "A fleshy inflorescence", "None of the above"], answer: 2 },
-            { q: "The common phase between aerobic and anaerobic respiration is called:", options: ["Tricarboxylic acid cycle", "Oxidative phosphorylation", "Embeden Meyerhof-Parnas pathway (Glycolysis)", "Kreb's cycle"], answer: 2 },
-            { q: "Niche represents:", options: ["Habitats", "Microhabitats", "Habitat as well as interrelations", "Habitat as well as climates"], answer: 2 },
-            { q: "Genetically engineered bacteria have been used in commercial production of:", options: ["Thyroxine", "Testosterone", "Human insulin", "Melatonin"], answer: 2 },
-            { q: "The UV-rays in atmosphere are checked by:", options: ["O3 (Ozone)", "O2", "H2", "Cl2"], answer: 0 },
-            { q: "Synecology is the study of:", options: ["Biosphere", "Individuals", "Environment", "Community in relation to environment"], answer: 3 },
-            { q: "Germination of the seed is promoted by:", options: ["Green light", "Red light", "Blue light", "Infrared light"], answer: 1 },
-            { q: "Which one is the most threatened area on earth for wildlife?", options: ["Sub-tropical rain forest", "Tropical rain forest", "Antarctica forest", "Both A and B"], answer: 1 },
-            { q: "The Pellicle is present in:", options: ["Amoeba Verrucosa", "Amoeba Proteus", "Amoeba Dubia", "Paramecium (implied/Pellicle carriers)"], answer: 3 },
-            { q: "Which of the following has a clitellum?", options: ["Earthworm", "Nereis", "Cockroach", "Flatworm"], answer: 0 },
-            { q: "The ATP is formed in:", options: ["Ribosomes", "Golgi bodies", "Mitochondria", "None of the above"], answer: 2 },
-            { q: "A pyrimidine that is absent in RNA is:", options: ["Uracil", "Thymine", "Cytosine", "Adenine"], answer: 1 },
-            { q: "In frog, the vein that brings blood from the tongue is:", options: ["Lingual", "Cutaneous", "Anterior abdominal", "Azygos"], answer: 0 },
-            { q: "Flexing or bending of the arm is done by:", options: ["Biceps", "Triceps", "Paralysis", "Paresis"], answer: 0 },
-            { q: "4th ventricle is present in:", options: ["Optic lobes", "Diencephalon", "Medulla oblongata", "Brainstem structure"], answer: 2 },
-            { q: "Egg-laying mammals belong to which group?", options: ["Placentals", "Marsupials", "Monotremes", "Cetacea"], answer: 2 }
-        ]
-    }
-];
-
         const chapterSelect = document.getElementById('filter-chapter');
         for (let i = 1; i <= 20; i++) {
             let opt = document.createElement('option');
@@ -325,6 +275,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         let activeTestMCQs = [];
         let userSelections = [];
         let currentOpenTest = null;
+        let timerInterval = null;
+        let totalSeconds = 0;
 
         function loadTests() {
             const container = document.getElementById('tests-container');
@@ -360,6 +312,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         }
 
+        function startTimer(duration) {
+            clearInterval(timerInterval);
+            totalSeconds = duration;
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                totalSeconds--;
+                updateTimerDisplay();
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    autoSubmitTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById('time-left').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function autoSubmitTest() {
+            alert("Time is up! Your test is being submitted.");
+            const form = document.getElementById('mcq-form');
+            // Fill unselected answers with -1 to avoid validation errors if any
+            activeTestMCQs.forEach((_, i) => {
+                const radios = document.getElementsByName(`q${i}`);
+                let checked = false;
+                radios.forEach(r => { if(r.checked) checked = true; });
+                if(!checked) {
+                    const dummy = document.createElement('input');
+                    dummy.type = 'radio';
+                    dummy.name = `q${i}`;
+                    dummy.value = "-1";
+                    dummy.checked = true;
+                    dummy.style.display = 'none';
+                    form.appendChild(dummy);
+                }
+            });
+            document.getElementById('submit-btn').click();
+        }
+
         function openTestModal(id) {
             const test = testsData.find(t => t.id === id);
             if(!test) return;
@@ -387,20 +382,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             document.getElementById('mcq-form').classList.remove('hidden');
             document.getElementById('result-summary').classList.add('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+            document.getElementById('review-actions').classList.add('hidden');
+            document.getElementById('timer-container').classList.remove('hidden');
             document.getElementById('testModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
+
+            // Start timer: 40 seconds per question
+            startTimer(activeTestMCQs.length * 40);
         }
 
         function submitTest(e) {
-            e.preventDefault();
+            if(e) e.preventDefault();
+            clearInterval(timerInterval);
+            document.getElementById('timer-container').classList.add('hidden');
+            
             let correctCount = 0;
             userSelections = [];
 
             activeTestMCQs.forEach((m, i) => {
-                const selected = document.querySelector(`input[name="q${i}"]:checked`).value;
-                const selectedIdx = parseInt(selected);
-                userSelections.push(selectedIdx);
-                if(selectedIdx === m.answer) correctCount++;
+                const radios = document.getElementsByName(`q${i}`);
+                let val = -1;
+                radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+                userSelections.push(val);
+                if(val === m.answer) correctCount++;
             });
 
             document.getElementById('result-total').innerText = activeTestMCQs.length;
@@ -416,24 +421,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.getElementById('mcq-form').classList.remove('hidden');
             document.getElementById('result-summary').classList.add('hidden');
             document.getElementById('submit-btn').classList.add('hidden');
+            document.getElementById('review-actions').classList.remove('hidden');
 
             activeTestMCQs.forEach((m, i) => {
                 const selectedIdx = userSelections[i];
                 const correctIdx = m.answer;
                 
-                // Disable all inputs
                 const inputs = document.getElementsByName(`q${i}`);
                 inputs.forEach(input => input.disabled = true);
 
-                // Highlight correct and wrong
                 const correctLabel = document.getElementById(`label-${i}-${correctIdx}`);
-                correctLabel.classList.add('correct-ans');
+                if(correctLabel) correctLabel.classList.add('correct-ans');
 
-                if (selectedIdx !== correctIdx) {
+                if (selectedIdx !== -1 && selectedIdx !== correctIdx) {
                     const wrongLabel = document.getElementById(`label-${i}-${selectedIdx}`);
-                    wrongLabel.classList.add('wrong-ans');
+                    if(wrongLabel) wrongLabel.classList.add('wrong-ans');
                 }
             });
+        }
+
+        function backToResults() {
+            document.getElementById('mcq-form').classList.add('hidden');
+            document.getElementById('result-summary').classList.remove('hidden');
+            document.getElementById('review-actions').classList.add('hidden');
         }
 
         function downloadTestPDF() {
@@ -442,12 +452,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const pageWidth = doc.internal.pageSize.getWidth();
             const pageHeight = doc.internal.pageSize.getHeight();
 
-            // Watermark Logic
             doc.setTextColor(230, 230, 230);
             doc.setFontSize(55);
             doc.text("Danimedico.com", pageWidth / 2, pageHeight / 2, { align: "center", angle: 45 });
 
-            // Document Title
             doc.setTextColor(0, 0, 0);
             doc.setFontSize(18);
             doc.text(currentOpenTest.title, 14, 20);
@@ -473,6 +481,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         function closeModal(id) {
+            clearInterval(timerInterval);
             document.getElementById(id).style.display = 'none';
             document.body.style.overflow = 'auto';
             document.getElementById('submit-btn').classList.remove('hidden');
