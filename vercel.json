@@ -1,7 +1,11 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/common", "destination": "/common.html" },
-    { "source": "/lumhs-mock-test1", "destination": "/test1.html" }
+    { "source": "/home", "destination": "/index.html" },
+    { "source": "/updates", "destination": "/announcement.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/practice-tests", "destination": "/tests.html" },
+    { "source": "/past-papers", "destination": "/past-papers.html" },
+    { "source": "/notes", "destination": "/notes.html" }
   ]
 }
