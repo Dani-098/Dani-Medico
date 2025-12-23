@@ -91,12 +91,15 @@
         .wrong-ans { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
 
         /* --- 9. FOOTER --- */
-        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 2rem 1rem 1rem; margin-top: auto; width: 100%; }
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
-        .footer-logo .logo-img { height: 70px; }
+        .footer-logo .logo-img { height: 80px; }
         .footer-links { display: flex; gap: 1.5rem; }
-        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
-        .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
+        .footer-links a { color: var(--color-light); font-weight: 500; transition: color var(--transition-speed); }
+        .footer-links a:hover { color: var(--color-secondary-green); }
+        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; transition: color var(--transition-speed); }
+        .social-icons a:hover { color: var(--color-secondary-green); }
+        .footer-bottom { text-align: center; padding: 1rem 0; }
 
         #timer-display {
             font-weight: bold;
