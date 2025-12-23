@@ -193,7 +193,7 @@
         <div class="nav-links" id="navLinks">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
             <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+            <a href="lectures.html"><i class="fas fa-video"></i> Books</a>
             <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
             <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
             <a href="past-papers.html" class="active"><i class="fas fa-file-alt"></i> Papers</a>
@@ -213,6 +213,7 @@
                 <select id="exam-select" onchange="applyFilters()">
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
+                    <option value="MDCAT">BSN</option>
                     <option value="NUMS">NUMS</option>
                     <option value="AKU">AKU</option>
                 </select>
@@ -238,6 +239,26 @@
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
+                    <option value="2020">2019</option>
+                    <option value="2020">2018</option>
+                    <option value="2020">2017</option>
+                    <option value="2020">2016</option>
+                    <option value="2020">2015</option>
+                    <option value="2020">2014</option>
+                    <option value="2020">2013</option>
+                    <option value="2020">2012</option>
+                    <option value="2020">2011</option>
+                    <option value="2020">2010</option>
+                    <option value="2020">2009</option>
+                    <option value="2020">2008</option>
+                    <option value="2020">2007</option>
+                    <option value="2020">2006</option>
+                    <option value="2020">2005</option>
+                    <option value="2020">2004</option>
+                    <option value="2020">2003</option>
+                    <option value="2020">2002</option>
+                    <option value="2020">2001</option>
+                    <option value="2020">2000</option>
                 </select>
             </div>
         </section>
@@ -280,8 +301,32 @@
 
     <script>
         const papersData = [
-            { title: "MDCAT Sindh 2024", exam: "MDCAT", province: "Sindh", year: "2024", fileId: "1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR" },
-            { title: "MDCAT Punjab 2024", exam: "MDCAT", province: "Punjab", year: "2024", fileId: "1VRqxRUjFi4QiVAR9NjZ1pIH18wkZ8R3V" }
+            { title: "MDCAT Sindh 2025", exam: "MDCAT", province: "Sindh", year: "2025", fileId: "1aVMzK5FnUxGhBB9lcLucqYlaW3C0Il7u" },
+            { title: "MDCAT Sindh 2024", exam: "MDCAT", province: "Sindh", year: "2024", fileId: "13PpTaq7xOmr2mWxUrvZJWOrcuOOgz1nE" },
+            { title: "MDCAT Sindh 2023", exam: "MDCAT", province: "Sindh", year: "2023", fileId: "1wTiADKOzazA9i7C6SBPcPSpgLaB5fJBL" },
+            { title: "MDCAT Sindh 2022", exam: "MDCAT", province: "Sindh", year: "2022", fileId: "1JQYaH6Jg-NJuuP08DC88ep9r66eXNwpj" },
+            { title: "MDCAT Sindh 2021", exam: "MDCAT", province: "Sindh", year: "2021", fileId: "12Vyeo5YiduJimPaU8kr3b7N33NII7oXY" },
+            { title: "MDCAT Sindh 2020", exam: "MDCAT", province: "Sindh", year: "2020", fileId: "1u_nquAei1AKy8xZfu3FzlHCXxugTdjej" },
+            { title: "MDCAT Sindh 2019", exam: "MDCAT", province: "Sindh", year: "2019", fileId: "1u_nquAei1AKy8xZfu3FzlHCXxugTdjej" },
+            { title: "MDCAT Sindh 2018", exam: "MDCAT", province: "Sindh", year: "2018", fileId: "1b2hrX4zBv3-D05LSsasxu-kNmqm2unSo" },
+            { title: "MDCAT Sindh 2017", exam: "MDCAT", province: "Sindh", year: "2017", fileId: "1cQvDKnkKldcwpaBaBtHXP0WTndNXEFMp" },
+            { title: "MDCAT Sindh 2016", exam: "MDCAT", province: "Sindh", year: "2016", fileId: "1FsBxPOB-KkjMUYWbOM6eU-DMUc5E7jCi" },
+            { title: "MDCAT Sindh 2015", exam: "MDCAT", province: "Sindh", year: "2015", fileId: "1C5N9bb5mpBs5eweugfn81HMKqu3N5gmI" },
+            { title: "MDCAT Sindh 2014", exam: "MDCAT", province: "Sindh", year: "2014", fileId: "1rSKlKfS-EHZXxYNkqy4cXlAY11jLrwwY" },
+            { title: "MDCAT Sindh 2013", exam: "MDCAT", province: "Sindh", year: "2013", fileId: "1lFE8N0vE9oxfb7N8W_MAWE4s_LlqGREo" },
+            { title: "MDCAT Sindh 2012", exam: "MDCAT", province: "Sindh", year: "2012", fileId: "1v5Djm-q6qVBiXa6Dt9Wd9qhvzC1CGwRO" },
+            { title: "MDCAT Sindh 2011", exam: "MDCAT", province: "Sindh", year: "2011", fileId: "1lRh6eV-UTiVRMmz_hlkY5FptqFM-XOz_" },
+            { title: "MDCAT Sindh 2010", exam: "MDCAT", province: "Sindh", year: "2010", fileId: "1dCTll9tHF7DSxV128Zc4J1p5IS-KNgEj" },
+            { title: "MDCAT Sindh 2009", exam: "MDCAT", province: "Sindh", year: "2009", fileId: "1x0oM-TPxW3Y4fb-RQXg5dQ8Sr7qj62ju" },
+            { title: "MDCAT Sindh 2008", exam: "MDCAT", province: "Sindh", year: "2008", fileId: "1B1eV6Xjmru_Xk5RvJ0_yZLysem4bw3G9" },
+            { title: "MDCAT Sindh 2007", exam: "MDCAT", province: "Sindh", year: "2007", fileId: "1hw7G4oZESk7WDnf4bb52OZfrGds-0iZZ" },
+            { title: "MDCAT Sindh 2006", exam: "MDCAT", province: "Sindh", year: "2006", fileId: "1_q5GrmkFLTAStndcmMQfmN8BMN6HHaX2" },
+            { title: "MDCAT Sindh 2005", exam: "MDCAT", province: "Sindh", year: "2005", fileId: "14YpUd-H8GA7_IP9zyPTyihI6VpQVlslv" },
+            { title: "MDCAT Sindh 2004", exam: "MDCAT", province: "Sindh", year: "2004", fileId: "1QzbgHqv1muhrcqNsqb99pgGlCKAI7GYO" },
+            { title: "MDCAT Sindh 2003", exam: "MDCAT", province: "Sindh", year: "2003", fileId: "1FywfjE5bEJCekOTGqvMoCYl-0xpBYrTq" },
+            { title: "MDCAT Sindh 2002", exam: "MDCAT", province: "Sindh", year: "2002", fileId: "1uCtMfCrZuNHTBzdeeOVBPd5nHSxVy02p" },
+            { title: "MDCAT Sindh 2001", exam: "MDCAT", province: "Sindh", year: "2001", fileId: "1A2il3430bpzMsn9OhABUAoQ9Ij65_GRe" },
+            { title: "MDCAT Sindh 2000", exam: "MDCAT", province: "Sindh", year: "2000", fileId: "18WufyrAsJZgWE-wyXl0jZnsucdFnyDak" }
         ];
 
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
