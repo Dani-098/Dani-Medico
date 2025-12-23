@@ -6,6 +6,7 @@
     { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/practice-tests", "destination": "/tests.html" },
     { "source": "/past-papers", "destination": "/past-papers.html" },
-    { "source": "/notes", "destination": "/notes.html" }
+    { "source": "/notes", "destination": "/notes.html" },
+    { "source": "/books", "destination": "/lectures.html" }
   ]
 }
