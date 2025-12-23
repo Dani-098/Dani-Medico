@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Video Lectures - Dani Medico</title>
+    <title>Books- Dani Medico</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. CORE VARIABLES (Synced with Tests/Notes) --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-secondary-green: #28A745;
@@ -21,7 +20,7 @@
             --transition-speed: 0.3s;
         }
 
-        /* --- 2. GLOBAL RESET --- */
+        /* ANTI-OVERFLOW & GLOBAL RESET */
         html, body { 
             width: 100%; margin: 0; padding: 0; overflow-x: hidden; position: relative; 
             box-sizing: border-box; font-family: 'Poppins', sans-serif; line-height: 1.6;
@@ -31,51 +30,46 @@
         *, *:before, *:after { box-sizing: inherit; }
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 10px 15px; flex-grow: 1; }
-        h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
+        section { padding: 1.5rem 0; }
         a { text-decoration: none; color: var(--color-primary-blue); transition: color var(--transition-speed); }
+        h1, h2, h3, h4 { color: var(--color-dark); margin-bottom: 1rem; }
 
-        /* --- 3. NAVBAR --- */
-        #navbar { background: var(--color-primary-blue); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        /* NAVBAR (Exactly like Home) */
+        #navbar { background: var(--color-primary-blue); color: var(--color-light); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px var(--color-shadow); z-index: 1000; position: sticky; top: 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.5rem; }
         .logo-img { height: 60px; width: auto; }
         .nav-links { display: flex; }
-        .nav-links a { color: #fff; margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
+        .nav-links a { color: var(--color-light); margin-left: 1.5rem; padding: 0.5rem 0; font-weight: 500; border-bottom: 2px solid transparent; }
         .nav-links a.active { border-bottom: 2px solid var(--color-secondary-green); }
-        .mobile-menu-btn { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.5rem; cursor: pointer; }
 
-        /* --- 4. FILTERS --- */
-        .filters-section { background: white; padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-        .filter-group { flex: 1; min-width: 130px; }
-        .filter-group label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.8rem; }
-        .filter-group select { width: 100%; padding: 0.5rem; border: 1px solid #CED4DA; border-radius: 5px; font-size: 0.85rem; cursor: pointer; font-family: inherit; }
-
-        /* --- 5. GRID SYSTEM (5 PC / 2 Mobile) --- */
+        /* GRID SYSTEM (5 PC / 2 Mobile) */
         .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
         @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
         @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        /* --- 6. CARD DESIGN --- */
-        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; border-left: 5px solid var(--color-primary-blue); }
-        .card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
-        .card p { font-size: 0.75rem; margin-bottom: 5px; }
+        /* CARD DESIGN */
+        .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
+        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
+        .lecture-card p { font-size: 0.75rem; margin-bottom: 5px; }
 
-        /* --- 7. BUTTONS --- */
+        /* FILTERS */
+        .filters-section { background: white; padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .filter-group { flex: 1; min-width: 130px; }
+        .filter-group label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.8rem; }
+        .filter-group select { width: 100%; padding: 0.5rem; border: 1px solid #CED4DA; border-radius: 5px; font-size: 0.85rem; cursor: pointer; }
+
+        /* BUTTONS */
         .button { display: block; padding: 8px 5px; border-radius: 5px; font-weight: 600; cursor: pointer; text-align: center; border: 2px solid transparent; font-size: 0.75rem; width: 100%; margin-top: 5px; }
-        .primary-button { background-color: var(--color-secondary-green); color: white; }
+        .primary-button { background-color: var(--color-secondary-green); color: var(--color-light); }
+        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
 
-        /* --- 8. VIDEO MODAL (Widescreen Focus) --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); overflow-y: auto; }
-        .modal-content { background-color: white; margin: 2vh auto; padding: 20px; border-radius: 8px; width: 98%; max-width: 1100px; position: relative; }
-        .close-btn { position: absolute; top: 10px; right: 20px; color: var(--color-dark); font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10; line-height: 1; }
-        
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; /* 16:9 Ratio */ height: 0; margin-top: 15px; background: #000; border-radius: 4px; overflow: hidden; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* --- 9. FOOTER (Synced with Tests) --- */
-        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 2rem 1rem 1rem; margin-top: auto; width: 100%; }
+        /* FOOTER (Exactly like Home) */
+        footer { background-color: var(--color-primary-blue); color: var(--color-light); padding: 1.5rem 1rem 0; margin-top: 2rem; width: 100%; }
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
-        .footer-logo .logo-img { height: 70px; }
-        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-logo .logo-img { height: 80px; }
+        .footer-links { display: flex; gap: 1rem; }
         .footer-links a { color: var(--color-light); font-weight: 500; font-size: 0.85rem; }
         .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; }
         .footer-bottom { text-align: center; padding: 1rem 0; font-size: 0.8rem; }
@@ -85,96 +79,127 @@
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--color-primary-blue); padding: 1rem 0; box-shadow: 0 4px 8px var(--color-shadow); }
             .nav-links.active { display: flex; }
             .nav-links a { margin: 0.5rem 1rem; text-align: center; width: 90%; border-bottom: none; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.5rem; }
             .filters-section { flex-direction: column; }
-            .modal-content { width: 100%; margin: 0; height: 100%; border-radius: 0; }
         }
-        .hidden { display: none !important; }
+
+        /* MODAL & FULL-SCREEN IFRAME LOGIC */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(5px); 
+    overflow-y: auto; 
+}
+
+.modal-content { 
+    background-color: white; 
+    margin: 10px auto; /* Small margin to keep it looking clean */
+    padding: 10px; 
+    border-radius: 8px; 
+    width: 98%; /* Occupy almost all horizontal screen space */
+    max-width: 1200px; /* Wider for PC/Laptop */
+    position: relative; 
+    min-height: 95vh; /* Ensure the white area covers the vertical screen */
+}
+
+.close-btn { 
+    color: var(--color-dark); 
+    float: right; 
+    font-size: 32px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    line-height: 1;
+    padding: 5px;
+}
+
+#pdf-iframe { 
+    width: 100%; 
+    border: 2px solid #eee; 
+    display: block; 
+    margin-top: 10px;
+    border-radius: 4px;
+}
     </style>
 </head>
 <body>
 
     <header>
         <nav id="navbar">
-            <div class="logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"> Dani Medico</div>
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="lectures.html" class="active"><i class="fas fa-video"></i> Lectures</a>
-                <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="lectures.html"><i class="fas fa-video"></i> Lectures</a>
+                <a href="notes.html" class="active"><i class="fas fa-book-open"></i> Notes</a>
                 <a href="tests.html"><i class="fas fa-pencil-alt"></i> Tests</a>
                 <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
                 <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
             </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
     <main class="container">
-        <h2><i class="fas fa-video"></i> Video Lectures</h2>
-
+        <h2><i class="fas fa-book-open"></i> Books</h2>
         <section class="filters-section card">
             <div class="filter-group">
                 <label>Exam:</label>
-                <select id="filter-exam" onchange="loadLectures()">
+                <select id="filter-exam" onchange="loadNotes()">
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
                     <option value="NUMS">NUMS</option>
                     <option value="AKU">AKU</option>
                     <option value="BSN">BSN</option>
+                    <option value="AFNS">AFNS</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Province:</label>
+                <select id="filter-province" onchange="loadNotes()">
+                    <option value="all">All Provinces</option>
+                    <option value="Sindh">Sindh</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="KPK">KPK</option>
+                    <option value="Balochistan">Balochistan</option>
+                    <option value="Islamabad">Islamabad</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label>Subject:</label>
-                <select id="filter-subject" onchange="loadLectures()">
+                <select id="filter-subject" onchange="loadNotes()">
                     <option value="all">All Subjects</option>
                     <option value="Biology">Biology</option>
                     <option value="Chemistry">Chemistry</option>
                     <option value="Physics">Physics</option>
                     <option value="English">English</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Chapter:</label>
-                <select id="filter-chapter" onchange="loadLectures()">
-                    <option value="all">All Chapters</option>
-                    <option value="all">Chapter 1</option>
-                    <option value="all">Chapter 2</option>
-                    <option value="all">Chapter 3</option>
-                    <option value="all">Chapter 4</option>
-                    <option value="all">Chapter 5</option>
-                    <option value="all">Chapter 6</option>
-                    <option value="all">Chapter 7</option>
-                    <option value="all">Chapter 8</option>
-                    <option value="all">Chapter 9</option>
-                    <option value="all">Chapter 10</option>
-                    <option value="all">Chapter 11</option>
-                    
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Province:</label>
-                <select id="filter-province" onchange="loadLectures()">
-                    <option value="all">All Provinces</option>
-                    <option value="Sindh">Sindh</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="KPK">KPK</option>
-                    <option value="KPK">Balochistan</option>
-                    <option value="KPK">Islamabad</option>
+                    <option value="Logical reasoning">Logical Reasoning</option>
+                    <option value="General Maths">General Maths</option>
+                    <option value="verbal intelligence">Verbal Intelligence</option>
+                    <option value="non verbal intelligence">Non-Verbal Intelligence</option>
                 </select>
             </div>
         </section>
-
-        <div id="lectures-container" class="card-grid"></div>
-        <p id="no-content" class="hidden text-center" style="width: 100%; margin-top: 2rem;">No lectures found for this selection.</p>
+        <div id="notes-container" class="card-grid"></div>
+        <p id="no-content-message" class="hidden text-center">No results found.</p>
     </main>
 
-    <div id="videoModal" class="modal">
+    <div id="pdfModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title">Lecture Title</h3>
-            <div class="video-container">
-                <iframe id="video-iframe" src="" allowfullscreen></iframe>
-            </div>
+            <span class="close-btn" onclick="closeModal('pdfModal')">&times;</span>
+            <h3 id="modal-pdf-title" style="font-size: 1rem;">View Document</h3>
+            <iframe id="pdf-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -182,10 +207,12 @@
         <div class="footer-top container">
             <div class="footer-links">
                 <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Email</a>
+                <a href="mailto:info@danimedico.com"><i class="fas fa-envelope"></i> Email</a>
                 <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"></div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
             <div class="social-icons">
                 <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -196,69 +223,96 @@
     </footer>
 
     <script>
-        const lectureData = [
-            { id: 'L1', title: 'Cell Biology Part 1: Basics', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Sindh', videoId: 'VIDEO_ID' }
-        ];
-
-        // Populate Chapters 1-20 Dropdown
-        const chapSelect = document.getElementById('filter-chapter');
-        for(let i=1; i<=20; i++) {
-            let opt = document.createElement('option');
-            opt.value = i.toString(); 
-            opt.textContent = 'Chapter ' + i;
-            chapSelect.appendChild(opt);
-        }
-
-        function loadLectures() {
-            const container = document.getElementById('lectures-container');
-            const sub = document.getElementById('filter-subject').value;
-            const chap = document.getElementById('filter-chapter').value;
+        const libraryData = [
+  { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', fileId: '1wjIL-mEqNTDbFK1ZubJOEU8zhdX7xYjR' },
+  { title: 'Chemistry: XI Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Sindh', fileId: '1VRqxRUjFi4QiVAR9NjZ1pIH18wkZ8R3V' },
+  { title: 'Physics: XI Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Sindh', fileId: '1oT-_02qYGE61N_mMVZOiWwvHzmeroLdz' },
+  { title: 'Biology: XII Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Sindh', fileId: '1vjPg8V64ripllbSvws9OUH4mE85pbon6' },
+  { title: 'Chemistry: XII Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Sindh', fileId: '1EkEyoPG5r8OU2q8sw7TsaZw0Fp-HpVkU' },
+  { title: 'Physics: XII Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Sindh', fileId: '1ZsNIqR_jJTa3nwMpCWfwEonh-35yILuq' },
+  { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Punjab', fileId: '1sSPaGvwGZY30Y3iu959dtCZPgRf8AxEM' },
+  { title: 'Chemistry: XI Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Punjab', fileId: '1W6QpmfkJaIvjtIH9LXsWk5t4HAtANH2t' },
+  { title: 'Physics: XI Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Punjab', fileId: '1wnxqQqD3mw46io6RnVK0b8yA7_GrzilN' },
+  { title: 'Biology: XII Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Punjab', fileId: '1VGKz8HP6SOnKDA3hbV8VuwXRszt9UExr' },
+  { title: 'Chemistry: XII Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Punjab', fileId: '1U2gMAaGS2i9B96P4jioqyvycV_8iP0SS' },
+  { title: 'Physics: XII Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Punjab', fileId: '1ABLwNPJroOnrgh38Tq4T1lPCZqv8wlRg' },
+  { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Balochistan', fileId: '1KodNqOHSZ7j8QpdW4QWRA6ri6ACIi7ku' },
+  { title: 'Chemistry: XI Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Balochisatn', fileId: '17kXKaW8FQzBM-23Ie9uROcy-QKyeD1Iz' },
+  { title: 'Physics: XI Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Balochisatn', fileId: '1oDqHqzAHIF6oE6b4lrhR4KRYI-sSgqsd' },
+  { title: 'Biology: XII Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Balochistan', fileId: '1_BfOJRkQAQtkxHTLFVJXUBbqNz741axT' },
+  { title: 'Chemistry: XII Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Balochisatn', fileId: '1DS_g8yPbk2FPTLZi1xWMCeq7kQjK4OSu' },
+  { title: 'Physics: XII Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Balochisatn', fileId: '1C0mZ_oBaXh7uBmE5WmYPxYehEtpXLdCp' },
+  { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'KPK', fileId: '15-4OMpHZOiLpD-Fa7T4GmBKdRR1X82UU' },
+  { title: 'Chemistry: XI Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'KPK', fileId: '1oaXptaSdFOSr1vN3XtgHbPK79gLP2QN-' },
+  { title: 'Physics: XI Textbook', subject: 'Physics', exam: 'MDCAT', province: 'KPK', fileId: '1XmkB7isczNEOtCCU0WMh6HdrvI5uk7_e' },
+  { title: 'Biology: XII Textbook', subject: 'Biology', exam: 'MDCAT', province: 'KPK', fileId: '11p1VdJw_5RhC331YVWmDhf8gneSEGhpD' },
+  { title: 'Chemistry: XII Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'KPK', fileId: '1ty0sLsofyn6ww86DfPzxtopiV-rvPT2x' },
+  { title: 'Physics: XII Textbook', subject: 'Physics', exam: 'MDCAT', province: 'KPK', fileId: '1zV9kGXSPcPDX2YRUzIgGhPRFgvf6OoaC' },
+  { title: 'Biology: XI Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Islamabad', fileId: '1vxB_cWn9qDMd2447HkBF352ZZo_DVnyI' },
+  { title: 'Chemistry: XI Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Islamabad', fileId: '1npyY4Mhj5r6qkDneLfQG8zCS158PC5g6' },
+  { title: 'Physics: XI Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Islamabad', fileId: '1Ob_nllUAtFZbmpKRNsBFgRUJEzAG0IU_' },
+  { title: 'Biology: XII Textbook', subject: 'Biology', exam: 'MDCAT', province: 'Islamabad', fileId: '14y8lMufSBzHTVPSx--XNA744as4aZVE8' },
+  { title: 'Chemistry: XII Textbook', subject: 'Chemistry', exam: 'MDCAT', province: 'Islamabad', fileId: '1cjIKM4ufzCj9Qy7LjJLdYFxji-PgkEHv' },
+  { title: 'Physics: XII Textbook', subject: 'Physics', exam: 'MDCAT', province: 'Islamabad', fileId: '13VN65mkOqvD8utO73irhHBNmkxBSkGr6' }
+];
+        function loadNotes() {
+            const container = document.getElementById('notes-container');
             const exam = document.getElementById('filter-exam').value;
-            const prov = document.getElementById('filter-province').value;
+            const province = document.getElementById('filter-province').value;
+            const subject = document.getElementById('filter-subject').value;
+            const filtered = libraryData.filter(item => (exam === 'all' || item.exam === exam) && (province === 'all' || item.province === province || item.province === 'all') && (subject === 'all' || item.subject === subject));
 
-            const filtered = lectureData.filter(l => 
-                (sub === 'all' || l.subject === sub) &&
-                (chap === 'all' || l.chapter === chap) &&
-                (exam === 'all' || l.exam === exam) &&
-                (prov === 'all' || l.province === prov)
-            );
-
-            if(filtered.length === 0) {
+            if (filtered.length === 0) {
                 container.innerHTML = '';
-                document.getElementById('no-content').classList.remove('hidden');
+                document.getElementById('no-content-message').classList.remove('hidden');
             } else {
-                document.getElementById('no-content').classList.add('hidden');
-                container.innerHTML = filtered.map(l => `
-                    <div class="card">
+                document.getElementById('no-content-message').classList.add('hidden');
+                container.innerHTML = filtered.map(note => `
+                    <div class="card lecture-card">
                         <div>
-                            <h4>${l.title}</h4>
-                            <p style="font-size:0.75rem; color:var(--color-primary-blue); font-weight:600;">Chapter ${l.chapter} | ${l.subject}</p>
+                            <h4>${note.title}</h4>
+                            <p style="font-size:0.7rem; color:var(--color-primary-blue); font-weight:600;">${note.subject}</p>
                         </div>
-                        <button class="button primary-button" onclick="openVideo('${l.videoId}', '${l.title}')">
-                            <i class="fas fa-play"></i> Watch Lecture
-                        </button>
+                        <div>
+                            <button class="button primary-button" onclick="openPDF('${note.fileId}', '${note.title}')"><i class="fas fa-eye"></i> View</button>
+                            <a href="https://drive.google.com/uc?id=${note.fileId}&export=download" class="button secondary-button"><i class="fas fa-download"></i> Save</a>
+                        </div>
                     </div>
                 `).join('');
             }
         }
 
-        function openVideo(id, title) {
-            document.getElementById('modal-title').innerText = title;
-            // Support for YouTube. Change URL if using Google Drive/other source.
-            document.getElementById('video-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-            document.getElementById('videoModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+        function openPDF(fileId, title) {
+    const modal = document.getElementById('pdfModal');
+    const iframe = document.getElementById('pdf-iframe');
+    const modalTitle = document.getElementById('modal-pdf-title');
+    
+    modalTitle.innerText = title;
+    
+    // 1. Show the modal first so we can calculate the real width
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 
-        function closeModal() {
-            document.getElementById('videoModal').style.display = 'none';
-            document.getElementById('video-iframe').src = '';
+    // 2. DYNAMIC CALCULATION: Set height to 3x current width
+    // This works on PC (wide iframe) and Mobile (narrow iframe)
+    const currentWidth = iframe.offsetWidth;
+    const calculatedHeight = currentWidth * 3;
+    
+    iframe.style.height = calculatedHeight + "px";
+    
+    // 3. Set the source using /preview to avoid forced downloads
+    iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+}
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.getElementById('pdf-iframe').src = '';
             document.body.style.overflow = 'auto';
         }
 
         function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
-        window.onclick = (e) => { if(e.target.className === 'modal') closeModal(); };
-        document.addEventListener('DOMContentLoaded', loadLectures);
+        window.onclick = (e) => { if(e.target.className === 'modal') closeModal('pdfModal'); }
+        document.addEventListener('DOMContentLoaded', loadNotes);
     </script>
 </body>
 </html>
