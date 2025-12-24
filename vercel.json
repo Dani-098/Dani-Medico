@@ -1,12 +1,13 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/home", "destination": "/index.html" },
-    { "source": "/updates", "destination": "/announcement.html" },
-    { "source": "/dashboard", "destination": "/dashboard.html" },
-    { "source": "/practice-tests", "destination": "/tests.html" },
-    { "source": "/past-papers", "destination": "/past-papers.html" },
-    { "source": "/notes", "destination": "/notes.html" },
-    { "source": "/books", "destination": "/lectures.html" }
+  "redirects": [
+    { "source": "/index.html", "destination": "/home", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/announcement.html", "destination": "/updates", "permanent": true },
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/tests.html", "destination": "/tests", "permanent": true },
+    { "source": "/notes.html", "destination": "/notes", "permanent": true },
+    { "source": "/past-papers.html", "destination": "/past-papers", "permanent": true },
+    { "source": "/lectures.html", "destination": "/books", "permanent": true },
+    { "source": "/dashboard.html", "destination": "/dashboard", "permanent": true }
   ]
 }
