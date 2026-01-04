@@ -402,19 +402,26 @@
 
         /* Timer Display Enhancement */
         #timer-display {
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%);
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 2px solid white;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
+    /* Existing Styles */
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid white;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+
+    /* Fixed Position Styles */
+    position: fixed;   /* Keeps it in the same spot on the screen */
+    top: 20px;         /* Distance from the top */
+    right: 20px;       /* Distance from the right */
+    z-index: 1000;     /* Ensures it stays above all MCQs */
+}
         
         @keyframes pulse {
             0% { transform: scale(1); }
