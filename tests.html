@@ -37,6 +37,7 @@
             width: 100%; 
             margin: 0; 
             padding: 0; 
+            padding-top: 100px
             overflow-x: hidden; 
             position: relative; 
             box-sizing: border-box; 
@@ -99,7 +100,7 @@
             justify-content: space-between; 
             align-items: center; 
             box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-            z-index: 1000; 
+            z-index: 9999; 
             position: fixed; 
             top: 0;
             left: 0;
@@ -175,7 +176,8 @@
 
         /* Add padding to main to account for fixed navbar */
         main {
-            margin-top: 100px;
+            margin-top: 20px;
+            padding-top: 0;
         }
 
         /* --- ENHANCED GRID SYSTEM - 5 PC / 2 MOBILE --- */
@@ -661,7 +663,11 @@
         
         @media (max-width: 768px) {
             #navbar {
-                padding: 0.6rem 1rem; /* Reduced mobile padding */
+                padding: 0.6rem 1rem; 
+                body {
+        padding-top: 90px;
+    }
+                /* Reduced mobile padding */
             }
             
             .nav-links { 
