@@ -1,5 +1,4 @@
-<script>
-    const mdcatExams = ["MDCAT", "BSN", "NUMS", "AKU", "AFNS"];
+ const mdcatExams = ["MDCAT", "BSN", "NUMS", "AKU", "AFNS"];
     const examSubjects = {
         "all": ["All Subjects"],
         "MDCAT": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
@@ -383,4 +382,3 @@
 
     window.onclick = (e) => { if(e.target.className === 'modal') closeModal(e.target.id); };
     document.addEventListener('DOMContentLoaded', initializeFilters);
-</script>
