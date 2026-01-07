@@ -1245,26 +1245,32 @@
     }
 
     function submitTest(e) {
-        if(e) e.preventDefault();
-        clearInterval(timerInterval);
-        document.getElementById('timer-container').classList.add('hidden');
-        let correct = 0;
-        userSelections = [];
-        activeTestMCQs.forEach((m, i) => {
-            const radios = document.getElementsByName(`q${i}`);
-            let val = -1;
-            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
-            userSelections.push(val);
-            if(val === m.answer) correct++;
-        });
+    if(e) e.preventDefault();
+    clearInterval(timerInterval);
+    
+    // --- ADD THIS LINE ---
+    document.getElementById('testModal').scrollTop = 0; 
+    // ---------------------
 
-        document.getElementById('result-total').innerText = activeTestMCQs.length;
-        document.getElementById('result-correct').innerText = correct;
-        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-    }
+    document.getElementById('timer-container').classList.add('hidden');
+    let correct = 0;
+    userSelections = [];
+    activeTestMCQs.forEach((m, i) => {
+        const radios = document.getElementsByName(`q${i}`);
+        let val = -1;
+        radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+        userSelections.push(val);
+        if(val === m.answer) correct++;
+    });
 
+    document.getElementById('result-total').innerText = activeTestMCQs.length;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+    
+    // Hide the questions and show the summary
+    document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('result-summary').classList.remove('hidden');
+}
     function checkTest() {
         document.getElementById('mcq-form').classList.remove('hidden');
         document.getElementById('result-summary').classList.add('hidden');
@@ -1286,12 +1292,62 @@
     }
 
     function downloadTestPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(currentOpenTest.title, 14, 20);
-        doc.save(`${currentOpenTest.title}.pdf`);
-    }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Get Student Details
+    const name = document.getElementById('user-name').value || "Student";
+    const score = document.getElementById('result-percentage').innerText;
+    const correct = document.getElementById('result-correct').innerText;
+    const total = document.getElementById('result-total').innerText;
 
+    // Header Section
+    doc.setFontSize(20);
+    doc.setTextColor(0, 123, 255); // Primary Blue
+    doc.text("Dani Medico - Test Report", 14, 20);
+    
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Student Name: ${name}`, 14, 30);
+    doc.text(`Test Title: ${currentOpenTest.title}`, 14, 37);
+    doc.text(`Final Score: ${score} (${correct}/${total})`, 14, 44);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 51);
+
+    // Prepare Data for Table
+    const tableRows = activeTestMCQs.map((m, i) => {
+        const userSelectionIndex = userSelections[i];
+        const userAnsText = userSelectionIndex === -1 ? "Skipped" : m.options[userSelectionIndex];
+        const correctAnsText = m.options[m.answer];
+        const status = (userSelectionIndex === m.answer) ? "Correct" : "Incorrect";
+        
+        return [i + 1, m.q, userAnsText, correctAnsText, status];
+    });
+
+    // Generate Table
+    doc.autoTable({
+        startY: 60,
+        head: [['#', 'Question', 'Your Answer', 'Correct Answer', 'Status']],
+        body: tableRows,
+        headStyles: { fillColor: [0, 123, 255] },
+        alternateRowStyles: { fillColor: [240, 240, 240] },
+        columnStyles: {
+            1: { cellWidth: 80 }, // Question column width
+        },
+        // Color code the status column
+        didParseCell: function(data) {
+            if (data.column.index === 4 && data.cell.section === 'body') {
+                if (data.cell.raw === 'Correct') {
+                    data.cell.styles.textColor = [40, 167, 69]; // Green
+                } else {
+                    data.cell.styles.textColor = [220, 53, 69]; // Red
+                }
+            }
+        }
+    });
+
+    // Save the PDF
+    doc.save(`${name}_${currentOpenTest.title}_Result.pdf`);
+}
     function closeModal(id) {
         document.getElementById(id).style.display = 'none';
         document.body.style.overflow = 'auto';
