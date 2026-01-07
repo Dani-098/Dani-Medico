@@ -1,4 +1,4 @@
-const testData = [
+const testsData = [
   { 
     id: 'T1', 
     title: 'BIOLOGY MDCAT', 
