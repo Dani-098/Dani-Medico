@@ -109,4 +109,4 @@ const testdata = [
         { q: "The future of virology includes understanding:", options: ["Virus-host ecosystems and global viral ecology", "Only viral structure", "How to eliminate all viruses", "Plant viruses exclusively"], answer: 0 }
     ]
 }
-  ],
+  ];
