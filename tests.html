@@ -1246,13 +1246,15 @@
 
     function submitTest(e) {
     if(e) e.preventDefault();
+    
+    // 1. Stop the timer
     clearInterval(timerInterval);
     
-    // --- ADD THIS LINE ---
-    document.getElementById('testModal').scrollTop = 0; 
-    // ---------------------
+    // 2. Move view back to the top so they see the result immediately
+    const modal = document.getElementById('testModal');
+    modal.scrollTop = 0; 
 
-    document.getElementById('timer-container').classList.add('hidden');
+    // 3. Calculate the score
     let correct = 0;
     userSelections = [];
     activeTestMCQs.forEach((m, i) => {
@@ -1263,27 +1265,43 @@
         if(val === m.answer) correct++;
     });
 
+    // 4. Update the summary numbers
     document.getElementById('result-total').innerText = activeTestMCQs.length;
     document.getElementById('result-correct').innerText = correct;
     document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
     
-    // Hide the questions and show the summary
+    // 5. THE SWITCH: Hide questions and timer, show the summary page
     document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('timer-container').classList.add('hidden');
     document.getElementById('result-summary').classList.remove('hidden');
 }
+        
     function checkTest() {
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.add('hidden');
-        document.getElementById('review-actions').classList.remove('hidden');
-        activeTestMCQs.forEach((m, i) => {
-            const sel = userSelections[i], cor = m.answer;
-            const radios = document.getElementsByName(`q${i}`);
-            radios.forEach(r => r.disabled = true);
-            if(document.getElementById(`label-${i}-${cor}`)) document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
-            if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
-        });
-    }
+    // Scroll to top to see the first question
+    document.getElementById('testModal').scrollTop = 0;
+
+    // Show the questions again but keep the submit button hidden
+    document.getElementById('mcq-form').classList.remove('hidden');
+    document.getElementById('result-summary').classList.add('hidden');
+    document.getElementById('submit-btn').classList.add('hidden');
+    document.getElementById('review-actions').classList.remove('hidden');
+
+    // Highlight the answers
+    activeTestMCQs.forEach((m, i) => {
+        const sel = userSelections[i], cor = m.answer;
+        const radios = document.getElementsByName(`q${i}`);
+        radios.forEach(r => r.disabled = true);
+        
+        // Mark correct answer in green
+        if(document.getElementById(`label-${i}-${cor}`)) {
+            document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
+        }
+        // If student chose wrong, mark theirs in red
+        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) {
+            document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
+        }
+    });
+}
 
     function backToResults() {
         document.getElementById('mcq-form').classList.add('hidden');
