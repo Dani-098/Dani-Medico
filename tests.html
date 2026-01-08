@@ -857,20 +857,23 @@
 <div id="testModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-        <h3 id="test-modal-title">Interactive Quiz</h3>
         
-        <div id="timer-container" class="text-center">
-            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
-        </div>
+        <div id="quiz-view">
+            <h3 id="test-modal-title">Interactive Quiz</h3>
+            
+            <div id="timer-container" class="text-center">
+                <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+            </div>
 
-        <hr style="margin: 15px 0; opacity: 0.1;">
-        
-        <form id="mcq-form" onsubmit="submitTest(event)">
-            <div id="mcq-questions"></div>
-            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
-                Submit Test
-            </button>
-        </form>
+            <hr style="margin: 15px 0; opacity: 0.1;">
+            
+            <form id="mcq-form" onsubmit="submitTest(event)">
+                <div id="mcq-questions"></div>
+                <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                    Submit Test
+                </button>
+            </form>
+        </div>
 
         <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
             <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
@@ -1247,7 +1250,7 @@
     function submitTest(e) {
     if(e) e.preventDefault();
     clearInterval(timerInterval);
-    
+    document.getElementById('quiz-view').classList.add('hidden');
     // Hide question view
     document.getElementById('mcq-form').classList.add('hidden');
     document.getElementById('timer-container').classList.add('hidden');
@@ -1262,6 +1265,7 @@
 }
         
     function checkTest() {
+     document.getElementById('quiz-view').classList.add('hidden');
     // 1. Hide the Result Summary Page
     document.getElementById('result-summary').classList.add('hidden');
     
@@ -1289,11 +1293,19 @@
     });
 }
     function backToResults() {
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-        document.getElementById('review-actions').classList.add('hidden');
-    }
+    // 1. Hide the entire Quiz View (Questions, Title, and Timer)
+    document.getElementById('quiz-view').classList.add('hidden');
+    
+    // 2. Hide the Review Navigation bar
+    document.getElementById('review-actions').classList.add('hidden');
+    
+    // 3. IMPORTANT: Reset the scroll to the top of the modal 
+    // This ensures the student sees the "Test Completed" header immediately
+    document.getElementById('testModal').scrollTop = 0;
 
+    // 4. Show the dedicated Result Summary page
+    document.getElementById('result-summary').classList.remove('hidden');
+}
     function downloadTestPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
