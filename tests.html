@@ -857,20 +857,23 @@
 <div id="testModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-        <h3 id="test-modal-title">Interactive Quiz</h3>
         
-        <div id="timer-container" class="text-center">
-            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
-        </div>
+        <div id="quiz-view">
+            <h3 id="test-modal-title">Interactive Quiz</h3>
+            
+            <div id="timer-container" class="text-center">
+                <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+            </div>
 
-        <hr style="margin: 15px 0; opacity: 0.1;">
-        
-        <form id="mcq-form" onsubmit="submitTest(event)">
-            <div id="mcq-questions"></div>
-            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
-                Submit Test
-            </button>
-        </form>
+            <hr style="margin: 15px 0; opacity: 0.1;">
+            
+            <form id="mcq-form" onsubmit="submitTest(event)">
+                <div id="mcq-questions"></div>
+                <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                    Submit Test
+                </button>
+            </form>
+        </div>
 
         <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
             <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
@@ -895,6 +898,7 @@
             <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
         </div>
     </div>
+</div>
 </div>
 <footer>
         <div class="footer-top container">
@@ -1193,41 +1197,42 @@
     }
 
     function openActualTest(id) {
-        const test = testsData.find(t => t.id === id);
-        if(!test) return;
+    const test = testsData.find(t => t.id === id);
+    if(!test) return;
 
-        // SLICING LOGIC
-        const qty = Math.floor(test.mcqs.length * selectedPct);
-        activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
-        
-        currentOpenTest = test;
-        userSelections = [];
-        document.getElementById('test-modal-title').innerText = `${test.title} (${selectedPct*100}%)`;
-        
-        document.getElementById('mcq-questions').innerHTML = activeTestMCQs.map((m, i) => `
-            <div class="mcq-question" id="q-block-${i}">
-                <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
-                <div class="options-list">
-                    ${m.options.map((opt, oi) => `
-                        <div class="mcq-option">
-                            <label id="label-${i}-${oi}">
-                                <input type="radio" name="q${i}" value="${oi}" required>
-                                <span>${opt}</span>
-                            </label>
-                        </div>
-                    `).join('')}
-                </div>
+    // Reset View State
+    document.getElementById('quiz-view').classList.remove('hidden');
+    document.getElementById('result-summary').classList.add('hidden');
+    document.getElementById('review-actions').classList.add('hidden');
+    document.getElementById('submit-btn').classList.remove('hidden');
+
+    const qty = Math.floor(test.mcqs.length * selectedPct);
+    activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
+    
+    currentOpenTest = test;
+    userSelections = [];
+    document.getElementById('test-modal-title').innerText = `${test.title} (${selectedPct*100}%)`;
+    
+    document.getElementById('mcq-questions').innerHTML = activeTestMCQs.map((m, i) => `
+        <div class="mcq-question" id="q-block-${i}">
+            <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
+            <div class="options-list">
+                ${m.options.map((opt, oi) => `
+                    <div class="mcq-option">
+                        <label id="label-${i}-${oi}">
+                            <input type="radio" name="q${i}" value="${oi}" required>
+                            <span>${opt}</span>
+                        </label>
+                    </div>
+                `).join('')}
             </div>
-        `).join('');
+        </div>
+    `).join('');
 
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.remove('hidden');
-        document.getElementById('review-actions').classList.add('hidden');
-        document.getElementById('timer-container').classList.remove('hidden');
-        document.getElementById('testModal').style.display = 'block';
-        startTimer(activeTestMCQs.length * 40);
-    }
+    document.getElementById('testModal').style.display = 'block';
+    document.getElementById('testModal').scrollTop = 0; // Force start at top
+    startTimer(activeTestMCQs.length * 40);
+}
 
     function startTimer(duration) {
         clearInterval(timerInterval);
@@ -1247,34 +1252,41 @@
     function submitTest(e) {
     if(e) e.preventDefault();
     clearInterval(timerInterval);
-    // Hide question view
-    document.getElementById('mcq-form').classList.add('hidden');
-    document.getElementById('timer-container').classList.add('hidden');
+
+    // HIDE the entire Quiz Page (Title, Timer, Questions)
+    document.getElementById('quiz-view').classList.add('hidden');
     
-    // Reset view to top
+    // RESET scroll to top so result is immediately visible
     document.getElementById('testModal').scrollTop = 0; 
 
-    // Calculation logic...
+    let correct = 0;
+    userSelections = [];
+    activeTestMCQs.forEach((m, i) => {
+        const radios = document.getElementsByName(`q${i}`);
+        let val = -1;
+        radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+        userSelections.push(val);
+        if(val === m.answer) correct++;
+    });
 
-    // Show result view
+    document.getElementById('result-total').innerText = activeTestMCQs.length;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+    
+    // SHOW the dedicated Result Page
     document.getElementById('result-summary').classList.remove('hidden');
 }
-        
-    function checkTest() {
-    // 1. Hide the Result Summary Page
+
+function checkTest() {
     document.getElementById('result-summary').classList.add('hidden');
     
-    // 2. Show the Question Form Page and Review Actions
-    document.getElementById('mcq-form').classList.remove('hidden');
+    // SHOW Quiz for review
+    document.getElementById('quiz-view').classList.remove('hidden');
     document.getElementById('review-actions').classList.remove('hidden');
-    
-    // 3. Keep the Submit button hidden during review
     document.getElementById('submit-btn').classList.add('hidden');
     
-    // 4. Scroll to top to see the first question
     document.getElementById('testModal').scrollTop = 0;
 
-    // Apply color highlighting for review
     activeTestMCQs.forEach((m, i) => {
         const sel = userSelections[i], cor = m.answer;
         const radios = document.getElementsByName(`q${i}`);
@@ -1287,18 +1299,13 @@
         }
     });
 }
-    function backToResults() {
-    // 1. Hide the entire Quiz View (Questions, Title, and Timer)
-    
-    // 2. Hide the Review Navigation bar
-    document.getElementById('review-actions').classList.add('hidden');
-    
-    // 3. IMPORTANT: Reset the scroll to the top of the modal 
-    // This ensures the student sees the "Test Completed" header immediately
-    document.getElementById('testModal').scrollTop = 0;
 
-    // 4. Show the dedicated Result Summary page
+function backToResults() {
+    // Hide Quiz Page, Show Summary Page
+    document.getElementById('quiz-view').classList.add('hidden');
+    document.getElementById('review-actions').classList.add('hidden');
     document.getElementById('result-summary').classList.remove('hidden');
+    document.getElementById('testModal').scrollTop = 0;
 }
     function downloadTestPDF() {
     const { jsPDF } = window.jspdf;
