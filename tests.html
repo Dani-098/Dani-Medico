@@ -759,6 +759,7 @@
     </style>
 </head>
 <body>
+    
 <header>
     <nav id="navbar">
         <div class="logo">
@@ -1244,53 +1245,185 @@
     }
 
     function submitTest(e) {
-        if(e) e.preventDefault();
-        clearInterval(timerInterval);
-        document.getElementById('timer-container').classList.add('hidden');
-        let correct = 0;
-        userSelections = [];
-        activeTestMCQs.forEach((m, i) => {
-            const radios = document.getElementsByName(`q${i}`);
-            let val = -1;
-            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
-            userSelections.push(val);
-            if(val === m.answer) correct++;
-        });
+    if(e) e.preventDefault();
+    clearInterval(timerInterval);
+    // Hide question view
+    document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('timer-container').classList.add('hidden');
+    
+    // Reset view to top
+    document.getElementById('testModal').scrollTop = 0; 
 
-        document.getElementById('result-total').innerText = activeTestMCQs.length;
-        document.getElementById('result-correct').innerText = correct;
-        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-    }
+    // Calculation logic...
 
+    // Show result view
+    document.getElementById('result-summary').classList.remove('hidden');
+}
+        
     function checkTest() {
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.add('hidden');
-        document.getElementById('review-actions').classList.remove('hidden');
-        activeTestMCQs.forEach((m, i) => {
-            const sel = userSelections[i], cor = m.answer;
-            const radios = document.getElementsByName(`q${i}`);
-            radios.forEach(r => r.disabled = true);
-            if(document.getElementById(`label-${i}-${cor}`)) document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
-            if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
-        });
-    }
+    // 1. Hide the Result Summary Page
+    document.getElementById('result-summary').classList.add('hidden');
+    
+    // 2. Show the Question Form Page and Review Actions
+    document.getElementById('mcq-form').classList.remove('hidden');
+    document.getElementById('review-actions').classList.remove('hidden');
+    
+    // 3. Keep the Submit button hidden during review
+    document.getElementById('submit-btn').classList.add('hidden');
+    
+    // 4. Scroll to top to see the first question
+    document.getElementById('testModal').scrollTop = 0;
 
+    // Apply color highlighting for review
+    activeTestMCQs.forEach((m, i) => {
+        const sel = userSelections[i], cor = m.answer;
+        const radios = document.getElementsByName(`q${i}`);
+        radios.forEach(r => r.disabled = true);
+        if(document.getElementById(`label-${i}-${cor}`)) {
+            document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
+        }
+        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) {
+            document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
+        }
+    });
+}
     function backToResults() {
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-        document.getElementById('review-actions').classList.add('hidden');
-    }
+    // 1. Hide the entire Quiz View (Questions, Title, and Timer)
+    
+    // 2. Hide the Review Navigation bar
+    document.getElementById('review-actions').classList.add('hidden');
+    
+    // 3. IMPORTANT: Reset the scroll to the top of the modal 
+    // This ensures the student sees the "Test Completed" header immediately
+    document.getElementById('testModal').scrollTop = 0;
 
+    // 4. Show the dedicated Result Summary page
+    document.getElementById('result-summary').classList.remove('hidden');
+}
     function downloadTestPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(currentOpenTest.title, 14, 20);
-        doc.save(`${currentOpenTest.title}.pdf`);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // --- Data Extraction ---
+    const name = document.getElementById('user-name').value || "Student";
+    const city = document.getElementById('user-city').value || "N/A";
+    const scorePct = document.getElementById('result-percentage').innerText;
+    const correctCount = document.getElementById('result-correct').innerText;
+    const totalCount = document.getElementById('result-total').innerText;
+    const testTitle = currentOpenTest.title;
+    const testDate = new Date().toLocaleDateString('en-GB', {
+        day: 'numeric', month: 'long', year: 'numeric'
+    });
+
+    // --- Page Branding & Header ---
+    // Blue header bar
+    doc.setFillColor(0, 123, 255);
+    doc.rect(0, 0, 210, 40, 'F');
+    
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(24);
+    doc.setFont("helvetica", "bold");
+    doc.text("DANI MEDICO", 14, 20);
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("Empowering Future Doctors | Official Test Report", 14, 28);
+
+    // --- Student Info Card ---
+    doc.setTextColor(40, 40, 40);
+    doc.setDrawColor(220, 220, 220);
+    doc.line(14, 45, 196, 45); // Divider line
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("STUDENT DETAILS", 14, 55);
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Name: ${name}`, 14, 62);
+    doc.text(`City: ${city}`, 14, 68);
+    doc.text(`Test Date: ${testDate}`, 14, 74);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("PERFORMANCE SUMMARY", 120, 55);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Test Name: ${testTitle}`, 120, 62);
+    doc.text(`Total Questions: ${totalCount}`, 120, 68);
+    
+    // Highlight Score
+    doc.setFontSize(14);
+    doc.setTextColor(0, 123, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text(`SCORE: ${scorePct} (${correctCount}/${totalCount})`, 120, 78);
+
+    // --- MCQ Table ---
+    const tableRows = activeTestMCQs.map((m, i) => {
+        const sel = userSelections[i];
+        const isCorrect = sel === m.answer;
+        const userAns = sel === -1 ? "Skipped" : m.options[sel];
+        const correctAns = m.options[m.answer];
+        
+        // Add status text
+        let status = "❌ Incorrect";
+        if (sel === -1) status = "⚠️ Skipped";
+        if (isCorrect) status = "✅ Correct";
+
+        return [i + 1, m.q, userAns, correctAns, status];
+    });
+
+    doc.autoTable({
+        startY: 85,
+        head: [['#', 'Question', 'Your Answer', 'Correct Answer', 'Result']],
+        body: tableRows,
+        theme: 'grid',
+        headStyles: {
+            fillColor: [0, 123, 255],
+            textColor: [255, 255, 255],
+            fontSize: 10,
+            halign: 'center'
+        },
+        columnStyles: {
+            0: { cellWidth: 10, halign: 'center' },
+            1: { cellWidth: 70 },
+            2: { cellWidth: 40 },
+            3: { cellWidth: 40 },
+            4: { cellWidth: 25, halign: 'center' }
+        },
+        styles: {
+            fontSize: 9,
+            cellPadding: 3,
+            valign: 'middle'
+        },
+        alternateRowStyles: {
+            fillColor: [245, 248, 255]
+        },
+        // Apply color based on correctness
+        didParseCell: function(data) {
+            if (data.column.index === 4 && data.cell.section === 'body') {
+                if (data.cell.raw.includes("Correct")) {
+                    data.cell.styles.textColor = [40, 167, 69]; // Green
+                } else if (data.cell.raw.includes("Incorrect")) {
+                    data.cell.styles.textColor = [220, 53, 69]; // Red
+                } else {
+                    data.cell.styles.textColor = [255, 193, 7]; // Warning/Yellow
+                }
+            }
+        }
+    });
+
+    // --- Footer ---
+    const pageCount = doc.internal.getNumberOfPages();
+    for (var i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text(`Generated by Dani Medico Portal | Page ${i} of ${pageCount}`, 105, 290, null, null, "center");
     }
 
+    // --- Download ---
+    doc.save(`${name.replace(/\s+/g, '_')}_${testTitle.replace(/\s+/g, '_')}_Result.pdf`);
+}
+        
     function closeModal(id) {
         document.getElementById(id).style.display = 'none';
         document.body.style.overflow = 'auto';
