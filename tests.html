@@ -903,20 +903,25 @@
 <div id="testModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-        <h3 id="test-modal-title">Interactive Quiz</h3>
         
-        <div id="timer-container" class="text-center">
-            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+        <div id="quiz-view">
+            <h3 id="test-modal-title">Interactive Quiz</h3>
+            <div id="timer-container" class="text-center">
+                <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+            </div>
+            <hr style="margin: 15px 0; opacity: 0.1;">
+            <form id="mcq-form" onsubmit="submitTest(event)">
+                <div id="mcq-questions"></div>
+                <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                    Submit Test
+                </button>
+            </form>
         </div>
 
-        <hr style="margin: 15px 0; opacity: 0.1;">
-        
-        <form id="mcq-form" onsubmit="submitTest(event)">
-            <div id="mcq-questions"></div>
-            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
-                Submit Test
-            </button>
-        </form>
+        <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+            </div>
+    </div>
+</div>
 
         <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
             <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
@@ -2590,26 +2595,34 @@
     }
 
     function submitTest(e) {
-        if(e) e.preventDefault();
-        clearInterval(timerInterval);
-        document.getElementById('timer-container').classList.add('hidden');
-        let correct = 0;
-        userSelections = [];
-        activeTestMCQs.forEach((m, i) => {
-            const radios = document.getElementsByName(`q${i}`);
-            let val = -1;
-            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
-            userSelections.push(val);
-            if(val === m.answer) correct++;
-        });
+    if(e) e.preventDefault();
+    clearInterval(timerInterval);
+    
+    // 1. Hide the entire Quiz view (Title, Timer, and Questions)
+    document.getElementById('quiz-view').classList.add('hidden');
+    
+    // 2. Reset scroll to the top so the result is immediately visible
+    document.getElementById('testModal').scrollTop = 0; 
 
-        document.getElementById('result-total').innerText = activeTestMCQs.length;
-        document.getElementById('result-correct').innerText = correct;
-        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-    }
+    // Calculation logic...
+    let correct = 0;
+    userSelections = [];
+    activeTestMCQs.forEach((m, i) => {
+        const radios = document.getElementsByName(`q${i}`);
+        let val = -1;
+        radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+        userSelections.push(val);
+        if(val === m.answer) correct++;
+    });
 
+    // Update display numbers
+    document.getElementById('result-total').innerText = activeTestMCQs.length;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+    
+    // 3. Show the Result Summary page
+    document.getElementById('result-summary').classList.remove('hidden');
+}
     function checkTest() {
         document.getElementById('mcq-form').classList.remove('hidden');
         document.getElementById('result-summary').classList.add('hidden');
