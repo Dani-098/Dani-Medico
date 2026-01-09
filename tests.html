@@ -1,1439 +1,1070 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Practice Tests - Dani Medico</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <style>
-        /* Enhanced CSS with Gradients and Animations */
-        :root {
-            --color-primary-blue: #007BFF;
-            --color-primary-blue-light: #4da6ff;
-            --color-primary-blue-dark: #0056b3;
-            --color-secondary-green: #28A745;
-            --color-secondary-green-light: #34ce57;
-            --color-secondary-green-dark: #1e7e34;
-            --color-light: #F8F9FA;
-            --color-dark: #343A40;
-            --color-text: #495057;
-            --color-card-bg: #FFFFFF;
-            --color-shadow: rgba(0, 0, 0, 0.1);
-            --color-danger: #DC3545;
-            --color-danger-light: #e4606d;
-            --color-warning: #FFC107;
-            --color-warning-light: #ffce3a;
-            --font-family-primary: 'Poppins', sans-serif;
-            --border-radius-base: 12px;
-            --transition-speed: 0.4s;
-            --animation-duration: 0.5s;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Practice Tests - Dani Medico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        /* Enhanced CSS with Gradients and Animations */
+        :root {
+            --color-primary-blue: #007BFF;
+            --color-primary-blue-light: #4da6ff;
+            --color-primary-blue-dark: #0056b3;
+            --color-secondary-green: #28A745;
+            --color-secondary-green-light: #34ce57;
+            --color-secondary-green-dark: #1e7e34;
+            --color-light: #F8F9FA;
+            --color-dark: #343A40;
+            --color-text: #495057;
+            --color-card-bg: #FFFFFF;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-danger: #DC3545;
+            --color-danger-light: #e4606d;
+            --color-warning: #FFC107;
+            --color-warning-light: #ffce3a;
+            --font-family-primary: 'Poppins', sans-serif;
+            --border-radius-base: 12px;
+            --transition-speed: 0.4s;
+            --animation-duration: 0.5s;
+        }
 
-        /* --- 2. ANTI-OVERFLOW & GLOBAL RESET --- */
-        html, body { 
-            width: 100%; 
-            margin: 0; 
-            padding: 0; 
-            overflow-x: hidden; 
-            position: relative; 
-            box-sizing: border-box; 
-            font-family: var(--font-family-primary); 
-            line-height: 1.6;
-            color: var(--color-text); 
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            min-height: 100vh;
-            display: flex; 
-            flex-direction: column;
-        }
-        *, *:before, *:after { box-sizing: inherit; }
-        * { margin: 0; padding: 0; }
+        /* --- 2. ANTI-OVERFLOW & GLOBAL RESET --- */
+        html, body { 
+            width: 100%; 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+            position: relative; 
+            box-sizing: border-box; 
+            font-family: var(--font-family-primary); 
+            line-height: 1.6;
+            color: var(--color-text); 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column;
+        }
+        *, *:before, *:after { box-sizing: inherit; }
+        * { margin: 0; padding: 0; }
 
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 1rem; 
-            flex-grow: 1; 
-        }
-        section { 
-            padding: 2rem 0; 
-        }
-        a { 
-            text-decoration: none; 
-            color: var(--color-primary-blue); 
-            transition: all var(--transition-speed); 
-        }
-        a:hover { 
-            color: var(--color-secondary-green); 
-        }
-        h1, h2, h3, h4 { 
-            color: var(--color-dark); 
-            margin-bottom: 1rem; 
-            position: relative;
-        }
-        
-        h2 {
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
-            border-radius: 2px;
-        }
+        .container { 
+            width: 100%; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 15px 20px; 
+            flex-grow: 1; 
+        }
+        section { 
+            padding: 2rem 0; 
+        }
+        a { 
+            text-decoration: none; 
+            color: var(--color-primary-blue); 
+            transition: all var(--transition-speed); 
+        }
+        a:hover { 
+            color: var(--color-secondary-green); 
+        }
+        h1, h2, h3, h4 { 
+            color: var(--color-dark); 
+            margin-bottom: 1rem; 
+            position: relative;
+        }
+        
+        h2 {
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
+            border-radius: 2px;
+        }
 
-        /* --- NAVBAR MATCHING HOMEPAGE WITH STICKY HEADER --- */
-        #navbar { 
-            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
-            color: var(--color-light); 
-            padding: 0.8rem 1.5rem; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-            z-index: 1000; 
-            position: fixed; 
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-        }
-        .logo { 
-            font-size: 1.4rem; /* Slightly smaller */
-            font-weight: 700; 
-            color: var(--color-light); 
-            display: flex; 
-            align-items: center; 
-            gap: 0.75rem; 
-            transition: transform var(--transition-speed);
-        }
-        .logo-img { 
-            height: 70px; 
-            width: auto; 
-        }
-        .nav-links { 
-            display: flex; 
-            align-items: center;
-        }
-        .nav-links a { 
-            color: var(--color-light); 
-            margin-left: 0.75rem; 
-            padding: 0.5rem 0.75rem; 
-            font-weight: 500; 
-            transition: all var(--transition-speed); 
-            border-radius: 8px; 
-            position: relative;
-            overflow: hidden;
-            font-size: 0.9rem; 
-            display: flex;
-            align-items: center;
-            gap: 0.4rem; 
-            white-space: nowrap;
-        }
-        
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s ease;
-        }
-        
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-        
-        .nav-links a:hover, .nav-links a.active { 
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        }
-        .mobile-menu-btn { 
-            display: none; 
-            background: none; 
-            border: none; 
-            color: var(--color-light); 
-            font-size: 1.3rem; 
-            cursor: pointer; 
-            transition: transform var(--transition-speed);
-            padding: 0.3rem;
-        }
-        .mobile-menu-btn:hover {
-            transform: scale(1.1);
-        }
+        /* --- NAVBAR MATCHING HOMEPAGE WITH STICKY HEADER --- */
+        #navbar { 
+            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
+            color: var(--color-light); 
+            padding: 0.8rem 1.5rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            z-index: 1000; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+        .logo { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: var(--color-light); 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        .logo-img { 
+            height: 45px; 
+            width: auto; 
+        }
+        .nav-links { 
+            display: flex; 
+            align-items: center;
+        }
+        .nav-links a { 
+            color: var(--color-light); 
+            margin-left: 0.75rem; 
+            padding: 0.5rem 0.75rem; 
+            font-weight: 500; 
+            transition: all var(--transition-speed); 
+            border-radius: 8px; 
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem; 
+            display: flex;
+            align-items: center;
+            gap: 0.4rem; 
+            white-space: nowrap;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+        
+        .nav-links a:hover, .nav-links a.active { 
+            border-bottom: 2px solid var(--color-secondary-green);
+        }
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: var(--color-light); 
+            font-size: 1.3rem; 
+            cursor: pointer; 
+            transition: transform var(--transition-speed);
+            padding: 0.3rem;
+        }
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
 
-        /* Add padding to main to account for fixed navbar */
-        main {
-            margin-top: 100px;
-        }
+        /* Add padding to main to account for fixed navbar */
+        main {
+            margin-top: 70px; 
+        }
 
-        /* --- ENHANCED GRID SYSTEM - 5 PC / 2 MOBILE --- */
-        .card-grid { 
-            display: grid; 
-            gap: 20px; 
-            margin-top: 1.5rem; 
-            width: 100%; 
-        }
-        @media (min-width: 1024px) { 
-            .card-grid { 
-                grid-template-columns: repeat(5, 1fr); 
-            } 
-        }
-        @media (max-width: 1023px) { 
-            .card-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-            } 
-        }
-        @media (max-width: 480px) { 
-            .card-grid { 
-                grid-template-columns: 1fr; 
-            } 
-        }
+        /* --- ENHANCED GRID SYSTEM - 5 PC / 2 MOBILE --- */
+        .card-grid { 
+            display: grid; 
+            gap: 20px; 
+            margin-top: 1.5rem; 
+            width: 100%; 
+        }
+        @media (min-width: 1024px) { 
+            .card-grid { 
+                grid-template-columns: repeat(5, 1fr); 
+            } 
+        }
+        @media (max-width: 1023px) { 
+            .card-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+            } 
+        }
+        @media (max-width: 480px) { 
+            .card-grid { 
+                grid-template-columns: 1fr; 
+            } 
+        }
 
-        /* --- ENHANCED TEST CARD DESIGN --- */
-        .card { 
-            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
-            padding: 1.5rem; 
-            border-radius: var(--border-radius-base); 
-            box-shadow: 0 6px 20px var(--color-shadow); 
-            height: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            border-left: 5px solid var(--color-secondary-green);
-            transition: all var(--transition-speed);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
-            transform: translateX(-100%);
-            transition: transform var(--transition-speed);
-        }
-        
-        .card:hover::before {
-            transform: translateX(0);
-        }
-        
-        .card:hover { 
-            transform: translateY(-8px) scale(1.02); 
-            box-shadow: 0 12px 30px rgba(0, 123, 255, 0.15); 
-        }
-        
-        .test-card { 
-            border-left: 5px solid var(--color-secondary-green); 
-        }
-        .test-card h4 { 
-            color: var(--color-primary-blue); 
-            font-size: 1rem; 
-            height: 3.2rem; 
-            overflow: hidden; 
-            margin-bottom: 8px; 
-            line-height: 1.4; 
-            font-weight: 600;
-        }
+        /* --- ENHANCED TEST CARD DESIGN --- */
+        .card { 
+            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
+            padding: 1.5rem; 
+            border-radius: var(--border-radius-base); 
+            box-shadow: 0 6px 20px var(--color-shadow); 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            border-left: 5px solid var(--color-secondary-green);
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed);
+        }
+        
+        .card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 12px 30px rgba(0, 123, 255, 0.15); 
+        }
+        
+        .test-card { 
+            border-left: 5px solid var(--color-secondary-green); 
+        }
+        .test-card h4 { 
+            color: var(--color-primary-blue); 
+            font-size: 1rem; 
+            height: 3.2rem; 
+            overflow: hidden; 
+            margin-bottom: 8px; 
+            line-height: 1.4; 
+            font-weight: 600;
+        }
 
-        /* --- ENHANCED DEPENDENT FILTERS --- */
-        .filters-section { 
-            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
-            padding: 1.5rem; 
-            border-radius: var(--border-radius-base); 
-            box-shadow: 0 6px 20px var(--color-shadow); 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px; 
-            margin-bottom: 2rem; 
-            border-left: 4px solid var(--color-primary-blue);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .filters-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
-            transform: translateX(-100%);
-            transition: transform var(--transition-speed);
-        }
-        
-        .filters-section:hover::before {
-            transform: translateX(0);
-        }
-        
-        .filter-group { 
-            flex: 1; 
-            min-width: 0; 
-        }
-        .filter-group label { 
-            font-weight: 600; 
-            display: block; 
-            margin-bottom: 8px; 
-            font-size: 0.95rem; 
-            color: var(--color-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .filter-group select, .filter-group input { 
-            width: 100%; 
-            padding: 0.85rem; 
-            border: 2px solid #e0e0e0; 
-            border-radius: 8px; 
-            font-size: 0.95rem; 
-            cursor: pointer; 
-            font-family: inherit; 
-            transition: all var(--transition-speed);
-            background: var(--color-card-bg);
-        }
+        /* --- ENHANCED DEPENDENT FILTERS --- */
+        .filters-section { 
+            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
+            padding: 1.5rem; 
+            border-radius: var(--border-radius-base); 
+            box-shadow: 0 6px 20px var(--color-shadow); 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px; 
+            margin-bottom: 2rem; 
+            border-left: 4px solid var(--color-primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filters-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed);
+        }
+        
+        .filters-section:hover::before {
+            transform: translateX(0);
+        }
+        
+        .filter-group { 
+            flex: 1; 
+            min-width: 0; 
+        }
+        .filter-group label { 
+            font-weight: 600; 
+            display: block; 
+            margin-bottom: 8px; 
+            font-size: 0.95rem; 
+            color: var(--color-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-group select, .filter-group input { 
+            width: 100%; 
+            padding: 0.85rem; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 8px; 
+            font-size: 0.95rem; 
+            cursor: pointer; 
+            font-family: inherit; 
+            transition: all var(--transition-speed);
+            background: var(--color-card-bg);
+        }
 
-        /* --- ENHANCED BUTTONS --- */
-        .button { 
-            display: block; 
-            padding: 0.75rem 1rem; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            text-align: center; 
-            border: 2px solid transparent; 
-            font-size: 0.85rem; 
-            width: 100%; 
-            margin-top: 8px; 
-            text-decoration: none; 
-            transition: all var(--transition-speed);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .button:hover::before {
-            width: 200px;
-            height: 200px;
-        }
-        
-        .primary-button { 
-            background: linear-gradient(135deg, var(--color-secondary-green) 0%, var(--color-secondary-green-dark) 100%);
-            color: white; 
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-        }
-        
-        .primary-button:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
-            background: linear-gradient(135deg, var(--color-secondary-green-light) 0%, var(--color-secondary-green) 100%);
-        }
-        
-        .secondary-button { 
-            background: linear-gradient(135deg, var(--color-light) 0%, #e9ecef 100%);
-            color: var(--color-primary-blue); 
-            border-color: var(--color-primary-blue);
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
-        }
-        
-        .secondary-button:hover { 
-            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
-            color: var(--color-light); 
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0, 123, 255, 0.25);
-        }
+        /* --- ENHANCED BUTTONS --- */
+        .button { 
+            display: block; 
+            padding: 0.75rem 1rem; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            text-align: center; 
+            border: 2px solid transparent; 
+            font-size: 0.85rem; 
+            width: 100%; 
+            margin-top: 8px; 
+            text-decoration: none; 
+            transition: all var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .button:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .primary-button { 
+            background: linear-gradient(135deg, var(--color-secondary-green) 0%, var(--color-secondary-green-dark) 100%);
+            color: white; 
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+        
+        .primary-button:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
+            background: linear-gradient(135deg, var(--color-secondary-green-light) 0%, var(--color-secondary-green) 100%);
+        }
+        
+        .secondary-button { 
+            background: linear-gradient(135deg, var(--color-light) 0%, #e9ecef 100%);
+            color: var(--color-primary-blue); 
+            border-color: var(--color-primary-blue);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+        }
+        
+        .secondary-button:hover { 
+            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
+            color: var(--color-light); 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 123, 255, 0.25);
+        }
 
-        #timer-display {
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%);
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 2px solid white;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        #timer-display {
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 2px solid white;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-        /* --- ENHANCED FULL SCREEN MODAL --- */
-        .modal { 
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
-            backdrop-filter: blur(10px); 
-            overflow-y: auto; 
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content { 
-            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
-            margin: 20px auto; 
-            padding: 30px; 
-            border-radius: 16px; 
-            width: 98%; 
-            max-width: 1200px; 
-            position: relative; 
-            min-height: 95vh;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.4s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .close-btn { 
-            position: absolute; 
-            top: 15px; 
-            right: 25px; 
-            color: var(--color-dark); 
-            font-size: 35px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            z-index: 10; 
-            line-height: 1; 
-            transition: color var(--transition-speed);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .close-btn:hover { 
-            color: var(--color-danger);
-            background: rgba(0, 0, 0, 0.05);
-        }
-        
-        .mcq-question { 
-            padding: 1.75rem; 
-            border: 1px solid #e9ecef; 
-            border-radius: 12px; 
-            margin-bottom: 1.5rem; 
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            transition: all var(--transition-speed);
-            border-left: 4px solid var(--color-primary-blue);
-        }
-        
-        .mcq-question:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .mcq-option { 
-            margin: 12px 0; 
-        }
-        .mcq-option label { 
-            display: block; 
-            padding: 14px; 
-            border: 2px solid #e9ecef; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 0.95rem; 
-            transition: all 0.3s;
-            background: white;
-        }
-        
-        .mcq-option label:hover { 
-            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(40, 167, 69, 0.05));
-            border-color: var(--color-primary-blue); 
-            transform: translateX(5px);
-        }
-        
-        .mcq-option input[type="radio"]:checked + span {
-            font-weight: 600;
-            color: var(--color-primary-blue);
-        }
+        /* --- ENHANCED FULL SCREEN MODAL --- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
+            backdrop-filter: blur(10px); 
+            overflow-y: auto; 
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content { 
+            background: linear-gradient(145deg, var(--color-card-bg) 0%, #f8f9fa 100%);
+            margin: 20px auto; 
+            padding: 30px; 
+            border-radius: 16px; 
+            width: 98%; 
+            max-width: 1200px; 
+            position: relative; 
+            min-height: 95vh;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .close-btn { 
+            position: absolute; 
+            top: 15px; 
+            right: 25px; 
+            color: var(--color-dark); 
+            font-size: 35px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            z-index: 10; 
+            line-height: 1; 
+            transition: color var(--transition-speed);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-btn:hover { 
+            color: var(--color-danger);
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .mcq-question { 
+            padding: 1.75rem; 
+            border: 1px solid #e9ecef; 
+            border-radius: 12px; 
+            margin-bottom: 1.5rem; 
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            transition: all var(--transition-speed);
+            border-left: 4px solid var(--color-primary-blue);
+        }
+        
+        .mcq-question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mcq-option { 
+            margin: 12px 0; 
+        }
+        .mcq-option label { 
+            display: block; 
+            padding: 14px; 
+            border: 2px solid #e9ecef; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 0.95rem; 
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .mcq-option label:hover { 
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(40, 167, 69, 0.05));
+            border-color: var(--color-primary-blue); 
+            transform: translateX(5px);
+        }
+        
+        .mcq-option input[type="radio"]:checked + span {
+            font-weight: 600;
+            color: var(--color-primary-blue);
+        }
 
-        .correct-ans { 
-            background: linear-gradient(135deg, #d4edda, #c3e6cb) !important; 
-            border-color: #28a745 !important; 
-            color: #155724;
-            animation: correctPulse 1.5s ease;
-        }
-        
-        @keyframes correctPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-        
-        .wrong-ans { 
-            background: linear-gradient(135deg, #f8d7da, #f5c6cb) !important; 
-            border-color: #dc3545 !important; 
-            color: #721c24;
-            animation: shake 0.5s ease;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
+        .correct-ans { 
+            background: linear-gradient(135deg, #d4edda, #c3e6cb) !important; 
+            border-color: #28a745 !important; 
+            color: #155724;
+            animation: correctPulse 1.5s ease;
+        }
+        
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .wrong-ans { 
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb) !important; 
+            border-color: #dc3545 !important; 
+            color: #721c24;
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
 
-        #result-summary {
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            border-radius: 16px;
-            padding: 3rem;
-            border-left: 4px solid var(--color-secondary-green);
-            animation: fadeIn 0.5s ease;
-        }
-        
-        #result-summary .fa-award {
-            animation: float 3s ease-in-out infinite;
-            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        #result-summary {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: 16px;
+            padding: 3rem;
+            border-left: 4px solid var(--color-secondary-green);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        #result-summary .fa-award {
+            animation: float 3s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
 
-        /* --- NEW PERCENTAGE SELECTOR DESIGN --- */
-        .pct-selector {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .pct-btn {
-            border: 2px solid var(--color-primary-blue);
-            background: white;
-            color: var(--color-primary-blue);
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .pct-btn.active {
-            background: var(--color-primary-blue);
-            color: white;
-            box-shadow: 0 4px 10px rgba(0,123,255,0.3);
-        }
+        /* --- NEW PERCENTAGE SELECTOR DESIGN --- */
+        .pct-selector {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .pct-btn {
+            border: 2px solid var(--color-primary-blue);
+            background: white;
+            color: var(--color-primary-blue);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .pct-btn.active {
+            background: var(--color-primary-blue);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+        }
 
-        footer { 
-            background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
-            color: var(--color-light); 
-            padding: 2rem 1rem 0; 
-            margin-top: 3rem; 
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-secondary-green), var(--color-primary-blue-light));
-        }
-        
-        .footer-top { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding-bottom: 1.5rem; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
-            gap: 1rem; 
-        }
-        .footer-logo .logo-img { 
-            height: 80px; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-        .footer-links { 
-            display: flex; 
-            gap: 1.5rem; 
-        }
-        .footer-links a { 
-            color: var(--color-light); 
-            font-weight: 500; 
-            transition: all var(--transition-speed); 
-            padding: 0.5rem;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .footer-links a:hover { 
-            color: var(--color-secondary-green); 
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        .social-icons a { 
-            color: var(--color-light); 
-            font-size: 1.5rem; 
-            margin-left: 1rem; 
-            transition: all var(--transition-speed);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .social-icons a:hover { 
-            color: var(--color-secondary-green); 
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px) scale(1.1);
-        }
-        .footer-bottom { 
-            text-align: center; 
-            padding: 1.5rem 0; 
-            opacity: 0.8;
-        }
-        @media (max-width: 992px) {
-            .nav-links a {
-                font-size: 0.85rem; /* Even smaller on medium screens */
-                padding: 0.4rem 0.6rem;
-                margin-left: 0.5rem;
-                gap: 0.3rem;
-            }
-            
-            .nav-links a i {
-                font-size: 0.85rem;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .logo-img {
-                height: 45px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            #navbar {
-                padding: 0.6rem 1rem; /* Reduced mobile padding */
-            }
-            
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                width: 100%; 
-                position: absolute; 
-                top: 60px; /* Adjusted for smaller navbar */
-                left: 0; 
-                background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-                padding: 0.75rem 0; /* Reduced padding */
-                border-radius: 0 0 var(--border-radius-base) var(--border-radius-base);
-            }
-            
-            .nav-links.active { 
-                display: flex; 
-            }
-            
-            .nav-links a { 
-                margin: 0.3rem 0.75rem; /* Reduced margin */
-                padding: 0.75rem; /* Reduced padding */
-                text-align: center; 
-                width: calc(100% - 1.5rem); 
-                border-bottom: none; 
-                border-radius: var(--border-radius-base); 
-                font-size: 0.9rem;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-            
-            .nav-links a i {
-                font-size: 0.95rem;
-            }
-            
-            .mobile-menu-btn { 
-                display: block; 
-                padding: 0.3rem; /* Smaller padding */
-                font-size: 1.1rem; /* Smaller icon */
-            }
-            
-            .mobile-menu-btn:hover {
-                transform: scale(1.05);
-            }
-            
-            .footer-top { 
-                flex-direction: column; 
-                text-align: center; 
-            }
-            
-            .footer-links { 
-                flex-direction: column; 
-                gap: 0.75rem; 
-                margin: 1rem 0;
-            }
-            
-            .social-icons { 
-                margin-top: 1rem; 
-            }
-            
+        footer { 
+            background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
+            color: var(--color-light); 
+            padding: 2rem 1rem 0; 
+            margin-top: 3rem; 
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-secondary-green), var(--color-primary-blue-light));
+        }
+        
+        .footer-top { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding-bottom: 1.5rem; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
+            gap: 1rem; 
+        }
+        .footer-logo .logo-img { 
+            height: 80px; 
+            filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .footer-links { 
+            display: flex; 
+            gap: 1.5rem; 
+        }
+        .footer-links a { 
+            color: var(--color-light); 
+            font-weight: 500; 
+            transition: all var(--transition-speed); 
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-links a:hover { 
+            color: var(--color-secondary-green); 
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        .social-icons a { 
+            color: var(--color-light); 
+            font-size: 1.5rem; 
+            margin-left: 1rem; 
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .social-icons a:hover { 
+            color: var(--color-secondary-green); 
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px) scale(1.1);
+        }
+        .footer-bottom { 
+            text-align: center; 
+            padding: 1.5rem 0; 
+            opacity: 0.8;
+        }
 
-        }
-        
-        @media (max-width: 480px) {
-            #navbar {
-                padding: 0.5rem 0.75rem;
-            }
-            
-            .logo {
-                font-size: 1.2rem;
-                gap: 0.5rem;
-            }
-            
-            .logo-img {
-                height: 40px;
-            }
-            
-            
-            .card {
-                padding: 1.25rem;
-            }
-            
-            .mobile-menu-btn {
-                font-size: 1rem;
-            }
-        
-
-        .hidden { 
-            display: none !important; 
-        }
-        
-        .text-center { 
-            text-align: center; 
-        }
-    </style>
+        .hidden { 
+            display: none !important; 
+        }
+        
+        .text-center { 
+            text-align: center; 
+        }
+    </style>
 </head>
 <body>
-    
+    
 <header>
-    <nav id="navbar">
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-            Dani Medico
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
-            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <a href="lectures.html"><i class="fas fa-video"></i> Books</a>
-            <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
-            <a href="tests.html" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
-            <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
-            <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
-        </div>
-        <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <nav id="navbar">
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            Dani Medico
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="lectures.html"><i class="fas fa-video"></i> Books</a>
+            <a href="notes.html"><i class="fas fa-book-open"></i> Notes</a>
+            <a href="tests.html" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
+            <a href="past-papers.html"><i class="fas fa-file-alt"></i> Papers</a>
+            <a href="announcements.html"><i class="fas fa-bullhorn"></i> News</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 </header>
 
 <main class="container">
-    <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
-    <section class="filters-section card">
-        <div class="filter-group">
-            <label><i class="fas fa-map-marker-alt"></i> Province:</label>
-            <select id="filter-province" onchange="updateExams()">
-                <option value="all">All Provinces</option>
-                <option value="Sindh">Sindh</option>
-                <option value="Punjab">Punjab</option>
-                <option value="KPK">KPK</option>
-                <option value="Balochistan">Balochistan</option>
-                <option value="Islamabad">Islamabad</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label><i class="fas fa-clipboard-list"></i> Exam:</label>
-            <select id="filter-exam" onchange="updateSubjects()">
-                <option value="all">All Exams</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label><i class="fas fa-book"></i> Subject:</label>
-            <select id="filter-subject" onchange="updateChapters()">
-                <option value="all">All Subjects</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label><i class="fas fa-layer-group"></i> Chapter:</label>
-            <select id="filter-chapter" onchange="loadTests()">
-                <option value="all">All Chapters</option>
-            </select>
-        </div>
-    </section>
+    <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
+    <section class="filters-section card">
+        <div class="filter-group">
+            <label><i class="fas fa-map-marker-alt"></i> Province:</label>
+            <select id="filter-province" onchange="updateExams()">
+                <option value="all">All Provinces</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="KPK">KPK</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="Islamabad">Islamabad</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label><i class="fas fa-clipboard-list"></i> Exam:</label>
+            <select id="filter-exam" onchange="updateSubjects()">
+                <option value="all">All Exams</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label><i class="fas fa-book"></i> Subject:</label>
+            <select id="filter-subject" onchange="updateChapters()">
+                <option value="all">All Subjects</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label><i class="fas fa-layer-group"></i> Chapter:</label>
+            <select id="filter-chapter" onchange="loadTests()">
+                <option value="all">All Chapters</option>
+            </select>
+        </div>
+    </section>
 
-    <div id="tests-container" class="card-grid"></div>
-    <p id="no-content-message" class="hidden text-center"></p>
+    <div id="tests-container" class="card-grid"></div>
+    <p id="no-content-message" class="hidden text-center">No tests found for this selection.</p>
 </main>
 
 <div id="configModal" class="modal">
-    <div class="modal-content" style="max-width: 500px; min-height: auto;">
-        <span class="close-btn" onclick="closeModal('configModal')">&times;</span>
-        <h3 class="text-center" style="color: var(--color-primary-blue);"><i class="fas fa-user-edit"></i> Student Registration</h3>
-        <p class="text-center" style="font-size: 0.9rem; margin-bottom: 20px;">Enter your details to proceed with the test.</p>
-        
-        <form id="details-form" onsubmit="handleDetailsSubmit(event)">
-            <div class="filter-group" style="margin-bottom: 15px;">
-                <label>Name:</label>
-                <input type="text" id="user-name" required placeholder="Full Name">
-            </div>
-            <div class="filter-group" style="margin-bottom: 15px;">
-                <label>City:</label>
-                <input type="text" id="user-city" required placeholder="City Name">
-            </div>
-            <div class="filter-group" style="margin-bottom: 15px;">
-                <label>WhatsApp NO:</label>
-                <input type="tel" id="user-whatsapp" required placeholder="03001234567">
-            </div>
-            
-            <label style="font-weight:600; display: block; margin-top: 15px;">Select Test Length:</label>
-            <div class="pct-selector">
-                <button type="button" class="pct-btn" onclick="setPercentage(0.25, this)">25%</button>
-                <button type="button" class="pct-btn" onclick="setPercentage(0.50, this)">50%</button>
-                <button type="button" class="pct-btn" onclick="setPercentage(0.75, this)">75%</button>
-                <button type="button" class="pct-btn active" id="default-pct" onclick="setPercentage(1.0, this)">Full</button>
-            </div>
+    <div class="modal-content" style="max-width: 500px; min-height: auto;">
+        <span class="close-btn" onclick="closeModal('configModal')">&times;</span>
+        <h3 class="text-center" style="color: var(--color-primary-blue);"><i class="fas fa-user-edit"></i> Student Registration</h3>
+        <p class="text-center" style="font-size: 0.9rem; margin-bottom: 20px;">Enter your details to proceed with the test.</p>
+        
+        <form id="details-form" onsubmit="handleDetailsSubmit(event)">
+            <div class="filter-group" style="margin-bottom: 15px;">
+                <label>Name:</label>
+                <input type="text" id="user-name" required placeholder="Full Name">
+            </div>
+            <div class="filter-group" style="margin-bottom: 15px;">
+                <label>City:</label>
+                <input type="text" id="user-city" required placeholder="City Name">
+            </div>
+            <div class="filter-group" style="margin-bottom: 15px;">
+                <label>WhatsApp NO:</label>
+                <input type="tel" id="user-whatsapp" required placeholder="03001234567">
+            </div>
+            
+            <label style="font-weight:600; display: block; margin-top: 15px;">Select Test Length:</label>
+            <div class="pct-selector">
+                <button type="button" class="pct-btn" onclick="setPercentage(0.25, this)">25%</button>
+                <button type="button" class="pct-btn" onclick="setPercentage(0.50, this)">50%</button>
+                <button type="button" class="pct-btn" onclick="setPercentage(0.75, this)">75%</button>
+                <button type="button" class="pct-btn active" id="default-pct" onclick="setPercentage(1.0, this)">Full</button>
+            </div>
 
-            <button type="submit" class="button primary-button" style="height: 50px; font-size: 1.1rem; margin-top: 20px;">
-                Start Test <i class="fas fa-chevron-right"></i>
-            </button>
-        </form>
-    </div>
+            <button type="submit" class="button primary-button" style="height: 50px; font-size: 1.1rem; margin-top: 20px;">
+                Start Test <i class="fas fa-chevron-right"></i>
+            </button>
+        </form>
+    </div>
 </div>
 
 <div id="testModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-        <h3 id="test-modal-title">Interactive Quiz</h3>
-        
-        <div id="timer-container" class="text-center">
-            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
-        </div>
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
+        <h3 id="test-modal-title">Interactive Quiz</h3>
+        
+        <div id="timer-container" class="text-center">
+            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+        </div>
 
-        <hr style="margin: 15px 0; opacity: 0.1;">
-        
-        <form id="mcq-form" onsubmit="submitTest(event)">
-            <div id="mcq-questions"></div>
-            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
-                Submit Test
-            </button>
-        </form>
+        <hr style="margin: 15px 0; opacity: 0.1;">
+        
+        <form id="mcq-form" onsubmit="submitTest(event)">
+            <div id="mcq-questions"></div>
+            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
+                Submit Test
+            </button>
+        </form>
 
-        <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
-            <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
-                <i class="fas fa-arrow-left"></i> Back to Results
-            </button>
-        </div>
+        <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
+            <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
+                <i class="fas fa-arrow-left"></i> Back to Results
+            </button>
+        </div>
 
-        <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
-            <i class="fas fa-award floating-icon" style="font-size: 4rem;"></i>
-            <h2 style="margin-top: 1rem;">Test Completed!</h2>
-            <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
-            <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
-            
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
-                <button class="button secondary-button" onclick="checkTest()">
-                    <i class="fas fa-search"></i> Check Test
-                </button>
-                <button class="button primary-button" onclick="downloadTestPDF()" style="background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%); border: none;">
-                    <i class="fas fa-file-pdf"></i> Download Paper
-                </button>
-            </div>
-            <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
-        </div>
-    </div>
+        <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+            <i class="fas fa-award floating-icon" style="font-size: 4rem;"></i>
+            <h2 style="margin-top: 1rem;">Test Completed!</h2>
+            <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+            <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
+                <button class="button secondary-button" onclick="checkTest()">
+                    <i class="fas fa-search"></i> Check Test
+                </button>
+                <button class="button primary-button" onclick="downloadTestPDF()" style="background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%); border: none;">
+                    <i class="fas fa-file-pdf"></i> Download Paper
+                </button>
+            </div>
+            <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
+        </div>
+    </div>
 </div>
-<footer>
-        <div class="footer-top container">
-            <div class="footer-links">
-                <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-                <a href="https://wa.me/923001234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-            <div class="footer-logo">
-                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-            </div>
-            <div class="social-icons">
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-         const mdcatExams = ["MDCAT", "BSN", "NUMS", "AKU", "AFNS"];
-    const examSubjects = {
-        "all": ["All Subjects"],
-        "MDCAT": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
-        "BSN": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
-        "NUMS": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
-        "AKU": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
-        "AFNS": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"]
-    };
 
-    const examSubjectChapters = {
-        "MDCAT_Biology": ["1. ACELLULAR LIFE", "2. BIOENERGETICS", "3. BIOLOGICAL MOLECULES", "4. CELL STRUCTURE & FUNCTION", "5. COORDINATION & CONTROL", "6. ENZYMES", "7. EVOLUTION", "8. REPRODUCTION", "9. SUPPORT & MOVEMENT", "10. INHERITENCE", "11. CIRCULATION", "12. IMMUNITY", "13. RESPIRATION", "14. DIGESTION", "15. HOMEOSTASIS", "16. BIOTECHNOLOGY"],
-        "MDCAT_Chemistry": ["1. INTRO TO FUNDAMENTAL CONCEPTS OF CHEMISTRY", "2. ATOMIC STRUCTURE", "3. GASES", "4. LIQUIDS", "5. SOLIDS", "6. CHEMICAL EQUILIBRIUM", "7. REACTION KINETICS", "8. THERMO-CHEMISTRY & ENERGETICS OF CHEMICAL REACTIONS", "9. ELECTROCHEMISTRY", "10. CHEMICAL BONDING", "11.S & P Block Elements", "12.TRANSITION ELEMENTS", "13.FUNDAMENTAL PRINCIPLES OF ORGANIC CHEMISTRY", "14.CHEMISTRY OF HYDROCARBONS", "15.ALKYL HALIDES", "16.ALCOHOLS & PHENOLS", "17.ALDEHYDES & KETONES", "18. CARBOXYLIC ACIDS", "19. MACROMOLECULES"],
-        "MDCAT_Physics": ["1.VECTORS & EQUILIBRIUM", "2.FORCE & MOTION", "3.WORK & ENERGY", "4.ROTATIONAL & CIRCULAR MOTION", "5.FLUID DYNAMICS", "6.WAVES", "7.THERMODYNAMICS", "8.ELECTROSTATICS", "9.CURRENT ELECTRICITY", "10.ELECTROMAGNETISM", "11.ELECTROMAGNETIC INDUCTION", "12.ALTERNATING CURRENT", "13.ELECTRONICS", "14.DAWN OF MODERN PHYSICS", "15.ATOMIC SPECTRA", "16.NUCLEAR PHYSICS"],
-        "MDCAT_English": ["1. GRAMMAR FUNDAMENTALS", "2. VOCABULARY BUILDING", "3. READING COMPREHENSION"],
-        "MDCAT_Logical_Reasoning": ["1. ANALYTICAL REASONING", "2. LOGICAL DEDUCTION", "3. PATTERN RECOGNITION", "4. VERBAL REASONING", "5. NON-VERBAL REASONING", "6. CRITICAL THINKING"],
-        "BSN_Biology": ["1. HUMAN ANATOMY", "2. HUMAN PHYSIOLOGY", "3. BIOCHEMISTRY", "4. MICROBIOLOGY", "5. PATHOLOGY", "6. PHARMACOLOGY", "7. NUTRITION", "8. GENETICS", "9. IMMUNOLOGY", "10. FIRST AID", "11. NURSING FUNDAMENTALS", "12. COMMUNITY HEALTH"],
-        "BSN_Chemistry": ["1. BASIC CHEMISTRY", "2. ORGANIC CHEMISTRY", "3. BIOCHEMISTRY", "4. MEDICINAL CHEMISTRY", "5. ANALYTICAL CHEMISTRY", "6. ENVIRONMENTAL CHEMISTRY"],
-        "BSN_Physics": ["1. BIOPHYSICS", "2. MEDICAL PHYSICS", "3. RADIATION PHYSICS", "4. THERMODYNAMICS", "5. FLUID MECHANICS", "6. ELECTRICITY IN MEDICINE"],
-        "BSN_English": ["1. MEDICAL TERMINOLOGY", "2. COMMUNICATION SKILLS"],
-        "BSN_Logical_Reasoning": ["1. PROBLEM SOLVING", "2. DECISION MAKING", "3. CLINICAL REASONING", "4. ETHICAL REASONING"],
-        "NUMS_Biology": ["1. CELL STRUCTURE", "2. GENETICS", "3. HUMAN PHYSIOLOGY", "4. PLANT PHYSIOLOGY", "5. ECOLOGY", "6. EVOLUTION", "7. MICROBIOLOGY", "8. BIOTECHNOLOGY"],
-        "NUMS_Chemistry": ["1. PHYSICAL CHEMISTRY", "2. INORGANIC CHEMISTRY", "3. ORGANIC CHEMISTRY", "4. ENVIRONMENTAL CHEMISTRY", "5. ANALYTICAL CHEMISTRY"],
-        "NUMS_Physics": ["1. MECHANICS", "2. THERMODYNAMICS", "3. ELECTROMAGNETISM", "4. OPTICS", "5. MODERN PHYSICS", "6. MEDICAL PHYSICS"],
-        "NUMS_English": ["1. ENGLISH PROFICIENCY", "2. COMPREHENSION", "3. WRITING SKILLS"],
-        "NUMS_Logical_Reasoning": ["1. QUANTITATIVE REASONING", "2. VERBAL REASONING", "3. ABSTRACT REASONING"],
-        "AKU_Biology": ["1-INTRODUCTION OF BIOLOGY","2-BIOLOGICAL MOLECULES","3-ENZYMES","4-THE CELL","5-CLASSIFICATION AND ACELLULAR LIFE","6-KINGDOM PROKARYOTAE","7-KINGDOM PROTISTA (PROTOCTISTA)","8-KINGDOM FUNGI","9-KINGDOM PLANTAE","10-KINGDOM ANIMALIA","11-BIOENERGETICS","12-NUTRITION","13-GASEOUS EXCHANGE","14-TRANSPORT","15-HOMEOSTASIS","16-SUPPORT AND MOVEMENT","17-COORDINATION AND CONTROL","18-REPRODUCTION","19-GROWTH AND DEVELOPMENT","20-CHROMOSOMES AND DNA","21-CELL CYCLE","22-VARIATION AND GENETICS","23-BIOTECHNOLOGY","24-EVOLUTION","25-ECOSYSTEM","26-SOME MAJOR ECOSYSTEMS","27-MAN AND HIS ENVIRONMENT"],
-        "AKU_Chemistry": ["1- STOICHIOMETRY","2- ATOMIC STRUCTURE","3- THEORIES OF COVALENT BONDING AND SHAPE OF MOLECULES","4- STATES OF MATTER I: GASES","5- STATES OF MATTER II: LIQUIDS","6- STATES OF MATTER III: SOLIDS","7- CHEMICAL EQUILIBRIUM","8- ACIDS, BASES AND SALTS","9- CHEMICAL KINETICS","10- SOLUTIONS AND COLLOIDS","11- THERMOCHEMISTRY","12- ELECTROCHEMISTRY","13- S- AND P-BLOCK ELEMENTS","14- D- AND F-BLOCK ELEMENTS","15- ORGANIC COMPOUNDS","16- HYDROCARBONS","17- ALKYL HALIDES AND AMINES","18- ALCOHOLS, PHENOLS AND ETHERS","19- CARBONYL COMPOUND I: ALDEHYDES AND KETONES","20- CARBONYL COMPOUND II: CARBOXYLIC ACIDS AND FUNCTIONAL DERIVATIVES","21- BIOCHEMISTRY","22- INDUSTRIAL CHEMISTRY","23- ENVIRONMENTAL CHEMISTRY","24- ANALYTICAL CHEMISTRY"],
-        "AKU_Physics": ["1- STOICHIOMETRY","2- ATOMIC STRUCTURE","3- THEORIES OF COVALENT BONDING AND SHAPE OF MOLECULES","4- STATES OF MATTER I: GASES","5- STATES OF MATTER II: LIQUIDS","6- STATES OF MATTER III: SOLIDS","7- CHEMICAL EQUILIBRIUM","8- ACIDS, BASES AND SALTS","9- CHEMICAL KINETICS","10- SOLUTIONS AND COLLOIDS","11- THERMOCHEMISTRY","12- ELECTROCHEMISTRY","13- S- AND P-BLOCK ELEMENTS","14- D- AND F-BLOCK ELEMENTS","15- ORGANIC COMPOUNDS","16- HYDROCARBONS","17- ALKYL HALIDES AND AMINES","18- ALCOHOLS, PHENOLS AND ETHERS","19- CARBONYL COMPOUND I: ALDEHYDES AND KETONES","20- CARBONYL COMPOUND II: CARBOXYLIC ACIDS AND FUNCTIONAL DERIVATIVES","21- BIOCHEMISTRY","22- INDUSTRIAL CHEMISTRY","23- ENVIRONMENTAL CHEMISTRY","24- ANALYTICAL CHEMISTRY"],
-        "AKU_English": ["1. ACADEMIC ENGLISH", "2. MEDICAL COMMUNICATION", "3. RESEARCH WRITING"],
-        "AKU_Logical_Reasoning": ["1. CRITICAL ANALYSIS", "2. PROBLEM SOLVING", "3. DECISION MAKING"],
-        "AFNS_Biology": ["1. BASIC BIOLOGY", "2. HUMAN ANATOMY", "3. PHYSIOLOGY", "4. MICROBIOLOGY", "5. FIRST AID"],
-        "AFNS_Chemistry": ["1. BASIC CHEMISTRY", "2. BIOCHEMISTRY", "3. PHARMACOLOGY"],
-        "AFNS_Physics": ["1. BASIC PHYSICS", "2. MEDICAL PHYSICS"],
-        "AFNS_English": ["1. MILITARY ENGLISH", "2. COMMUNICATION SKILLS"],
-        "AFNS_Logical_Reasoning": ["1. ANALYTICAL THINKING", "2. DECISION MAKING"]
-    };
-    
-    const testsData = [
-  { 
-    id: 'T1', 
-    title: 'BIOLOGY MDCAT', 
-    subject: 'Biology', 
-    chapter: '1. ACELLULAR LIFE', 
-    exam: 'MDCAT', 
-    province: 'All Provinces', 
-    mcqs: [
-        { q: "What did Dmitri Ivanovsky's filtration experiments with Tobacco Mosaic Disease sap demonstrate?", options: ["Bacteria cause the disease.", "The infectious agent could pass through filters that retain bacteria.", "Viruses contain DNA.", "The infectious agent could be crystallized."], answer: 1 },
-        { q: "The term 'virus' originates from a Latin word meaning:", options: ["Small particle", "Poison", "Filterable agent", "Living fluid"], answer: 1 },
-        { q: "Which of the following is NOT a characteristic used to argue that viruses are non-living?", options: ["Ability to replicate only inside host cells", "Lack of metabolic machinery", "Possession of genetic material", "Ability to be crystallized."], answer: 2 },
-        { q: "Which scientist first crystallized a virus (TMV), demonstrating it could behave like a chemical?", options: ["Charles Chamberland", "Martinus Beijerinck", "Wendell Stanley", "Louis Pasteur"], answer: 2 },
-        { q: "Viruses are considered obligate intracellular parasites because they:", options: ["Can survive outside host cells indefinitely", "Lack ribosomes and energy-generating systems", "Always kill their host cells", "Have DNA genomes"], answer: 1 },
-        { q: "Which of the following is a unique property of viral genomes compared to cellular organisms?", options: ["They can be single-stranded DNA", "They can be double-stranded RNA", "They can be segmented", "All of the above"], answer: 3 },
-        { q: "The primary reason viruses are not classified in the traditional biological taxonomy (e.g., Kingdom, Phylum) is:", options: ["They are too small", "They lack cellular structure", "They do not evolve", "They are considered chemicals"], answer: 1 },
-        { q: "Which statement about viral host range is correct?", options: ["All viruses can infect any type of cell", "Host range is determined by the presence of specific host receptors", "Plant viruses commonly infect humans", "Bacteriophages can infect animal cells"], answer: 1 },
-        { q: "The 'virocell' concept refers to:", options: ["A virus particle outside a host", "A host cell that has been converted into a virus-producing factory", "A type of viroid", "A giant virus with cellular genes"], answer: 1 },
-        { q: "Which of the following is evidence supporting the origin of viruses from cellular organisms?", options: ["Presence of reverse transcriptase", "Genetic similarity between viral and host genes", "Ability to form crystals", "Lack of envelopes"], answer: 1 },
-        { q: "The primary function of the viral capsid is to:", options: ["Carry out metabolic reactions", "Protect the viral genome", "Attach to host cells", "Synthesize viral proteins"], answer: 1 },
-        { q: "Which symmetry is found in the capsid of Adenovirus?", options: ["Helical", "Icosahedral", "Complex", "Amorphous"], answer: 1 },
-        { q: "Viral envelopes are typically acquired from:", options: ["The environment", "Host cell membranes during budding", "Self-synthesized lipids", "Other viruses"], answer: 1 },
-        { q: "Glycoprotein spikes on enveloped viruses are crucial for:", options: ["Genome replication", "Host cell recognition and attachment", "Capsid assembly", "Energy production"], answer: 1 },
-        { q: "The nucleocapsid refers to:", options: ["The viral envelope", "The capsid + viral genome", "Viral RNA only", "Host cell nucleus infected by virus"], answer: 1 },
-        { q: "Which component is present in ALL viruses?", options: ["Lipid envelope", "DNA genome", "Protein capsid", "Glycoprotein spikes"], answer: 2 },
-        { q: "Non-enveloped viruses are generally more resistant to:", options: ["Freezing", "Detergents and solvents", "UV light", "All of the above"], answer: 1 },
-        { q: "The triangulation number (T-number) in icosahedral viruses determines:", options: ["Genome size", "Number of capsomeres", "Type of nucleic acid", "Host range"], answer: 1 },
-        { q: "Which of the following viruses has a helical capsid?", options: ["Adenovirus", "Tobacco Mosaic Virus", "HIV", "Herpesvirus"], answer: 1 },
-        { q: "Viral tegument is a feature of:", options: ["Bacteriophages", "Herpesviruses", "Picornaviruses", "Retroviruses"], answer: 1 },
-        { q: "The Baltimore classification system categorizes viruses based on:", options: ["Host range", "Capsid symmetry", "Genome type and replication strategy", "Disease severity"], answer: 2 },
-        { q: "Which Baltimore group includes retroviruses like HIV?", options: ["Group IV", "Group V", "Group VI", "Group VII"], answer: 2 },
-        { q: "A positive-sense single-stranded RNA virus genome can directly function as:", options: ["Template for DNA synthesis", "mRNA for protein translation", "Substrate for reverse transcriptase", "Integrase target"], answer: 1 },
-        { q: "Which virus has a partially double-stranded DNA genome with an RNA intermediate?", options: ["Hepatitis A virus", "Hepatitis B virus", "Hepatitis C virus", "HIV"], answer: 1 },
-        { q: "Segmented genomes are characteristic of:", options: ["HIV", "Influenza virus", "Hepatitis B virus", "Adenovirus"], answer: 1 },
-        { q: "Which enzyme is carried within the virion of negative-sense RNA viruses?", options: ["DNA polymerase", "Reverse transcriptase", "RNA-dependent RNA polymerase", "Integrase"], answer: 2 },
-        { q: "Viroids differ from viruses in that viroids:", options: ["Have a protein coat", "Infect animals", "Consist only of circular RNA", "Have a DNA genome"], answer: 2 },
-        { q: "Prions are unique because they lack:", options: ["Protein", "Nucleic acid", "Infectivity", "Ability to cause disease"], answer: 1 },
-        { q: "Satellite viruses require a helper virus for:", options: ["Replication", "Capsid formation", "Host attachment", "All of the above"], answer: 3 },
-        { q: "Which is a DNA virus?", options: ["Influenza virus", "HIV", "Herpes simplex virus", "Dengue virus"], answer: 2 },
-        { q: "The first step in the viral replication cycle is:", options: ["Penetration", "Attachment", "Uncoating", "Replication"], answer: 1 },
-        { q: "In bacteriophage T4, the tail fibers are involved in:", options: ["DNA injection", "Host cell recognition", "Capsid assembly", "Genome replication"], answer: 1 },
-        { q: "The 'eclipse phase' in viral replication refers to the period when:", options: ["Virions are assembling", "No infectious virions are detectable inside the host cell", "Host cell lysis occurs", "Viral DNA integrates into host genome"], answer: 1 },
-        { q: "Lysogenic conversion occurs when:", options: ["The host cell is immediately lysed", "Viral DNA integrates into the host genome", "The virus exists as a prophage", "Both B and C"], answer: 3 },
-        { q: "Reverse transcriptase is an enzyme that synthesizes:", options: ["RNA from DNA", "DNA from RNA", "Protein from RNA", "RNA from protein"], answer: 1 },
-        { q: "HIV protease is essential for:", options: ["Viral entry", "Cleaving viral polyproteins into functional units", "Reverse transcription", "Integration"], answer: 1 },
-        { q: "The enzyme integrase in HIV is responsible for:", options: ["Viral budding", "Inserting viral DNA into host chromosome", "Cleaving viral proteins", "Converting RNA to DNA"], answer: 1 },
-        { q: "Which cycle results in immediate host cell lysis?", options: ["Lysogenic cycle", "Lytic cycle", "Latent cycle", "Chronic cycle"], answer: 1 },
-        { q: "In the lytic cycle of bacteriophage, the stage where viral components are assembled into new virions is called:", options: ["Penetration", "Biosynthesis", "Maturation", "Release"], answer: 2 },
-        { q: "Viral budding typically occurs in:", options: ["Naked viruses", "Enveloped viruses", "Bacteriophages", "Viroids"], answer: 1 },
-        { q: "Interferons are host proteins that:", options: ["Directly destroy viruses", "Signal neighboring cells to activate antiviral defenses", "Act as antibodies", "Lyse infected cells"], answer: 1 },
-        { q: "Which virus is known to destroy helper T-cells, leading to immunodeficiency?", options: ["Influenza virus", "HIV", "Hepatitis B virus", "Rhinovirus"], answer: 1 },
-        { q: "Kaposi's sarcoma in AIDS patients is caused by:", options: ["HIV directly", "Human herpesvirus-8 (HHV-8)", "Cytomegalovirus", "Epstein-Barr virus"], answer: 1 },
-        { q: "A cytokine storm is a severe immune reaction often associated with which virus?", options: ["HIV", "Avian influenza virus", "Rhinovirus", "Hepatitis A virus"], answer: 1 },
-        { q: "Prion diseases affect which organ system primarily?", options: ["Respiratory system", "Nervous system", "Digestive system", "Circulatory system"], answer: 1 },
-        { q: "Viral syncytia formation is a mechanism used by which virus to spread directly between cells?", options: ["Poliovirus", "HIV", "Hepatitis B virus", "Adenovirus"], answer: 1 },
-        { q: "Which hepatitis virus is transmitted via the fecal-oral route?", options: ["Hepatitis B", "Hepatitis C", "Hepatitis A", "Hepatitis D"], answer: 2 },
-        { q: "The 'window period' in HIV infection refers to the time when:", options: ["The virus is dormant", "Antibodies are not yet detectable", "Symptoms are most severe", "The virus cannot be transmitted"], answer: 1 },
-        { q: "Cotton Leaf Curl Virus in Pakistan is transmitted by:", options: ["Mosquitoes", "Whiteflies", "Aphids", "Beetles"], answer: 1 },
-        { q: "Which viral disease is characterized by Koplik's spots in the mouth?", options: ["Dengue", "Measles", "Chickenpox", "Rubella"], answer: 1 },
-        { q: "Arboviruses are transmitted by:", options: ["Rodents", "Arthropods (e.g., mosquitoes, ticks)", "Contaminated water", "Airborne droplets"], answer: 1 },
-        { q: "Ebola virus is primarily transmitted through:", options: ["Airborne droplets", "Direct contact with infected body fluids", "Contaminated food", "Mosquito bites"], answer: 1 },
-        { q: "The basic reproduction number (R0) indicates:", options: ["Mortality rate", "Transmission potential", "Incubation period", "Genome size"], answer: 1 },
-        { q: "Which hepatitis virus requires co-infection with Hepatitis B virus?", options: ["HAV", "HCV", "HDV", "HEV"], answer: 2 },
-        { q: "A pandemic is defined as:", options: ["A disease outbreak in a small community", "A disease spread across a country", "A disease spread across multiple continents", "A disease that affects only animals"], answer: 2 },
-        { q: "Which virus has bats as its natural reservoir?", options: ["Influenza virus", "Ebola virus", "Hepatitis C virus", "Rhinovirus"], answer: 1 },
-        { q: "Antigenic shift in influenza viruses is a result of:", options: ["Point mutations", "Genome reassortment between different strains", "Reverse transcription", "Integration into host genome"], answer: 1 },
-        { q: "The primary vector for Dengue virus is:", options: ["Anopheles mosquito", "Aedes mosquito", "Sandfly", "Tick"], answer: 1 },
-        { q: "Vertical transmission refers to:", options: ["Transmission between individuals of the same generation", "Transmission from parent to offspring", "Transmission via vectors", "Airborne transmission"], answer: 1 },
-        { q: "Herd immunity occurs when:", options: ["A large percentage of the population is vaccinated or immune", "The virus mutates to a weaker form", "All infected individuals are isolated", "Animals are vaccinated"], answer: 0 },
-        { q: "Plaque assays are used to measure:", options: ["Antibody levels", "Viral infectivity (PFU/mL)", "Genome size", "Capsid symmetry"], answer: 1 },
-        { q: "The Western blot test is used to:", options: ["Detect viral RNA", "Confirm HIV infection by detecting specific antibodies/antigens", "Measure CD4 count", "Culture viruses"], answer: 1 },
-        { q: "Electron microscopy is particularly useful for:", options: ["Diagnosing common colds", "Visualizing novel or unculturable viruses", "Measuring viral load", "Detecting antibodies"], answer: 1 },
-        { q: "PCR (Polymerase Chain Reaction) is used to:", options: ["Detect viral proteins", "Amplify and detect viral nucleic acids", "Measure antibody titers", "Culture viruses"], answer: 1 },
-        { q: "Hemagglutination inhibition assays detect:", options: ["Viral DNA", "Neutralizing antibodies", "Capsid proteins", "Reverse transcriptase activity"], answer: 1 },
-        { q: "The 'window period' in HIV testing can be reduced by using:", options: ["ELISA alone", "PCR for viral RNA", "Western blot", "CD4 count"], answer: 1 },
-        { q: "Viral load testing measures:", options: ["Antibody levels", "Number of viral genome copies per mL", "CD4+ T-cell count", "Capsid protein concentration"], answer: 1 },
-        { q: "Which diagnostic method is considered gold standard for confirming HIV?", options: ["Rapid test", "ELISA", "Western blot", "Viral culture"], answer: 2 },
-        { q: "Inclusion bodies in rabies-infected neurons are called:", options: ["Negri bodies", "Guarnieri bodies", "Lewy bodies", "Pappataci bodies"], answer: 0 },
-        { q: "Quantitative PCR (qPCR) is superior for:", options: ["Determining viral morphology", "Measuring exact viral genome copies", "Detecting antibodies", "Culturing viruses"], answer: 1 },
-        { q: "AZT (Zidovudine) is an antiretroviral that inhibits:", options: ["HIV protease", "Reverse transcriptase", "Integrase", "Viral entry"], answer: 1 },
-        { q: "Neuraminidase inhibitors (e.g., Oseltamivir) are used to treat:", options: ["HIV", "Influenza", "Hepatitis C", "Herpes"], answer: 1 },
-        { q: "Protease inhibitors in HIV therapy prevent:", options: ["Viral entry", "Cleavage of viral polyproteins", "Reverse transcription", "Integration"], answer: 1 },
-        { q: "Live attenuated vaccines contain:", options: ["Killed pathogens", "Weakened but living pathogens", "Toxoid proteins", "DNA fragments"], answer: 1 },
-        { q: "Virus-like particle (VLP) vaccines contain:", options: ["Live virus", "Empty viral capsids without genetic material", "Inactivated virus", "Viral DNA"], answer: 1 },
-        { q: "The Oral Polio Vaccine (OPV) contains:", options: ["Killed virus", "Attenuated virus", "Viral DNA", "Capsid proteins only"], answer: 1 },
-        { q: "mRNA vaccines (e.g., COVID-19 vaccines) work by:", options: ["Introducing live virus into the body", "Delivering mRNA that encodes viral protein, prompting immune response", "Injecting killed virus", "Providing ready-made antibodies"], answer: 1 },
-        { q: "Broad-spectrum antivirals often target:", options: ["Viral capsids", "Host factors essential for viral replication", "Viral envelopes", "Antibody production"], answer: 1 },
-        { q: "Phage therapy uses bacteriophages to treat:", options: ["Viral infections", "Bacterial infections", "Fungal infections", "Prion diseases"], answer: 1 },
-        { q: "CRISPR-Cas technology is being explored to target:", options: ["Only bacterial infections", "Specific viral genomes", "Host DNA exclusively", "Prion proteins"], answer: 1 },
-        { q: "Giant viruses (e.g., Mimivirus) challenge traditional definitions because they:", options: ["Lack DNA", "Encode cellular metabolic genes", "Cannot be seen under light microscopy", "Infect only plants"], answer: 1 },
-        { q: "Metagenomics has revolutionized virology by enabling detection of:", options: ["Only known viruses", "Unculturable and novel viruses in environmental samples", "Prions only", "Bacterial pathogens"], answer: 1 },
-        { q: "The 'One Health' approach emphasizes the interconnection between:", options: ["Viruses and bacteria only", "Human, animal, and environmental health", "Plants and viruses only", "Vaccines and antivirals"], answer: 1 },
-        { q: "Zoonotic spillover refers to:", options: ["Transmission between humans only", "Transmission from animals to humans", "Transmission via vectors only", "Laboratory accidents"], answer: 1 },
-        { q: "Viroporins are viral proteins that:", options: ["Form ion channels in host membranes", "Replicate viral genome", "Assemble capsids", "Act as RNA polymerase"], answer: 0 },
-        { q: "Defective interfering particles are viral mutants that:", options: ["Enhance viral replication", "Compete with wild-type virus for replication machinery", "Cause immediate lysis", "Act as vaccines"], answer: 1 },
-        { q: "The 'quasispecies' concept in virology refers to:", options: ["A single viral strain", "A population of genetically diverse viral variants", "Different virus species in one host", "Viruses that infect multiple hosts"], answer: 1 },
-        { q: "Endogenous retroviruses are:", options: ["Always active and causing disease", "Viral sequences integrated into host genome and inherited", "Found only in bacteria", "A type of viroid"], answer: 1 },
-        { q: "The Red Queen hypothesis in viral evolution describes:", options: ["Host-parasite coevolutionary arms race", "Viral genome stability", "Vaccine failure", "Viral latency"], answer: 0 },
-        { q: "Viral dark matter refers to:", options: ["Well-characterized viruses", "Uncharacterized viral sequences in metagenomic data", "Prions", "Inactive viral particles"], answer: 1 },
-        { q: "Oncolytic viruses are engineered to:", options: ["Cause cancer", "Target and kill cancer cells", "Treat bacterial infections", "Act as vaccines"], answer: 1 },
-        { q: "CRISPR-Cas systems naturally function in bacteria as:", options: ["Metabolic pathways", "Defense against bacteriophages", "DNA replication machinery", "Protein synthesis systems"], answer: 1 },
-        { q: "Phage display technology is used to:", options: ["Treat viral infections", "Evolve and select novel proteins/antibodies", "Sequence viral genomes", "Culture viruses"], answer: 1 },
-        { q: "Synthetic virology involves:", options: ["Studying only natural viruses", "Engineering viral genomes for research/therapeutics", "Destroying all viruses", "Creating new viral diseases"], answer: 1 },
-        { q: "Organoid models are used in virology to:", options: ["Replace animal models entirely", "Mimic human tissue architecture for infection studies", "Mass-produce viruses", "Develop new vaccines directly"], answer: 1 },
-        { q: "Nanopore sequencing allows:", options: ["Only DNA sequencing", "Real-time, long-read sequencing of viral genomes", "Protein structure determination", "Viral culture"], answer: 1 },
-        { q: "The 'virosphere' refers to:", options: ["A single virus particle", "The global ecological community of viruses", "Viral capsid structure", "A type of viroid"], answer: 1 },
-        { q: "Personalized virology considers:", options: ["Only viral genetics", "Host genetic factors in infection and treatment", "Universal vaccines only", "One-size-fits-all antivirals"], answer: 1 },
-        { q: "AI (Artificial Intelligence) is being used in virology to:", options: ["Predict viral-host interactions and protein structures", "Replace all lab work", "Create synthetic viruses only", "Diagnose without tests"], answer: 0 },
-        { q: "The future of virology includes understanding:", options: ["Virus-host ecosystems and global viral ecology", "Only viral structure", "How to eliminate all viruses", "Plant viruses exclusively"], answer: 0 }
-    ]
-}
-  ];
+<script>
+    const mdcatExams = ["MDCAT", "BSN", "NUMS", "AKU", "AFNS"];
+    const examSubjects = {
+        "all": ["All Subjects"],
+        "MDCAT": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
+        "BSN": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
+        "NUMS": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
+        "AKU": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"],
+        "AFNS": ["Biology", "Chemistry", "Physics", "English", "Logical Reasoning"]
+    };
 
+    const examSubjectChapters = {
+        "MDCAT_Biology": ["1. ACELLULAR LIFE", "2. BIOENERGETICS", "3. BIOLOGICAL MOLECULES", "4. CELL STRUCTURE & FUNCTION", "5. COORDINATION & CONTROL", "6. ENZYMES", "7. EVOLUTION", "8. REPRODUCTION", "9. SUPPORT & MOVEMENT", "10. INHERITENCE", "11. CIRCULATION", "12. IMMUNITY", "13. RESPIRATION", "14. DIGESTION", "15. HOMEOSTASIS", "16. BIOTECHNOLOGY"],
+        "MDCAT_Chemistry": ["1. INTRO TO FUNDAMENTAL CONCEPTS OF CHEMISTRY", "2. ATOMIC STRUCTURE", "3. GASES", "4. LIQUIDS", "5. SOLIDS", "6. CHEMICAL EQUILIBRIUM", "7. REACTION KINETICS", "8. THERMO-CHEMISTRY & ENERGETICS OF CHEMICAL REACTIONS", "9. ELECTROCHEMISTRY", "10. CHEMICAL BONDING", "11.S & P Block Elements", "12.TRANSITION ELEMENTS", "13.FUNDAMENTAL PRINCIPLES OF ORGANIC CHEMISTRY", "14.CHEMISTRY OF HYDROCARBONS", "15.ALKYL HALIDES", "16.ALCOHOLS & PHENOLS", "17.ALDEHYDES & KETONES", "18. CARBOXYLIC ACIDS", "19. MACROMOLECULES"],
+        "MDCAT_Physics": ["1.VECTORS & EQUILIBRIUM", "2.FORCE & MOTION", "3.WORK & ENERGY", "4.ROTATIONAL & CIRCULAR MOTION", "5.FLUID DYNAMICS", "6.WAVES", "7.THERMODYNAMICS", "8.ELECTROSTATICS", "9.CURRENT ELECTRICITY", "10.ELECTROMAGNETISM", "11.ELECTROMAGNETIC INDUCTION", "12.ALTERNATING CURRENT", "13.ELECTRONICS", "14.DAWN OF MODERN PHYSICS", "15.ATOMIC SPECTRA", "16.NUCLEAR PHYSICS"],
+        "MDCAT_English": ["1. GRAMMAR FUNDAMENTALS", "2. VOCABULARY BUILDING", "3. READING COMPREHENSION"],
+        "MDCAT_Logical_Reasoning": ["1. ANALYTICAL REASONING", "2. LOGICAL DEDUCTION", "3. PATTERN RECOGNITION", "4. VERBAL REASONING", "5. NON-VERBAL REASONING", "6. CRITICAL THINKING"],
+        "BSN_Biology": ["1. HUMAN ANATOMY", "2. HUMAN PHYSIOLOGY", "3. BIOCHEMISTRY", "4. MICROBIOLOGY", "5. PATHOLOGY", "6. PHARMACOLOGY", "7. NUTRITION", "8. GENETICS", "9. IMMUNOLOGY", "10. FIRST AID", "11. NURSING FUNDAMENTALS", "12. COMMUNITY HEALTH"],
+        "BSN_Chemistry": ["1. BASIC CHEMISTRY", "2. ORGANIC CHEMISTRY", "3. BIOCHEMISTRY", "4. MEDICINAL CHEMISTRY", "5. ANALYTICAL CHEMISTRY", "6. ENVIRONMENTAL CHEMISTRY"],
+        "BSN_Physics": ["1. BIOPHYSICS", "2. MEDICAL PHYSICS", "3. RADIATION PHYSICS", "4. THERMODYNAMICS", "5. FLUID MECHANICS", "6. ELECTRICITY IN MEDICINE"],
+        "BSN_English": ["1. MEDICAL TERMINOLOGY", "2. COMMUNICATION SKILLS"],
+        "BSN_Logical_Reasoning": ["1. PROBLEM SOLVING", "2. DECISION MAKING", "3. CLINICAL REASONING", "4. ETHICAL REASONING"],
+        "NUMS_Biology": ["1. CELL STRUCTURE", "2. GENETICS", "3. HUMAN PHYSIOLOGY", "4. PLANT PHYSIOLOGY", "5. ECOLOGY", "6. EVOLUTION", "7. MICROBIOLOGY", "8. BIOTECHNOLOGY"],
+        "NUMS_Chemistry": ["1. PHYSICAL CHEMISTRY", "2. INORGANIC CHEMISTRY", "3. ORGANIC CHEMISTRY", "4. ENVIRONMENTAL CHEMISTRY", "5. ANALYTICAL CHEMISTRY"],
+        "NUMS_Physics": ["1. MECHANICS", "2. THERMODYNAMICS", "3. ELECTROMAGNETISM", "4. OPTICS", "5. MODERN PHYSICS", "6. MEDICAL PHYSICS"],
+        "NUMS_English": ["1. ENGLISH PROFICIENCY", "2. COMPREHENSION", "3. WRITING SKILLS"],
+        "NUMS_Logical_Reasoning": ["1. QUANTITATIVE REASONING", "2. VERBAL REASONING", "3. ABSTRACT REASONING"],
+        "AKU_Biology": ["1-INTRODUCTION OF BIOLOGY","2-BIOLOGICAL MOLECULES","3-ENZYMES","4-THE CELL","5-CLASSIFICATION AND ACELLULAR LIFE","6-KINGDOM PROKARYOTAE","7-KINGDOM PROTISTA (PROTOCTISTA)","8-KINGDOM FUNGI","9-KINGDOM PLANTAE","10-KINGDOM ANIMALIA","11-BIOENERGETICS","12-NUTRITION","13-GASEOUS EXCHANGE","14-TRANSPORT","15-HOMEOSTASIS","16-SUPPORT AND MOVEMENT","17-COORDINATION AND CONTROL","18-REPRODUCTION","19-GROWTH AND DEVELOPMENT","20-CHROMOSOMES AND DNA","21-CELL CYCLE","22-VARIATION AND GENETICS","23-BIOTECHNOLOGY","24-EVOLUTION","25-ECOSYSTEM","26-SOME MAJOR ECOSYSTEMS","27-MAN AND HIS ENVIRONMENT"],
+        "AKU_Chemistry": ["1- STOICHIOMETRY","2- ATOMIC STRUCTURE","3- THEORIES OF COVALENT BONDING AND SHAPE OF MOLECULES","4- STATES OF MATTER I: GASES","5- STATES OF MATTER II: LIQUIDS","6- STATES OF MATTER III: SOLIDS","7- CHEMICAL EQUILIBRIUM","8- ACIDS, BASES AND SALTS","9- CHEMICAL KINETICS","10- SOLUTIONS AND COLLOIDS","11- THERMOCHEMISTRY","12- ELECTROCHEMISTRY","13- S- AND P-BLOCK ELEMENTS","14- D- AND F-BLOCK ELEMENTS","15- ORGANIC COMPOUNDS","16- HYDROCARBONS","17- ALKYL HALIDES AND AMINES","18- ALCOHOLS, PHENOLS AND ETHERS","19- CARBONYL COMPOUND I: ALDEHYDES AND KETONES","20- CARBONYL COMPOUND II: CARBOXYLIC ACIDS AND FUNCTIONAL DERIVATIVES","21- BIOCHEMISTRY","22- INDUSTRIAL CHEMISTRY","23- ENVIRONMENTAL CHEMISTRY","24- ANALYTICAL CHEMISTRY"],
+        "AKU_Physics": ["1- STOICHIOMETRY","2- ATOMIC STRUCTURE","3- THEORIES OF COVALENT BONDING AND SHAPE OF MOLECULES","4- STATES OF MATTER I: GASES","5- STATES OF MATTER II: LIQUIDS","6- STATES OF MATTER III: SOLIDS","7- CHEMICAL EQUILIBRIUM","8- ACIDS, BASES AND SALTS","9- CHEMICAL KINETICS","10- SOLUTIONS AND COLLOIDS","11- THERMOCHEMISTRY","12- ELECTROCHEMISTRY","13- S- AND P-BLOCK ELEMENTS","14- D- AND F-BLOCK ELEMENTS","15- ORGANIC COMPOUNDS","16- HYDROCARBONS","17- ALKYL HALIDES AND AMINES","18- ALCOHOLS, PHENOLS AND ETHERS","19- CARBONYL COMPOUND I: ALDEHYDES AND KETONES","20- CARBONYL COMPOUND II: CARBOXYLIC ACIDS AND FUNCTIONAL DERIVATIVES","21- BIOCHEMISTRY","22- INDUSTRIAL CHEMISTRY","23- ENVIRONMENTAL CHEMISTRY","24- ANALYTICAL CHEMISTRY"],
+        "AKU_English": ["1. ACADEMIC ENGLISH", "2. MEDICAL COMMUNICATION", "3. RESEARCH WRITING"],
+        "AKU_Logical_Reasoning": ["1. CRITICAL ANALYSIS", "2. PROBLEM SOLVING", "3. DECISION MAKING"],
+        "AFNS_Biology": ["1. BASIC BIOLOGY", "2. HUMAN ANATOMY", "3. PHYSIOLOGY", "4. MICROBIOLOGY", "5. FIRST AID"],
+        "AFNS_Chemistry": ["1. BASIC CHEMISTRY", "2. BIOCHEMISTRY", "3. PHARMACOLOGY"],
+        "AFNS_Physics": ["1. BASIC PHYSICS", "2. MEDICAL PHYSICS"],
+        "AFNS_English": ["1. MILITARY ENGLISH", "2. COMMUNICATION SKILLS"],
+        "AFNS_Logical_Reasoning": ["1. ANALYTICAL THINKING", "2. DECISION MAKING"]
+    };
 
-    let activeTestMCQs = [];
-    let userSelections = [];
-    let currentOpenTest = null;
-    let timerInterval = null;
-    let totalSeconds = 0;
-    let selectedPct = 1.0;
-    let pendingTestId = null;
+    const testsData = [
+        { id: 'T1', title: 'DOW: BSN MOCK TEST', subject: 'All Subjects', chapter: 'All Chapters', exam: 'BSN', province: 'Sindh', 
+          mcqs: [{ q: "Meaning of VEIL:", options: ["conceal", "disclose", "uncover", "beauty"], answer: 0 }, { q: "Meaning of RECREATION:", options: ["business", "labor", "profession", "hobby"], answer: 3 }] 
+        },
+        { id: 'T2', title: 'Biology Chapter 1: Cell Structure', subject: 'Biology', chapter: '1', exam: 'MDCAT', province: 'Punjab', 
+          mcqs: [{ q: "Basic unit of life?", options: ["Cell", "Tissue", "Organ", "Molecule"], answer: 0 }, { q: "Protein synthesis organelle?", options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi"], answer: 2 }] 
+        }
+    ];
 
-    const provinceSelect = document.getElementById('filter-province');
-    const examSelect = document.getElementById('filter-exam');
-    const subjectSelect = document.getElementById('filter-subject');
-    const chapterSelect = document.getElementById('filter-chapter');
+    let activeTestMCQs = [];
+    let userSelections = [];
+    let currentOpenTest = null;
+    let timerInterval = null;
+    let totalSeconds = 0;
+    let selectedPct = 1.0;
+    let pendingTestId = null;
 
-    function initializeFilters() { updateExams(); }
+    const provinceSelect = document.getElementById('filter-province');
+    const examSelect = document.getElementById('filter-exam');
+    const subjectSelect = document.getElementById('filter-subject');
+    const chapterSelect = document.getElementById('filter-chapter');
 
-    function updateExams() {
-        examSelect.innerHTML = '<option value="all">All Exams</option>';
-        mdcatExams.forEach(exam => {
-            const option = document.createElement('option');
-            option.value = exam; option.textContent = exam; examSelect.appendChild(option);
-        });
-        updateSubjects();
-    }
+    function initializeFilters() { updateExams(); }
 
-    function updateSubjects() {
-        const exam = examSelect.value;
-        subjectSelect.innerHTML = '<option value="all">All Subjects</option>';
-        if (exam !== 'all') {
-            subjectSelect.disabled = false;
-            (examSubjects[exam] || []).forEach(subject => {
-                if (subject !== "All Subjects") {
-                    const option = document.createElement('option');
-                    option.value = subject; option.textContent = subject; subjectSelect.appendChild(option);
-                }
-            });
-        } else {
-            subjectSelect.disabled = true; chapterSelect.disabled = true;
-        }
-        updateChapters();
-    }
+    function updateExams() {
+        examSelect.innerHTML = '<option value="all">All Exams</option>';
+        mdcatExams.forEach(exam => {
+            const option = document.createElement('option');
+            option.value = exam; option.textContent = exam; examSelect.appendChild(option);
+        });
+        updateSubjects();
+    }
 
-    function updateChapters() {
-        const exam = examSelect.value;
-        const subject = subjectSelect.value;
-        chapterSelect.innerHTML = '<option value="all">All Chapters</option>';
-        if (subject !== 'all' && exam !== 'all') {
-            chapterSelect.disabled = false;
-            const key = `${exam}_${subject.replace(/\s+/g, '_')}`;
-            (examSubjectChapters[key] || []).forEach(chapter => {
-                const option = document.createElement('option');
-                option.value = chapter; option.textContent = chapter; chapterSelect.appendChild(option);
-            });
-        } else {
-            chapterSelect.disabled = true;
-        }
-        loadTests();
-    }
+    function updateSubjects() {
+        const exam = examSelect.value;
+        subjectSelect.innerHTML = '<option value="all">All Subjects</option>';
+        if (exam !== 'all') {
+            subjectSelect.disabled = false;
+            (examSubjects[exam] || []).forEach(subject => {
+                if (subject !== "All Subjects") {
+                    const option = document.createElement('option');
+                    option.value = subject; option.textContent = subject; subjectSelect.appendChild(option);
+                }
+            });
+        } else {
+            subjectSelect.disabled = true; chapterSelect.disabled = true;
+        }
+        updateChapters();
+    }
 
-    function loadTests() {
-        const container = document.getElementById('tests-container');
-        const provVal = provinceSelect.value;
-        const examVal = examSelect.value;
-        const subVal = subjectSelect.value;
-        const chapVal = chapterSelect.value;
+    function updateChapters() {
+        const exam = examSelect.value;
+        const subject = subjectSelect.value;
+        chapterSelect.innerHTML = '<option value="all">All Chapters</option>';
+        if (subject !== 'all' && exam !== 'all') {
+            chapterSelect.disabled = false;
+            const key = `${exam}_${subject.replace(/\s+/g, '_')}`;
+            (examSubjectChapters[key] || []).forEach(chapter => {
+                const option = document.createElement('option');
+                option.value = chapter; option.textContent = chapter; chapterSelect.appendChild(option);
+            });
+        } else {
+            chapterSelect.disabled = true;
+        }
+        loadTests();
+    }
 
-        const filtered = testsData.filter(t => 
-            (provVal === 'all' || t.province === provVal) &&
-            (examVal === 'all' || t.exam === examVal) &&
-            (subVal === 'all' || t.subject === subVal) &&
-            (chapVal === 'all' || t.chapter === chapVal)
-        );
+    function loadTests() {
+        const container = document.getElementById('tests-container');
+        const provVal = provinceSelect.value;
+        const examVal = examSelect.value;
+        const subVal = subjectSelect.value;
+        const chapVal = chapterSelect.value;
 
-        if (filtered.length === 0) {
-            container.innerHTML = '';
-            document.getElementById('no-content-message').classList.remove('hidden');
-        } else {
-            document.getElementById('no-content-message').classList.add('hidden');
-            container.innerHTML = filtered.map(test => `
-                <div class="card test-card">
-                    <div>
-                        <h4>${test.title}</h4>
-                        <p style="font-size:0.85rem; color:var(--color-primary-blue); font-weight:600;">${test.subject} | ${test.chapter}</p>
-                    </div>
-                    <button class="button primary-button" onclick="openConfigModal('${test.id}')">
-                        <i class="fas fa-play"></i> Start Test
-                    </button>
-                </div>
-            `).join('');
-        }
-    }
+        const filtered = testsData.filter(t => 
+            (provVal === 'all' || t.province === provVal) &&
+            (examVal === 'all' || t.exam === examVal) &&
+            (subVal === 'all' || t.subject === subVal) &&
+            (chapVal === 'all' || t.chapter === chapVal)
+        );
 
-    /* Addition: Registration Flow */
-    function openConfigModal(id) {
-        pendingTestId = id;
-        document.getElementById('configModal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+        if (filtered.length === 0) {
+            container.innerHTML = '';
+            document.getElementById('no-content-message').classList.remove('hidden');
+        } else {
+            document.getElementById('no-content-message').classList.add('hidden');
+            container.innerHTML = filtered.map(test => `
+                <div class="card test-card">
+                    <div>
+                        <h4>${test.title}</h4>
+                        <p style="font-size:0.85rem; color:var(--color-primary-blue); font-weight:600;">${test.subject} | ${test.chapter}</p>
+                    </div>
+                    <button class="button primary-button" onclick="openConfigModal('${test.id}')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                </div>
+            `).join('');
+        }
+    }
 
-    function setPercentage(val, btn) {
-        selectedPct = val;
-        document.querySelectorAll('.pct-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
+    /* Addition: Registration Flow */
+    function openConfigModal(id) {
+        pendingTestId = id;
+        document.getElementById('configModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
 
-    function handleDetailsSubmit(e) {
-        e.preventDefault();
-        const stdDetails = {
-            name: document.getElementById('user-name').value,
-            city: document.getElementById('user-city').value,
-            whatsapp: document.getElementById('user-whatsapp').value,
-            testId: pendingTestId,
-            mode: selectedPct * 100 + "%"
-        };
-        
-        // Replace with your Google Apps Script URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5PYcNHuM3vJIqRSK2SpqeK986JgD30a0oUbc9KopT8rlv_8rJCQRtp8K4xwKWBCZogA/exec";
-        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(stdDetails) });
+    function setPercentage(val, btn) {
+        selectedPct = val;
+        document.querySelectorAll('.pct-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
 
-        document.getElementById('configModal').style.display = 'none';
-        openActualTest(pendingTestId);
-    }
+    function handleDetailsSubmit(e) {
+        e.preventDefault();
+        const stdDetails = {
+            name: document.getElementById('user-name').value,
+            city: document.getElementById('user-city').value,
+            whatsapp: document.getElementById('user-whatsapp').value,
+            testId: pendingTestId,
+            mode: selectedPct * 100 + "%"
+        };
+        
+        // Replace with your Google Apps Script URL
+        const SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL";
+        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(stdDetails) });
 
-    function openActualTest(id) {
-        const test = testsData.find(t => t.id === id);
-        if(!test) return;
+        document.getElementById('configModal').style.display = 'none';
+        openActualTest(pendingTestId);
+    }
 
-        // SLICING LOGIC
-        const qty = Math.floor(test.mcqs.length * selectedPct);
-        activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
-        
-        currentOpenTest = test;
-        userSelections = [];
-        document.getElementById('test-modal-title').innerText = `${test.title} (${selectedPct*100}%)`;
-        
-        document.getElementById('mcq-questions').innerHTML = activeTestMCQs.map((m, i) => `
-            <div class="mcq-question" id="q-block-${i}">
-                <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
-                <div class="options-list">
-                    ${m.options.map((opt, oi) => `
-                        <div class="mcq-option">
-                            <label id="label-${i}-${oi}">
-                                <input type="radio" name="q${i}" value="${oi}" required>
-                                <span>${opt}</span>
-                            </label>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `).join('');
+    function openActualTest(id) {
+        const test = testsData.find(t => t.id === id);
+        if(!test) return;
 
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.remove('hidden');
-        document.getElementById('review-actions').classList.add('hidden');
-        document.getElementById('timer-container').classList.remove('hidden');
-        document.getElementById('testModal').style.display = 'block';
-        startTimer(activeTestMCQs.length * 40);
-    }
+        // SLICING LOGIC
+        const qty = Math.floor(test.mcqs.length * selectedPct);
+        activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
+        
+        currentOpenTest = test;
+        userSelections = [];
+        document.getElementById('test-modal-title').innerText = `${test.title} (${selectedPct*100}%)`;
+        
+        document.getElementById('mcq-questions').innerHTML = activeTestMCQs.map((m, i) => `
+            <div class="mcq-question" id="q-block-${i}">
+                <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
+                <div class="options-list">
+                    ${m.options.map((opt, oi) => `
+                        <div class="mcq-option">
+                            <label id="label-${i}-${oi}">
+                                <input type="radio" name="q${i}" value="${oi}" required>
+                                <span>${opt}</span>
+                            </label>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
 
-    function startTimer(duration) {
-        clearInterval(timerInterval);
-        totalSeconds = duration;
-        updateTimerDisplay();
-        timerInterval = setInterval(() => {
-            if (--totalSeconds < 0) { clearInterval(timerInterval); submitTest(); }
-            else updateTimerDisplay();
-        }, 1000);
-    }
+        document.getElementById('mcq-form').classList.remove('hidden');
+        document.getElementById('result-summary').classList.add('hidden');
+        document.getElementById('submit-btn').classList.remove('hidden');
+        document.getElementById('review-actions').classList.add('hidden');
+        document.getElementById('timer-container').classList.remove('hidden');
+        document.getElementById('testModal').style.display = 'block';
+        startTimer(activeTestMCQs.length * 40);
+    }
 
-    function updateTimerDisplay() {
-        const m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
-        document.getElementById('time-left').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    }
+    function startTimer(duration) {
+        clearInterval(timerInterval);
+        totalSeconds = duration;
+        updateTimerDisplay();
+        timerInterval = setInterval(() => {
+            if (--totalSeconds < 0) { clearInterval(timerInterval); submitTest(); }
+            else updateTimerDisplay();
+        }, 1000);
+    }
 
-    function submitTest(e) {
-    if(e) e.preventDefault();
-    clearInterval(timerInterval);
-    // Hide question view
-    document.getElementById('mcq-form').classList.add('hidden');
-    document.getElementById('timer-container').classList.add('hidden');
-    
-    // Reset view to top
-    document.getElementById('testModal').scrollTop = 0; 
+    function updateTimerDisplay() {
+        const m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
+        document.getElementById('time-left').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
 
-    // Calculation logic...
+    function submitTest(e) {
+        if(e) e.preventDefault();
+        clearInterval(timerInterval);
+        document.getElementById('timer-container').classList.add('hidden');
+        let correct = 0;
+        userSelections = [];
+        activeTestMCQs.forEach((m, i) => {
+            const radios = document.getElementsByName(`q${i}`);
+            let val = -1;
+            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+            userSelections.push(val);
+            if(val === m.answer) correct++;
+        });
 
-    // Show result view
-    document.getElementById('result-summary').classList.remove('hidden');
-}
-        
-    function checkTest() {
-    // 1. Hide the Result Summary Page
-    document.getElementById('result-summary').classList.add('hidden');
-    
-    // 2. Show the Question Form Page and Review Actions
-    document.getElementById('mcq-form').classList.remove('hidden');
-    document.getElementById('review-actions').classList.remove('hidden');
-    
-    // 3. Keep the Submit button hidden during review
-    document.getElementById('submit-btn').classList.add('hidden');
-    
-    // 4. Scroll to top to see the first question
-    document.getElementById('testModal').scrollTop = 0;
+        document.getElementById('result-total').innerText = activeTestMCQs.length;
+        document.getElementById('result-correct').innerText = correct;
+        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+        document.getElementById('mcq-form').classList.add('hidden');
+        document.getElementById('result-summary').classList.remove('hidden');
+    }
 
-    // Apply color highlighting for review
-    activeTestMCQs.forEach((m, i) => {
-        const sel = userSelections[i], cor = m.answer;
-        const radios = document.getElementsByName(`q${i}`);
-        radios.forEach(r => r.disabled = true);
-        if(document.getElementById(`label-${i}-${cor}`)) {
-            document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
-        }
-        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) {
-            document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
-        }
-    });
-}
-    function backToResults() {
-    // 1. Hide the entire Quiz View (Questions, Title, and Timer)
-    
-    // 2. Hide the Review Navigation bar
-    document.getElementById('review-actions').classList.add('hidden');
-    
-    // 3. IMPORTANT: Reset the scroll to the top of the modal 
-    // This ensures the student sees the "Test Completed" header immediately
-    document.getElementById('testModal').scrollTop = 0;
+    function checkTest() {
+        document.getElementById('mcq-form').classList.remove('hidden');
+        document.getElementById('result-summary').classList.add('hidden');
+        document.getElementById('submit-btn').classList.add('hidden');
+        document.getElementById('review-actions').classList.remove('hidden');
+        activeTestMCQs.forEach((m, i) => {
+            const sel = userSelections[i], cor = m.answer;
+            const radios = document.getElementsByName(`q${i}`);
+            radios.forEach(r => r.disabled = true);
+            if(document.getElementById(`label-${i}-${cor}`)) document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
+            if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
+        });
+    }
 
-    // 4. Show the dedicated Result Summary page
-    document.getElementById('result-summary').classList.remove('hidden');
-}
-    function downloadTestPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    
-    // --- Data Extraction ---
-    const name = document.getElementById('user-name').value || "Student";
-    const city = document.getElementById('user-city').value || "N/A";
-    const scorePct = document.getElementById('result-percentage').innerText;
-    const correctCount = document.getElementById('result-correct').innerText;
-    const totalCount = document.getElementById('result-total').innerText;
-    const testTitle = currentOpenTest.title;
-    const testDate = new Date().toLocaleDateString('en-GB', {
-        day: 'numeric', month: 'long', year: 'numeric'
-    });
+    function backToResults() {
+        document.getElementById('mcq-form').classList.add('hidden');
+        document.getElementById('result-summary').classList.remove('hidden');
+        document.getElementById('review-actions').classList.add('hidden');
+    }
 
-    // --- Page Branding & Header ---
-    // Blue header bar
-    doc.setFillColor(0, 123, 255);
-    doc.rect(0, 0, 210, 40, 'F');
-    
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(24);
-    doc.setFont("helvetica", "bold");
-    doc.text("DANI MEDICO", 14, 20);
-    
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.text("Empowering Future Doctors | Official Test Report", 14, 28);
+    function downloadTestPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text(currentOpenTest.title, 14, 20);
+        doc.save(`${currentOpenTest.title}.pdf`);
+    }
 
-    // --- Student Info Card ---
-    doc.setTextColor(40, 40, 40);
-    doc.setDrawColor(220, 220, 220);
-    doc.line(14, 45, 196, 45); // Divider line
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        document.body.style.overflow = 'auto';
+        clearInterval(timerInterval);
+    }
 
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.text("STUDENT DETAILS", 14, 55);
-    
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text(`Name: ${name}`, 14, 62);
-    doc.text(`City: ${city}`, 14, 68);
-    doc.text(`Test Date: ${testDate}`, 14, 74);
+    function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
 
-    doc.setFont("helvetica", "bold");
-    doc.text("PERFORMANCE SUMMARY", 120, 55);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Test Name: ${testTitle}`, 120, 62);
-    doc.text(`Total Questions: ${totalCount}`, 120, 68);
-    
-    // Highlight Score
-    doc.setFontSize(14);
-    doc.setTextColor(0, 123, 255);
-    doc.setFont("helvetica", "bold");
-    doc.text(`SCORE: ${scorePct} (${correctCount}/${totalCount})`, 120, 78);
-
-    // --- MCQ Table ---
-    const tableRows = activeTestMCQs.map((m, i) => {
-        const sel = userSelections[i];
-        const isCorrect = sel === m.answer;
-        const userAns = sel === -1 ? "Skipped" : m.options[sel];
-        const correctAns = m.options[m.answer];
-        
-        // Add status text
-        let status = "❌ Incorrect";
-        if (sel === -1) status = "⚠️ Skipped";
-        if (isCorrect) status = "✅ Correct";
-
-        return [i + 1, m.q, userAns, correctAns, status];
-    });
-
-    doc.autoTable({
-        startY: 85,
-        head: [['#', 'Question', 'Your Answer', 'Correct Answer', 'Result']],
-        body: tableRows,
-        theme: 'grid',
-        headStyles: {
-            fillColor: [0, 123, 255],
-            textColor: [255, 255, 255],
-            fontSize: 10,
-            halign: 'center'
-        },
-        columnStyles: {
-            0: { cellWidth: 10, halign: 'center' },
-            1: { cellWidth: 70 },
-            2: { cellWidth: 40 },
-            3: { cellWidth: 40 },
-            4: { cellWidth: 25, halign: 'center' }
-        },
-        styles: {
-            fontSize: 9,
-            cellPadding: 3,
-            valign: 'middle'
-        },
-        alternateRowStyles: {
-            fillColor: [245, 248, 255]
-        },
-        // Apply color based on correctness
-        didParseCell: function(data) {
-            if (data.column.index === 4 && data.cell.section === 'body') {
-                if (data.cell.raw.includes("Correct")) {
-                    data.cell.styles.textColor = [40, 167, 69]; // Green
-                } else if (data.cell.raw.includes("Incorrect")) {
-                    data.cell.styles.textColor = [220, 53, 69]; // Red
-                } else {
-                    data.cell.styles.textColor = [255, 193, 7]; // Warning/Yellow
-                }
-            }
-        }
-    });
-
-    // --- Footer ---
-    const pageCount = doc.internal.getNumberOfPages();
-    for (var i = 1; i <= pageCount; i++) {
-        doc.setPage(i);
-        doc.setFontSize(8);
-        doc.setTextColor(150, 150, 150);
-        doc.text(`Generated by Dani Medico Portal | Page ${i} of ${pageCount}`, 105, 290, null, null, "center");
-    }
-
-    // --- Download ---
-    doc.save(`${name.replace(/\s+/g, '_')}_${testTitle.replace(/\s+/g, '_')}_Result.pdf`);
-}
-        
-    function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-        document.body.style.overflow = 'auto';
-        clearInterval(timerInterval);
-    }
-
-    function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
-
-    window.onclick = (e) => { if(e.target.className === 'modal') closeModal(e.target.id); };
-    document.addEventListener('DOMContentLoaded', initializeFilters);
-    </script>
+    window.onclick = (e) => { if(e.target.className === 'modal') closeModal(e.target.id); };
+    document.addEventListener('DOMContentLoaded', initializeFilters);
+</script>
 </body>
 </html>
