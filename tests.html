@@ -846,8 +846,22 @@
     const subjectSelect = document.getElementById('filter-subject');
     const chapterSelect = document.getElementById('filter-chapter');
 
-    function initializeFilters() { updateExams(); }
+    function initializeFilters() { 
+    updateExams(); // Your existing function to load dropdowns
 
+    // Check the URL for a Test ID (e.g., ?id=T1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const testId = urlParams.get('id');
+
+    if (testId) {
+        // Find if the test exists in your data array
+        const testExists = testsData.find(t => t.id === testId);
+        if (testExists) {
+            // Automatically trigger the registration modal for this test
+            openConfigModal(testId);
+        }
+    }
+}
     function updateExams() {
         examSelect.innerHTML = '<option value="all">All Exams</option>';
         mdcatExams.forEach(exam => {
@@ -926,10 +940,15 @@
 
     /* Addition: Registration Flow */
     function openConfigModal(id) {
-        pendingTestId = id;
-        document.getElementById('configModal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+    pendingTestId = id;
+    
+    // Update the browser URL without refreshing the page
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + id;
+    window.history.pushState({path:newUrl},'',newUrl);
+    
+    document.getElementById('configModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
 
     function setPercentage(val, btn) {
         selectedPct = val;
@@ -1154,10 +1173,14 @@
 }
 
     function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-        document.body.style.overflow = 'auto';
-        clearInterval(timerInterval);
-    }
+    document.getElementById(id).style.display = 'none';
+    document.body.style.overflow = 'auto';
+    clearInterval(timerInterval);
+
+    // Remove the ?id=... part from the URL when closing
+    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState({path:cleanUrl},'',cleanUrl);
+}
 
     function mobileMenuToggle() { document.getElementById('navLinks').classList.toggle('active'); }
 
