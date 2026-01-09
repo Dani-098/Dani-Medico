@@ -918,11 +918,6 @@
             </button>
         </form>
 
-        <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
-            </div>
-    </div>
-</div>
-
         <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
             <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
                 <i class="fas fa-arrow-left"></i> Back to Results
@@ -2614,6 +2609,7 @@
         document.getElementById('mcq-form').classList.add('hidden');
         document.getElementById('result-summary').classList.remove('hidden');
     }
+
     function checkTest() {
         document.getElementById('mcq-form').classList.remove('hidden');
         document.getElementById('result-summary').classList.add('hidden');
