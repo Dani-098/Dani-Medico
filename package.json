@@ -1,0 +1,12 @@
+{
+  "name": "dani-medico",
+  "version": "1.0.0",
+  "description": "Dani Medico Express Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
