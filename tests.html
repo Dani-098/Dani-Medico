@@ -903,45 +903,34 @@
 <div id="testModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-        <h3 id="test-modal-title">Interactive Quiz</h3>
         
-        <div id="timer-container" class="text-center">
-            <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
-        </div>
-
-        <hr style="margin: 15px 0; opacity: 0.1;">
-        
-        <form id="mcq-form" onsubmit="submitTest(event)">
-            <div id="mcq-questions"></div>
-            <button type="submit" id="submit-btn" class="button primary-button" style="height: 55px; font-size: 1.1rem; margin-top: 2rem;">
-                Submit Test
-            </button>
-        </form>
-
-        <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+        <div id="quiz-view">
+            <h3 id="test-modal-title">Interactive Quiz</h3>
+            <div id="timer-container" class="text-center">
+                <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
             </div>
-    </div>
-</div>
-
-        <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
-            <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
-                <i class="fas fa-arrow-left"></i> Back to Results
-            </button>
+            <hr style="margin: 15px 0; opacity: 0.1;">
+            
+            <div id="mcq-container">
+                <div id="single-question-area"></div>
+                
+                <div class="navigation-btns" style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                    <button type="button" id="prev-btn" class="button secondary-button" onclick="changeQuestion(-1)" style="width: 45%;">Previous</button>
+                    <button type="button" id="next-btn" class="button primary-button" onclick="changeQuestion(1)" style="width: 45%;">Next</button>
+                    <button type="button" id="final-submit-btn" class="button primary-button hidden" onclick="submitTest()" style="width: 100%;">Submit Test</button>
+                </div>
+            </div>
         </div>
 
         <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
-            <i class="fas fa-award floating-icon" style="font-size: 4rem;"></i>
+            <i class="fas fa-award floating-icon" style="font-size: 4rem; color: var(--color-warning);"></i>
             <h2 style="margin-top: 1rem;">Test Completed!</h2>
             <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
             <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
             
             <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
-                <button class="button secondary-button" onclick="checkTest()">
-                    <i class="fas fa-search"></i> Check Test
-                </button>
-                <button class="button primary-button" onclick="downloadTestPDF()" style="background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%); border: none;">
-                    <i class="fas fa-file-pdf"></i> Download Paper
-                </button>
+                <button class="button secondary-button" onclick="checkTest()">Check Test</button>
+                <button class="button primary-button" onclick="downloadTestPDF()">Download Paper</button>
             </div>
             <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
         </div>
@@ -2542,42 +2531,72 @@
         openActualTest(pendingTestId);
     }
 
-    function openActualTest(id) {
-        const test = testsData.find(t => t.id === id);
-        if(!test) return;
+    let currentQuestionIndex = 0;
 
-        // SLICING LOGIC
-        const qty = Math.floor(test.mcqs.length * selectedPct);
-        activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
-        
-        currentOpenTest = test;
-        userSelections = [];
-        document.getElementById('test-modal-title').innerText = `${test.title} (${selectedPct*100}%)`;
-        
-        document.getElementById('mcq-questions').innerHTML = activeTestMCQs.map((m, i) => `
-            <div class="mcq-question" id="q-block-${i}">
-                <p style="font-weight: 600; margin-bottom: 10px;">Q${i+1}: ${m.q}</p>
-                <div class="options-list">
-                    ${m.options.map((opt, oi) => `
-                        <div class="mcq-option">
-                            <label id="label-${i}-${oi}">
-                                <input type="radio" name="q${i}" value="${oi}" required>
-                                <span>${opt}</span>
-                            </label>
-                        </div>
-                    `).join('')}
-                </div>
+function openActualTest(id) {
+    const test = testsData.find(t => t.id === id); //
+    if(!test) return;
+
+    // Slicing and shuffling logic stays the same
+    const qty = Math.floor(test.mcqs.length * selectedPct);
+    activeTestMCQs = [...test.mcqs].sort(() => 0.5 - Math.random()).slice(0, qty);
+    
+    currentOpenTest = test;
+    userSelections = new Array(activeTestMCQs.length).fill(-1); // Initialize answers
+    currentQuestionIndex = 0;
+    
+    // Reset Views
+    document.getElementById('quiz-view').classList.remove('hidden');
+    document.getElementById('result-summary').classList.add('hidden');
+    document.getElementById('testModal').style.display = 'block';
+    
+    renderCurrentQuestion();
+    startTimer(activeTestMCQs.length * 40); //
+}
+
+function renderCurrentQuestion() {
+    const q = activeTestMCQs[currentQuestionIndex];
+    const area = document.getElementById('single-question-area');
+    
+    area.innerHTML = `
+        <div class="mcq-question">
+            <p style="font-weight: 600; margin-bottom: 10px;">Question ${currentQuestionIndex + 1} of ${activeTestMCQs.length}</p>
+            <p style="margin-bottom: 15px;">${q.q}</p>
+            <div class="options-list">
+                ${q.options.map((opt, oi) => `
+                    <div class="mcq-option">
+                        <label>
+                            <input type="radio" name="qCurrent" value="${oi}" 
+                                ${userSelections[currentQuestionIndex] === oi ? 'checked' : ''} 
+                                onchange="saveSelection(${oi})">
+                            <span>${opt}</span>
+                        </label>
+                    </div>
+                `).join('')}
             </div>
-        `).join('');
+        </div>
+    `;
 
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.remove('hidden');
-        document.getElementById('review-actions').classList.add('hidden');
-        document.getElementById('timer-container').classList.remove('hidden');
-        document.getElementById('testModal').style.display = 'block';
-        startTimer(activeTestMCQs.length * 40);
+    // Button Visibility Logic
+    document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'block';
+    if (currentQuestionIndex === activeTestMCQs.length - 1) {
+        document.getElementById('next-btn').classList.add('hidden');
+        document.getElementById('final-submit-btn').classList.remove('hidden');
+    } else {
+        document.getElementById('next-btn').classList.remove('hidden');
+        document.getElementById('final-submit-btn').classList.add('hidden');
     }
+}
+
+function saveSelection(optionIndex) {
+    userSelections[currentQuestionIndex] = optionIndex;
+}
+
+function changeQuestion(step) {
+    currentQuestionIndex += step;
+    renderCurrentQuestion();
+    document.getElementById('testModal').scrollTop = 0; // Scroll to top for new question
+}
 
     function startTimer(duration) {
         clearInterval(timerInterval);
@@ -2594,26 +2613,24 @@
         document.getElementById('time-left').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
 
-    function submitTest(e) {
-        if(e) e.preventDefault();
-        clearInterval(timerInterval);
-        document.getElementById('timer-container').classList.add('hidden');
-        let correct = 0;
-        userSelections = [];
-        activeTestMCQs.forEach((m, i) => {
-            const radios = document.getElementsByName(`q${i}`);
-            let val = -1;
-            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
-            userSelections.push(val);
-            if(val === m.answer) correct++;
-        });
+    function submitTest() {
+    clearInterval(timerInterval); //
+    
+    // Hide Quiz, Show Results
+    document.getElementById('quiz-view').classList.add('hidden');
+    document.getElementById('testModal').scrollTop = 0;
 
-        document.getElementById('result-total').innerText = activeTestMCQs.length;
-        document.getElementById('result-correct').innerText = correct;
-        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-    }
+    let correct = 0;
+    userSelections.forEach((val, i) => {
+        if(val === activeTestMCQs[i].answer) correct++;
+    });
+
+    // Update Result UI
+    document.getElementById('result-total').innerText = activeTestMCQs.length;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+    document.getElementById('result-summary').classList.remove('hidden');
+}
     function checkTest() {
         document.getElementById('mcq-form').classList.remove('hidden');
         document.getElementById('result-summary').classList.add('hidden');
