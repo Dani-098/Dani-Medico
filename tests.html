@@ -75,22 +75,24 @@
             position: relative;
         }
         
-        h2 {
-            display: inline-block;
-            padding-bottom: 0.5rem;
+        h2 { 
+            display: inline-block; 
+            padding-bottom: 0.5rem; 
+            position: relative; 
+            margin-bottom: 1.5rem;
+            color: var(--color-dark);
         }
         
         h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+            width: 60px; 
             height: 4px;
             background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
             border-radius: 2px;
         }
-
         /* --- NAVBAR MATCHING HOMEPAGE WITH STICKY HEADER --- */
         #navbar { 
             background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
