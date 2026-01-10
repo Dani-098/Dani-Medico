@@ -1,641 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Dani Medico</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        /* Embedded CSS from style.css */
-       :root {
-            --color-primary-blue: #007BFF;
-            --color-primary-blue-light: #4da6ff;
-            --color-primary-blue-dark: #0056b3;
-            --color-secondary-green: #28A745;
-            --color-secondary-green-light: #34ce57;
-            --color-secondary-green-dark: #1e7e34;
-            --color-light: #F8F9FA;
-            --color-dark: #343A40;
-            --color-text: #495057;
-            --color-card-bg: #FFFFFF;
-            --color-shadow: rgba(0, 0, 0, 0.1);
-            --color-danger: #DC3545;
-            --color-danger-light: #e4606d;
-            --color-warning: #FFC107;
-            --color-warning-light: #ffce3a;
-            --font-family-primary: 'Poppins', sans-serif;
-            --border-radius-base: 12px;
-            --transition-speed: 0.4s;
-            --animation-duration: 0.5s;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dani Medico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Embedded CSS from style.css */
+       :root {
+            --color-primary-blue: #007BFF;
+            --color-primary-blue-light: #4da6ff;
+            --color-primary-blue-dark: #0056b3;
+            --color-secondary-green: #28A745;
+            --color-secondary-green-light: #34ce57;
+            --color-secondary-green-dark: #1e7e34;
+            --color-light: #F8F9FA;
+            --color-dark: #343A40;
+            --color-text: #495057;
+            --color-card-bg: #FFFFFF;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-danger: #DC3545;
+            --color-danger-light: #e4606d;
+            --color-warning: #FFC107;
+            --color-warning-light: #ffce3a;
+            --font-family-primary: 'Poppins', sans-serif;
+            --border-radius-base: 12px;
+            --transition-speed: 0.4s;
+            --animation-duration: 0.5s;
+        }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-        }
-        
-        body { 
-            font-family: var(--font-family-primary); 
-            line-height: 1.6; 
-            color: var(--color-text); 
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        a { 
-            text-decoration: none; 
-            color: var(--color-primary-blue); 
-            transition: all var(--transition-speed); 
-        }
-        
-        a:hover { 
-            color: var(--color-secondary-green); 
-        }
-        
-        h1, h2, h3 { 
-            color: var(--color-dark); 
-            margin-bottom: 1rem; 
-            position: relative;
-        }
-        
-        h2 {
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
-            border-radius: 2px;
-        }
-        
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 1rem; 
-            flex-grow: 1; 
-        }
-        
-        section { 
-            padding: 3rem 0; 
-        }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body { 
+            font-family: var(--font-family-primary); 
+            line-height: 1.6; 
+            color: var(--color-text); 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--color-primary-blue); 
+            transition: all var(--transition-speed); 
+        }
+        
+        a:hover { 
+            color: var(--color-secondary-green); 
+        }
+        
+        h1, h2, h3 { 
+            color: var(--color-dark); 
+            margin-bottom: 1rem; 
+            position: relative;
+        }
+        
+        h2 {
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
+            border-radius: 2px;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 1rem; 
+            flex-grow: 1; 
+        }
+        
+        section { 
+            padding: 3rem 0; 
+        }
 
-        /* Navbar */
-        #navbar { 
-            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
-            color: var(--color-light); 
-            padding: 0.75rem 1.5rem; /* Reduced padding */
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-            z-index: 1000; 
-            position: fixed; 
-            top: 0; 
-            left: 0;
-            right: 0;
-            width: 100%;
-        }
-        
-        .logo { 
-            font-size: 1.4rem; /* Slightly smaller */
-            font-weight: 700; 
-            color: var(--color-light); 
-            display: flex; 
-            align-items: center; 
-            gap: 0.75rem; 
-            transition: transform var(--transition-speed);
-        }
-        
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-        
-        .logo-img { 
-            height: 70px; /* Reduced from 60px */
-            width: auto; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-        
-        .nav-links { 
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-links a { 
-            color: var(--color-light); 
-            margin-left: 0.75rem; /* Reduced from 1.5rem */
-            padding: 0.5rem 0.75rem; /* Reduced padding */
-            font-weight: 500; 
-            transition: all var(--transition-speed); 
-            border-radius: 8px; /* Slightly smaller */
-            position: relative;
-            overflow: hidden;
-            font-size: 0.9rem; /* Smaller font */
-            display: flex;
-            align-items: center;
-            gap: 0.4rem; /* Reduced gap */
-            white-space: nowrap;
-        }
-        
-        .nav-links a i {
-            font-size: 0.9rem; /* Smaller icons */
-        }
-        
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s ease;
-        }
-        
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-        
-        .nav-links a:hover, .nav-links a.active { 
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1); /* Smaller shadow */
-        }
-        
-        .mobile-menu-btn { 
-            display: none; 
-            background: none; 
-            border: none; 
-            color: var(--color-light); 
-            font-size: 1.25rem; /* Smaller button */
-            cursor: pointer; 
-            transition: transform var(--transition-speed);
-            padding: 0.4rem;
-        }
-        
-        .mobile-menu-btn:hover {
-            transform: scale(1.1);
-        }
+        /* Navbar */
+        #navbar { 
+            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
+            color: var(--color-light); 
+            padding: 0.75rem 1.5rem; /* Reduced padding */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            z-index: 1000; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            width: 100%;
+        }
+        
+        .logo { 
+            font-size: 1.4rem; /* Slightly smaller */
+            font-weight: 700; 
+            color: var(--color-light); 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+            transition: transform var(--transition-speed);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+        
+        .logo-img { 
+            height: 70px; /* Reduced from 60px */
+            width: auto; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .nav-links { 
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a { 
+            color: var(--color-light); 
+            margin-left: 0.75rem; /* Reduced from 1.5rem */
+            padding: 0.5rem 0.75rem; /* Reduced padding */
+            font-weight: 500; 
+            transition: all var(--transition-speed); 
+            border-radius: 8px; /* Slightly smaller */
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem; /* Smaller font */
+            display: flex;
+            align-items: center;
+            gap: 0.4rem; /* Reduced gap */
+            white-space: nowrap;
+        }
+        
+        .nav-links a i {
+            font-size: 0.9rem; /* Smaller icons */
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+        
+        .nav-links a:hover, .nav-links a.active { 
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1); /* Smaller shadow */
+        }
+        
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: var(--color-light); 
+            font-size: 1.25rem; /* Smaller button */
+            cursor: pointer; 
+            transition: transform var(--transition-speed);
+            padding: 0.4rem;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
 
-        /* Buttons & CTA */
-        .button, .cta-button { display: inline-block; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-base); font-weight: 600; cursor: pointer; transition: all var(--transition-speed); text-align: center; border: 2px solid transparent; }
-        .primary-button, .cta-button { background-color: var(--color-secondary-green); color: var(--color-light); }
-        .primary-button:hover, .cta-button:hover { background-color: #1E7E34; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); }
-        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
-        .secondary-button:hover { background-color: var(--color-primary-blue); color: var(--color-light); }
-        .tertiary-button { background-color: var(--color-primary-blue); color: var(--color-light); padding: 0.5rem 1rem; font-size: 0.9rem; }
+        /* Buttons & CTA */
+        .button, .cta-button { display: inline-block; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-base); font-weight: 600; cursor: pointer; transition: all var(--transition-speed); text-align: center; border: 2px solid transparent; }
+        .primary-button, .cta-button { background-color: var(--color-secondary-green); color: var(--color-light); }
+        .primary-button:hover, .cta-button:hover { background-color: #1E7E34; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); }
+        .secondary-button { background-color: var(--color-light); color: var(--color-primary-blue); border-color: var(--color-primary-blue); }
+        .secondary-button:hover { background-color: var(--color-primary-blue); color: var(--color-light); }
+        .tertiary-button { background-color: var(--color-primary-blue); color: var(--color-light); padding: 0.5rem 1rem; font-size: 0.9rem; }
 
-        /* Dashboard */
-        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .selection-display { padding: 1rem 2rem; text-align: right; }
-        .card { background-color: var(--color-card-bg); padding: 1.5rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); transition: transform var(--transition-speed), box-shadow var(--transition-speed); height: 100%; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2); }
-        .card-grid { display: grid; gap: 20px; margin-top: 1rem; }
-        .stat-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); text-align: center; }
-        .stat-card p { font-size: 2rem; font-weight: 700; color: var(--color-primary-blue); margin-top: 0.5rem; }
-        .stat-card i { color: var(--color-secondary-green); }
-        
-        /* Announcements & Lectures */
-        .announcement-card { border-left: 5px solid var(--color-primary-blue); display: flex; flex-direction: column; }
-        .badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; }
-        .badge-new { background-color: var(--color-danger); color: var(--color-light); }
-        .badge-important { background-color: var(--color-secondary-green); color: var(--color-light); }
-        .lecture-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
-        .lecture-card h4 { color: var(--color-primary-blue); }
-        .hidden { display: none !important; }
-        .text-center { text-align: center; margin-top: 1.5rem; }
+        /* Dashboard */
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .selection-display { padding: 1rem 2rem; text-align: right; }
+        .card { background-color: var(--color-card-bg); padding: 1.5rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); transition: transform var(--transition-speed), box-shadow var(--transition-speed); height: 100%; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2); }
+        .card-grid { display: grid; gap: 20px; margin-top: 1rem; }
+        .stat-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); text-align: center; }
+        .stat-card p { font-size: 2rem; font-weight: 700; color: var(--color-primary-blue); margin-top: 0.5rem; }
+        .stat-card i { color: var(--color-secondary-green); }
+        
+        /* Announcements & Lectures */
+        .announcement-card { border-left: 5px solid var(--color-primary-blue); display: flex; flex-direction: column; }
+        .badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-left: 0.5rem; }
+        .badge-new { background-color: var(--color-danger); color: var(--color-light); }
+        .badge-important { background-color: var(--color-secondary-green); color: var(--color-light); }
+        .lecture-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
+        .lecture-card h4 { color: var(--color-primary-blue); }
+        .hidden { display: none !important; }
+        .text-center { text-align: center; margin-top: 1.5rem; }
 
-        /* Footer */
-        footer { 
-            background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
-            color: var(--color-light); 
-            padding: 2rem 1rem 0; 
-            margin-top: 3rem; 
-            position: relative;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-secondary-green), var(--color-primary-blue-light));
-        }
-        
-        .footer-top { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding-bottom: 1.5rem; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            gap: 1rem; 
-        }
-        
-        .footer-logo .logo-img { 
-            height: 80px; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-        
-        .footer-links { 
-            display: flex; 
-            gap: 1.5rem; 
-        }
-        
-        .footer-links a { 
-            color: var(--color-light); 
-            font-weight: 500; 
-            transition: all var(--transition-speed); 
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-        
-        .footer-links a:hover { 
-            color: var(--color-secondary-green); 
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .social-icons a { 
-            color: var(--color-light); 
-            font-size: 1.5rem; 
-            margin-left: 1rem; 
-            transition: all var(--transition-speed);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .social-icons a:hover { 
-            color: var(--color-secondary-green); 
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px) scale(1.1);
-        }
-        
-        .footer-bottom { 
-            text-align: center; 
-            padding: 1.5rem 0; 
-            opacity: 0.8;
-        }
+        /* Footer */
+        footer { 
+            background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
+            color: var(--color-light); 
+            padding: 2rem 1rem 0; 
+            margin-top: 3rem; 
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-secondary-green), var(--color-primary-blue-light));
+        }
+        
+        .footer-top { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding-bottom: 1.5rem; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            gap: 1rem; 
+        }
+        
+        .footer-logo .logo-img { 
+            height: 80px; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .footer-links { 
+            display: flex; 
+            gap: 1.5rem; 
+        }
+        
+        .footer-links a { 
+            color: var(--color-light); 
+            font-weight: 500; 
+            transition: all var(--transition-speed); 
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .footer-links a:hover { 
+            color: var(--color-secondary-green); 
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .social-icons a { 
+            color: var(--color-light); 
+            font-size: 1.5rem; 
+            margin-left: 1rem; 
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icons a:hover { 
+            color: var(--color-secondary-green); 
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding: 1.5rem 0; 
+            opacity: 0.8;
+        }
 
-        /* Section Icons */
-        .section-icon {
-            display: inline-block;
-            margin-right: 0.75rem;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        
+        /* Section Icons */
+        .section-icon {
+            display: inline-block;
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .nav-links a {
-                font-size: 0.85rem; /* Even smaller on medium screens */
-                padding: 0.4rem 0.6rem;
-                margin-left: 0.5rem;
-                gap: 0.3rem;
-            }
-            
-            .nav-links a i {
-                font-size: 0.85rem;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .logo-img {
-                height: 45px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            #navbar {
-                padding: 0.6rem 1rem; /* Reduced mobile padding */
-            }
-            
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                width: 100%; 
-                position: absolute; 
-                top: 60px; /* Adjusted for smaller navbar */
-                left: 0; 
-                background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-                padding: 0.75rem 0; /* Reduced padding */
-                border-radius: 0 0 var(--border-radius-base) var(--border-radius-base);
-            }
-            
-            .nav-links.active { 
-                display: flex; 
-            }
-            
-            .nav-links a { 
-                margin: 0.3rem 0.75rem; /* Reduced margin */
-                padding: 0.75rem; /* Reduced padding */
-                text-align: center; 
-                width: calc(100% - 1.5rem); 
-                border-bottom: none; 
-                border-radius: var(--border-radius-base); 
-                font-size: 0.9rem;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-            
-            .nav-links a i {
-                font-size: 0.95rem;
-            }
-            
-            .mobile-menu-btn { 
-                display: block; 
-                padding: 0.3rem; /* Smaller padding */
-                font-size: 1.1rem; /* Smaller icon */
-            }
-            
-            .mobile-menu-btn:hover {
-                transform: scale(1.05);
-            }
-            
-            .footer-top { 
-                flex-direction: column; 
-                text-align: center; 
-            }
-            
-            .footer-links { 
-                flex-direction: column; 
-                gap: 0.75rem; 
-                margin: 1rem 0;
-            }
-            
-            .social-icons { 
-                margin-top: 1rem; 
-            }
-            
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            
-            .exam-grid, .province-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-        }
-        
-        @media (max-width: 480px) {
-            #navbar {
-                padding: 0.5rem 0.75rem;
-            }
-            
-            .logo {
-                font-size: 1.2rem;
-                gap: 0.5rem;
-            }
-            
-            .logo-img {
-                height: 40px;
-            }
-            
-            .hero-section {
-                padding: 3rem 1rem;
-            }
-            
-            .hero-section h1 {
-                font-size: 1.75rem;
-            }
-            
-            .card {
-                padding: 1.25rem;
-            }
-            
-            .mobile-menu-btn {
-                font-size: 1rem;
-            }
-        }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links a {
+                font-size: 0.85rem; /* Even smaller on medium screens */
+                padding: 0.4rem 0.6rem;
+                margin-left: 0.5rem;
+                gap: 0.3rem;
+            }
+            
+            .nav-links a i {
+                font-size: 0.85rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .logo-img {
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #navbar {
+                padding: 0.6rem 1rem; /* Reduced mobile padding */
+            }
+            
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                width: 100%; 
+                position: absolute; 
+                top: 60px; /* Adjusted for smaller navbar */
+                left: 0; 
+                background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+                padding: 0.75rem 0; /* Reduced padding */
+                border-radius: 0 0 var(--border-radius-base) var(--border-radius-base);
+            }
+            
+            .nav-links.active { 
+                display: flex; 
+            }
+            
+            .nav-links a { 
+                margin: 0.3rem 0.75rem; /* Reduced margin */
+                padding: 0.75rem; /* Reduced padding */
+                text-align: center; 
+                width: calc(100% - 1.5rem); 
+                border-bottom: none; 
+                border-radius: var(--border-radius-base); 
+                font-size: 0.9rem;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a i {
+                font-size: 0.95rem;
+            }
+            
+            .mobile-menu-btn { 
+                display: block; 
+                padding: 0.3rem; /* Smaller padding */
+                font-size: 1.1rem; /* Smaller icon */
+            }
+            
+            .mobile-menu-btn:hover {
+                transform: scale(1.05);
+            }
+            
+            .footer-top { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            .footer-links { 
+                flex-direction: column; 
+                gap: 0.75rem; 
+                margin: 1rem 0;
+            }
+            
+            .social-icons { 
+                margin-top: 1rem; 
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .exam-grid, .province-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #navbar {
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+                gap: 0.5rem;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .hero-section {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 1.75rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1rem;
+            }
+        }
 
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-    </style>
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body class="dashboard-page">
-    <header>
-        <nav id="navbar" class="sticky">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-                Dani Medico
-            </div>
-            <div class="nav-links">
-                <a href="/"><i class="fas fa-home"></i> Home</a>
-                <a href="/dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="/lectures"><i class="fas fa-video"></i> Books</a>
-                <a href="/notes"><i class="fas fa-book-open"></i> Notes</a>
-                <a href="/tests"><i class="fas fa-pencil-alt"></i> Tests</a>
-                <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
-                <a href="/announcements"><i class="fas fa-bullhorn"></i> News</a>
-            </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
+    <header>
+        <nav id="navbar" class="sticky">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+                Dani Medico
+            </div>
+            <div class="nav-links">
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="/dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="/lectures"><i class="fas fa-video"></i> Books</a>
+                <a href="/notes"><i class="fas fa-book-open"></i> Notes</a>
+                <a href="/tests"><i class="fas fa-pencil-alt"></i> Tests</a>
+                <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
+                <a href="/announcements"><i class="fas fa-bullhorn"></i> News</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-    <main class="container">
-        <section class="dashboard-header">
-            <h2><i class="fas fa-tachometer-alt"></i> Your Study Dashboard</h2>
-            <div class="selection-display card">
-                <p>Selected Exam: <strong id="selected-exam">N/A</strong></p>
-                <p>Selected Province: <strong id="selected-province">N/A</strong></p>
-                <a href="exams.html" class="button tertiary-button">Change Selection</a>
-            </div>
-        </section>
+    <main class="container">
+        <section class="dashboard-header">
+            <h2><i class="fas fa-tachometer-alt"></i> Your Study Dashboard</h2>
+            <div class="selection-display card">
+                <p>Selected Exam: <strong id="selected-exam">N/A</strong></p>
+                <p>Selected Province: <strong id="selected-province">N/A</strong></p>
+                <a href="exams.html" class="button tertiary-button">Change Selection</a>
+            </div>
+        </section>
 
-        <section class="quick-stats-section">
-            <h3>Quick Stats for Selected Content</h3>
-            <div class="card-grid stats-grid">
-                <div class="card stat-card"><i class="fas fa-video fa-3x"></i><h4>Total Lectures</h4><p id="stat-lectures">0</p></div>
-                <div class="card stat-card"><i class="fas fa-book-open fa-3x"></i><h4>Total Notes</h4><p id="stat-notes">0</p></div>
-                <div class="card stat-card"><i class="fas fa-pencil-alt fa-3x"></i><h4>Practice Tests</h4><p id="stat-tests">0</p></div>
-                <div class="card stat-card"><i class="fas fa-file-alt fa-3x"></i><h4>Past Papers</h4><p id="stat-papers">0</p></div>
-            </div>
-        </section>
+        <section class="quick-stats-section">
+            <h3>Quick Stats for Selected Content</h3>
+            <div class="card-grid stats-grid">
+                <div class="card stat-card"><i class="fas fa-video fa-3x"></i><h4>Total Lectures</h4><p id="stat-lectures">0</p></div>
+                <div class="card stat-card"><i class="fas fa-book-open fa-3x"></i><h4>Total Notes</h4><p id="stat-notes">0</p></div>
+                <div class="card stat-card"><i class="fas fa-pencil-alt fa-3x"></i><h4>Practice Tests</h4><p id="stat-tests">0</p></div>
+                <div class="card stat-card"><i class="fas fa-file-alt fa-3x"></i><h4>Past Papers</h4><p id="stat-papers">0</p></div>
+            </div>
+        </section>
 
-        <section class="latest-announcements-section">
-            <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
-            <div id="dashboard-announcements" class="announcement-list card-grid">
-                </div>
-        </section>
+        <section class="latest-announcements-section">
+            <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+            <div id="dashboard-announcements" class="announcement-list card-grid">
+                </div>
+        </section>
 
-        <section class="recently-added-section">
-            <h3><i class="fas fa-history"></i> Recently Added Lectures</h3>
-            <div id="recent-lectures-list" class="card-grid lecture-grid">
-                </div>
-            <div class="text-center">
-                <a href="lectures.html" class="button primary-button">Go to Lectures</a>
-                <a href="notes.html" class="button primary-button">Go to Notes</a>
-                <a href="tests.html" class="button primary-button">Go to Tests</a>
-            </div>
-        </section>
+        <section class="recently-added-section">
+            <h3><i class="fas fa-history"></i> Recently Added Lectures</h3>
+            <div id="recent-lectures-list" class="card-grid lecture-grid">
+                </div>
+            <div class="text-center">
+                <a href="lectures.html" class="button primary-button">Go to Lectures</a>
+                <a href="notes.html" class="button primary-button">Go to Notes</a>
+                <a href="tests.html" class="button primary-button">Go to Tests</a>
+            </div>
+        </section>
 
-    </main>
-    
-    <footer>
-        <div class="footer-top container">
-            <div class="footer-links">
-                <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
-                <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
-                <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-            <div class="footer-logo">
-                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-            </div>
-            <div class="social-icons">
-                <a href="https://web.facebook.com/Danimedicoo/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
-        </div>
-    </footer>
+    </main>
+    
+    <footer>
+        <div class="footer-top container">
+            <div class="footer-links">
+                <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/Danimedicoo/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script>
-        // Embedded JavaScript (Core Data, Helpers, and loadDashboard logic)
+    <script>
+        // Embedded JavaScript (Core Data, Helpers, and loadDashboard logic)
 
-        // --- GLOBAL DATA STRUCTURE (Simulated CDN/Backend) ---
-        const data = {
-            MDCAT: {
-                Sindh: {
-                    lectures: [
-                        { id: '1A-MDCAT-S-Bio-001', title: 'Biology: Cell Structure', teacher: 'Dr. Ali', duration: '45 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_1', dateAdded: '2025-11-20' },
-                        { id: '1A-MDCAT-S-Chem-001', title: 'Chemistry: Basic Concepts', teacher: 'Prof. Sana', duration: '60 min', subject: 'Chemistry', fileId: 'PLACEHOLDER_VIDEO_2', dateAdded: '2025-11-21' }
-                    ],
-                    notes: [
-                        { id: '2A-MDCAT-S-Note-Bio', title: 'Biology: Cell Biology Notes', subject: 'Biology', fileId: 'PLACEHOLDER_PDF_1' }
-                    ],
-                    tests: [{ id: '3A-MDCAT-S-T01', title: 'Biology Mock Test 1', type: 'MCQ', questions: 20, time: 30, exam: 'MDCAT', province: 'Sindh' }],
-                    papers: [{ id: '4A-MDCAT-S-2024', title: 'MDCAT Sindh 2024 Paper', year: 2024, fileId: 'PLACEHOLDER_PDF_3', download: true }]
-                },
-                Punjab: { lectures: [{ id: '1B-MDCAT-P-Bio-001', title: 'Biology: Punjab Syllabus Focus', teacher: 'Dr. Fatima', duration: '50 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_3', dateAdded: '2025-12-01' }], notes: [], tests: [], papers: [] },
-                KPK: { lectures: [], notes: [], tests: [], papers: [] },
-                Balochistan: { lectures: [], notes: [], tests: [], papers: [] }
-            },
-            NUMS: { Sindh: { lectures: [], notes: [], tests: [], papers: [] } }
-        };
+        // --- GLOBAL DATA STRUCTURE (Simulated CDN/Backend) ---
+        const data = {
+            MDCAT: {
+                Sindh: {
+                    lectures: [
+                        { id: '1A-MDCAT-S-Bio-001', title: 'Biology: Cell Structure', teacher: 'Dr. Ali', duration: '45 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_1', dateAdded: '2025-11-20' },
+                        { id: '1A-MDCAT-S-Chem-001', title: 'Chemistry: Basic Concepts', teacher: 'Prof. Sana', duration: '60 min', subject: 'Chemistry', fileId: 'PLACEHOLDER_VIDEO_2', dateAdded: '2025-11-21' }
+                    ],
+                    notes: [
+                        { id: '2A-MDCAT-S-Note-Bio', title: 'Biology: Cell Biology Notes', subject: 'Biology', fileId: 'PLACEHOLDER_PDF_1' }
+                    ],
+                    tests: [{ id: '3A-MDCAT-S-T01', title: 'Biology Mock Test 1', type: 'MCQ', questions: 20, time: 30, exam: 'MDCAT', province: 'Sindh' }],
+                    papers: [{ id: '4A-MDCAT-S-2024', title: 'MDCAT Sindh 2024 Paper', year: 2024, fileId: 'PLACEHOLDER_PDF_3', download: true }]
+                },
+                Punjab: { lectures: [{ id: '1B-MDCAT-P-Bio-001', title: 'Biology: Punjab Syllabus Focus', teacher: 'Dr. Fatima', duration: '50 min', subject: 'Biology', fileId: 'PLACEHOLDER_VIDEO_3', dateAdded: '2025-12-01' }], notes: [], tests: [], papers: [] },
+                KPK: { lectures: [], notes: [], tests: [], papers: [] },
+                Balochistan: { lectures: [], notes: [], tests: [], papers: [] }
+            },
+            NUMS: { Sindh: { lectures: [], notes: [], tests: [], papers: [] } }
+        };
 
-        const announcements = [
-            { title: "MDCAT 2025 Syllabus Update", date: "2025-01-15", category: "MDCAT", priority: "New", content: "The PMC has announced a major syllabus change for the 2025 entry test." },
-            { title: "AFNS Admission Cycle Open", date: "2025-12-10", category: "AFNS", priority: "Important", content: "The Armed Forces Nursing Service application window is now open. Apply before the deadline." },
-            { title: "Dashboard Maintenance Notice", date: "2025-12-05", category: "General", priority: "New", content: "Minor dashboard improvements are being deployed on 2025-12-06." },
-            { title: "NUMS Test Dates Announced", date: "2025-11-25", category: "NUMS", priority: "Important", content: "Check the official NUMS website for updated test schedules." },
-        ].sort((a, b) => new Date(b.date) - new Date(a.date));
+        const announcements = [
+            { title: "MDCAT 2025 Syllabus Update", date: "2025-01-15", category: "MDCAT", priority: "New", content: "The PMC has announced a major syllabus change for the 2025 entry test." },
+            { title: "AFNS Admission Cycle Open", date: "2025-12-10", category: "AFNS", priority: "Important", content: "The Armed Forces Nursing Service application window is now open. Apply before the deadline." },
+            { title: "Dashboard Maintenance Notice", date: "2025-12-05", category: "General", priority: "New", content: "Minor dashboard improvements are being deployed on 2025-12-06." },
+            { title: "NUMS Test Dates Announced", date: "2025-11-25", category: "NUMS", priority: "Important", content: "Check the official NUMS website for updated test schedules." },
+        ].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // --- CORE UI FUNCTIONS ---
-        function mobileMenuToggle() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
+        // --- CORE UI FUNCTIONS ---
+        function mobileMenuToggle() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
 
-        // --- DATA HELPERS ---
-        function getContentArray(contentType, exam = 'all', province = 'all') {
-            let result = [];
-            const exams = exam === 'all' ? Object.keys(data) : [exam];
-            const provinces = province === 'all' ? ['Sindh', 'Punjab', 'KPK', 'Balochistan'] : [province];
+        // --- DATA HELPERS ---
+        function getContentArray(contentType, exam = 'all', province = 'all') {
+            let result = [];
+            const exams = exam === 'all' ? Object.keys(data) : [exam];
+            const provinces = province === 'all' ? ['Sindh', 'Punjab', 'KPK', 'Balochistan'] : [province];
 
-            for (const ex of exams) {
-                if (data[ex]) {
-                    for (const prov of provinces) {
-                        if (data[ex][prov] && data[ex][prov][contentType]) {
-                            result.push(...data[ex][prov][contentType].map(item => ({...item, exam: ex, province: prov})));
-                        }
-                    }
-                }
-            }
-            return result;
-        }
+            for (const ex of exams) {
+                if (data[ex]) {
+                    for (const prov of provinces) {
+                        if (data[ex][prov] && data[ex][prov][contentType]) {
+                            result.push(...data[ex][prov][contentType].map(item => ({...item, exam: ex, province: prov})));
+                        }
+                    }
+                }
+            }
+            return result;
+        }
 
-        // --- RENDERING HELPERS ---
-        function createAnnouncementCard(ann) {
-            const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
-            return `
-                <div class="card announcement-card">
-                    <h4>${ann.title} ${priorityBadge}</h4>
-                    <p><i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}</p>
-                    <p>${ann.content.substring(0, 100)}...</p>
-                </div>
-            `;
-        }
-        
-        function createLectureCard(lec) {
-            // Note: openVideoModal function is not included here but is required for the button to work.
-            return `
-                <div class="card lecture-card">
-                    <h4>${lec.title}</h4>
-                    <p><strong>Subject:</strong> ${lec.subject}</p>
-                    <p><strong>Teacher:</strong> ${lec.teacher}</p>
-                    <p class="meta-info">(${lec.exam} - ${lec.province})</p>
-                    <button class="button primary-button" onclick="alert('Video Modal Function Required')">
-                        <i class="fas fa-play-circle"></i> Watch (${lec.duration})
-                    </button>
-                </div>
-            `;
-        }
+        // --- RENDERING HELPERS ---
+        function createAnnouncementCard(ann) {
+            const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
+            return `
+                <div class="card announcement-card">
+                    <h4>${ann.title} ${priorityBadge}</h4>
+                    <p><i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}</p>
+                    <p>${ann.content.substring(0, 100)}...</p>
+                </div>
+            `;
+        }
+        
+        function createLectureCard(lec) {
+            // Note: openVideoModal function is not included here but is required for the button to work.
+            return `
+                <div class="card lecture-card">
+                    <h4>${lec.title}</h4>
+                    <p><strong>Subject:</strong> ${lec.subject}</p>
+                    <p><strong>Teacher:</strong> ${lec.teacher}</p>
+                    <p class="meta-info">(${lec.exam} - ${lec.province})</p>
+                    <button class="button primary-button" onclick="alert('Video Modal Function Required')">
+                        <i class="fas fa-play-circle"></i> Watch (${lec.duration})
+                    </button>
+                </div>
+            `;
+        }
 
-        // --- DASHBOARD LOGIC ---
-        function loadDashboard() {
-            const exam = localStorage.getItem('userExam');
-            const province = localStorage.getItem('userProvince');
-            
-            const allLectures = getContentArray('lectures', exam, province);
-            const allNotes = getContentArray('notes', exam, province);
-            const allTests = getContentArray('tests', exam, province);
-            const allPapers = getContentArray('papers', exam, province);
+        // --- DASHBOARD LOGIC ---
+        function loadDashboard() {
+            const exam = localStorage.getItem('userExam');
+            const province = localStorage.getItem('userProvince');
+            
+            const allLectures = getContentArray('lectures', exam, province);
+            const allNotes = getContentArray('notes', exam, province);
+            const allTests = getContentArray('tests', exam, province);
+            const allPapers = getContentArray('papers', exam, province);
 
-            // 1. Update Selection Display
-            document.getElementById('selected-exam').textContent = exam || 'All Exams';
-            document.getElementById('selected-province').textContent = province || 'All Provinces';
-            
-            // 2. Update Quick Stats
-            document.getElementById('stat-lectures').textContent = allLectures.length;
-            document.getElementById('stat-notes').textContent = allNotes.length;
-            document.getElementById('stat-tests').textContent = allTests.length;
-            document.getElementById('stat-papers').textContent = allPapers.length;
+            // 1. Update Selection Display
+            document.getElementById('selected-exam').textContent = exam || 'All Exams';
+            document.getElementById('selected-province').textContent = province || 'All Provinces';
+            
+            // 2. Update Quick Stats
+            document.getElementById('stat-lectures').textContent = allLectures.length;
+            document.getElementById('stat-notes').textContent = allNotes.length;
+            document.getElementById('stat-tests').textContent = allTests.length;
+            document.getElementById('stat-papers').textContent = allPapers.length;
 
-            // 3. Load Latest Announcements (last 3)
-            const dashboardAnnouncements = announcements.slice(0, 3);
-            document.getElementById('dashboard-announcements').innerHTML = dashboardAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
+            // 3. Load Latest Announcements (last 3)
+            const dashboardAnnouncements = announcements.slice(0, 3);
+            document.getElementById('dashboard-announcements').innerHTML = dashboardAnnouncements.map(ann => createAnnouncementCard(ann)).join('');
 
-            // 4. Load Recently Added Lectures (last 3, sorted by date)
-            const sortedLectures = allLectures.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
-            document.getElementById('recent-lectures-list').innerHTML = sortedLectures.map(lec => createLectureCard(lec)).join('');
-        }
+            // 4. Load Recently Added Lectures (last 3, sorted by date)
+            const sortedLectures = allLectures.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 3);
+            document.getElementById('recent-lectures-list').innerHTML = sortedLectures.map(lec => createLectureCard(lec)).join('');
+        }
 
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', loadDashboard);
-    </script>
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+    </script>
 </body>
 </html>
