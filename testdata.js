@@ -1389,5 +1389,4 @@ const testsData = [
     }
   ]
 } 
-  
-    ];
+],
