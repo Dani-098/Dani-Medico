@@ -345,7 +345,7 @@
             margin-top: 8px; 
             text-decoration: none; 
             transition: all var(--transition-speed);
-          0 position: relative;
+            position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -363,7 +363,7 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transform: translate(-50%, -50%);
-  0         transition: width 0.6s, height 0.6s;
+          transition: width 0.6s, height 0.6s;
         }
         
         .button:hover::before {
@@ -383,7 +383,7 @@
             background: linear-gradient(135deg, var(--color-secondary-green-light) 0%, var(--color-secondary-green) 100%);
         }
         
-  0     .secondary-button { 
+       .secondary-button { 
             background: linear-gradient(135deg, var(--color-light) 0%, #e9ecef 100%);
             color: var(--color-primary-blue); 
             border-color: var(--color-primary-blue);
@@ -507,7 +507,7 @@
         .mcq-option label { 
             display: block; 
             padding: 14px; 
-          0 border: 2px solid #e9ecef; 
+           border: 2px solid #e9ecef; 
             border-radius: 8px; 
             cursor: pointer; 
             font-size: 0.95rem; 
@@ -527,7 +527,7 @@
         }
 
         .correct-ans { 
-            background: linear-gradient(135deg, #d4edda, #c3e6cb) !important; 
+            background: linear-gradient(135deg, #d4edda , #c3e6cb) !important; 
             border-color: #28a745 !important; 
            color: #155724;
             animation: correctPulse 1.5s ease;
@@ -541,7 +541,7 @@
         .wrong-ans { 
             background: linear-gradient(135deg, #f8d7da, #f5c6cb) !important; 
             border-color: #dc3545 !important; 
-          0 color: #721c24;
+           color: #721c24;
             animation: shake 0.5s ease;
         }
         
@@ -575,7 +575,7 @@
         .pct-selector {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-          0 gap: 10px;
+           gap: 10px;
             margin: 20px 0;
         }
         .pct-btn {
@@ -752,225 +752,225 @@
            
            .footer-top { 
                flex-direction: column; 
-  0             text-align: center; 
-  0         }
-  0         
-  0         .footer-links { 
-  0             flex-direction: column; 
-  0             gap: 0.75rem; 
-  0             margin: 1rem 0;
-  0         }
-  0         
-  0         .social-icons { 
-  0             margin-top: 1rem; 
-  0         }
-  0         
-  0         .hero-section h1 {
-  0             font-size: 2rem;
-  0         }
-  0         
-  0         .exam-grid, .province-grid {
-  0             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  0         }
-  0     }
-  0     
-  0     @media (max-width: 480px) {
-  0         #navbar {
-  0             padding: 0.5rem 0.75rem;
-  0         }
-  0         
-  0         .logo {
-  0             font-size: 1.2rem;
-  0             gap: 0.5rem;
-  0         }
-  0         
-  0         .logo-img {
-  0             height: 40px;
-  0         }
-  0         
-  0         .hero-section {
-  0             padding: 3rem 1rem;
-  0         }
-  0         
-  0         .hero-section h1 {
-  0             font-size: 1.75rem;
-  0         }
-  0         
-  0         .card {
-  0             padding: 1.25rem;
-  0         }
-  0         
-  0         .mobile-menu-btn {
-  0             font-size: 1rem;
-  0         }
-  0     }
+               text-align: center; 
+        }
+        
+           .footer-links { 
+               flex-direction: column; 
+               gap: 0.75rem; 
+             margin: 1rem 0;
+           }
+           
+           .social-icons { 
+               margin-top: 1rem; 
+          }
+           
+           .hero-section h1 {
+               font-size: 2rem;
+           }
+           
+           .exam-grid, .province-grid {
+               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+           }
+       }
+       
+     @media (max-width: 480px) {
+           #navbar {
+               padding: 0.5rem 0.75rem;
+           }
+           
+           .logo {
+               font-size: 1.2rem;
+               gap: 0.5rem;
+         }
+           
+           .logo-img {
+               height: 40px;
+           }
+           
+           .hero-section {
+               padding: 3rem 1rem;
+           }
+           
+           .hero-section h1 {
+               font-size: 1.75rem;
+           }
+           
+           .card {
+               padding: 1.25rem;
+           }
+           
+           .mobile-menu-btn {
+               font-size: 1rem;
+           }
+       }
 
-  0     /* Floating Animation */
-  0     @keyframes float {
+       /* Floating Animation */
+       @keyframes float {
            0%, 100% { transform: translateY(0); }
            50% { transform: translateY(-10px); }
        }
-  0     
-  0     .float-animation {
-  0         animation: float 3s ease-in-out infinite;
-  0     }
-  0 </style>
+       
+       .float-animation {
+           animation: float 3s ease-in-out infinite;
+       }
+   </style>
 </head>
 <body>
-  0 
+  
 <header>
-  0 <nav id="navbar">
-  0     <div class="logo">
-  0         <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-  0         Dani Medico
-  0     </div>
-  0     <div class="nav-links" id="navLinks">
-  0         <a href="/"><i class="fas fa-home"></i> Home</a>
-  0         <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-  0         <a href="/lectures"><i class="fas fa-video"></i> Books</a>
-  0         <a href="/notes"><i class="fas fa-book-open"></i> Notes</a>
-  0         <a href="/tests" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
-  0         <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
-  0         <a href="/announcement"><i class="fas fa-bullhorn"></i> News</a>
-  0     </div>
-  0     <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
-  0         <i class="fas fa-bars"></i>
-  0     </button>
-  0 </nav>
+   <nav id="navbar">
+       <div class="logo">
+           <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+           Dani Medico
+       </div>
+       <div class="nav-links" id="navLinks">
+           <a href="/"><i class="fas fa-home"></i> Home</a>
+           <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+           <a href="/lectures"><i class="fas fa-video"></i> Books</a>
+         <a href="/notes"><i class="fas fa-book-open"></i> Notes</a>
+           <a href="/tests" class="active"><i class="fas fa-pencil-alt"></i> Tests</a>
+           <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
+           <a href="/announcement"><i class="fas fa-bullhorn"></i> News</a>
+       </div>
+       <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+           <i class="fas fa-bars"></i>
+       </button>
+   </nav>
 </header>
 
 <main class="container">
-  0 <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
-  0 <section class="filters-section card">
-  0     <div class="filter-group">
-  0         <label><i class="fas fa-map-marker-alt"></i> Province:</label>
-  0         <select id="filter-province" onchange="updateExams()">
-  0             <option value="all">All Provinces</option>
-  0             <option value="Sindh">Sindh</option>
-  0             <option value="Punjab">Punjab</option>
-  0             <option value="KPK">KPK</option>
-  0             <option value="Balochistan">Balochistan</option>
-  0             <option value="Islamabad">Islamabad</option>
-  0         </select>
-  0     </div>
-  0     <div class="filter-group">
-  0         <label><i class="fas fa-clipboard-list"></i> Exam:</label>
-  0         <select id="filter-exam" onchange="updateSubjects()">
-  0             <option value="all">All Exams</option>
-  0         </select>
-  0     </div>
-  0     <div class="filter-group">
-  0         <label><i class="fas fa-book"></i> Subject:</label>
-  0         <select id="filter-subject" onchange="updateChapters()">
-  0             <option value="all">All Subjects</option>
-  0         </select>
-  0     </div>
-  0     <div class="filter-group">
-  0         <label><i class="fas fa-layer-group"></i> Chapter:</label>
-  0         <select id="filter-chapter" onchange="loadTests()">
-  0             <option value="all">All Chapters</option>
-  0         </select>
-  0     </div>
-  0 </section>
+   <h2><i class="fas fa-pencil-alt"></i> Practice Tests</h2>
+   <section class="filters-section card">
+       <div class="filter-group">
+           <label><i class="fas fa-map-marker-alt"></i> Province:</label>
+           <select id="filter-province" onchange="updateExams()">
+             <option value="all">All Provinces</option>
+               <option value="Sindh">Sindh</option>
+               <option value="Punjab">Punjab</option>
+               <option value="KPK">KPK</option>
+               <option value="Balochistan">Balochistan</option>
+               <option value="Islamabad">Islamabad</option>
+           </select>
+       </div>
+       <div class="filter-group">
+           <label><i class="fas fa-clipboard-list"></i> Exam:</label>
+           <select id="filter-exam" onchange="updateSubjects()">
+               <option value="all">All Exams</option>
+           </select>
+       </div>
+       <div class="filter-group">
+           <label><i class="fas fa-book"></i> Subject:</label>
+           <select id="filter-subject" onchange="updateChapters()">
+               <option value="all">All Subjects</option>
+           </select>
+     </div>
+       <div class="filter-group">
+           <label><i class="fas fa-layer-group"></i> Chapter:</label>
+           <select id="filter-chapter" onchange="loadTests()">
+               <option value="all">All Chapters</option>
+         </select>
+       </div>
+ </section>
 
-  0 <div id="tests-container" class="card-grid"></div>
-  0 <p id="no-content-message" class="hidden text-center"></p>
+   <div id="tests-container" class="card-grid"></div>
+   <p id="no-content-message" class="hidden text-center"></p>
 </main>
 
 <div id="configModal" class="modal">
-  0 <div class="modal-content" style="max-width: 500px; min-height: auto;">
-  0     <span class="close-btn" onclick="closeModal('configModal')">&times;</span>
-  0     <h3 class="text-center" style="color: var(--color-primary-blue);"><i class="fas fa-user-edit"></i> Student Registration</h3>
-  0     <p class="text-center" style="font-size: 0.9rem; margin-bottom: 20px;">Enter your details to proceed with the test.</p>
-  0     
-  0     <form id="details-form" onsubmit="handleDetailsSubmit(event)">
-  0         <div class="filter-group" style="margin-bottom: 15px;">
-  0             <label><i class="fas fa-user"></i> Name:</label>
-  0             <input type="text" id="user-name" required placeholder="Full Name">
-  0         </div>
-  0         <div class="filter-group" style="margin-bottom: 15px;">
-  0             <label><i class="fas fa-city"></i> City:</label>
-  0             <input type="text" id="user-city" required placeholder="City Name">
-  0         </div>
-  0         <div class="filter-group" style="margin-bottom: 15px;">
-  0             <label><i class="fab fa-whatsapp"></i> WhatsApp No:</label>
-  0             <input type="tel" id="user-whatsapp" required placeholder="03001234567">
-  0         </div>
-  0         
-  0         <label style="font-weight:600; display: block; margin-top: 15px;">Select Test Length:</label>
-  0         <div class="pct-selector">
-  0             <button type="button" class="pct-btn" onclick="setPercentage(0.25, this)">25%</button>
-  0             <button type="button" class="pct-btn" onclick="setPercentage(0.50, this)">50%</button>
-  0             <button type="button" class="pct-btn" onclick="setPercentage(0.75, this)">75%</button>
-  0             <button type="button" class="pct-btn active" id="default-pct" onclick="setPercentage(1.0, this)">Full</button>
-  0         </div>
+   <div class="modal-content" style="max-width: 500px; min-height: auto;">
+       <span class="close-btn" onclick="closeModal('configModal')">&times;</span>
+       <h3 class="text-center" style="color: var(--color-primary-blue);"><i class="fas fa-user-edit"></i> Student Registration</h3>
+       <p class="text-center" style="font-size: 0.9rem; margin-bottom: 20px;">Enter your details to proceed with the test.</p>
+     
+       <form id="details-form" onsubmit="handleDetailsSubmit(event)">
+           <div class="filter-group" style="margin-bottom: 15px;">
+               <label><i class="fas fa-user"></i> Name:</label>
+               <input type="text" id="user-name" required placeholder="Full Name">
+           </div>
+           <div class="filter-group" style="margin-bottom: 15px;">
+               <label><i class="fas fa-city"></i> City:</label>
+               <input type="text" id="user-city" required placeholder="City Name">
+           </div>
+           <div class="filter-group" style="margin-bottom: 15px;">
+               <label><i class="fab fa-whatsapp"></i> WhatsApp No:</label>
+               <input type="tel" id="user-whatsapp" required placeholder="03001234567">
+         </div>
+           
+           <label style="font-weight:600; display: block; margin-top: 15px;">Select Test Length:</label>
+           <div class="pct-selector">
+               <button type="button" class="pct-btn" onclick="setPercentage(0.25, this)">25%</button>
+               <button type="button" class="pct-btn" onclick="setPercentage(0.50, this)">50%</button>
+               <button type="button" class="pct-btn" onclick="setPercentage(0.75, this)">75%</button>
+               <button type="button" class="pct-btn active" id="default-pct" onclick="setPercentage(1.0, this)">Full</button>
+           </div>
 
-  0         <button type="submit" class="button primary-button" style="height: 50px; font-size: 1.1rem; margin-top: 20px;">
-  0             Start Test <i class="fas fa-chevron-right"></i>
-  0         </button>
-  0     </form>
-  0 </div>
+           <button type="submit" class="button primary-button" style="height: 50px; font-size: 1.1rem; margin-top: 20px;">
+               Start Test <i class="fas fa-chevron-right"></i>
+           </button>
+       </form>
+   </div>
 </div>
 
 <div id="testModal" class="modal">
-  0 <div class="modal-content">
-  0     <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
-  0     <h3 id="test-modal-title">Interactive Quiz</h3>
-  0     
-  0     <div id="timer-container" class="text-center">
-  0         <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
-  0     </div>
+   <div class="modal-content">
+       <span class="close-btn" onclick="closeModal('testModal')">&times;</span>
+     <h3 id="test-modal-title">Interactive Quiz</h3>
+       
+       <div id="timer-container" class="text-center">
+           <div id="timer-display"><i class="fas fa-clock"></i> Time Left: <span id="time-left">00:00</span></div>
+     </div>
 
-  0     <hr style="margin: 15px 0; opacity: 0.1;">
-  0     
-  0     <form id="mcq-form" onsubmit="submitTest(event)">
-  0         <div id="mcq-steps-container"></div>
-  0     </form>
+       <hr style="margin: 15px 0; opacity: 0.1;">
+       
+       <form id="mcq-form" onsubmit="submitTest(event)">
+           <div id="mcq-steps-container"></div>
+       </form>
 
-  0     <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
-  0         <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
-  0             <i class="fas fa-arrow-left"></i> Back to Results
-  0         </button>
-  0     </div>
+       <div id="review-actions" class="hidden" style="margin-bottom: 20px;">
+           <button class="button secondary-button" onclick="backToResults()" style="max-width: 200px;">
+               <i class="fas fa-arrow-left"></i> Back to Results
+           </button>
+     </div>
 
-  0     <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
-  0         <i class="fas fa-award floating-icon" style="font-size: 4rem;"></i>
-  0         <h2 style="margin-top: 1rem;">Test Completed!</h2>
-  0         <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
-  0         <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
-  0         
-  0         <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
-  0             <button class="button secondary-button" onclick="checkTest()">
-  0                 <i class="fas fa-search"></i> Check Test
-  0             </button>
-  0             <button class="button primary-button" onclick="downloadTestPDF()" style="background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%); border: none;">
-  0                 <i class="fas fa-file-pdf"></i> Download Paper
-  0             </button>
-  0         </div>
-  0         <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
-  0     </div>
-  0 </div>
+       <div id="result-summary" class="hidden" style="text-align: center; padding: 2rem;">
+           <i class="fas fa-award floating-icon" style="font-size: 4rem;"></i>
+           <h2 style="margin-top: 1rem;">Test Completed!</h2>
+           <p style="font-size: 1.2rem; margin: 10px 0;">Score: <strong id="result-percentage" style="color: var(--color-primary-blue);"></strong></p>
+           <p>Correct Answers: <span id="result-correct"></span> / <span id="result-total"></span></p>
+           
+           <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center;">
+               <button class="button secondary-button" onclick="checkTest()">
+                   <i class="fas fa-search"></i> Check Test
+               </button>
+               <button class="button primary-button" onclick="downloadTestPDF()" style="background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-light) 100%); border: none;">
+                   <i class="fas fa-file-pdf"></i> Download Paper
+               </button>
+           </div>
+           <button class="button primary-button" onclick="closeModal('testModal')" style="max-width: 250px; margin: 20px auto;">Close and Continue</button>
+     </div>
+   </div>
 </div>
 
 <footer>
-  0 <div class="footer-top container">
-  0     <div class="footer-links">
-  0         <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
-  0         <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
-  0         <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  0     </div>
-  0     <div class="footer-logo">
-  0         <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
-  0     </div>
-  0     <div class="social-icons">
-  0         <a href="https://web.facebook.com/Danimedicoo/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-  0         <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  0         <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-  0         <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-  0     </div>
-  0 </div>
-  0 <div class="footer-bottom">
-  0     <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
+   <div class="footer-top container">
+       <div class="footer-links">
+           <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+           <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+         <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+       </div>
+       <div class="footer-logo">
+           <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+       </div>
+       <div class="social-icons">
+           <a href="https://web.facebook.com/Danimedicoo/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+           <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+           <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+           <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+       </div>
+   </div>
+   <div class="footer-bottom">
+       <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
    </div>
 </footer>
 
