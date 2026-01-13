@@ -269,6 +269,25 @@
             line-height: 1.4; 
             font-weight: 600;
         }
+        /* Styling for the replaced details on the card */
+.test-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+    font-size: 0.75rem; /* Small size as requested */
+    color: #666;
+    font-weight: 500;
+}
+.test-meta-info span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.test-meta-info i {
+    color: var(--color-primary-blue); /* Matching your theme color */
+    font-size: 0.8rem;
+}
 
         /* --- ENHANCED DEPENDENT FILTERS --- */
         .filters-section { 
@@ -1090,37 +1109,41 @@
     }
 
     function loadTests() {
-        const container = document.getElementById('tests-container');
-        const provVal = provinceSelect.value;
-        const examVal = examSelect.value;
-        const subVal = subjectSelect.value;
-        const chapVal = chapterSelect.value;
+    const container = document.getElementById('tests-container');
+    const provVal = provinceSelect.value;
+    const examVal = examSelect.value;
+    const subVal = subjectSelect.value;
+    const chapVal = chapterSelect.value;
 
-        const filtered = testsData.filter(t => 
-            (provVal === 'all' || t.province === provVal) &&
-            (examVal === 'all' || t.exam === examVal) &&
-            (subVal === 'all' || t.subject === subVal) &&
-            (chapVal === 'all' || t.chapter === chapVal)
-        );
+    const filtered = testsData.filter(t => 
+        (provVal === 'all' || t.province === provVal) &&
+        (examVal === 'all' || t.exam === examVal) &&
+        (subVal === 'all' || t.subject === subVal) &&
+        (chapVal === 'all' || t.chapter === chapVal)
+    );
 
-        if (filtered.length === 0) {
-            container.innerHTML = '';
-            document.getElementById('no-content-message').classList.remove('hidden');
-        } else {
-            document.getElementById('no-content-message').classList.add('hidden');
-            container.innerHTML = filtered.map(test => `
-                <div class="card test-card">
-                    <div>
-                        <h4>${test.title}</h4>
-                        <p style="font-size:0.85rem; color:var(--color-primary-blue); font-weight:600;">${test.subject} | ${test.chapter}</p>
+    if (filtered.length === 0) {
+        container.innerHTML = '';
+        document.getElementById('no-content-message').classList.remove('hidden');
+    } else {
+        document.getElementById('no-content-message').classList.add('hidden');
+        container.innerHTML = filtered.map(test => `
+            <div class="card test-card">
+                <div>
+                    <h4>${test.title}</h4>
+                    <div class="test-meta-info">
+                        <span><i class="fas fa-list-ol"></i> ${test.mcqs.length} MCQS</span>
+                        <span><i class="fas fa-graduation-cap"></i> ${test.exam}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${test.province}</span>
                     </div>
-                    <button class="button primary-button" onclick="openConfigModal('${test.id}')">
-                        <i class="fas fa-play"></i> Start Test
-                    </button>
                 </div>
-            `).join('');
-        }
+                <button class="button primary-button" onclick="openConfigModal('${test.id}')">
+                    <i class="fas fa-play"></i> Start Test
+                </button>
+            </div>
+        `).join('');
     }
+}
 
     /* Addition: Registration Flow */
     function openConfigModal(id) {
