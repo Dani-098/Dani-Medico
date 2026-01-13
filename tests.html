@@ -1211,11 +1211,13 @@
     if(e) e.preventDefault();
     clearInterval(timerInterval);
     
-    // Hide the questions and timer immediately
+    // 1. COMPLETELY HIDE the questions, timer, and submit button
+    // This ensures they are not seen "with" the result summary
     document.getElementById('mcq-form').classList.add('hidden');
     document.getElementById('timer-container').classList.add('hidden');
     document.getElementById('submit-btn').classList.add('hidden');
 
+    // 2. Calculate the score
     let correct = 0;
     userSelections = [];
     activeTestMCQs.forEach((m, i) => {
@@ -1226,17 +1228,19 @@
         if(val === m.answer) correct++;
     });
 
-    // Populate your existing result elements
+    // 3. Populate the results (Score, Percentage, etc.)
     document.getElementById('result-total').innerText = activeTestMCQs.length;
     document.getElementById('result-correct').innerText = correct;
     document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
     
-    // Reveal the result summary (using your existing ID)
+    // 4. REVEAL the result summary
+    // Since the form is now hidden, this will appear on its own at the top
     document.getElementById('result-summary').classList.remove('hidden');
 
-    // Scroll the modal to the top so the user sees the score badge
+    // 5. Reset scroll position to the top of the modal
     document.getElementById('testModal').scrollTop = 0;
 }
+    
     function checkTest() {
     // 1. Jump to the top of the modal immediately
     document.getElementById('testModal').scrollTop = 0;
