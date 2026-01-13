@@ -269,6 +269,13 @@
             line-height: 1.4; 
             font-weight: 600;
         }
+        .card-chapter-text { 
+    font-size: 0.85rem; 
+    color: var(--color-primary-blue); 
+    font-weight: 600; 
+    margin-bottom: 8px; 
+    line-height: 1.3;
+}
         /* Styling for the replaced details on the card */
 .test-meta-info {
     display: flex;
@@ -1131,6 +1138,7 @@
             <div class="card test-card">
                 <div>
                     <h4>${test.title}</h4>
+                    <div class="card-chapter-text">${test.chapter}</div>
                     <div class="test-meta-info">
                         <span><i class="fas fa-list-ol"></i> ${test.mcqs.length} MCQS</span>
                         <span><i class="fas fa-graduation-cap"></i> ${test.exam}</span>
