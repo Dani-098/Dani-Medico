@@ -1056,19 +1056,58 @@
     const subjectSelect = document.getElementById('filter-subject');
     const chapterSelect = document.getElementById('filter-chapter');
 
-    function initializeFilters() { 
-    updateExams(); // Your existing function to load dropdowns
-
-    // Check the URL for a Test ID (e.g., ?id=T1)
+    function initializeFilters() {
+    // 1. Check the URL for parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const testId = urlParams.get('id');
+    
+    const urlProv = urlParams.get('province');
+    const urlExam = urlParams.get('exam');
+    const urlSub  = urlParams.get('subject');
+    const urlChap = urlParams.get('chapter');
+    const urlId   = urlParams.get('id');
 
-    if (testId) {
-        // Find if the test exists in your data array
-        const testExists = testsData.find(t => t.id === testId);
+    // 2. Set Province first if it exists
+    if (urlProv) {
+        const provSelect = document.getElementById('filter-province');
+        if (provSelect) provSelect.value = urlProv;
+    }
+
+    // 3. Initialize the dropdown chain
+    updateExams(); 
+
+    // 4. Set Exam if it exists
+    if (urlExam) {
+        const examSelect = document.getElementById('filter-exam');
+        if (examSelect) {
+            examSelect.value = urlExam;
+            updateSubjects(); // Load subjects for this exam
+        }
+    }
+
+    // 5. Set Subject if it exists
+    if (urlSub) {
+        const subSelect = document.getElementById('filter-subject');
+        if (subSelect) {
+            subSelect.value = urlSub;
+            updateChapters(); // Load chapters for this subject
+        }
+    }
+
+    // 6. Set Chapter if it exists
+    if (urlChap) {
+        const chapSelect = document.getElementById('filter-chapter');
+        if (chapSelect) {
+            chapSelect.value = urlChap;
+            loadTests(); // Render the filtered cards
+        }
+    }
+
+    // 7. Finally, Auto-open the Test Modal if ID exists
+    if (urlId) {
+        const testExists = testsData.find(t => t.id === urlId);
         if (testExists) {
-            // Automatically trigger the registration modal for this test
-            openConfigModal(testId);
+            // Short delay to ensure DOM is ready for modal
+            setTimeout(() => openConfigModal(urlId), 300);
         }
     }
 }
