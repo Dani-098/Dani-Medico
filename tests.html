@@ -1208,39 +1208,63 @@
     }
 
     function submitTest(e) {
-        if(e) e.preventDefault();
-        clearInterval(timerInterval);
-        document.getElementById('timer-container').classList.add('hidden');
-        let correct = 0;
-        userSelections = [];
-        activeTestMCQs.forEach((m, i) => {
-            const radios = document.getElementsByName(`q${i}`);
-            let val = -1;
-            radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
-            userSelections.push(val);
-            if(val === m.answer) correct++;
-        });
+    if(e) e.preventDefault();
+    clearInterval(timerInterval);
+    
+    // Hide the questions and timer immediately
+    document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('timer-container').classList.add('hidden');
+    document.getElementById('submit-btn').classList.add('hidden');
 
-        document.getElementById('result-total').innerText = activeTestMCQs.length;
-        document.getElementById('result-correct').innerText = correct;
-        document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-        document.getElementById('mcq-form').classList.add('hidden');
-        document.getElementById('result-summary').classList.remove('hidden');
-    }
+    let correct = 0;
+    userSelections = [];
+    activeTestMCQs.forEach((m, i) => {
+        const radios = document.getElementsByName(`q${i}`);
+        let val = -1;
+        radios.forEach(r => { if(r.checked) val = parseInt(r.value); });
+        userSelections.push(val);
+        if(val === m.answer) correct++;
+    });
 
+    // Populate your existing result elements
+    document.getElementById('result-total').innerText = activeTestMCQs.length;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
+    
+    // Reveal the result summary (using your existing ID)
+    document.getElementById('result-summary').classList.remove('hidden');
+
+    // Scroll the modal to the top so the user sees the score badge
+    document.getElementById('testModal').scrollTop = 0;
+}
     function checkTest() {
-        document.getElementById('mcq-form').classList.remove('hidden');
-        document.getElementById('result-summary').classList.add('hidden');
-        document.getElementById('submit-btn').classList.add('hidden');
-        document.getElementById('review-actions').classList.remove('hidden');
-        activeTestMCQs.forEach((m, i) => {
-            const sel = userSelections[i], cor = m.answer;
-            const radios = document.getElementsByName(`q${i}`);
-            radios.forEach(r => r.disabled = true);
-            if(document.getElementById(`label-${i}-${cor}`)) document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
-            if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
-        });
-    }
+    // 1. Jump to the top of the modal immediately
+    document.getElementById('testModal').scrollTop = 0;
+
+    // 2. Hide the result area and show the questions
+    document.getElementById('result-summary').classList.add('hidden');
+    document.getElementById('mcq-form').classList.remove('hidden');
+    
+    // 3. Swap the buttons (Hide submit, show Review Actions)
+    document.getElementById('submit-btn').classList.add('hidden');
+    document.getElementById('review-actions').classList.remove('hidden');
+
+    // 4. Apply the color highlights to the options
+    activeTestMCQs.forEach((m, i) => {
+        const sel = userSelections[i], cor = m.answer;
+        const radios = document.getElementsByName(`q${i}`);
+        radios.forEach(r => r.disabled = true);
+        
+        // Mark correct answer Green
+        if(document.getElementById(`label-${i}-${cor}`)) {
+            document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
+        }
+        // If user was wrong, mark their choice Red
+        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) {
+            document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
+        }
+    });
+}
 
     function backToResults() {
         document.getElementById('mcq-form').classList.add('hidden');
