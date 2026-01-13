@@ -1211,13 +1211,7 @@
     if(e) e.preventDefault();
     clearInterval(timerInterval);
     
-    // 1. COMPLETELY HIDE the questions, timer, and submit button
-    // This ensures they are not seen "with" the result summary
-    document.getElementById('mcq-form').classList.add('hidden');
-    document.getElementById('timer-container').classList.add('hidden');
-    document.getElementById('submit-btn').classList.add('hidden');
-
-    // 2. Calculate the score
+    // 1. Calculate Score
     let correct = 0;
     userSelections = [];
     activeTestMCQs.forEach((m, i) => {
@@ -1228,46 +1222,42 @@
         if(val === m.answer) correct++;
     });
 
-    // 3. Populate the results (Score, Percentage, etc.)
+    // 2. Populate Result Data
     document.getElementById('result-total').innerText = activeTestMCQs.length;
     document.getElementById('result-correct').innerText = correct;
     document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
     
-    // 4. REVEAL the result summary
-    // Since the form is now hidden, this will appear on its own at the top
-    document.getElementById('result-summary').classList.remove('hidden');
+    // 3. UI SWAP: Hide Test, Show Result independently
+    document.getElementById('mcq-form').classList.add('hidden'); // Hides questions
+    document.getElementById('timer-container').classList.add('hidden'); // Hides timer
+    document.getElementById('submit-btn').classList.add('hidden'); // Hides submit button
+    
+    document.getElementById('result-summary').classList.remove('hidden'); // Shows result at top
 
-    // 5. Reset scroll position to the top of the modal
+    // 4. Reset Scroll to top of the modal
     document.getElementById('testModal').scrollTop = 0;
 }
     
     function checkTest() {
-    // 1. Jump to the top of the modal immediately
-    document.getElementById('testModal').scrollTop = 0;
-
-    // 2. Hide the result area and show the questions
+    // 1. Hide Result, Show Questions
     document.getElementById('result-summary').classList.add('hidden');
     document.getElementById('mcq-form').classList.remove('hidden');
-    
-    // 3. Swap the buttons (Hide submit, show Review Actions)
-    document.getElementById('submit-btn').classList.add('hidden');
     document.getElementById('review-actions').classList.remove('hidden');
+    document.getElementById('submit-btn').classList.add('hidden');
 
-    // 4. Apply the color highlights to the options
+    // 2. Highlight Answers
     activeTestMCQs.forEach((m, i) => {
         const sel = userSelections[i], cor = m.answer;
         const radios = document.getElementsByName(`q${i}`);
         radios.forEach(r => r.disabled = true);
-        
-        // Mark correct answer Green
-        if(document.getElementById(`label-${i}-${cor}`)) {
+        if(document.getElementById(`label-${i}-${cor}`)) 
             document.getElementById(`label-${i}-${cor}`).classList.add('correct-ans');
-        }
-        // If user was wrong, mark their choice Red
-        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) {
+        if(sel !== -1 && sel !== cor && document.getElementById(`label-${i}-${sel}`)) 
             document.getElementById(`label-${i}-${sel}`).classList.add('wrong-ans');
-        }
     });
+
+    // 3. Jump to top for review
+    document.getElementById('testModal').scrollTop = 0;
 }
 
     function backToResults() {
