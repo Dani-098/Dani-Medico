@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
+        /* --- ORIGINAL CSS VARIABLES & GRADIENTS PRESERVED --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-primary-blue-light: #4da6ff;
@@ -21,82 +22,124 @@
             --color-card-bg: #FFFFFF;
             --color-shadow: rgba(0, 0, 0, 0.1);
             --color-danger: #DC3545;
+            --color-danger-light: #e4606d;
             --color-warning: #FFC107;
+            --color-warning-light: #ffce3a;
             --font-family-primary: 'Poppins', sans-serif;
             --border-radius-base: 12px;
             --transition-speed: 0.4s;
+            --animation-duration: 0.5s;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-family-primary); line-height: 1.6; color: var(--color-text); background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); min-height: 100vh; padding-top: 80px; overflow-x: hidden; }
         
-        .container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
-        section { padding: 3.5rem 0; }
-        
-        h2.section-title { font-size: 2.2rem; color: var(--color-dark); margin-bottom: 2.5rem; text-align: center; font-weight: 700; }
-        h2.section-title::after { content: ''; display: block; width: 70px; height: 5px; background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green)); margin: 12px auto; border-radius: 10px; }
+        body { 
+            font-family: var(--font-family-primary); 
+            line-height: 1.6; 
+            color: var(--color-text); 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            padding-top: 90px;
+        }
 
-        /* --- NAVBAR (PRESERVED) --- */
-        #navbar { background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%); color: var(--color-light); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); z-index: 1000; position: fixed; top: 0; left: 0; right: 0; width: 100%; }
-        .logo { font-size: 1.4rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.75rem; }
-        .logo-img { height: 65px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; flex-grow: 1; }
+        
+        h2 { 
+            display: inline-block; 
+            padding-bottom: 0.5rem; 
+            position: relative; 
+            margin-bottom: 2rem; 
+            color: var(--color-dark);
+            font-size: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h2::after {
+            content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+            width: 80px; height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green));
+            border-radius: 2px;
+        }
+
+        /* --- HEADER (PRESERVED) --- */
+        #navbar { 
+            background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
+            color: var(--color-light); padding: 0.75rem 1.5rem; display: flex; 
+            justify-content: space-between; align-items: center; 
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            z-index: 1000; position: fixed; top: 0; left: 0; right: 0; width: 100%;
+        }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.75rem; transition: transform var(--transition-speed); }
+        .logo-img { height: 70px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: var(--color-light); margin-left: 0.75rem; padding: 0.5rem 0.8rem; font-weight: 500; font-size: 0.85rem; border-radius: 8px; transition: 0.3s; text-decoration: none; }
-        .nav-links a:hover, .nav-links a.active { background: rgba(255, 255, 255, 0.2); }
+        .nav-links a { 
+            color: var(--color-light); margin-left: 0.75rem; padding: 0.5rem 0.75rem; 
+            font-weight: 500; border-radius: 8px; font-size: 0.9rem; text-decoration: none;
+            display: flex; align-items: center; gap: 0.4rem; transition: all var(--transition-speed);
+        }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
         .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.5rem; }
 
-        /* --- SLIDER --- */
-        .slider-container { width: 100%; height: 480px; position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 15px 35px var(--color-shadow); margin-bottom: 2rem; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        /* --- FEATURE: PREMIUM SLIDER --- */
+        .slider-wrapper { width: 100%; height: 450px; position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 10px 30px var(--color-shadow); margin-bottom: 3rem; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
         .slide.active { opacity: 1; }
-        .slide-content { background: rgba(255, 255, 255, 0.1); padding: 3rem; border-radius: 20px; text-align: center; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); color: white; max-width: 80%; }
-        .slide-content h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .slide-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); }
+        .slide-content { position: relative; z-index: 2; color: white; text-align: center; padding: 2rem; max-width: 800px; }
+        .slide-content h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .slide-content p { font-size: 1.2rem; opacity: 0.9; }
 
-        /* --- QUICK LINK SECTIONS (Grid of Filters) --- */
-        .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .quick-box { background: white; padding: 2rem; border-radius: 15px; text-align: center; transition: 0.4s; border-bottom: 4px solid transparent; box-shadow: 0 4px 10px var(--color-shadow); text-decoration: none; color: inherit; }
-        .quick-box:hover { transform: translateY(-10px); border-bottom-color: var(--color-primary-blue); box-shadow: 0 12px 25px rgba(0,123,255,0.15); }
-        .quick-box i { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; background: linear-gradient(135deg, var(--color-primary-blue), var(--color-secondary-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .quick-box h4 { color: var(--color-dark); font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .quick-box p { font-size: 0.85rem; color: #777; }
+        /* --- FEATURE: STATS SECTION --- */
+        .stats-section { background: linear-gradient(135deg, var(--color-primary-blue-dark), var(--color-secondary-green-dark)); color: white; padding: 4rem 0; border-radius: 30px; margin: 3rem 0; text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .stat-item i { font-size: 3rem; margin-bottom: 1rem; color: var(--color-warning); }
+        .stat-item h3 { font-size: 2.5rem; margin-bottom: 0.5rem; color: white; }
+        .stat-item p { font-size: 1rem; opacity: 0.8; }
 
-        /* --- STATS SECTION --- */
-        .stats-banner { background: linear-gradient(135deg, var(--color-primary-blue-dark), var(--color-secondary-green-dark)); color: white; padding: 5rem 0; border-radius: 40px; margin: 4rem 0; position: relative; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; text-align: center; }
-        .stat-card h3 { font-size: 3.5rem; font-weight: 800; margin-bottom: 5px; }
-        .stat-card p { font-size: 1.1rem; opacity: 0.9; font-weight: 500; }
+        /* --- FEATURE: FUNCTIONAL PORTAL GRIDS --- */
+        .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 4rem; }
+        .portal-card { background: white; padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--color-primary-blue); box-shadow: 0 4px 15px var(--color-shadow); transition: 0.3s; }
+        .portal-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,123,255,0.2); }
+        .portal-card h3 { color: var(--color-primary-blue); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .quick-links a { background: #f8f9fa; padding: 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-align: center; border: 1px solid #eee; }
+        .quick-links a:hover { background: var(--color-primary-blue); color: white; border-color: var(--color-primary-blue); }
 
-        /* --- COUNTDOWN --- */
-        .countdown-container { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
-        .cd-card { background: white; padding: 2rem; border-radius: 15px; width: 350px; text-align: center; box-shadow: 0 8px 20px var(--color-shadow); position: relative; }
-        .cd-card.mdcat { border-top: 6px solid var(--color-danger); }
-        .cd-card.nums { border-top: 6px solid var(--color-primary-blue); }
-        .cd-timer { font-size: 1.5rem; font-weight: 700; color: var(--color-dark); margin-top: 15px; font-family: monospace; letter-spacing: 2px; }
-
-        /* --- CALCULATOR --- */
-        .calculator-wrapper { background: white; padding: 3rem; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid #eee; }
-        .calc-nav { display: flex; justify-content: center; gap: 15px; margin-bottom: 2.5rem; }
-        .calc-btn { padding: 0.7rem 2rem; border-radius: 50px; border: 2px solid var(--color-primary-blue); background: transparent; cursor: pointer; font-weight: 600; color: var(--color-primary-blue); transition: 0.3s; }
-        .calc-btn.active { background: var(--color-primary-blue); color: white; }
-        .input-row { margin-bottom: 1.2rem; text-align: left; }
-        .input-row label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--color-dark); }
-        .input-row input { width: 100%; padding: 0.9rem; border-radius: 10px; border: 1px solid #ddd; outline: none; transition: 0.3s; }
-        .input-row input:focus { border-color: var(--color-primary-blue); box-shadow: 0 0 8px rgba(0,123,255,0.2); }
-        .result-box { margin-top: 2rem; padding: 1.5rem; border-radius: 10px; background: #f8fff9; border: 1px dashed var(--color-secondary-green); display: none; }
+        /* --- FEATURE: COUNTDOWN & CALCULATOR --- */
+        .flex-row { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 2rem; }
+        .countdown-box { flex: 1; min-width: 300px; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px var(--color-shadow); text-align: center; border-top: 6px solid var(--color-danger); }
+        .timer-display { display: flex; justify-content: center; gap: 15px; margin-top: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--color-danger); font-family: monospace; }
+        
+        .calc-box { flex: 1.5; min-width: 300px; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px var(--color-shadow); }
+        .calc-tabs { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+        .calc-tab { padding: 8px 20px; border-radius: 20px; border: 2px solid var(--color-primary-blue); cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+        .calc-tab.active { background: var(--color-primary-blue); color: white; }
+        .calc-input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; }
+        .calc-btn { width: 100%; background: var(--color-secondary-green); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
         /* --- FOOTER (PRESERVED) --- */
-        footer { background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%); color: var(--color-light); padding: 3rem 1rem 1rem; margin-top: 5rem; }
-        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .social-icons a { color: white; font-size: 1.5rem; margin-left: 1.5rem; transition: 0.3s; }
-        .social-icons a:hover { color: var(--color-secondary-green); transform: scale(1.2); }
+        footer { 
+            background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
+            color: var(--color-light); padding: 2rem 1rem 0; margin-top: 3rem; position: relative;
+        }
+        footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--color-secondary-green), var(--color-primary-blue-light)); }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
+        .footer-logo .logo-img { height: 80px; }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); }
+        .social-icons a:hover { color: var(--color-secondary-green); background: rgba(255, 255, 255, 0.2); transform: translateY(-3px) scale(1.1); }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .slide-content h1 { font-size: 1.8rem; }
-            .slider-container { height: 300px; }
-            .footer-top { flex-direction: column; gap: 2rem; }
+            .nav-links { display: none; } .mobile-menu-btn { display: block; }
+            .slider-wrapper { height: 250px; } .slide-content h1 { font-size: 1.8rem; }
+            .footer-top { flex-direction: column; text-align: center; } .footer-links { flex-direction: column; gap: 0.75rem; }
         }
+
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
@@ -110,7 +153,7 @@
             <div class="nav-links">
                 <a href="/" class="active"><i class="fas fa-home"></i> Home</a>
                 <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a href="/books"><i class="fas fa-book"></i> Books</a>
+                <a href="/lectures"><i class="fas fa-video"></i> Books</a>
                 <a href="/notes"><i class="fas fa-book-open"></i> Notes</a>
                 <a href="/tests"><i class="fas fa-pencil-alt"></i> Tests</a>
                 <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
@@ -121,142 +164,128 @@
     </header>
 
     <main class="container">
-        <div class="slider-container">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80');">
+        <div class="slider-wrapper">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-overlay"></div>
                 <div class="slide-content">
-                    <h1>MDCAT 2026 Mastery</h1>
-                    <p>Access free chapter-wise video lectures and high-yield notes.</p>
+                    <h1 class="float-animation">MDCAT 2026 Mastery</h1>
+                    <p>Free Province-wise Lectures, Chapter Tests, and Premium Notes.</p>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-overlay"></div>
                 <div class="slide-content">
-                    <h1>Smart Practice Modules</h1>
-                    <p>10,000+ MCQs with detailed explanations for NUMS, AKU & AFNS.</p>
+                    <h1>NUMS & AKU Preparation</h1>
+                    <p>Conceptual data designed for Pakistan's top medical universities.</p>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80');">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-overlay"></div>
                 <div class="slide-content">
-                    <h1>Real-Time Mock Exams</h1>
-                    <p>Track your aggregate and rank among thousands of students.</p>
+                    <h1>AFNS Success Path</h1>
+                    <p>Dedicated resources for Armed Forces Nursing Service Entrance.</p>
                 </div>
             </div>
         </div>
 
-        <section class="stats-banner">
-            <div class="container">
-                <h2 class="section-title" style="color: white;">Why Dani Medico?</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-user-graduate fa-3x mb-3"></i>
-                        <h3 id="stat1">15K+</h3>
-                        <p>Successful Medics</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-globe-asia fa-3x mb-3"></i>
-                        <h3>4</h3>
-                        <p>Provinces Covered</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-chart-line fa-3x mb-3"></i>
-                        <h3>94%</h3>
-                        <p>Success Rate</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-database fa-3x mb-3"></i>
-                        <h3>50K+</h3>
-                        <p>Prep Resources</p>
-                    </div>
+        <section class="stats-section">
+            <h2><i class="fas fa-award"></i> The Greatest Success in Pakistan</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-user-md"></i>
+                    <h3>15,000+</h3>
+                    <p>Students Enrolled</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-check-double"></i>
+                    <h3>92%</h3>
+                    <p>MDCAT Success Rate</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-file-signature"></i>
+                    <h3>500+</h3>
+                    <p>Daily Practice Tests</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>All 4</h3>
+                    <p>Provinces Optimized</p>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">Practice Tests Portal</h2>
-            <div class="portal-grid">
-                <a href="/tests?province=Sindh" class="quick-box"><i class="fas fa-map-marker-alt"></i><h4>By Province</h4><p>Sindh, Punjab, KPK, Balochistan</p></a>
-                <a href="/tests?exam=MDCAT" class="quick-box"><i class="fas fa-graduation-cap"></i><h4>By Exam</h4><p>MDCAT, NUMS, AFNS, AKU</p></a>
-                <a href="/tests?subject=Biology" class="quick-box"><i class="fas fa-vial"></i><h4>By Subject</h4><p>Bio, Chem, Phys, Eng, Logical</p></a>
-                <a href="/tests?mode=chapter" class="quick-box"><i class="fas fa-layer-group"></i><h4>By Chapter</h4><p>Unit-wise specialized testing</p></a>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">High-Yield Notes</h2>
-            <div class="portal-grid">
-                <a href="/notes?category=Handwritten" class="quick-box"><i class="fas fa-pen-nib"></i><h4>Handwritten</h4><p>Topper's secret shortcut notes</p></a>
-                <a href="/notes?category=Short" class="quick-box"><i class="fas fa-compress-alt"></i><h4>Short Listing</h4><p>Fast revision before exam day</p></a>
-                <a href="/notes?category=Formula" class="quick-box"><i class="fas fa-square-root-alt"></i><h4>Formula Sheets</h4><p>Physics & Chem essential formulas</p></a>
-                <a href="/notes?category=MindMaps" class="quick-box"><i class="fas fa-project-diagram"></i><h4>Mind Maps</h4><p>Visual aids for complex Biology</p></a>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Digital Library (Books)</h2>
-            <div class="portal-grid">
-                <a href="/books?type=Textbook" class="quick-box"><i class="fas fa-book"></i><h4>Punjab/Sindh Boards</h4><p>Latest provincial textbooks</p></a>
-                <a href="/books?type=Federal" class="quick-box"><i class="fas fa-university"></i><h4>Federal Board</h4><p>Must-read for NUMS/MDCAT</p></a>
-                <a href="/books?type=Practice" class="quick-box"><i class="fas fa-tasks"></i><h4>Kips/Step/Star</h4><p>Top academy practice books</p></a>
-                <a href="/books?type=International" class="quick-box"><i class="fas fa-globe"></i><h4>International</h4><p>Concepts for AKU entrance</p></a>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Original Past Papers</h2>
-            <div class="portal-grid">
-                <a href="/past-papers?exam=MDCAT" class="quick-box"><i class="fas fa-history"></i><h4>MDCAT (2010-2025)</h4><p>UHS, DUHS, SZABMU collections</p></a>
-                <a href="/past-papers?exam=NUMS" class="quick-box"><i class="fas fa-file-medical"></i><h4>NUMS Papers</h4><p>Official NTS & PMC past exams</p></a>
-                <a href="/past-papers?exam=AFNS" class="quick-box"><i class="fas fa-user-shield"></i><h4>AFNS/Military</h4><p>Initial & personality test samples</p></a>
-                <a href="/past-papers?exam=AKU" class="quick-box"><i class="fas fa-award"></i><h4>AKU Entrance</h4><p>Highly conceptual past samples</p></a>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Exam Countdown 2026</h2>
-            <div class="countdown-container">
-                <div class="cd-card mdcat">
-                    <h3>MDCAT 2026</h3>
-                    <p>Expected 15 September</p>
-                    <div class="cd-timer" id="timer-mdcat">00d 00h 00m 00s</div>
-                </div>
-                <div class="cd-card nums">
-                    <h3>NUMS 2026</h3>
-                    <p>Expected 20 August</p>
-                    <div class="cd-timer" id="timer-nums">00d 00h 00m 00s</div>
+        <h2 id="tests-section">Interactive Practice Portals</h2>
+        <div class="portal-grid">
+            <div class="portal-card">
+                <h3><i class="fas fa-pencil-alt"></i> Online Tests</h3>
+                <div class="quick-links">
+                    <a href="/tests?province=Sindh">Sindh Tests</a>
+                    <a href="/tests?province=Punjab">Punjab Tests</a>
+                    <a href="/tests?province=KPK">KPK Tests</a>
+                    <a href="/tests?exam=NUMS">NUMS Tests</a>
+                    <a href="/tests?exam=AFNS">AFNS Tests</a>
+                    <a href="/tests?subject=Biology">Bio Chapter</a>
                 </div>
             </div>
-        </section>
 
-        <section>
-            <h2 class="section-title">Aggregate Calculator</h2>
-            <div class="calculator-wrapper">
-                <div class="calc-nav">
-                    <button class="calc-btn active" onclick="switchCalc('mdcat', this)">MDCAT</button>
-                    <button class="calc-btn" onclick="switchCalc('nums', this)">NUMS</button>
-                </div>
-                
-                <div id="calc-form">
-                    <div class="input-row">
-                        <label>Matric / SSC Marks (%)</label>
-                        <input type="number" id="matric" placeholder="e.g. 95.5">
-                    </div>
-                    <div class="input-row">
-                        <label>HSSC / FSc Marks (%)</label>
-                        <input type="number" id="fsc" placeholder="e.g. 91.2">
-                    </div>
-                    <div class="input-row">
-                        <label>Entrance Test Score (Out of 200)</label>
-                        <input type="number" id="test" placeholder="e.g. 185">
-                    </div>
-                    <button class="button primary-button" style="width: 100%; padding: 1rem;" onclick="calculateAggregate()">Calculate Aggregate</button>
-                    
-                    <div class="result-box" id="result-display">
-                        <h3 style="margin-bottom: 5px;">Your Calculated Aggregate</h3>
-                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-secondary-green);" id="aggregate-value">00.00%</div>
-                        <p id="formula-text" style="font-size: 0.8rem; color: #666;"></p>
-                    </div>
+            <div class="portal-card">
+                <h3><i class="fas fa-book-open"></i> Premium Notes</h3>
+                <div class="quick-links">
+                    <a href="/notes?province=Sindh">Sindh Notes</a>
+                    <a href="/notes?province=Punjab">Punjab Notes</a>
+                    <a href="/notes?subject=Physics">Physics List</a>
+                    <a href="/notes?category=Handwritten">Topper Notes</a>
+                    <a href="/notes?category=Short">Short Listing</a>
+                    <a href="/notes?exam=AKU">AKU Special</a>
                 </div>
             </div>
-        </section>
+
+            <div class="portal-card">
+                <h3><i class="fas fa-book"></i> Digital Books</h3>
+                <div class="quick-links">
+                    <a href="/books?province=Sindh">Sindh Boards</a>
+                    <a href="/books?province=Punjab">Punjab Boards</a>
+                    <a href="/books?type=Federal">Federal Book</a>
+                    <a href="/books?type=Practice">KIPS / STEP</a>
+                    <a href="/books?type=English">Grammar Pro</a>
+                    <a href="/books?exam=AFNS">AFNS Guide</a>
+                </div>
+            </div>
+
+            <div class="portal-card">
+                <h3><i class="fas fa-file-alt"></i> Original Papers</h3>
+                <div class="quick-links">
+                    <a href="/papers?exam=MDCAT">UHS MDCAT</a>
+                    <a href="/papers?exam=MDCAT">DUHS MDCAT</a>
+                    <a href="/papers?exam=NUMS">NUMS Past</a>
+                    <a href="/papers?exam=AKU">AKU Samples</a>
+                    <a href="/papers?year=2025">2025 Papers</a>
+                    <a href="/papers?type=Solved">Solved PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="countdown-box">
+                <h3><i class="fas fa-clock"></i> MDCAT 2026 Countdown</h3>
+                <p>Expected Date: Sept 15, 2026</p>
+                <div class="timer-display" id="timer">00d 00h 00m 00s</div>
+            </div>
+
+            <div class="calc-box">
+                <h3><i class="fas fa-calculator"></i> Aggregate Calculator</h3>
+                <div class="calc-tabs">
+                    <div class="calc-tab active" onclick="setCalc('mdcat')">MDCAT</div>
+                    <div class="calc-tab" onclick="setCalc('nums')">NUMS</div>
+                    <div class="calc-tab" onclick="setCalc('aku')">AKU</div>
+                </div>
+                <input type="number" id="ssc" class="calc-input" placeholder="Matric Marks %">
+                <input type="number" id="hssc" class="calc-input" placeholder="FSc Marks %">
+                <input type="number" id="test" class="calc-input" placeholder="Entrance Test Score (Out of 200)">
+                <button class="calc-btn" onclick="calculate()">Calculate Now</button>
+                <p id="result" style="margin-top: 15px; font-weight: 700; color: var(--color-secondary-green); font-size: 1.2rem;"></p>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -270,18 +299,19 @@
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
             </div>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
+            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // --- MOBILE MENU ---
         function mobileMenuToggle() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
@@ -289,59 +319,46 @@
         // --- SLIDER LOGIC ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
+        function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-        }, 5000);
+        }
+        setInterval(nextSlide, 5000);
 
         // --- COUNTDOWN LOGIC ---
-        function updateCountdowns() {
-            const targets = {
-                'timer-mdcat': new Date('September 15, 2026 09:00:00').getTime(),
-                'timer-nums': new Date('August 20, 2026 09:00:00').getTime()
-            };
+        const targetDate = new Date("Sept 15, 2026 09:00:00").getTime();
+        setInterval(function() {
             const now = new Date().getTime();
-            for (let id in targets) {
-                const dist = targets[id] - now;
-                const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-                const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((dist % (1000 * 60)) / 1000);
-                document.getElementById(id).innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-            }
-        }
-        setInterval(updateCountdowns, 1000);
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = d + "d " + h + "h " + m + "m " + s + "s ";
+        }, 1000);
 
         // --- CALCULATOR LOGIC ---
-        let currentMode = 'mdcat';
-        function switchCalc(mode, btn) {
-            currentMode = mode;
-            document.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('result-display').style.display = 'none';
+        let mode = 'mdcat';
+        function setCalc(m) {
+            mode = m;
+            document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('test').placeholder = m === 'nums' ? "Entrance Test Score (Out of 150)" : "Entrance Test Score (Out of 200)";
         }
 
-        function calculateAggregate() {
-            const matric = parseFloat(document.getElementById('matric').value) || 0;
-            const fsc = parseFloat(document.getElementById('fsc').value) || 0;
+        function calculate() {
+            const ssc = parseFloat(document.getElementById('ssc').value) || 0;
+            const hssc = parseFloat(document.getElementById('hssc').value) || 0;
             const test = parseFloat(document.getElementById('test').value) || 0;
             let agg = 0;
-            let formula = '';
 
-            if (currentMode === 'mdcat') {
-                // PMC Formula: 10% Matric, 40% FSc, 50% Test
-                agg = (matric * 0.1) + (fsc * 0.4) + ((test / 200) * 100 * 0.5);
-                formula = "Formula: (10% Matric) + (40% FSc) + (50% MDCAT)";
-            } else {
-                // NUMS Formula: 10% Matric, 40% FSc, 50% NUMS
-                agg = (matric * 0.1) + (fsc * 0.4) + ((test / 150) * 100 * 0.5);
-                formula = "Formula: (10% Matric) + (40% FSc) + (50% NUMS)";
+            if(mode === 'mdcat') {
+                agg = (ssc * 0.1) + (hssc * 0.4) + ((test/200)*100 * 0.5);
+            } else if(mode === 'nums') {
+                agg = (ssc * 0.1) + (hssc * 0.4) + ((test/150)*100 * 0.5);
             }
-
-            document.getElementById('aggregate-value').innerText = agg.toFixed(4) + "%";
-            document.getElementById('formula-text').innerText = formula;
-            document.getElementById('result-display').style.display = 'block';
+            document.getElementById('result').innerHTML = "Final Aggregate: " + agg.toFixed(4) + "%";
         }
     </script>
 </body>
