@@ -1036,7 +1036,8 @@
         "AFNS_Logical_Reasoning": ["1. ANALYTICAL THINKING", "2. DECISION MAKING"]
     };
 
-
+// Initialize the array if the external script fails or is slow
+    window.testsData = window.testsData || [];
     let activeTestMCQs = [];
     let userSelections = [];
     let currentOpenTest = null;
