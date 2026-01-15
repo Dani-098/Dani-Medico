@@ -1067,9 +1067,7 @@ async function loadTestsData() {
     // --- STEP 3: Replace your DOMContentLoaded listener at the bottom ---
     document.addEventListener('DOMContentLoaded', loadTestsData);
 
-    // ... Keep all your existing functions (updateExams, loadTests, etc.) below this ...
-    let activeTestMCQs = [];
-    let userSelections = [];
+    // ... Keep all your existing functions (updateExams, loadTests, etc.) below this ..
     let currentOpenTest = null;
     let timerInterval = null;
     let totalSeconds = 0;
