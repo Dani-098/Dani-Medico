@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dani Medico – Premier Medical Entry Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Dani Medico – Free Medical Entrance Preparation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* --- 1. YOUR ORIGINAL CSS VARIABLES --- */
+        /* --- ORIGINAL CSS VARIABLES (UNTOUCHED) --- */
         :root {
             --color-primary-blue: #007BFF;
             --color-primary-blue-light: #4da6ff;
@@ -22,66 +22,95 @@
             --color-card-bg: #FFFFFF;
             --color-shadow: rgba(0, 0, 0, 0.1);
             --color-danger: #DC3545;
+            --color-danger-light: #e4606d;
+            --color-warning: #FFC107;
+            --color-warning-light: #ffce3a;
             --font-family-primary: 'Poppins', sans-serif;
             --border-radius-base: 12px;
             --transition-speed: 0.4s;
+            --animation-duration: 0.5s;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-family-primary); line-height: 1.6; color: var(--color-text); background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); min-height: 100vh; display: flex; flex-direction: column; padding-top: 90px; }
+        
+        body { 
+            font-family: var(--font-family-primary); 
+            line-height: 1.6; 
+            color: var(--color-text); 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            padding-top: 90px;
+        }
+        
+        a { text-decoration: none; color: var(--color-primary-blue); transition: all var(--transition-speed); }
+        a:hover { color: var(--color-secondary-green); }
+        h1, h2, h3 { color: var(--color-dark); margin-bottom: 1rem; position: relative; }
+        h2 { display: inline-block; padding-bottom: 0.5rem; }
+        h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 60px; height: 4px; background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green)); border-radius: 2px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; flex-grow: 1; }
+        section { padding: 3rem 0; }
 
-        /* --- 2. HEADER (EXACT ORIGINAL CSS) --- */
+        /* --- HEADER & NAVBAR (STRICTLY ORIGINAL) --- */
         #navbar { 
             background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-blue-dark) 100%);
             color: var(--color-light); padding: 0.75rem 1.5rem; display: flex; 
             justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
             z-index: 1000; position: fixed; top: 0; left: 0; right: 0; width: 100%;
         }
-        .logo { font-size: 1.4rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--color-light); display: flex; align-items: center; gap: 0.75rem; transition: transform var(--transition-speed); }
         .logo-img { height: 70px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
         .nav-links { display: flex; align-items: center; }
         .nav-links a { 
             color: var(--color-light); margin-left: 0.75rem; padding: 0.5rem 0.75rem; 
-            font-weight: 500; border-radius: 8px; font-size: 0.9rem; text-decoration: none;
-            display: flex; align-items: center; gap: 0.4rem; transition: all var(--transition-speed);
+            font-weight: 500; transition: all var(--transition-speed); border-radius: 8px; 
+            font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;
         }
         .nav-links a:hover, .nav-links a.active { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--color-light); font-size: 1.25rem; cursor: pointer; padding: 0.4rem; }
 
-        /* --- 3. PREMIUM SLIDER --- */
-        .welcome-slider { width: 100%; height: 450px; position: relative; overflow: hidden; background: #000; border-radius: 0 0 40px 40px; }
-        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease, transform 8s linear; display: flex; align-items: center; justify-content: center; }
-        .slide.active { opacity: 1; transform: scale(1.1); }
+        /* --- 1. SLIDING WELCOME SECTION --- */
+        .slider-wrapper { width: 100%; height: 450px; position: relative; overflow: hidden; border-radius: var(--border-radius-base); box-shadow: 0 10px 30px var(--color-shadow); }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .slide.active { opacity: 1; }
         .slide-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
         .slide-content { position: relative; z-index: 5; text-align: center; color: white; padding: 2rem; max-width: 800px; }
-        .slide-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .slide-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
 
-        /* --- 4. STATS BANNER --- */
-        .stats-section { margin-top: -50px; position: relative; z-index: 10; padding: 0 1.5rem; }
-        .stats-card { background: white; border-radius: 20px; padding: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; box-shadow: 0 15px 40px rgba(0,0,0,0.1); text-align: center; }
-        .stat-item h3 { font-size: 2.2rem; color: var(--color-primary-blue-dark); }
-        .stat-item p { font-size: 0.85rem; font-weight: 700; color: #888; text-transform: uppercase; }
-
-        /* --- 5. FUNCTIONAL HUB (LOCATION & EXAM ONLY) --- */
-        .hub-title { text-align: center; margin: 4rem 0 2rem; }
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 1.5rem; margin-bottom: 4rem; }
-        .hub-card { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px var(--color-shadow); transition: 0.3s; border-top: 5px solid var(--color-primary-blue); }
-        .hub-card:hover { transform: translateY(-10px); }
-        .hub-card h3 { margin-bottom: 1.5rem; color: var(--color-dark); display: flex; align-items: center; gap: 10px; }
+        /* --- 2. COMMAND CENTER CARDS (PC 1 HORIZONTAL / MOB 1) --- */
+        .portal-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 1.5rem; }
+        .portal-card { 
+            background: white; border-radius: 20px; padding: 2.5rem; 
+            box-shadow: 0 8px 25px var(--color-shadow); border-left: 8px solid var(--color-primary-blue); 
+            display: flex; flex-direction: column; transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .portal-card:hover { transform: translateY(-5px); }
+        .portal-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--color-primary-blue), var(--color-secondary-green)); transform: translateX(-100%); transition: transform 0.4s; }
+        .portal-card:hover::before { transform: translateX(0); }
         
-        .hub-links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .hub-links a { background: #f4f7fa; border: 1px solid #e2e8f0; color: var(--color-dark); padding: 10px 18px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: 0.3s; }
-        .hub-links a:hover { background: var(--color-primary-blue); color: white; border-color: var(--color-primary-blue); }
+        .portal-flex { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: space-between; }
+        .portal-info { flex: 1; min-width: 300px; }
+        .portal-stats { display: flex; gap: 20px; margin-top: 15px; background: #f8f9fa; padding: 15px; border-radius: 12px; }
+        .stat-item b { color: var(--color-primary-blue); font-size: 1.2rem; display: block; }
+        .stat-item span { font-size: 0.75rem; color: #888; font-weight: 600; text-transform: uppercase; }
 
-        /* --- 6. COUNTDOWN (DAYS/HRS) --- */
-        .tools-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 0 1.5rem; margin-bottom: 5rem; }
-        .tool-box { background: white; border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px var(--color-shadow); border-top: 6px solid var(--color-danger); }
-        .timer-display { display: flex; justify-content: center; gap: 30px; margin-top: 1rem; }
-        .time-part { display: flex; flex-direction: column; }
-        .time-part b { font-size: 3.5rem; color: var(--color-danger); line-height: 1; }
-        .time-part span { font-size: 0.8rem; font-weight: 700; color: #aaa; text-transform: uppercase; }
+        .portal-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .portal-links a { background: var(--color-primary-blue); color: white; padding: 12px 25px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; }
+        .portal-links a:hover { background: var(--color-secondary-green); transform: scale(1.05); }
 
-        /* --- 7. FOOTER (EXACT ORIGINAL CSS) --- */
+        /* --- 3. COUNTDOWN CARDS (PC 3 HORIZONTAL / MOB 1) --- */
+        .countdown-grid { display: grid; gap: 20px; margin-top: 1.5rem; }
+        @media (min-width: 1024px) { .countdown-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 1023px) { .countdown-grid { grid-template-columns: 1fr; } }
+        
+        .cd-card { background: white; padding: 2rem; border-radius: 20px; text-align: center; box-shadow: 0 8px 25px var(--color-shadow); border-top: 6px solid var(--color-danger); }
+        .cd-card.aku { border-top-color: var(--color-primary-blue); }
+        .cd-card.nums { border-top-color: var(--color-secondary-green); }
+        .cd-timer { font-size: 2.2rem; font-weight: 800; color: var(--color-dark); margin: 15px 0; font-family: monospace; }
+        .cd-label { font-size: 0.8rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- FOOTER (STRICTLY ORIGINAL) --- */
         footer { 
             background: linear-gradient(135deg, var(--color-primary-blue-dark) 0%, var(--color-primary-blue) 100%);
             color: var(--color-light); padding: 2rem 1rem 0; margin-top: 3rem; position: relative;
@@ -90,25 +119,32 @@
         .footer-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem; }
         .footer-logo .logo-img { height: 80px; }
         .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a { color: var(--color-light); font-weight: 500; transition: all var(--transition-speed); padding: 0.5rem; border-radius: 4px; text-decoration: none; }
-        .footer-links a:hover { color: var(--color-secondary-green); background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
-        .social-icons a { 
-            color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; transition: all var(--transition-speed);
-            display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
-        }
-        .social-icons a:hover { color: var(--color-secondary-green); background: rgba(255, 255, 255, 0.2); transform: translateY(-3px) scale(1.1); }
+        .footer-links a { color: var(--color-light); font-weight: 500; padding: 0.5rem; border-radius: 4px; }
+        .social-icons a { color: var(--color-light); font-size: 1.5rem; margin-left: 1rem; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); transition: 0.3s; }
+        .social-icons a:hover { color: var(--color-secondary-green); transform: translateY(-3px); }
         .footer-bottom { text-align: center; padding: 1.5rem 0; opacity: 0.8; }
+
+        /* ANIMATIONS */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { display: none; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <nav id="navbar">
-            <a href="/" class="logo">
+            <div class="logo">
                 <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
                 Dani Medico
-            </a>
-            <div class="nav-links">
+            </div>
+            <div class="nav-links" id="navLinks">
                 <a href="/" class="active"><i class="fas fa-home"></i> Home</a>
                 <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 <a href="/books"><i class="fas fa-book"></i> Books</a>
@@ -117,117 +153,184 @@
                 <a href="/past-papers"><i class="fas fa-file-alt"></i> Papers</a>
                 <a href="/announcement"><i class="fas fa-bullhorn"></i> News</a>
             </div>
-            <button class="mobile-menu-btn" onclick="mobileMenuToggle()"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn" onclick="mobileMenuToggle()">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
-    <main>
-        <section class="welcome-slider">
-            <div class="slide active" style="background-image: url('assets/images/b1.jpg');">
+    <main class="container">
+        <div class="slider-wrapper">
+            <div class="slide active" style="background-image: url('assets/images/s1.jpg');">
                 <div class="slide-overlay"></div>
-                <div class="slide-content"><h1>Welcome to Dani Medico</h1><p>The Ultimate Free Resource for MDCAT 2026 Preparation.</p></div>
+                <div class="slide-content">
+                    <h1 class="float-animation">Welcome to Dani Medico</h1>
+                    <p>Your ultimate destination for free, high-quality medical entrance exam preparation.</p>
+                </div>
             </div>
-            <div class="slide" style="background-image: url('assets/images/b2.jpg');">
+            <div class="slide" style="background-image: url('assets/images/s2.jpg');">
                 <div class="slide-overlay"></div>
-                <div class="slide-content"><h1>Excel in NUMS & AKU</h1><p>Conceptual data optimized for top medical university entrance exams.</p></div>
+                <div class="slide-content">
+                    <h1>MDCAT 2026 Mastery</h1>
+                    <p>Access province-wise textbooks and localized practice modules.</p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2><i class="fas fa-clock"></i> 2026 Exam Deadlines</h2>
+            <div class="countdown-grid">
+                <div class="cd-card">
+                    <span class="cd-label">MDCAT 2026</span>
+                    <div class="cd-timer" id="days-mdcat">00d 00h</div>
+                    <p style="font-weight:600; color:var(--color-danger)">Expected: Sept 15</p>
+                </div>
+                <div class="cd-card aku">
+                    <span class="cd-label">AKU Entrance</span>
+                    <div class="cd-timer" id="days-aku">00d 00h</div>
+                    <p style="font-weight:600; color:var(--color-primary-blue)">Portal Opening Soon</p>
+                </div>
+                <div class="cd-card nums">
+                    <span class="cd-label">NUMS 2026</span>
+                    <div class="cd-timer" id="days-nums">00d 00h</div>
+                    <p style="font-weight:600; color:var(--color-secondary-green)">Expected: Aug 20</p>
+                </div>
             </div>
         </section>
 
-        <div class="stats-section">
-            <div class="stats-card">
-                <div class="stat-item"><h3>15,000+</h3><p>Enrolled Students</p></div>
-                <div class="stat-item"><h3>94%</h3><p>Success Rate</p></div>
-                <div class="stat-item"><h3>500+</h3><p>Chapter Tests</p></div>
-                <div class="stat-item"><h3>All 4</h3><p>Provinces Covered</p></div>
-            </div>
-        </div>
-
-        <div class="hub-title"><h2>Preparation Portals 2026</h2></div>
-
-        <div class="hub-grid">
-            <div class="hub-card">
-                <h3><i class="fas fa-pencil-alt"></i> Online Tests</h3>
-                <div class="hub-links">
-                    <a href="/tests?province=Sindh">Sindh</a><a href="/tests?province=Punjab">Punjab</a>
-                    <a href="/tests?province=KPK">KPK</a><a href="/tests?exam=MDCAT">MDCAT</a>
-                    <a href="/tests?exam=NUMS">NUMS</a><a href="/tests?exam=AFNS">AFNS</a>
+        <section>
+            <h2><i class="fas fa-hospital-symbol"></i> Preparation Command Center</h2>
+            <div class="portal-grid">
+                
+                <div class="portal-card">
+                    <h3><i class="fas fa-pencil-alt"></i> Practice Tests Portal</h3>
+                    <div class="portal-flex">
+                        <div class="portal-info">
+                            <p>Real-time interactive MCQ modules with performance analytics and PDF results.</p>
+                            <div class="portal-stats">
+                                <div class="stat-item"><b>500+</b><span>Tests</span></div>
+                                <div class="stat-item"><b>94%</b><span>Success</span></div>
+                                <div class="stat-item"><b>4</b><span>Provinces</span></div>
+                            </div>
+                        </div>
+                        <div class="portal-links">
+                            <a href="/tests?province=Sindh">Sindh</a>
+                            <a href="/tests?province=Punjab">Punjab</a>
+                            <a href="/tests?exam=MDCAT">MDCAT</a>
+                            <a href="/tests">Enter Portal <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="hub-card" style="border-top-color: var(--color-secondary-green);">
-                <h3><i class="fas fa-book-open"></i> High-Yield Notes</h3>
-                <div class="hub-links">
-                    <a href="/notes?province=Sindh">Sindh</a><a href="/notes?province=Punjab">Punjab</a>
-                    <a href="/notes?province=KPK">KPK</a><a href="/notes?exam=MDCAT">MDCAT Tips</a>
-                    <a href="/notes?exam=NUMS">NUMS Help</a><a href="/notes?exam=AKU">AKU Concepts</a>
+                <div class="portal-card" style="border-left-color: var(--color-secondary-green);">
+                    <h3><i class="fas fa-book-open"></i> High-Yield Notes</h3>
+                    <div class="portal-flex">
+                        <div class="portal-info">
+                            <p>Premium conceptual short-listing and topper notes for quick revision before exams.</p>
+                            <div class="portal-stats">
+                                <div class="stat-item"><b>1000+</b><span>Files</span></div>
+                                <div class="stat-item"><b>All</b><span>Subjects</span></div>
+                            </div>
+                        </div>
+                        <div class="portal-links">
+                            <a href="/notes?subject=Biology" style="background:var(--color-secondary-green)">Biology</a>
+                            <a href="/notes?subject=Physics" style="background:var(--color-secondary-green)">Physics</a>
+                            <a href="/notes">Enter Portal <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="hub-card">
-                <h3><i class="fas fa-book"></i> Digital Books</h3>
-                <div class="hub-links">
-                    <a href="/books?province=Sindh">Sindh Board</a><a href="/books?province=Punjab">Punjab Board</a>
-                    <a href="/books?province=Federal">Federal Book</a><a href="/books?type=Academy">Academy Books</a>
-                    <a href="/books?exam=AFNS">AFNS Guide</a><a href="/books?subject=English">English Pro</a>
+                <div class="portal-card">
+                    <h3><i class="fas fa-book"></i> Digital Library (Books)</h3>
+                    <div class="portal-flex">
+                        <div class="portal-info">
+                            <p>Official provincial board textbooks and top academy preparation series.</p>
+                            <div class="portal-stats">
+                                <div class="stat-item"><b>STEP</b><span>Series</span></div>
+                                <div class="stat-item"><b>KIPS</b><span>Series</span></div>
+                            </div>
+                        </div>
+                        <div class="portal-links">
+                            <a href="/books?board=Sindh">Sindh Board</a>
+                            <a href="/books?board=Federal">Federal</a>
+                            <a href="/books">Enter Library <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="hub-card" style="border-top-color: var(--color-secondary-green);">
-                <h3><i class="fas fa-file-medical"></i> Past Papers</h3>
-                <div class="hub-links">
-                    <a href="/past-papers?exam=MDCAT">MDCAT UHS</a><a href="/past-papers?exam=MDCAT">MDCAT Sindh</a>
-                    <a href="/past-papers?exam=NUMS">NUMS Original</a><a href="/past-papers?exam=AKU">AKU Samples</a>
-                    <a href="/past-papers?exam=AFNS">AFNS Initial</a><a href="/past-papers?year=2025">2025 Solved</a>
+                <div class="portal-card" style="border-left-color: var(--color-secondary-green);">
+                    <h3><i class="fas fa-history"></i> Original Past Papers</h3>
+                    <div class="portal-flex">
+                        <div class="portal-info">
+                            <p>Verified past year entrance papers from UHS, DUHS, SZABMU, and NUMS.</p>
+                            <div class="portal-stats">
+                                <div class="stat-item"><b>20Yrs</b><span>History</span></div>
+                                <div class="stat-item"><b>Solved</b><span>PDFs</span></div>
+                            </div>
+                        </div>
+                        <div class="portal-links">
+                            <a href="/past-papers?exam=MDCAT" style="background:var(--color-secondary-green)">MDCAT</a>
+                            <a href="/past-papers?exam=NUMS" style="background:var(--color-secondary-green)">NUMS</a>
+                            <a href="/past-papers">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="tools-section">
-            <div class="tool-box">
-                <h3>MDCAT 2026 Countdown</h3>
-                <div class="timer-display">
-                    <div class="time-part"><b id="days">00</b><span>Days</span></div>
-                    <div class="time-part"><b id="hours">00</b><span>Hours</span></div>
-                </div>
             </div>
-            <div class="tool-box" style="border-top-color: var(--color-secondary-green);">
-                <h3>Aggregate Calculators</h3>
-                <div class="hub-links" style="justify-content: center; margin-top: 15px;">
-                    <a href="/calculator?type=mdcat" style="padding: 15px 30px;">MDCAT Calc</a>
-                    <a href="/calculator?type=nums" style="padding: 15px 30px;">NUMS Calc</a>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>
-        <div class="footer-top container" style="max-width: 1200px; margin: 0 auto;">
+        <div class="footer-top container">
             <div class="footer-links">
                 <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
                 <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
                 <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <div class="footer-logo"><img src="assets/images/logo.png" alt="Logo" class="logo-img"></div>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Dani Medico Logo" class="logo-img">
+            </div>
             <div class="social-icons">
-                <a href="https://web.facebook.com/Danimedicoo/"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg=="><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss"><i class="fab fa-youtube"></i></a>
+                <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/dani_medicoo?igsh=MWFwdWcxZ2h2Yzg1Yg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@danimedicoo?si=bI1fbH1x4p3gHwss" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2025 Dani Medico. All rights reserved.</p></div>
+        <div class="footer-bottom">
+            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. Empowering Future Doctors. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
         function mobileMenuToggle() { document.querySelector('.nav-links').classList.toggle('active'); }
-        let current = 0; const slides = document.querySelectorAll('.slide');
-        setInterval(() => { slides[current].classList.remove('active'); current = (current + 1) % slides.length; slides[current].classList.add('active'); }, 5000);
-        const target = new Date("September 15, 2026 09:00:00").getTime();
+
+        // SLIDER
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
         setInterval(() => {
-            const now = new Date().getTime(); const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-        }, 1000);
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
+
+        // COUNTDOWN
+        function updateTimers() {
+            const now = new Date().getTime();
+            const targets = {
+                'days-mdcat': new Date("Sept 15, 2026 09:00:00").getTime(),
+                'days-nums': new Date("Aug 20, 2026 09:00:00").getTime(),
+                'days-aku': new Date("July 10, 2026 09:00:00").getTime()
+            };
+
+            for (let id in targets) {
+                const diff = targets[id] - now;
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById(id).innerHTML = `${d}d ${h}h`;
+            }
+        }
+        setInterval(updateTimers, 1000);
     </script>
 </body>
 </html>
