@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/Dani-098/Dani-Medico@main/test-data.js"></script>
+    
     <style>
         /* Enhanced CSS with Gradients and Animations */
         :root {
@@ -998,6 +998,37 @@
     </footer>
 
 <script>
+    // --- STEP 1: Add the Safe Loader at the very top ---
+    async function loadTestsData() {
+        const DATA_URL = "https://cdn.jsdelivr.net/gh/Dani-098/Dani-Medico@main/test-data.json";
+        
+        try {
+            const response = await fetch(DATA_URL); 
+            if (!response.ok) throw new Error("Network response was not ok");
+            
+            // This safely parses the JSON data into the array
+            window.testsData = await response.json(); 
+            console.log("Success: Loaded " + window.testsData.length + " tests.");
+            
+            // Initialize your filters ONLY after the data is ready
+            initializeFilters(); 
+        } catch (error) {
+            console.error("Error loading external data:", error);
+            document.getElementById('tests-container').innerHTML = 
+                "<p class='text-center'>Unable to load tests. Please refresh.</p>";
+        }
+    }
+
+    // --- STEP 2: Initialize variables ---
+    window.testsData = []; // Start with an empty array
+    let activeTestMCQs = [];
+    let userSelections = [];
+    // ... rest of your variables ...
+
+    // --- STEP 3: Replace your DOMContentLoaded listener at the bottom ---
+    document.addEventListener('DOMContentLoaded', loadTestsData);
+
+    // ... Keep all your existing functions (updateExams, loadTests, etc.) below this ...
     const mdcatExams = ["MDCAT", "BSN", "NUMS", "AKU", "AFNS"];
     const examSubjects = {
         "all": ["All Subjects"],
@@ -1039,7 +1070,6 @@
 
 
 // Initialize the array if the external script fails or is slow
-    window.testsData = window.testsData || [];
     let activeTestMCQs = [];
     let userSelections = [];
     let currentOpenTest = null;
@@ -1457,21 +1487,6 @@
     document.addEventListener('DOMContentLoaded', initializeFilters);
     /* ... all your other functions (submitTest, loadTests, etc.) ... */
 
-// Replace your current listener with this updated version
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Check if testsData was successfully pulled from GitHub
-    if (window.testsData) {
-        console.log("External Data Loaded Successfully");
-        
-        // 2. Start your existing filter logic
-        initializeFilters(); 
-    } else {
-        // 3. Fallback error message if GitHub/jsDelivr fails
-        document.getElementById('tests-container').innerHTML = 
-            "<p class='text-center'>Error: Could not load test data. Please refresh the page.</p>";
-    }
-});
-</script>
 </script>
 </body>
 </html>
