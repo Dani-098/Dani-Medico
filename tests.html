@@ -1039,24 +1039,24 @@
 
 
 async function loadTestsData() {
-        const DATA_URL = "https://cdn.jsdelivr.net/gh/Dani-098/Dani-Medico@main/test-data.json";
+    // Adding Date.now() forces the browser to download the NEW version of your JSON
+    const DATA_URL = "https://cdn.jsdelivr.net/gh/Dani-098/Dani-Medico@main/test-data.json?v=" + Date.now();
+    
+    try {
+        const response = await fetch(DATA_URL); 
+        if (!response.ok) throw new Error("Network response was not ok");
         
-        try {
-            const response = await fetch(DATA_URL); 
-            if (!response.ok) throw new Error("Network response was not ok");
-            
-            // This safely parses the JSON data into the array
-            window.testsData = await response.json(); 
-            console.log("Success: Loaded " + window.testsData.length + " tests.");
-            
-            // Initialize your filters ONLY after the data is ready
-            initializeFilters(); 
-        } catch (error) {
-            console.error("Error loading external data:", error);
-            document.getElementById('tests-container').innerHTML = 
-                "<p class='text-center'>Unable to load tests. Please refresh.</p>";
-        }
+        // This parses the cleaned JSON (no 'window.testsData =' allowed in the file!)
+        window.testsData = await response.json(); 
+        console.log("Success: Loaded " + window.testsData.length + " tests.");
+        
+        initializeFilters(); 
+    } catch (error) {
+        console.error("Error loading external data:", error);
+        document.getElementById('tests-container').innerHTML = 
+            "<p class='text-center'>Data failed to load. Please fix the JSON format on GitHub.</p>";
     }
+}
 
     // --- STEP 2: Initialize variables ---
     window.testsData = []; // Start with an empty array
