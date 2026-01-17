@@ -472,7 +472,7 @@
         <h2><i class="fas fa-book-open"></i> Notes & Study Guides</h2>
         <section class="filters-section card">
             <div class="filter-group">
-                <label>Exam:</label>
+             <label><i class="fas fa-clipboard-list"></i> Exam:</label>
                 <select id="filter-exam" onchange="loadNotes()">
                     <option value="all">All Exams</option>
                     <option value="MDCAT">MDCAT</option>
@@ -483,7 +483,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label>Province:</label>
+                <label><i class="fas fa-map-marker-alt"></i> Province:</label>
                 <select id="filter-province" onchange="loadNotes()">
                     <option value="all">All Provinces</option>
                     <option value="Sindh">Sindh</option>
@@ -494,7 +494,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label>Subject:</label>
+                <label><i class="fas fa-book"></i> Subject:</label>
                 <select id="filter-subject" onchange="loadNotes()">
                     <option value="all">All Subjects</option>
                     <option value="Biology">Biology</option>
@@ -509,7 +509,7 @@
             </div>
         </section>
         <div id="notes-container" class="card-grid"></div>
-        <p id="no-content-message" class="hidden text-center">No results found.</p>
+        <p id="no-content-message" class="hidden text-center"></p>
     </main>
 
     <div id="pdfModal" class="modal">
