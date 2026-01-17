@@ -1080,7 +1080,7 @@ const testsData = [
 
 
     ];
-
+    let currentStudentDetails = null;
     let activeTestMCQs = [];
     let userSelections = [];
     let currentOpenTest = null;
@@ -1248,23 +1248,6 @@ const testsData = [
         btn.classList.add('active');
     }
 
-    function handleDetailsSubmit(e) {
-        e.preventDefault();
-        const stdDetails = {
-            name: document.getElementById('user-name').value,
-            city: document.getElementById('user-city').value,
-            whatsapp: document.getElementById('user-whatsapp').value,
-            testId: pendingTestId,
-            mode: selectedPct * 100 + "%"
-        };
-        
-        // Replace with your Google Apps Script URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxYMBeuOOpDxQIO-OBpdRPHoSJI18X_3P_hVsstLuOpE3pZCcf7TwDOg24VZJ6jakExMA/exec";
-        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(stdDetails) });
-
-        document.getElementById('configModal').style.display = 'none';
-        openActualTest(pendingTestId);
-    }
 
     function openActualTest(id) {
         const test = testsData.find(t => t.id === id);
@@ -1317,12 +1300,29 @@ const testsData = [
         const m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
         document.getElementById('time-left').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
+ 
 
-    function submitTest(e) {
+function handleDetailsSubmit(e) {
+    e.preventDefault();
+    
+    // Store details in the global variable instead of sending immediately
+    currentStudentDetails = {
+        name: document.getElementById('user-name').value,
+        city: document.getElementById('user-city').value,
+        whatsapp: document.getElementById('user-whatsapp').value,
+        testId: pendingTestId,
+        testTitle: testsData.find(t => t.id === pendingTestId).title, // Added for better sheet logging
+        mode: (selectedPct * 100) + "%"
+    };
+
+    document.getElementById('configModal').style.display = 'none';
+    openActualTest(pendingTestId);
+}
+
+function submitTest(e) {
     if(e) e.preventDefault();
     clearInterval(timerInterval);
     
-    // 1. Calculate Score
     let correct = 0;
     userSelections = [];
     activeTestMCQs.forEach((m, i) => {
@@ -1333,19 +1333,35 @@ const testsData = [
         if(val === m.answer) correct++;
     });
 
-    // 2. Populate Result Data
-    document.getElementById('result-total').innerText = activeTestMCQs.length;
-    document.getElementById('result-correct').innerText = correct;
-    document.getElementById('result-percentage').innerText = ((correct/activeTestMCQs.length)*100).toFixed(0) + "%";
-    
-    // 3. UI SWAP: Hide Test, Show Result independently
-    document.getElementById('mcq-form').classList.add('hidden'); // Hides questions
-    document.getElementById('timer-container').classList.add('hidden'); // Hides timer
-    document.getElementById('submit-btn').classList.add('hidden'); // Hides submit button
-    
-    document.getElementById('result-summary').classList.remove('hidden'); // Shows result at top
+    const totalQ = activeTestMCQs.length;
+    const scorePct = ((correct / totalQ) * 100).toFixed(0) + "%";
 
-    // 4. Reset Scroll to top of the modal
+    // --- NEW: SEND DATA TO GOOGLE SHEETS NOW ---
+    if (currentStudentDetails) {
+        const finalPayload = {
+            ...currentStudentDetails,
+            score: `${correct} / ${totalQ}`,
+            percentage: scorePct,
+            timestamp: new Date().toLocaleString()
+        };
+
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRuJKxlUZjc1VlrMBlaUHz-LrUMnODIoGHrjRD9FrzE0dkXCFrd7AKDCkiFT7MZDjkNw/exec";
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: JSON.stringify(finalPayload) 
+        });
+    }
+    // ------------------------------------------
+
+    document.getElementById('result-total').innerText = totalQ;
+    document.getElementById('result-correct').innerText = correct;
+    document.getElementById('result-percentage').innerText = scorePct;
+    
+    document.getElementById('mcq-form').classList.add('hidden');
+    document.getElementById('timer-container').classList.add('hidden');
+    document.getElementById('submit-btn').classList.add('hidden');
+    document.getElementById('result-summary').classList.remove('hidden');
     document.getElementById('testModal').scrollTop = 0;
 }
     
