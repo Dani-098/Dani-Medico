@@ -1311,7 +1311,6 @@ function handleDetailsSubmit(e) {
         city: document.getElementById('user-city').value,
         whatsapp: document.getElementById('user-whatsapp').value,
         testId: pendingTestId,
-        testTitle: testsData.find(t => t.id === pendingTestId).title, // Added for better sheet logging
         mode: (selectedPct * 100) + "%"
     };
 
