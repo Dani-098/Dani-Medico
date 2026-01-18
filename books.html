@@ -147,12 +147,12 @@
         /* GRID SYSTEM (5 PC / 2 Mobile) */
         .card-grid { display: grid; gap: 12px; margin-top: 1rem; width: 100%; }
         @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(5, 1fr); } }
-        @media (max-width: 1023px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 991px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
 
         /* CARD DESIGN */
         .card { background-color: var(--color-card-bg); padding: 1rem; border-radius: var(--border-radius-base); box-shadow: 0 2px 8px var(--color-shadow); height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        .lecture-card { border-left: 5px solid var(--color-secondary-green); }
-        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.95rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
+        .lecture-card { border-left: 5px solid var(--color-secondary-green);  }
+        .lecture-card h4 { color: var(--color-primary-blue); font-size: 0.9rem; height: 2.8rem; overflow: hidden; margin-bottom: 5px; line-height: 1.4; }
         .lecture-card p { font-size: 0.75rem; margin-bottom: 5px; }
 
         /* FILTERS */
