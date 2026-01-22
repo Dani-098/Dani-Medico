@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANI MEDICO - MDCAT 2026 Poster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-green: #8cc63f;
+            --primary-blue: #0095da;
+            --dark-blue: #0a2d4d;
+            --accent-yellow: #ffdf00;
+            --grad: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        /* A4 Container Setup */
+        .a4-page {
+            width: 210mm;
+            height: 355mm;
+            background: white;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative Background Elements */
+        .a4-page::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-green);
+            filter: blur(100px);
+            opacity: 0.2;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--dark-blue);
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        .logo-circle {
+            width: 130px;
+            height: 130px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 2;
+            margin-bottom: 15px;
+            border: 5px solid var(--primary-green);
+        }
+
+        .logo-circle img {
+            width: 85%;
+        }
+
+        .brand-name {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 0px var(--primary-blue);
+        }
+
+        /* Content Section */
+        .main-content {
+            padding: 40px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .hero-text {
+            color: var(--dark-blue);
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .url-banner {
+            background: var(--grad);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 15px rgba(140, 198, 63, 0.3);
+        }
+
+        /* Feature Cards */
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .test-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Gradient Icons */
+        .icon-box i {
+            font-size: 1.8rem;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .test-info .num {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--dark-blue);
+            line-height: 1;
+        }
+
+        .test-info .label {
+            font-size: 1rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        /* Massive Callout */
+        .grand-total {
+            margin-top: 40px;
+            background: #fffbeb;
+            border: 3px dashed #f59e0b;
+            padding: 20px;
+            border-radius: 25px;
+        }
+
+        .grand-total h3 {
+            font-size: 2rem;
+            color: #92400e;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f1f5f9;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .social-handle {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .social-handle i {
+            margin-right: 12px;
+            font-size: 1.5rem;
+            width: 30px;
+        }
+
+        /* Download Button - Fixed to screen, not poster */
+        .dl-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ef4444;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.4);
+            z-index: 1000;
+        }
+        
+        .dl-btn:hover { background: #dc2626; }
+
+    </style>
+</head>
+<body>
+
+    <button class="dl-btn" onclick="downloadPoster()">
+        <i class="fas fa-download"></i> Download as Image
+    </button>
+
+    <div class="a4-page" id="posterArea">
+        <div class="header">
+            <div class="logo-circle">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h1 class="brand-name">DANI MEDICO</h1>
+        </div>
+
+        <div class="main-content">
+            <h2 class="hero-text">🚀 MDCAT 2026 PREP JUST GOT<br>A WHOLE LOT BIGGER!</h2>
+            
+            <div class="url-banner">
+                Danimedico.com — ALL FREE! 🤑
+            </div>
+
+            <div class="test-grid">
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-rocket"></i></div>
+                    <div class="test-info">
+                        <span class="num">60</span>
+                        <span class="label">High-Yield Mega Tests</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-book-open"></i></div>
+                    <div class="test-info">
+                        <span class="num">100</span>
+                        <span class="label">Chapterwise Past Papers</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-file-invoice"></i></div>
+                    <div class="test-info">
+                        <span class="num">200+</span>
+                        <span class="label">Chapterwise MCQs</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="test-info">
+                        <span class="num">25</span>
+                        <span class="label">Year-wise Past Papers</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-clock"></i></div>
+                    <div class="test-info">
+                        <span class="num">25</span>
+                        <span class="label">Scheduled FLPs</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                    <div class="test-info">
+                        <span class="num">15</span>
+                        <span class="label">Full Book Tests</span>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="icon-box"><i class="fas fa-bolt"></i></div>
+                    <div class="test-info">
+                        <span class="num">90</span>
+                        <span class="label">Surprise Tests</span>
+                    </div>
+                </div>
+                <div class="test-card" style="background: var(--dark-blue); border: none;">
+                    <div class="icon-box"><i class="fas fa-gift"></i></div>
+                    <div class="test-info">
+                        <span class="num" style="color: white;">DROPPING</span>
+                        <span class="label" style="color: var(--primary-green);">IN APRIL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grand-total">
+                <h3>⭐ TOTAL 500+ TESTS ⭐</h3>
+                <p style="font-weight: 600; color: #64748b;">The Most Comprehensive Free Resource for MDCAT</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="social-handle"><i class="fab fa-facebook" style="color: #1877F2;"></i> @Danimedico</div>
+            <div class="social-handle"><i class="fab fa-instagram" style="color: #E4405F;"></i> @Danimedico</div>
+            <div class="social-handle"><i class="fab fa-youtube" style="color: #FF0000;"></i> Dani Medico Official</div>
+            <div class="social-handle"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Community</div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPoster() {
+            const poster = document.getElementById('posterArea');
+            html2canvas(poster, {
+                scale: 3, // Higher scale for high-quality print
+                useCORS: true,
+                logging: false,
+                backgroundColor: "#ffffff"
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'DANIMEDICO-MDCAT-2026.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
