@@ -55,27 +55,30 @@
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
 
-        .logo-circle {
-            width: 90px;
-            height: 90px;
-            min-width: 90px;
-            min-height: 90px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 2;
-            margin-bottom: 15px;
-            border: 3px solid var(--primary-green);
-            overflow: hidden; /* Keeps the image inside the circle */
-        }
-        
-        logo-circle img {
-            width: 50%; /* Adjust padding inside circle */
-            object-fit: contain; /* Prevents stretching */
-        }
+        /* FIXED LOGO SIZE: 90px x 90px Circle */
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 2;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-green);
+    overflow: hidden; /* This clips the image into a circle */
+}
+
+.logo-circle img {
+    width: 100%;       /* Makes image width fit the circle */
+    height: 100%;      /* Makes image height fit the circle */
+    object-fit: cover; /* Ensures the logo fills the entire 90px area */
+    display: block;
+}
 
         .brand-name {
             color: white;
