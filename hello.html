@@ -58,6 +58,8 @@
         .logo-circle {
             width: 90px;
             height: 90px;
+            min-width: 90px;
+            min-height: 90px;
             background: white;
             border-radius: 50%;
             display: flex;
@@ -67,7 +69,8 @@
             z-index: 2;
             margin-bottom: 15px;
             border: 3px solid var(--primary-green);
-            overflow: hidden;
+            overflow: hidden; /* Keeps the image inside the circle */
+        }
         }
         
         logo-circle img {
