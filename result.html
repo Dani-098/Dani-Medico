@@ -7,10 +7,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
-            --navy: #2D4739;        /* Forest Green */
-            --med-green: #C26D47;   /* Terracotta Accent */
-            --gold: #A67C52;        /* Earthy Bronze for Ranks */
-            --light-bg: #E3D5CA;    /* Sand Beige */
+            /* PROFESSIONAL COLOR PALETTE */
+            --navy: #1e293b;        /* Deep Slate Blue (Authority) */
+            --med-green: #0f172a;   /* Darker Navy for Contrast */
+            --gold: #b45309;        /* Rich Amber (Achievement) */
+            --light-bg: #f1f5f9;    /* Clean Ice White/Blue */
+            --accent-red: #be123c;  /* Crimson for High Contrast pops */
         }
 
         /* Forced color printing for all browsers */
@@ -21,7 +23,7 @@
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0; padding: 20px 0; background: #cbd5e1;
+            margin: 0; padding: 20px 0; background: #94a3b8;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,10 +45,10 @@
         header { text-align: center; margin-bottom: 10px; }
         .logo { width: 90px; }
         h1 { color: var(--navy) !important; margin: 5px 0 0 0; font-size: 36px; font-weight: 900; letter-spacing: 2px; }
-        h2 { color: var(--med-green) !important; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 4px; }
+        h2 { color: var(--gold) !important; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 4px; }
 
         .report-banner {
-            background: linear-gradient(90deg, var(--navy), #005073) !important;
+            background: linear-gradient(90deg, var(--navy), #334155) !important;
             color: white !important;
             text-align: center;
             padding: 12px;
@@ -62,7 +64,7 @@
             justify-content: space-around;
             background: var(--light-bg) !important;
             padding: 15px;
-            border: 2px solid #e2e8f0 !important;
+            border: 1px solid #cbd5e1 !important;
             border-radius: 10px;
             margin-bottom: 25px;
         }
@@ -71,16 +73,17 @@
         .info-group span { font-size: 14px; color: var(--navy) !important; font-weight: 700; }
 
         table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
-        th { background: #f1f5f9 !important; color: var(--navy) !important; padding: 12px; font-size: 13px; text-transform: uppercase; text-align: left; border-bottom: 3px solid var(--navy) !important; }
-        td { padding: 12px; font-size: 14px; background: #ffffff !important; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        th { background: #e2e8f0 !important; color: var(--navy) !important; padding: 12px; font-size: 13px; text-transform: uppercase; text-align: left; border-bottom: 3px solid var(--gold) !important; }
+        td { padding: 12px; font-size: 14px; background: #ffffff !important; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
 
+        /* RANK COLORS */
         .rank-1 td { background: #fffbeb !important; color: #92400e !important; font-weight: 800; border-left: 8px solid var(--gold) !important; }
-        .rank-2 td { background: #f8fafc !important; color: #1e293b !important; font-weight: 800; border-left: 8px solid #94a3b8 !important; }
-        .rank-3 td { background: #fff7ed !important; color: #9a3412 !important; font-weight: 800; border-left: 8px solid #c2410c !important; }
+        .rank-2 td { background: #f8fafc !important; color: #334155 !important; font-weight: 800; border-left: 8px solid #94a3b8 !important; }
+        .rank-3 td { background: #fff7ed !important; color: #9a3412 !important; font-weight: 800; border-left: 8px solid #d97706 !important; }
         .normal-row td { border-left: 8px solid var(--navy) !important; }
 
         .percentage-chip {
-            background: var(--med-green) !important;
+            background: var(--navy) !important;
             color: white !important;
             padding: 5px 12px;
             border-radius: 50px;
@@ -99,19 +102,14 @@
 
         .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .social-card { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--navy) !important; font-weight: 600; }
-        .social-card i { font-size: 18px; color: var(--navy) !important; width: 20px; text-align: center; }
+        .social-card i { font-size: 18px; color: var(--gold) !important; width: 20px; text-align: center; }
 
         .qr-section { text-align: center; width: 20%; }
         .qr-code { width: 100px; height: 100px; border: 2px solid var(--navy) !important; padding: 5px; border-radius: 10px; margin-bottom: 5px; background: white !important; }
 
-        /* EXTERNAL BUTTON STYLE */
-        .controls {
-            margin: 30px 0;
-            text-align: center;
-        }
-
+        .controls { margin: 30px 0; text-align: center; }
         .btn-download {
-            background: #2563eb;
+            background: var(--navy);
             color: white;
             border: none;
             padding: 15px 40px;
@@ -119,15 +117,13 @@
             font-size: 18px;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
-
-        .btn-download:hover { transform: scale(1.05); background: #1d4ed8; }
-        .btn-download:active { transform: scale(0.95); }
+        .btn-download:hover { transform: translateY(-2px); background: #334155; }
 
         @media print {
             .controls { display: none; }
@@ -166,19 +162,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Vinod Kumar malhi</td><td>Umerkot </td><td>96</td><td>100</td><td><span class="percentage-chip">96.0%</span></td></tr>
-                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Nashrah Leghari </td><td>Hyderabad  </td><td>96</td><td>100</td><td><span class="percentage-chip">96.0%</span></td></tr>
+                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Vinod Kumar malhi</td><td>Umerkot </td><td>96</td><td>100</td><td><span class="percentage-chip" style="background:var(--gold) !important;">96.0%</span></td></tr>
+                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Nashrah Leghari </td><td>Hyderabad </td><td>96</td><td>100</td><td><span class="percentage-chip" style="background:var(--gold) !important;">96.0%</span></td></tr>
                 <tr class="rank-2"><td><i class="fas fa-medal"></i> 2nd</td><td>Qurat-ul-ain Sodhar </td><td>Dadu</td><td>93</td><td>100</td><td><span class="percentage-chip">93.0%</span></td></tr>
-                <tr class="rank-2"><td><i class="fas fa-medal"></i> 2nd</td><td>Muhammad mustaqeem  </td><td>Seria Naurung</td><td>93</td><td>100</td><td><span class="percentage-chip">93.0%</span></td></tr>
-                <tr class="rank-3"><td><i class="fas fa-award"></i> 3rd</td><td>Azhar mehmood  </td><td>Loralai </td><td>92</td><td>100</td><td><span class="percentage-chip">92.0%</span></td></tr>
-                <tr class="normal-row"><td>4th</td><td>Manahil fatima</td><td>Karachi </td><td>86</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">86.0%</span></td></tr>
-                <tr class="normal-row"><td>4th</td><td>Yasir</td><td>Dadu</td><td>86</td><td>100</td><td><span class="percentage-chip" style="background:#2D4739 !important;">86.0%</span></td></tr>
-                <tr class="normal-row"><td>5th</td><td>Noor </td><td>Hyderabad</td><td>83</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">83.0%</span></td></tr>
-                <tr class="normal-row"><td>6th</td><td>Sagar Ayoob </td><td>Kandiaro  </td><td>82</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">82.0%</span></td></tr>
-                <tr class="normal-row"><td>7th</td><td>Malaika Imran </td><td>Sargodha </td><td>78</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">78.0%</span></td></tr>
-                <tr class="normal-row"><td>8th</td><td>Farman Lashari  </td><td>Shahpur Chakar </td><td>75</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">75.0%</span></td></tr>
-                <tr class="normal-row"><td>9th</td><td>Abdul Majeed  </td><td>Bannu </td><td>74</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">74.0%</span></td></tr>
-                <tr class="normal-row"><td>10th</td><td>Zahra Mari  </td><td>Nawabshah SbA  </td><td>73</td><td>100</td><td><span class="percentage-chip" style="background:#0284c7 !important;">73.0%</span></td></tr>
+                <tr class="rank-2"><td><i class="fas fa-medal"></i> 2nd</td><td>Muhammad mustaqeem </td><td>Seria Naurung</td><td>93</td><td>100</td><td><span class="percentage-chip">93.0%</span></td></tr>
+                <tr class="rank-3"><td><i class="fas fa-award"></i> 3rd</td><td>Azhar mehmood </td><td>Loralai </td><td>92</td><td>100</td><td><span class="percentage-chip">92.0%</span></td></tr>
+                <tr class="normal-row"><td>4th</td><td>Manahil fatima</td><td>Karachi </td><td>86</td><td>100</td><td><span class="percentage-chip">86.0%</span></td></tr>
+                <tr class="normal-row"><td>4th</td><td>Yasir</td><td>Dadu</td><td>86</td><td>100</td><td><span class="percentage-chip">86.0%</span></td></tr>
+                <tr class="normal-row"><td>5th</td><td>Noor </td><td>Hyderabad</td><td>83</td><td>100</td><td><span class="percentage-chip">83.0%</span></td></tr>
+                <tr class="normal-row"><td>6th</td><td>Sagar Ayoob </td><td>Kandiaro </td><td>82</td><td>100</td><td><span class="percentage-chip">82.0%</span></td></tr>
+                <tr class="normal-row"><td>7th</td><td>Malaika Imran </td><td>Sargodha </td><td>78</td><td>100</td><td><span class="percentage-chip">78.0%</span></td></tr>
+                <tr class="normal-row"><td>8th</td><td>Farman Lashari </td><td>Shahpur Chakar </td><td>75</td><td>100</td><td><span class="percentage-chip">75.0%</span></td></tr>
+                <tr class="normal-row"><td>9th</td><td>Abdul Majeed </td><td>Bannu </td><td>74</td><td>100</td><td><span class="percentage-chip">74.0%</span></td></tr>
+                <tr class="normal-row"><td>10th</td><td>Zahra Mari </td><td>Nawabshah SbA </td><td>73</td><td>100</td><td><span class="percentage-chip">73.0%</span></td></tr>
             </tbody>
         </table>
 
@@ -195,7 +191,7 @@
             </div>
             <div class="qr-section">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://danimedico.com/result" class="qr-code" alt="QR Code">
-                <div class="qr-label" style="color:var(--navy) !important; font-weight:bold;">Scan to Verify</div>
+                <div class="qr-label" style="color:var(--navy) !important; font-weight:bold; font-size:12px;">Scan to Verify</div>
             </div>
         </footer>
     </div>
@@ -215,8 +211,8 @@
             btn.style.opacity = '0.7';
 
             html2canvas(report, {
-                scale: 2, // High resolution
-                useCORS: true, // Allows loading logo and QR images
+                scale: 3, // Increased scale for ultra-sharp text
+                useCORS: true,
                 backgroundColor: "#ffffff",
                 logging: false
             }).then(canvas => {
