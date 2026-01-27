@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://danimedico.com/sitemap_index.xml
