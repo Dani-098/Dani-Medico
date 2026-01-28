@@ -22,8 +22,7 @@
             --secondary-green: #28A745;
             --bg-gray: #f4f7f9;
             --light: #FFFFFF;
-            --dark: #343A40;
-            --transition: 0.3s ease;
+            --transition-speed: 0.4s;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,55 +31,77 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             min-height: 100vh;
-            padding-top: 80px; /* Space for fixed navbar */
+            padding-top: 100px; /* Larger space for original header size */
             color: #495057;
         }
 
-        /* --- HEADER & NAVBAR --- */
+        /* --- HEADER & NAVBAR (Restored Sizes) --- */
         #navbar {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
             position: fixed; top: 0; left: 0; right: 0;
-            height: 70px;
+            padding: 0.75rem 5%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
         }
 
         .logo {
-            color: white; font-weight: 700; font-size: 1.2rem;
-            display: flex; align-items: center; gap: 10px;
+            color: white; font-weight: 700; font-size: 1.4rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            transition: transform var(--transition-speed);
         }
+        .logo:hover { transform: translateY(-2px); }
+        .logo-img { height: 70px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
 
-        .logo-img { height: 50px; width: auto; }
+        .nav-links { display: flex; align-items: center; }
 
-        .nav-links { display: flex; align-items: center; gap: 15px; }
-
+        /* --- RESTORED HOVER ANIMATION (Sliding Light) --- */
         .nav-links a {
             color: white;
-            text-decoration: none; /* Removes underlines */
+            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: var(--transition);
+            padding: 0.5rem 0.75rem;
+            margin-left: 0.75rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed);
+            display: flex; align-items: center; gap: 0.4rem;
         }
 
+        .nav-links a::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .nav-links a:hover::before { left: 100%; }
+
         .nav-links a:hover, .nav-links a.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .mobile-menu-btn {
             display: none;
             background: none; border: none;
-            color: white; font-size: 1.5rem; cursor: pointer;
+            color: white; font-size: 1.25rem; cursor: pointer;
         }
 
-        /* --- MAIN CONTENT --- */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        /* --- RESTORED FLOATING ANIMATION --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
 
+        /* --- MAIN CONTENT --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .page-header { text-align: center; margin-bottom: 40px; }
-        .page-header h1 { color: var(--dark); font-size: 2.2rem; margin-bottom: 10px; }
+        .page-header h1 { color: #2c3e50; font-size: 2.5rem; margin-bottom: 10px; }
 
         #results-container {
             display: grid;
@@ -89,21 +110,20 @@
         }
 
         .result-card {
-            background: white; border-radius: 12px;
-            overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: transform var(--transition);
+            background: white; border-radius: 15px;
+            overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
-
-        .result-card:hover { transform: translateY(-5px); }
+        .result-card:hover { transform: translateY(-8px); }
 
         .card-header { padding: 20px; border-bottom: 1px solid #eee; }
-        .card-header h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 10px; }
+        .card-header h3 { font-size: 1.25rem; color: #2c3e50; margin-bottom: 10px; }
 
-        .info-row { display: flex; align-items: center; font-size: 0.85rem; gap: 8px; margin-bottom: 5px; }
-        .info-row i { color: var(--primary-blue); width: 15px; }
-        .exam-type { font-weight: 600; color: var(--primary-blue); text-transform: uppercase; }
+        .info-row { display: flex; align-items: center; font-size: 0.85rem; gap: 8px; color: #666; margin-bottom: 5px; }
+        .info-row i { color: var(--primary-blue); width: 20px; }
+        .exam-type { font-weight: bold; color: var(--primary-blue); text-transform: uppercase; }
 
-        .pdf-box { width: 100%; height: 250px; background: #f0f0f0; }
+        .pdf-box { width: 100%; height: 250px; background: #eee; }
         .pdf-box iframe { width: 100%; height: 100%; border: none; }
 
         .card-footer { padding: 15px; }
@@ -114,50 +134,47 @@
             font-weight: 600; transition: 0.2s;
         }
 
-        .btn-download:hover { filter: brightness(1.1); }
-
-        /* --- FOOTER --- */
+        /* --- FOOTER (Restored Original Large Setup) --- */
         footer {
             background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
-            color: white; padding: 40px 0 20px; margin-top: 60px;
+            color: white; padding: 2rem 1rem 0; margin-top: 3rem; position: relative;
+        }
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--secondary-green), #4da6ff);
         }
 
-        .footer-content {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 20px;
+        .footer-top { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); gap: 1rem;
         }
 
-        .footer-links a, .social-icons a {
-            color: white; text-decoration: none; transition: var(--transition);
-        }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .footer-links a:hover { color: var(--secondary-green); transform: translateY(-2px); }
 
-        .footer-links { display: flex; gap: 20px; }
-        .footer-links a:hover { color: #ccc; }
-
-        .social-icons { display: flex; gap: 15px; }
         .social-icons a {
-            width: 35px; height: 35px; background: rgba(255,255,255,0.1);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; font-size: 1.1rem;
+            color: white; font-size: 1.5rem; margin-left: 1rem; transition: all 0.3s;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
         }
+        .social-icons a:hover { color: var(--secondary-green); background: rgba(255, 255, 255, 0.2); transform: translateY(-3px) scale(1.1); }
 
-        .social-icons a:hover { background: var(--secondary-green); transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding: 1.5rem 0; opacity: 0.8; }
 
-        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
-
-        /* --- RESPONSIVE DESIGN --- */
+        /* --- RESPONSIVE FIXES --- */
         @media (max-width: 850px) {
+            #navbar { padding: 0.6rem 1rem; }
             .nav-links {
-                display: none; /* Hidden by default on mobile */
-                flex-direction: column;
-                position: absolute; top: 70px; left: 0; width: 100%;
-                background: var(--primary-blue-dark);
-                padding: 20px 0;
+                display: none; flex-direction: column; position: absolute;
+                top: 85px; left: 0; width: 100%; background: var(--primary-blue-dark);
+                padding: 1rem 0; border-radius: 0 0 12px 12px;
             }
             .nav-links.active { display: flex; }
+            .nav-links a { margin: 0.3rem 1rem; justify-content: center; }
             .mobile-menu-btn { display: block; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-links { flex-direction: column; gap: 10px; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
         }
     </style>
 </head>
@@ -183,74 +200,52 @@
     </nav>
 
     <div class="container">
-        <div class="page-header">
-            <h1>Platform Results</h1>
+        <div class="page-header float-animation"> <h1>Platform Results</h1>
             <p>Select a test below to view or download your performance sheet.</p>
         </div>
 
         <div id="results-container">
-            <div style="text-align: center; grid-column: 1/-1; padding: 50px; color: #888;">
-                <i class="fas fa-spinner fa-spin"></i> Loading results...
             </div>
-        </div>
     </div>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
-                    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
-                    <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
-                
-                <div class="footer-logo">
-                    <img src="assets/images/logo.png" alt="Logo" class="logo-img">
-                </div>
-
-                <div class="social-icons">
-                    <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com/dani_medicoo?" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com/@danimedicoo" target="_blank"><i class="fab fa-youtube"></i></a>
-                </div>
+        <div class="footer-top container">
+            <div class="footer-links">
+                <a href="/about"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="https://wa.me/923313067328" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Dani Medico. Empowering Future Doctors.</p>
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Logo" class="logo-img">
             </div>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/Danimedicoo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://whatsapp.com/channel/0029VadsNMoLikg6LUsxkF0u" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/dani_medicoo?" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@danimedicoo" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p><i class="fas fa-heart" style="color: #ff4757;"></i> &copy; 2025 Dani Medico. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Data logic - Keeping your data exactly as it was
         const testData = [
             {
-                title: "Biology Unit Test: Genetics",
+                title: "Chemistry | 3. Gases",
                 exam: "MDCAT",
-                date: "October 24, 2025",
-                fileId: "1-Your-Real-ID-Here" 
+                date: "January 28, 2025",
+                fileId: "1lIobdixGpIPFdspgg7c6wFLNhCmAZGrJ" 
             },
-            {
-                title: "Physics Full Length Paper",
-                exam: "ECAT",
-                date: "November 02, 2025",
-                fileId: "1-Another-ID-Here"
-            },
-            {
-                title: "Chemistry: Organic Compounds",
-                exam: "MDCAT",
-                date: "November 10, 2025",
-                fileId: "1-Sample-ID-999"
-            }
+        
         ];
 
-        // Mobile Menu Toggle Function
         function mobileMenuToggle() {
             const nav = document.getElementById('navLinks');
             nav.classList.toggle('active');
         }
 
-        // Display results function
         function displayResults() {
             const container = document.getElementById('results-container');
             container.innerHTML = ''; 
@@ -258,35 +253,23 @@
             testData.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'result-card';
-                
                 const previewLink = `https://drive.google.com/file/d/${item.fileId}/preview`;
                 const downloadLink = `https://drive.google.com/file/d/${item.fileId}/view?usp=sharing`;
 
                 card.innerHTML = `
                     <div class="card-header">
                         <h3>${item.title}</h3>
-                        <div class="info-row">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span class="exam-type">${item.exam}</span>
-                        </div>
-                        <div class="info-row">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>${item.date}</span>
-                        </div>
+                        <div class="info-row"><i class="fas fa-graduation-cap"></i><span class="exam-type">${item.exam}</span></div>
+                        <div class="info-row"><i class="far fa-calendar-alt"></i><span>${item.date}</span></div>
                     </div>
-                    <div class="pdf-box">
-                        <iframe src="${previewLink}" allow="autoplay"></iframe>
-                    </div>
+                    <div class="pdf-box"><iframe src="${previewLink}" allow="autoplay"></iframe></div>
                     <div class="card-footer">
-                        <a href="${downloadLink}" target="_blank" class="btn-download">
-                            <i class="fas fa-file-download"></i> Download Result
-                        </a>
+                        <a href="${downloadLink}" target="_blank" class="btn-download"><i class="fas fa-file-download"></i> Download Result</a>
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
-
         window.onload = displayResults;
     </script>
 </body>
