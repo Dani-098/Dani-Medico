@@ -2,203 +2,226 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DANI MEDICO - OFFICIAL RESULT 2026</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --deep-green: #1b4332;   /* Professional Medical Green */
-            --vibrant-pink: #9d0208; /* Deep Ruby Red/Pink for Contrast */
-            --bright-yellow: #ffb703;/* Golden Yellow for Ranks */
-            --soft-bg: #f8f9fa;      /* Clean White Background */
-            --accent-pink: #ff8fa3;  /* Soft Pink for secondary accents */
-        }
-
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-blue: #2c3e50;
+            --bg-gray: #f4f7f9;
         }
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0; padding: 20px 0; background: #d8e2dc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: var(--bg-gray);
+            margin: 0;
+            padding: 20px;
         }
 
-        #report-capture {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 12mm;
-            background: white !important;
-            box-shadow: 0 0 40px rgba(0,0,0,0.2);
-            box-sizing: border-box;
-            border-top: 15px solid var(--deep-green) !important;
-            display: flex;
-            flex-direction: column;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        header { text-align: center; margin-bottom: 10px; }
-        .logo { width: 90px; }
-        h1 { color: var(--deep-green) !important; margin: 5px 0 0 0; font-size: 38px; font-weight: 900; letter-spacing: 1px; }
-        h2 { color: #d00000 !important; margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 3px; }
-
-        .report-banner {
-            background: linear-gradient(90deg, #9d0208, #ff8fa3) !important; /* Pink to Red Gradient */
-            color: white !important;
+        header {
             text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* The Grid Layout */
+        #results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card Styling */
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.25rem;
+            color: var(--dark-blue);
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-row i {
+            width: 20px;
+            color: var(--primary-color);
+        }
+
+        .exam-type {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        /* PDF Frame Styling */
+        .pdf-box {
+            width: 100%;
+            height: 250px;
+            background: #eee;
+            position: relative;
+        }
+
+        .pdf-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Download Button */
+        .card-footer {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
             padding: 12px;
             border-radius: 8px;
-            margin: 20px 0;
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(157, 2, 8, 0.2);
+            font-weight: 600;
+            transition: opacity 0.2s;
         }
 
-        .info-bar {
-            display: flex;
-            justify-content: space-around;
-            background: #f1f8f5 !important; /* Very light green tint */
-            padding: 15px;
-            border: 2px solid var(--deep-green) !important;
-            border-radius: 10px;
-            margin-bottom: 25px;
+        .btn-download:hover {
+            opacity: 0.9;
         }
 
-        .info-group label { display: block; font-size: 10px; color: #6a040f !important; font-weight: 900; text-transform: uppercase; }
-        .info-group span { font-size: 14px; color: var(--deep-green) !important; font-weight: 700; }
-
-        table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
-        th { background: var(--deep-green) !important; color: white !important; padding: 12px; font-size: 13px; text-transform: uppercase; text-align: left; }
-        td { padding: 12px; font-size: 14px; background: #ffffff !important; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
-
-        /* RANK LOGIC WITH YOUR COLORS */
-        .rank-1 td { background: #fffced !important; color: #856404 !important; font-weight: 800; border-left: 8px solid var(--bright-yellow) !important; }
-        .rank-2 td { background: #fdf2f2 !important; color: #a4161a !important; font-weight: 800; border-left: 8px solid #ff4d6d !important; }
-        .rank-3 td { background: #f0fff4 !important; color: #1b4332 !important; font-weight: 800; border-left: 8px solid #40916c !important; }
-        .normal-row td { border-left: 8px solid var(--deep-green) !important; }
-
-        .percentage-chip {
-            background: var(--deep-green) !important;
-            color: white !important;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 12px;
-        }
-
-        footer {
-            margin-top: auto;
-            padding-top: 20px;
-            border-top: 3px solid #f1f5f9 !important;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-        }
-
-        .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .social-card { background: white !important; border: 1px solid #ffccd5 !important; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--deep-green) !important; font-weight: 600; }
-        .social-card i { font-size: 18px; color: #d00000 !important; width: 20px; text-align: center; }
-
-        .qr-section { text-align: center; width: 20%; }
-        .qr-code { width: 100px; height: 100px; border: 2px solid #d00000 !important; padding: 5px; border-radius: 10px; margin-bottom: 5px; }
-
-        .controls { margin: 30px 0; text-align: center; }
-        .btn-download {
-            background: #d00000;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(208, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /* Loading Placeholder */
+        .loading-text {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 50px;
+            color: #999;
         }
     </style>
 </head>
 <body>
 
-    <div id="report-capture">
-        <header>
-            <img src="assets/images/logo.png" class="logo" alt="LOGO">
-            <h1>DANI MEDICO</h1>
-            <h2>MDCAT 2026 FREE TEST SERIES</h2>
-        </header>
+<div class="container">
+    <header>
+        <h1>Platform Results</h1>
+        <p>Select a test below to view or download your performance sheet.</p>
+    </header>
 
-        <div class="report-banner">Top 10 High Achievers Result</div>
-
-        <div class="info-bar">
-            <div class="info-group"><label>Test Date</label><span>24 Jan 2026</span></div>
-            <div class="info-group"><label>Day</label><span>Saturday</span></div>
-            <div class="info-group"><label>Subject</label><span>Physics</span></div>
-            <div class="info-group"><label>Chapter</label><span>2. Force and Motion</span></div>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Student Name</th>
-                    <th>City</th>
-                    <th>Score</th>
-                    <th>Total</th>
-                    <th>Percentage</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Vinod Kumar malhi</td><td>Umerkot </td><td>96</td><td>100</td><td><span class="percentage-chip" style="background:var(--bright-yellow) !important; color:#000 !important;">96.0%</span></td></tr>
-                <tr class="rank-1"><td><i class="fas fa-crown"></i> 1st</td><td>Nashrah Leghari </td><td>Hyderabad </td><td>96</td><td>100</td><td><span class="percentage-chip" style="background:var(--bright-yellow) !important; color:#000 !important;">96.0%</span></td></tr>
-                <tr class="rank-2"><td><i class="fas fa-medal"></i> 2nd</td><td>Qurat-ul-ain Sodhar </td><td>Dadu</td><td>93</td><td>100</td><td><span class="percentage-chip" style="background:#ff4d6d !important;">93.0%</span></td></tr>
-                <tr class="rank-3"><td><i class="fas fa-award"></i> 3rd</td><td>Azhar mehmood </td><td>Loralai </td><td>92</td><td>100</td><td><span class="percentage-chip" style="background:#40916c !important;">92.0%</span></td></tr>
-                <tr class="normal-row"><td>4th</td><td>Manahil fatima</td><td>Karachi </td><td>86</td><td>100</td><td><span class="percentage-chip">86.0%</span></td></tr>
-                <tr class="normal-row"><td>5th</td><td>Noor </td><td>Hyderabad</td><td>83</td><td>100</td><td><span class="percentage-chip">83.0%</span></td></tr>
-                <tr class="normal-row"><td>6th</td><td>Sagar Ayoob </td><td>Kandiaro </td><td>82</td><td>100</td><td><span class="percentage-chip">82.0%</span></td></tr>
-            </tbody>
-        </table>
-
-        <footer>
-            <div class="social-section">
-                <div class="social-grid">
-                    <div class="social-card"><i class="fas fa-globe"></i> danimedico.com</div>
-                    <div class="social-card"><i class="fab fa-facebook"></i> /DaniMedicoo</div>
-                    <div class="social-card"><i class="fab fa-whatsapp"></i> +92 3313067328</div>
-                    <div class="social-card"><i class="fab fa-instagram"></i> @dani_medicoo</div>
-                    <div class="social-card"><i class="fab fa-youtube"></i> @danimedicoo</div>
-                    <div class="social-card"><i class="fas fa-envelope"></i> info@danimedico.com</div>
-                </div>
-            </div>
-            <div class="qr-section">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://danimedico.com/result" class="qr-code" alt="QR Code">
-                <div class="qr-label" style="color:var(--deep-green) !important; font-weight:bold;">Scan to Verify</div>
-            </div>
-        </footer>
+    <div id="results-container">
+        <div class="loading-text">Loading results...</div>
     </div>
+</div>
 
-    <div class="controls">
-        <button class="btn-download" onclick="downloadImage()">
-            <i class="fas fa-file-image"></i> DOWNLOAD AS IMAGE (PNG)
-        </button>
-    </div>
-
-    <script>
-        function downloadImage() {
-            const report = document.getElementById('report-capture');
-            const btn = document.querySelector('.btn-download');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GENERATING...';
-            html2canvas(report, { scale: 2, useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'DaniMedico-Vibrant.png';
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-                btn.innerHTML = '<i class="fas fa-file-image"></i> DOWNLOAD AS IMAGE (PNG)';
-            });
+<script>
+    /**
+     * DATA SECTION
+     * Just add your Google Drive File ID and test details here.
+     */
+    const testData = [
+        {
+            title: "Biology Unit Test: Genetics",
+            exam: "MDCAT",
+            date: "October 24, 2025",
+            fileId: "" // Replace with your ID
+        },
+        {
+            title: "Physics Full Length Paper",
+            exam: "ECAT",
+            date: "November 02, 2025",
+            fileId: "1-Another-ID-Here"
+        },
+        {
+            title: "Chemistry: Organic Compounds",
+            exam: "MDCAT",
+            date: "November 10, 2025",
+            fileId: "1-Sample-ID-999"
         }
-    </script>
+    ];
+
+    /**
+     * LOGIC SECTION
+     * This function generates the HTML for each card.
+     */
+    function displayResults() {
+        const container = document.getElementById('results-container');
+        container.innerHTML = ''; // Clear loading text
+
+        testData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            
+            // Construct the Google Drive Preview Link
+            const previewLink = `https://drive.google.com/file/d/${item.fileId}/preview`;
+            // Construct the Download Link
+            const downloadLink = `https://drive.google.com/file/d/${item.fileId}/view?usp=sharing`;
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <h3>${item.title}</h3>
+                    <div class="info-row">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="exam-type">${item.exam}</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>${item.date}</span>
+                    </div>
+                </div>
+                
+                <div class="pdf-box">
+                    <iframe src="${previewLink}" allow="autoplay"></iframe>
+                </div>
+
+                <div class="card-footer">
+                    <a href="${downloadLink}" target="_blank" class="btn-download">
+                        <i class="fas fa-file-download"></i> Download Result
+                    </a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Run the function when page loads
+    window.onload = displayResults;
+</script>
+
 </body>
 </html>
