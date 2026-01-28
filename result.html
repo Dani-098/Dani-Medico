@@ -200,7 +200,7 @@
     </nav>
 
     <div class="container">
-        <div class="page-header float-animation"> <h1>Platform Results</h1>
+        <div class="page-header float-animation"> <h1>Test Results</h1>
             <p>Select a test below to view or download your performance sheet.</p>
         </div>
 
@@ -254,7 +254,7 @@
                 const card = document.createElement('div');
                 card.className = 'result-card';
                 const previewLink = `https://drive.google.com/file/d/${item.fileId}/preview`;
-                const downloadLink = `https://drive.google.com/file/d/${item.fileId}/view?usp=sharing`;
+                const directDownloadLink = `https://drive.google.com/uc?export=download&id=${item.fileId}`;
 
                 card.innerHTML = `
                     <div class="card-header">
@@ -262,9 +262,11 @@
                         <div class="info-row"><i class="fas fa-graduation-cap"></i><span class="exam-type">${item.exam}</span></div>
                         <div class="info-row"><i class="far fa-calendar-alt"></i><span>${item.date}</span></div>
                     </div>
-                    <div class="pdf-box"><iframe src="${previewLink}" allow="autoplay"></iframe></div>
+                    <div class="pdf-box"><iframe src="${previewLink}"></iframe></div>
                     <div class="card-footer">
-                        <a href="${downloadLink}" target="_blank" class="btn-download"><i class="fas fa-file-download"></i> Download Result</a>
+                        <a href="${directDownloadLink}" class="btn-download" download>
+                            <i class="fas fa-file-download"></i> Download Result
+                        </a>
                     </div>
                 `;
                 container.appendChild(card);
