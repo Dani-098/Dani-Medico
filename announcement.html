@@ -6,6 +6,7 @@
     <title>Announcements - Dani Medico</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6232W78YNL"></script>
 <script>
@@ -146,6 +147,34 @@
 
         .announcement-card { margin-bottom: 1.5rem; }
         .announcement-card:hover { transform: translateY(-5px); border-left-color: var(--color-secondary-green); }
+        /* --- READ MORE STYLES --- */
+.announcement-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limits to 1 line */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.announcement-content.expanded {
+    display: block; /* Shows full text */
+    -webkit-line-clamp: unset;
+}
+
+.read-more-btn {
+    color: var(--color-primary-blue);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.read-more-btn:hover {
+    color: var(--color-primary-blue-dark);
+}
 
         .filter-group select { 
             padding: 0.6rem 1rem; border: 1px solid #ddd; border-radius: 8px; 
@@ -279,56 +308,65 @@
     </footer>
 
     <script>
-        // --- GLOBAL DATA ---
-        const announcements = [
-            { title: "MDCAT 2025 Syllabus Update", date: "2025-01-15", category: "MDCAT", priority: "New", content: "The PMC has announced a major syllabus change for the 2025 entry test." },
-            { title: "AFNS Admission Cycle Open", date: "2025-12-10", category: "AFNS", priority: "Important", content: "The Armed Forces Nursing Service application window is now open. Apply before the deadline." },
-            { title: "Dashboard Maintenance Notice", date: "2025-12-05", category: "General", priority: "New", content: "Minor dashboard improvements are being deployed on 2025-12-06." },
-            { title: "NUMS Test Dates Announced", date: "2025-11-25", category: "NUMS", priority: "Important", content: "Check the official NUMS website for updated test schedules." },
-        ].sort((a, b) => new Date(b.date) - new Date(a.date));
+    // --- GLOBAL DATA ---
+    const announcements = [
+        { title: "MDCAT 2025 Syllabus Update", date: "2025-01-15", category: "MDCAT", priority: "New", content: "The PMC has announced a major syllabus change for the 2025 entry test. This includes updates to Biology, Chemistry, and Physics sections. Students are advised to download the new PDF from the official portal immediately." },
+        { title: "AFNS Admission Cycle Open", date: "2025-12-10", category: "AFNS", priority: "Important", content: "The Armed Forces Nursing Service application window is now open. Apply before the deadline. Ensure you have all educational documents and your domicile ready before starting the online application process." },
+        { title: "Dashboard Maintenance Notice", date: "2025-12-05", category: "General", priority: "New", content: "Minor dashboard improvements are being deployed on 2025-12-06. The site may be slow for 15 minutes starting at 2:00 AM PKT." },
+        { title: "NUMS Test Dates Announced", date: "2025-11-25", category: "NUMS", priority: "Important", content: "Check the official NUMS website for updated test schedules. Admit cards will be available for download two weeks prior to the examination date." },
+    ].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // --- MOBILE MENU TOGGLE (EXACT FROM INDEX) ---
-        function mobileMenuToggle() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
+    // --- MOBILE MENU TOGGLE ---
+    function mobileMenuToggle() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
 
-        // --- RENDERING HELPERS ---
-        function createAnnouncementCard(ann) {
-            const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
-            return `
-                <div class="card announcement-card">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <h4 style="margin:0; color:var(--color-primary-blue-dark);">${ann.title} ${priorityBadge}</h4>
-                    </div>
-                    <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
-                        <i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}
-                    </p>
-                    <p style="color:var(--color-text);">${ann.content}</p>
+    // --- TOGGLE READ MORE LOGIC ---
+    function toggleReadMore(btn) {
+        const contentP = btn.previousElementSibling;
+        const isExpanded = contentP.classList.toggle('expanded');
+        btn.textContent = isExpanded ? "Read Less" : "Read More";
+    }
+
+    // --- RENDERING HELPERS ---
+    function createAnnouncementCard(ann, index) {
+        const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
+        
+        return `
+            <div class="card announcement-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <h4 style="margin:0; color:var(--color-primary-blue-dark);">${ann.title} ${priorityBadge}</h4>
                 </div>
-            `;
+                <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
+                    <i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}
+                </p>
+                <p class="announcement-content">${ann.content}</p>
+                <span class="read-more-btn" onclick="toggleReadMore(this)">Read More</span>
+            </div>
+        `;
+    }
+    
+    // --- PAGE LOGIC ---
+    function loadAnnouncementsPage() {
+        const category = document.getElementById('filter-category').value;
+        const container = document.getElementById('announcements-container');
+        
+        let filtered = announcements;
+        if (category !== 'all') {
+            filtered = announcements.filter(ann => ann.category === category);
         }
         
-        // --- PAGE LOGIC ---
-        function loadAnnouncementsPage() {
-            const category = document.getElementById('filter-category').value;
-            const container = document.getElementById('announcements-container');
-            
-            let filtered = announcements;
-            if (category !== 'all') {
-                filtered = announcements.filter(ann => ann.category === category);
-            }
-            
-            if (filtered.length === 0) {
-                container.innerHTML = '';
-                document.getElementById('no-announcements-message').classList.remove('hidden');
-            } else {
-                container.innerHTML = filtered.map(ann => createAnnouncementCard(ann)).join('');
-                document.getElementById('no-announcements-message').classList.add('hidden');
-            }
+        if (filtered.length === 0) {
+            container.innerHTML = '';
+            document.getElementById('no-announcements-message').classList.remove('hidden');
+        } else {
+            container.innerHTML = filtered.map((ann, index) => createAnnouncementCard(ann, index)).join('');
+            document.getElementById('no-announcements-message').classList.add('hidden');
         }
+    }
 
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', loadAnnouncementsPage);
-    </script>
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', loadAnnouncementsPage);
+</script>
 </body>
 </html>
