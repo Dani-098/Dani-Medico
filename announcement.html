@@ -342,28 +342,26 @@
 
     // --- RENDERING HELPERS ---
     function createAnnouncementCard(ann, index) {
-        const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
-        const linkedContent = ann.content.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-        
-        return `
-            <div class="card announcement-card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                    <h4 style="margin:0; color:var(--color-primary-blue-dark);">${ann.title} ${priorityBadge}</h4>
-             <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
-                    <i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}
-                </p>
-                <p class="announcement-content">${ann.content}</p>
-                <span class="read-more-btn" onclick="toggleReadMore(this)">Read More</span>
+    // 1. Create the badge
+    const priorityBadge = ann.priority ? `<span class="badge badge-${ann.priority.toLowerCase()}">${ann.priority}</span>` : '';
+    
+    // 2. Convert [Word](URL) into clickable links
+    const linkedContent = ann.content.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--color-primary-blue); font-weight:600; text-decoration:none;">$1</a>');
+
+    // 3. Return the clean HTML structure
+    return `
+        <div class="card announcement-card">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                <h4 style="margin:0; color:var(--color-primary-blue-dark);">${ann.title} ${priorityBadge}</h4>
             </div>
-        `;
+            <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
+                <i class="fas fa-calendar-alt"></i> ${ann.date} | <i class="fas fa-tag"></i> ${ann.category}
+            </p>
+            <p class="announcement-content">${linkedContent}</p>
+            <span class="read-more-btn" onclick="toggleReadMore(this)">Read More</span>
         </div>
-                <div class="card announcement-card">
-        ...
-        <p class="announcement-content">${linkedContent}</p>
-        <span class="read-more-btn" onclick="toggleReadMore(this)">Read More</span>
-    </div>
-`;
-    }
+    `;
+}
     
     // --- PAGE LOGIC ---
     function loadAnnouncementsPage() {
